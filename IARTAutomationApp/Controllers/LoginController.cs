@@ -21,11 +21,16 @@ namespace IARTAutomationApp.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult AdminLogin(UserMaster user, string returnUrl)
+        public ActionResult AdminLogin(string returnUrl, FormCollection fc)
         {
-            if (user.EmployeeCode > 0 && !string.IsNullOrEmpty(user.Password))
+            if (!string.IsNullOrEmpty(fc["EmployeeCode"]) && !string.IsNullOrEmpty(fc["Password"]))
             {
-                user = (db.UserMasters.Where(emp => emp.EmployeeCode == user.EmployeeCode && emp.Password == user.Password)).FirstOrDefault();
+                if (db.SuperAdmins.Any(sa => sa.LoginName.Equals(fc["EmployeeCode"]) && sa.Password.Equals(fc["Password"]) && sa.Id == 1))
+                {
+                    return RedirectToAction("", "");
+                }
+                int empCode = 0; int.TryParse(fc["EmployeeCode"], out empCode);
+                var user = (db.UserMasters.Where(emp => emp.EmployeeCode == empCode && emp.Password == fc["Password"])).FirstOrDefault();
                 if (user != null)
                 {
                     TempData["wel"] = "Your Login is Successful";
@@ -113,7 +118,7 @@ namespace IARTAutomationApp.Controllers
                     return RedirectToAction("index", "Login");
                 }
             }
-            else
+            // else
             {
                 TempData["wel"] = "Pls Enter UserName and Password";
                 return RedirectToAction("index", "Login");

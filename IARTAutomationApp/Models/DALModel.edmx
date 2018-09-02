@@ -186,6 +186,18 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Website" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="DeductionsMaster">
           <Key>
             <PropertyRef Name="DeductionId" />
@@ -843,6 +855,17 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TendererInformation">
           <Key>
             <PropertyRef Name="Id" />
@@ -916,6 +939,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="250" />
           <Property Name="UserKeyId" Type="nvarchar" MaxLength="30" />
           <Property Name="OrganizationName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
@@ -1140,6 +1164,7 @@
           <EntitySet Name="ClassMaster" EntityType="Self.ClassMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COUNTRYLIST" EntityType="Self.COUNTRYLIST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CrivVoucher" EntityType="Self.CrivVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerMaster" EntityType="Self.CustomerMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeductionsMaster" EntityType="Self.DeductionsMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAIAssociation" EntityType="Self.EmpAIAssociation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAIConference" EntityType="Self.EmpAIConference" Schema="dbo" store:Type="Tables" />
@@ -1181,6 +1206,7 @@
           <EntitySet Name="StoreMaster" EntityType="Self.StoreMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreReciptVoucher" EntityType="Self.StoreReciptVoucher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreTallyVoucher" EntityType="Self.StoreTallyVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperAdmin" EntityType="Self.SuperAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TendererInformation" EntityType="Self.TendererInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenderOpening" EntityType="Self.TenderOpening" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitResearchMaster" EntityType="Self.UnitResearchMaster" Schema="dbo" store:Type="Tables" />
@@ -1939,6 +1965,7 @@
           <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
           <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
@@ -2241,6 +2268,8 @@
           <EntitySet Name="StoreCreditVouchers" EntityType="IARTDBNEWModel.StoreCreditVoucher" />
           <EntitySet Name="StoreGateVouchers" EntityType="IARTDBNEWModel.StoreGateVoucher" />
           <EntitySet Name="StoreTallyVouchers" EntityType="IARTDBNEWModel.StoreTallyVoucher" />
+          <EntitySet Name="SuperAdmins" EntityType="IARTDBNEWModel.SuperAdmin" />
+          <EntitySet Name="CustomerMasters" EntityType="IARTDBNEWModel.CustomerMaster" />
         </EntityContainer>
         <EntityType Name="StoreMaster">
           <Key>
@@ -2526,6 +2555,29 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3220,6 +3272,7 @@
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
@@ -3531,6 +3584,31 @@
                 <ScalarProperty Name="LEDGERFOLIO" ColumnName="LEDGERFOLIO" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperAdmins">
+            <EntityTypeMapping TypeName="IARTDBNEWModel.SuperAdmin">
+              <MappingFragment StoreEntitySet="SuperAdmin">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerMasters">
+            <EntityTypeMapping TypeName="IARTDBNEWModel.CustomerMaster">
+              <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -329,6 +330,9 @@
     <Compile Include="Models\CrivVoucher.cs">
       <DependentUpon>DALModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DALModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -467,6 +471,9 @@
       <DependentUpon>DALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StoreTallyVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SuperAdmin.cs">
       <DependentUpon>DALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TendererInformation.cs">

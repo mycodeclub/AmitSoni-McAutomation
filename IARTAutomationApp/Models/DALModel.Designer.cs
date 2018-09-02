@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\UP Agri\30Jun18-001\30Jun18\IART_30Jun18_onWorking\IART_30Jun18_onWorking\IARTAutomationApp\Models\DALModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\MyProjects\AmitSoni-McAutomation\IARTAutomationApp\Models\DALModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
