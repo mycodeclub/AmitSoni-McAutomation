@@ -12,19 +12,19 @@ namespace IARTAutomationApp.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class IARTDBNEWEntities : DbContext
     {
         public IARTDBNEWEntities()
-            : base("name=IARTDBNEWEntities")
+            : base("name=ConStrIART")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<AllowanceMaster> AllowanceMasters { get; set; }
         public virtual DbSet<AnnualLeave> AnnualLeaves { get; set; }
         public virtual DbSet<BankMaster> BankMasters { get; set; }
