@@ -205,6 +205,7 @@
     <Compile Include="Controllers\ChemicalStoresController.cs" />
     <Compile Include="Controllers\CityMastersController.cs" />
     <Compile Include="Controllers\CRIVController.cs" />
+    <Compile Include="Controllers\CustomerMastersController.cs" />
     <Compile Include="Controllers\DeductionsMastersController.cs" />
     <Compile Include="Controllers\DeliveryNoteController.cs" />
     <Compile Include="Controllers\EmpAIAssociationsController.cs" />
@@ -818,6 +819,11 @@
     <Content Include="Views\EmployeeAIs\IndexEdit.cshtml" />
     <Content Include="Views\EmployeeAIs\EditAll.cshtml" />
     <Content Include="Views\EmployeeAIs\Editold.cshtml" />
+    <Content Include="Views\CustomerMasters\Create.cshtml" />
+    <Content Include="Views\CustomerMasters\Delete.cshtml" />
+    <Content Include="Views\CustomerMasters\Details.cshtml" />
+    <Content Include="Views\CustomerMasters\Edit.cshtml" />
+    <Content Include="Views\CustomerMasters\Index.cshtml" />
     <None Include="Views\LeaveApplications\UserIndex.cshtml" />
     <Content Include="Views\LeaveLedgers\MidLevelIndex.cshtml" />
     <Content Include="Views\LeaveMasters\MidLevelIndex.cshtml" />

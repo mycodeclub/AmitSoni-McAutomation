@@ -25,12 +25,14 @@ namespace IARTAutomationApp.Controllers
         {
             if (!string.IsNullOrEmpty(fc["EmployeeCode"]) && !string.IsNullOrEmpty(fc["Password"]))
             {
-                if (db.SuperAdmins.Any(sa => sa.LoginName.Equals(fc["EmployeeCode"]) && sa.Password.Equals(fc["Password"]) && sa.Id == 1))
+                var sa = db.SuperAdmins.Find(1);
+                if (sa.LoginName.Equals(fc["EmployeeCode"]) && sa.Password.Equals(fc["Password"]))
                 {
                     return RedirectToAction("", "");
                 }
                 int empCode = 0; int.TryParse(fc["EmployeeCode"], out empCode);
-                var user = (db.UserMasters.Where(emp => emp.EmployeeCode == empCode && emp.Password == fc["Password"])).FirstOrDefault();
+                string password = fc["Password"];
+                UserMaster user = db.UserMasters.Where(u => u.EmployeeCode == empCode && u.Password.Equals(password)).FirstOrDefault();
                 if (user != null)
                 {
                     TempData["wel"] = "Your Login is Successful";
