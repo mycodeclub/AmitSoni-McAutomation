@@ -249,6 +249,7 @@
     <Compile Include="Controllers\StoreCreditController.cs" />
     <Compile Include="Controllers\StoreInventoryReportController.cs" />
     <Compile Include="Controllers\StoreReciptController.cs" />
+    <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TallyController.cs" />
     <Compile Include="Controllers\TendererInformationsController.cs" />
     <Compile Include="Controllers\TenderOpeningsController.cs" />
@@ -499,6 +500,7 @@
       <DependentUpon>DALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManag\Roles.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ClassDetails.cs" />
     <Compile Include="ViewModels\CRIVDetails.cs" />
@@ -1091,6 +1093,8 @@
     <Content Include="Views\Shared\_LayoutHRAdmin.cshtml" />
     <Content Include="Views\Shared\ComingSoonAccount.cshtml" />
     <Content Include="Views\Shared\ComingSoonAudit.cshtml" />
+    <Content Include="Views\SuperAdmin\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

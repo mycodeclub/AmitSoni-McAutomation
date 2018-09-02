@@ -28,7 +28,8 @@ namespace IARTAutomationApp.Controllers
                 var sa = db.SuperAdmins.Find(1);
                 if (sa.LoginName.Equals(fc["EmployeeCode"]) && sa.Password.Equals(fc["Password"]))
                 {
-                    return RedirectToAction("", "");
+                    FormsAuthentication.SetAuthCookie(sa.LoginName, true);
+                    return RedirectToAction("Dashboard", "SuperAdmin");
                 }
                 int empCode = 0; int.TryParse(fc["EmployeeCode"], out empCode);
                 string password = fc["Password"];
@@ -41,6 +42,8 @@ namespace IARTAutomationApp.Controllers
                         var empdetail = (from a in db.EmployeeGIs where a.EmployeeCode == user.EmployeeCode select new { empic = a.EmployeePhoto, empname = a.First_Name }).FirstOrDefault();
                         Session["name"] = empdetail.empname;
                         Session["employeecode"] = user.EmployeeCode.ToString();
+                        Session["User"] = user;
+
                         Session.Timeout = 60000;
                         string roletext = (from a in db.RoleMasters where a.RoleId == user.RoleId select a.RoleName).FirstOrDefault();
                         var role = (from a in db.UserMasters where a.EmployeeCode == user.EmployeeCode select a.RoleId).SingleOrDefault();
@@ -60,57 +63,9 @@ namespace IARTAutomationApp.Controllers
                                 db.SaveChanges();
                             }
                         }
-                        catch (System.Exception ext)
-                        {
-                        }
-
-                        if (userType == "Super Level Admin" || userType == "Admin" || userType == "Super Admin")
-                        {
-                            FormsAuthenticationTicket authTicket = new
-            FormsAuthenticationTicket(1, //version
-            userName, // user name
-            DateTime.Now,             //creation
-            DateTime.Now.AddDays(2), //Expiration (you can set it to 1 month
-            true,  //Persistent
-            user.EmployeeCode.ToString()); // additional informations
-
-                            FormsAuthentication.SetAuthCookie(userName, true);
-                            //authCookie.Expires = authTicket.Expiration
-                            //return RedirectToAction("index", new RouteValueDictionary(new { controller = "Admin", action = "index", Id = UrlParameter.Optional }));
-                            //return RedirectToAction("/Home/index");
-                            return RedirectToAction("index", "Home");
-                        }
-
-                        else if (userType == "HR Admin")
-                        {
-
-                            FormsAuthentication.SetAuthCookie(userName, true);
-                            //return RedirectToAction("index", new RouteValueDictionary(new { controller = "Admin", action = "index", Id = UrlParameter.Optional }));
-                            return RedirectToAction("index", "Home");
-                        }
-                        else if (userType == "Store Admin")
-                        {
-
-                            FormsAuthentication.SetAuthCookie(userName, true);
-                            //return RedirectToAction("index", new RouteValueDictionary(new { controller = "Admin", action = "index", Id = UrlParameter.Optional }));
-                            return RedirectToAction("index", "Home");
-                        }
-                        else if (userType == "Procurement Admin")
-                        {
-
-                            FormsAuthentication.SetAuthCookie(userName, true);
-                            //return RedirectToAction("index", new RouteValueDictionary(new { controller = "Admin", action = "index", Id = UrlParameter.Optional }));
-                            return RedirectToAction("index", "Home");
-                        }
-
-
-                        else
-                        {
-
-                            FormsAuthentication.SetAuthCookie(userName, true);
-                            //return RedirectToAction("index", new RouteValueDictionary(new { controller = "Admin", action = "index", Id = UrlParameter.Optional }));
-                            return RedirectToAction("UserIndex", "Home");
-                        }
+                        catch { }
+                        FormsAuthentication.SetAuthCookie(userName, true);
+                        return RedirectToAction("index", "Home");
 
                     }
                 }
@@ -126,63 +81,22 @@ namespace IARTAutomationApp.Controllers
                 return RedirectToAction("index", "Login");
             }
         }
-        public bool IsvalidUser(UserMaster user)
-        {
-            TempData["wel"] = string.Empty;
-            bool isvalidUser = false;
-            if (!string.IsNullOrEmpty(user?.UserName))
-            {
-                TempData["wel"] = "Your Login is Successful";
-                isvalidUser = true;
-            }
-            else
-            {
-                TempData["wel"] = "Your Login is Successful";
-                TempData["wel"] = "Pls Check your UserName & Password";
-                isvalidUser = false;
-            }
-            return isvalidUser;
-        }
-
-        // GET: Login
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //    //return RedirectToAction("Home/Index");
-
-
-        //}
-        //[HttpPost]
-        //public ActionResult Index(int id)
-        //{
-
-
-        //    return RedirectToAction("Home/Index");
-
-
-        //}
-
 
         [Route("Login/{index ?}")]
         public ActionResult index()
         {
-
             int role = (from a in db.UserMasters where a.UserName == User.Identity.Name select a.RoleId).SingleOrDefault();
             var usertype = (from b in db.RoleMasters where b.RoleId == role select b.RoleName).FirstOrDefault();
             //Pending,in-Progress,Confirmed,Completed
             if (usertype != "" && usertype != null && usertype == "Admin")
             {
-
                 return RedirectToAction("Login/Index");
             }
             else
             {
                 return RedirectToAction("AdminLogin", "Login");
-
             }
         }
-
-
 
         public ActionResult Logout()
         {
@@ -192,7 +106,6 @@ namespace IARTAutomationApp.Controllers
             Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetNoStore();
-            //RedirectToAction("Login/AdminLogin");
             return RedirectToAction("AdminLogin", "Login");
         }
     }

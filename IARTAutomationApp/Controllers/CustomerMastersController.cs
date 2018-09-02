@@ -10,8 +10,11 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
+
     public class CustomerMastersController : Controller
     {
+
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
 
         // GET: CustomerMasters
