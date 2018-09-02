@@ -1,0 +1,129 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.StoreInventoryDetails>
+@{
+    ViewBag.Title = "Reports";
+   
+}
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Reports</a></li>
+        <li class="breadcrumb-item active">Store</li>
+        <li class="breadcrumb-item active">Store Inventory Report</li>
+    </ol>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-black">Store Inventory Report</h4>
+            <p>Export data to Copy, CSV, Excel & PDF</p>
+            <div class="table-responsive">
+                <table id="empsn" class="table table-bordered table-hover" data-name="cool-table">
+                    <thead>
+                        <tr>
+
+                            <th>Sno.</th>
+                            <th>Store Name</th>
+                            <th>Store Number</th>
+                            <th>Store Description</th>
+                            <th>Status</th>
+                            <th>Total Items</th>
+                            <th>Created By</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+                            int counter = 1;
+                            foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @(counter++)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.storeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.storeNumber)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.storeDesc)
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.storeStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.storeItemCount)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.empName) <br />
+                                        Emp Id:  @Html.DisplayFor(modelItem => item.empId) <br />
+                                        On: @Html.DisplayFor(modelItem => item.createdDate)
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Store Name</th>
+                            <th>Store Number</th>
+                            <th>Store Description</th>
+                            <th>Status</th>
+                            <th>Total Items</th>
+                            <th>Created By</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /.content -->
+<!-- /.content-wrapper -->
+<!-- ./wrapper -->
+<!-- jQuery 3 -->
+<script src="dist/js/jquery.min.js"></script>
+
+<script src="dist/plugins/popper/popper.min.js"></script>
+
+<!-- v4.0.0-alpha.6 -->
+<script src="dist/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- template -->
+<script src="dist/js/adminkit.js"></script>
+
+<!-- DataTable -->
+<script src="dist/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="dist/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script src="dist/plugins/table-expo/filesaver.min.js"></script>
+<script src="dist/plugins/table-expo/xls.core.min.js"></script>
+<script src="dist/plugins/table-expo/tableexport.js"></script>
+<script>
+$("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+</script>
+

@@ -1,0 +1,191 @@
+﻿@model IARTAutomationApp.Models.UserMaster
+
+ 
+
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item"><a href="#">User Management</a></li>
+            <li class="breadcrumb-item active">Add New User</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Add New User</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Add User</h4>
+                        <div class="row">
+
+                            
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Employee Code", "Select Employee Code", htmlAttributes: new { @class = "col-sm-6" })
+                                    @Html.TextBox("EmployeeCode", "", new { @class = "form-control", @id = "EmployeeCode" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Email Id", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("User Name", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control"  } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("User Password", htmlAttributes: new { @class = "control-label" })
+                                    @Html.Password("Password", "", new { @class = "form-control", @id = "Password" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Confirm Password", htmlAttributes: new { @class = "control-label" })
+                                    @Html.Password("ConfirmPwd", "", new { @class = "form-control", @id = "ConfirmPwd" })
+                                   
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Organization Name", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.OrganizationName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Select Role", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("RoleId", (SelectList)ViewBag.RoleId, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                         
+                            <!--EOF Employee Code-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Add New" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $.noConflict();  $("#EmployeeCode").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "/EmployeeAIs/AutoEmployeeCode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Value, value: item.Value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+
+<script>
+
+        $('#EmployeeCode').change(function () {
+            debugger;
+            var EmployeeCode = $(this).val();
+
+        // Send Ajax call and get Task name
+
+    //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+
+            $.ajax({
+
+                url: '/UserMasters/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
+                success: function (response) {
+                    debugger;
+
+
+                    $('#UserName').val(response[0].Name);
+                    $('#EmailId').val(response[0].EmailId);
+                    $('#OrganizationName').val(response[0].OrgName);
+            //$('#txtUnit').val(response.Unit);
+           
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+
+    });
+
+});
+
+        $('#ConfirmPwd').focusout(function () {
+            if(  $('#ConfirmPwd').val()!=$('#Password').val())
+            {
+                $('#ConfirmPwd').val("");
+                alert("Confirm Password must be same as Password")
+            }
+
+        });
+</script>

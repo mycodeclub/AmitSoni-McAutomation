@@ -1,0 +1,29 @@
+﻿@model IARTAutomationApp.Models.PFAMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PFAMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.PFAName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PFAName)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PFAId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

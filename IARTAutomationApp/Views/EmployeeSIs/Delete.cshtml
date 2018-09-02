@@ -1,0 +1,114 @@
+﻿@model IARTAutomationApp.Models.EmployeeSI
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h3 class="alert-danger" style="text-align:center">Delete</h3>
+
+<h5 class="alert-danger" style="text-align:center">Are you sure you want to delete this?</h5>
+
+<div>
+    <h4>EmployeeSI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentPosting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentPosting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfBanks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfBanks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankBranch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankBranch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PFA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PFA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RSAPinNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RSAPinNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryScale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryScale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

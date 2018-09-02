@@ -1,0 +1,862 @@
+﻿@using IARTAutomationApp.Models
+<!DOCTYPE html>
+@{ IARTDBNEWEntities db = new IARTDBNEWEntities();
+    int empcode = 0;
+    var empmail = "";
+    var emppic = "";
+    var empname = "";
+    var error = "";
+    try
+    {
+
+
+
+        empcode = Convert.ToInt32(@Session["employeecode"]);
+        ;
+        empmail = (from a in db.EmployeePIs where a.EmployeeCode == empcode select a.EmpEmailId).FirstOrDefault();
+
+        emppic = (from a in db.EmployeeGIs where a.EmployeeCode == empcode select a.EmployeePhoto).FirstOrDefault();
+        empname = (from a in db.EmployeeGIs where a.EmployeeCode == empcode select a.First_Name + " " + a.Surname).FirstOrDefault();
+    }
+    catch (Exception ext)
+    {
+        error = ext.ToString();
+    }
+}
+@if (error.Length == 0)
+{
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>McFinancialCom</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- v4.0.0 -->
+    <link rel="stylesheet" href="~/Content/dist/bootstrap/css/bootstrap.min.css">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/style.css">
+    <link rel="stylesheet" href="~/Content/dist/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/dist/css/et-line-font/et-line-font.css">
+    <link rel="stylesheet" href="~/Content/dist/css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/dist/css/simple-lineicon/simple-line-icons.css">
+    @RenderSection("my_script_variables", false)
+
+
+    <!-- DataTables -->
+    <link href="~/Content/dist/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/Content/dist/plugins/datatables/css/dataTables.bootstrap.min.css">*@
+    <script src="~/Content/dist/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/dist/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper boxed-wrapper">
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="/Home/MidLevelindex" class="logo blue-bg">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src="~/Content/dist/img/logo.png" width="120px" alt=""></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><img src="~/Content/dist/img/logo.png" width="120px" alt=""></span>
+            </a>
+
+            <!-- Header Navbar -->
+            <nav class="navbar blue-bg navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <ul class="nav navbar-nav pull-left">
+                    <li><a class="sidebar-toggle" data-toggle="push-menu" href=""></a> </li>
+                </ul>
+                <div class="pull-left search-box">
+                    <form action="#" method="get" class="search-form">
+                        <div class="input-group">
+                            <input name="search" class="form-control" placeholder="" type="text">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- search form -->
+                </div>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages -->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 new messages</li>
+                                <li>
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left"><img src="~/Content/dist/img/man1.png" class="img-circle" alt="User Image"> <span class="profile-status online pull-right"></span></div>
+                                                <h4>Alex C. Patton</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">9:30 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left"><img src="~/Content/dist/img/img3.jpg" class="img-circle" alt="User Image"> <span class="profile-status offline pull-right"></span></div>
+                                                <h4>Nikolaj S. Henriksen</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">10:15 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left"><img src="~/Content/dist/img/img2.jpg" class="img-circle" alt="User Image"> <span class="profile-status away pull-right"></span></div>
+                                                <h4>Kasper S. Jessen</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">8:45 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left"><img src="~/Content/dist/img/img4.jpg" class="img-circle" alt="User Image"> <span class="profile-status busy pull-right"></span></div>
+                                                <h4>Florence S. Kasper</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">12:15 AM</span></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications  -->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Notifications</li>
+                                <li>
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left icon-circle red"><i class="icon-lightbulb"></i></div>
+                                                <h4>Alex C. Patton</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">9:30 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left icon-circle blue"><i class="fa fa-coffee"></i></div>
+                                                <h4>Nikolaj S. Henriksen</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">1:30 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left icon-circle green"><i class="fa fa-paperclip"></i></div>
+                                                <h4>Kasper S. Jessen</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">9:30 AM</span></p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left icon-circle yellow"><i class="fa  fa-plane"></i></div>
+                                                <h4>Florence S. Kasper</h4>
+                                                <p>I've finished it! See you so...</p>
+                                                <p><span class="time">11:10 AM</span></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">Check all Notifications</a></li>
+                            </ul>
+                        </li>
+                        <!-- User Account  -->
+                        <li class="dropdown user user-menu p-ph-res">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Content/dist/img/man.png" class="user-image" alt="User Image"> <span class="hidden-xs"> Administrator</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <div class="pull-left user-img">
+                                        @*<img src="~/Content/dist/img/man1.png" class="img-responsive img-circle" alt="User">*@
+                                        <img src="~/Uploads/@Html.DisplayFor(modelItem => emppic)" class="img-responsive img-circle" alt="User" />
+
+                                    </div>
+                                    <p class="text-left">@empname <small>  @empmail </small> </p>
+                                </li>
+                             
+                                @*<li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>*@
+
+                                <li><a href='@Url.Action("SuperLevelMyProfile", "UserMasters")'><i class="icon-gears"></i> My Profile</a></li>
+
+                                <li><a href='@Url.Action("MidLevelindex", "UserMasters")'><i class="icon-gears"></i> Account Setting</a></li>
+
+                                <li role="separator" class="divider"></li>
+                                <li><a href='@Url.Action("Logout", "Login")'><i class="fa fa-power-off"></i><span>Logout</span> </a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar -->
+            <div class="sidebar">
+
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="image text-center"><img src="~/Content/dist/img/man1.png" class="img-circle" alt="User Image"> </div>
+                    <div class="info">
+                        <p>Administrator</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+
+                <!-- sidebar menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active treeview">
+                        <a href="/Home/MidLevelindex"><i class="fa fa-dashboard"></i><span>Dashboard</span><span class="pull-right-container"></span></a>
+                    </li>
+                    <!--Admin / HR-->
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-user-plus"></i><span>Admin / HR</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Add Employee</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li class="treeview">
+                                        <a href="#"><span>General Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "MidLevelCreate", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "MidLevelindex", "EmployeeGIs") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Personal Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "MidLevelCreate", "EmployeePIs") </li>
+                                            <li>@Html.ActionLink("View All", "MidLevelindex", "EmployeePIs") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Academic Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "MidLevelCreate", "EmployeeAIs") </li>
+                                            <li>@Html.ActionLink("View All", "MidLevelindex", "EmployeeAIs") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Salary Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "MidLevelCreate", "EmployeeSIs") </li>
+                                            <li>@Html.ActionLink("View All", "MidLevelindex", "EmployeeSIs") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Medical Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "MidLevelCreate", "EmployeeMIs") </li>
+                                            <li>@Html.ActionLink("View All", "MidLevelindex", "EmployeeMIs") </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <span>Leave Management</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add Leave Type", "MidLevelCreate", "LeaveTypeMasters") </li>
+                                    <li>@Html.ActionLink("View Leave Types", "MidLevelindex", "LeaveTypeMasters") </li>
+                                    <li>@Html.ActionLink("Add Leave", "MidLevelCreate", "LeaveMasters") </li>
+                                    <li>@Html.ActionLink("View Leaves", "MidLevelindex", "LeaveMasters") </li>
+                                    <li>@Html.ActionLink("Apply Leave", "MidLevelCreate", "LeaveApplications") </li>
+                                    <li>@Html.ActionLink("Leave Approval & Requests", "MidLevelindex", "LeaveApplications") </li>
+                                    <li>@Html.ActionLink("Leave Accounts", "MidLevelindex", "LeaveApplications") </li>
+
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Print & View</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li class="treeview">
+                                        <a href="#"><span>Annual Leave Form</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "AnnualLeave", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "index", "AnnualLeaves") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>NYSC Clearance Form-M</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "Monthly", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "index", "NyscMonthlyClearances") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>NYSC Clearance Form-F</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "Final", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "index", "NyscFinalClearances") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Graduate Attachment</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "Graduateattachement", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "index", "GraduateAttachmentForms") </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Casual Leave</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Add New", "Casualleave", "EmployeeGIs") </li>
+                                            <li>@Html.ActionLink("View All", "index", "CasualLeaves") </li>
+
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--EOF-->
+                    <!--Procurement-->
+                    <li class="treeview">
+                        <a href="#"> <i class="fa fa-truck"></i> <span>Procurement</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Tenderer Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "TendererInformations") </li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "TendererInformations") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Bid Opening Info</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "TenderOpenings") </li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "TenderOpenings") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Contractors Assess. Scores</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "PrequalificationScorings") </li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "PrequalificationScorings") </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--EOF-->
+                    <!--Stores-->
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-user-plus"></i><span>Store</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Stores</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "Store") </li>
+                                    <li>@Html.ActionLink("View Stores", "ViewAll", "Store") </li>
+
+                                    <li>@Html.ActionLink("View All", "StoreList", "Store") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Vendor</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "Vendor") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "Vendor") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Class</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "StoreClass") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "StoreClass") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Items</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "Item") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "Item") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Stock</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "Stock") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "Stock") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>UOM</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "UOM") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "UOM") </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Purchase Order</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "Create", "POrder") </li>
+                                    <li>@Html.ActionLink("View All", "ViewAll", "POrder") </li>
+                                    @*<li class="treeview">
+                            <a href="#"><span>Purchase Invoice</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                            <ul class="treeview-menu">
+                                <li>@Html.ActionLink("Add New", "Create", "PInvoice") </li>
+                                <li>@Html.ActionLink("View All", "ViewAll", "PInvoice") </li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><span>Purchase Order</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                            <ul class="treeview-menu">
+                                <li>@Html.ActionLink("Add New", "Create", "POrder") </li>
+                                <li>@Html.ActionLink("View All", "ViewAll", "POrder") </li>
+
+                            </ul>
+                        </li>*@
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Vouchers</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li class="treeview">
+                                        <a href="#"><span>CRIV</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Create", "Create", "CRIV") </li>
+                                            <li>@Html.ActionLink("View All", "ViewAll", "CRIV") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Store Receipt Voucher</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Create", "Create", "StoreRecipt") </li>
+                                            <li>@Html.ActionLink("View All", "ViewAll", "StoreRecipt") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Store Credit Voucher</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Create", "Create", "StoreCredit") </li>
+                                            <li>@Html.ActionLink("View All", "ViewAll", "StoreCredit") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Stock Tally Card/BIN Card</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Create", "Create", "Tally") </li>
+                                            <li>@Html.ActionLink("View All", "ViewAll", "Tally") </li>
+                                        </ul>
+                                    </li>
+                                    <li class="treeview">
+                                        <a href="#"><span>Delivery Note/Gate Pass</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                        <ul class="treeview-menu">
+                                            <li>@Html.ActionLink("Create", "Create", "DeliveryNote") </li>
+                                            <li>@Html.ActionLink("View All", "ViewAll", "DeliveryNote") </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--EOF-->
+                    <!--Accounts-->
+
+                    <li class="treeview">
+                        <a href="/Home/ComingSoonAccount"><i class="fa fa-bank"></i><span>Account</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="/Home/ComingSoonAudit"><i class="fa fa-briefcase"></i><span>Audit</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                    </li>
+
+                    <!--EOF-->
+                    <!--Audit-->
+
+                    <!--Reports-->
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span>Reports</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Admin/HR Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Staff Nominal Roll", "EmployeeStafNominalReport", "HRAdminReports") </li>
+                                    <li>@Html.ActionLink("General Information", "EmployeeGeneralReport", "HRAdminReports") </li>
+                                    <li>@Html.ActionLink("Personal Information", "EmployeePersonalReport", "HRAdminReports") </li>
+                                    <li>@Html.ActionLink("Medical Record", "EmployeeMedicalReport", "HRAdminReports") </li>
+
+                                    <li>@Html.ActionLink("Contributory Pension Scheme", "EmployeeCPSsReport", "HRAdminReports") </li>
+
+                                    <li>@Html.ActionLink("Academic Information", "EmployeeAcademicReport", "HRAdminReports") </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Account Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                @*<ul class="treeview-menu">
+                                        <li>@Html.ActionLink("General Information", "EmployeeGIReport", "EmployeeGIs") </li>
+                                        <li>@Html.ActionLink("Personal Information", "EmployeePIReport", "EmployeeGIs") </li>
+                                    </ul>*@
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Procurement Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Tender information Report", "TenderinformationReport", "ProcurementReports") </li>
+                                    <li>@Html.ActionLink("Tender Opening Report", "TenderOpeningReport", "ProcurementReports") </li>
+                                    <li>@Html.ActionLink("Contractor Assessment Report", "ContractorAssessmentReport", "ProcurementReports") </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Store Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Store Inventory Report", "Index", "StoreInventoryReport") </li>
+                                    <li>@Html.ActionLink("Stock Report", "Index", "StockReport") </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--EOF-->
+                    <!--User Management-->
+                    @*<li class="treeview">
+                        <a href="#"><i class="fa fa-user-circle"></i> <span>User Management</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Users</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New User", "MidLevelCreate", "UserMasters") </li>
+                                    <li>@Html.ActionLink("View All Users", "MidLevelindex", "UserMasters") </li>
+                                    <li>@Html.ActionLink("Your Profile", "MidLevelindex", "UserMasters") </li>
+
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Roles</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New Role", "MidLevelCreate", "RoleMasters") </li>
+                                    <li>@Html.ActionLink("View Role", "MidLevelindex", "RoleMasters") </li>
+                                    <li>@Html.ActionLink("Assign Role", "MidLevelindex", "UserMasters") </li>
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--EOF-->
+                    <!--System Configuration-->
+                    <li class="treeview">
+                        <a href="blank.html"> <i class="fa fa-cogs"></i> <span>System configuration</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#"><span>Rank</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "RankMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "RankMasters")</li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Cadre</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "CadreMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "CadreMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>State</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "StateMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "StateMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>LGA</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "CityMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "CityMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Programmes</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "ProgrammeMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "ProgrammeMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Unit (Research)</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "UnitResearchMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "UnitResearchMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Unit (Services)</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "UnitServicesMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "UnitServicesMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Station of Deployment</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "StationMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "StationMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Section</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "SectionMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "SectionMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Types of Bank</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "BankTypeMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "BankTypeMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>Banks</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "BankMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "BankMasters")</li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><span>PFA</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                                <ul class="treeview-menu">
+                                    <li>@Html.ActionLink("Add New", "MidLevelCreate", "PFAMasters")</li>
+                                    <li>@Html.ActionLink("View All", "MidLevelindex", "PFAMasters")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>*@
+                    <!--EOF-->
+                    <li>
+                        <a href='@Url.Action("Logout", "Login")'><i class="fa fa-home"></i><span>Logout</span> </a>
+
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+
+            <!-- Main content -->
+            @RenderBody()
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            Copyright © 2018 mcGeorge Consulting Ltd.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+    <script src="@Url.Content("~/Content/dist/js/jquery.min.js")"></script>
+
+    <!-- v4.0.0-alpha.6 -->
+    <script src="@Url.Content("~/Content/dist/bootstrap/js/bootstrap.min.js")"></script>
+
+    <!-- template -->
+    <script src="~/Content/dist/js/adminkit.js"></script>
+
+    <!-- Morris JavaScript -->
+    <script src="~/Content/dist/plugins/raphael/raphael-min.js"></script>
+    <script src="~/Content/dist/plugins/morris/morris.js"></script>
+    <script src="~/Content/dist/plugins/functions/dashboard1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <!-- Chart Peity JavaScript -->
+    <script src="~/Content/dist/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/Content/dist/plugins/functions/jquery.peity.init.js"></script>
+
+
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/dist/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- DataTable -->
+    <script src="~/Content/dist/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/dist/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    @*<script>
+          $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+              'paging'      : true,
+              'lengthChange': false,
+              'searching'   : false,
+              'ordering'    : true,
+              'info'        : true,
+              'autoWidth'   : false
+            })
+          })
+        </script>*@
+
+    <!-- dropify -->
+    <link rel="stylesheet" href="~/Content/dist/plugins/dropify/dropify.min.css">
+    <script src="~/Content/dist/plugins/dropify/dropify.min.js"></script>
+    <script>
+    //$(document).ready(function(){
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove:  'Supprimer',
+                error:   'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element){
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element){
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element){
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e){
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    //});
+    </script>
+    @*<script>
+        $('#example2').dataTable( {
+        paging: false,
+        searching: false,
+        destroy: true,
+
+        } );
+        </script>*@
+
+    @*<script src="~/Content/dist/plugins/table-expo/filesaver.min.js"></script>
+        <script src="~/Content/dist/plugins/table-expo/xls.core.min.js"></script>
+        <script src="~/Content/dist/plugins/table-expo/tableexport.js"></script>*@
+    @*<script>
+            $("table").tableExport({ formats: ["xlsx", "xls", "csv", "txt"], });
+        </script>*@
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+    @*<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>*@
+
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js" type="text/javascript"></script>
+
+    <script>
+
+        $('#example2,#empai,#emppi,#empgi,#empsn,#empcps,#empmi').DataTable({
+
+                dom: 'Bfrtip',
+                buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+                ],
+
+        });
+        @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")*@
+
+    </script>
+
+
+
+    <script>
+
+            $('#example3').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+                ]
+
+        });
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+
+
+    </script>
+</body>
+</html>
+}
+else
+{
+}

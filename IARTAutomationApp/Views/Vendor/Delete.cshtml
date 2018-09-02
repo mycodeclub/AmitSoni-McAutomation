@@ -1,0 +1,176 @@
+﻿@model IARTAutomationApp.ViewModels.VendorDetails
+@{
+    ViewBag.Title = "Delete Vendor";
+    
+}
+
+<div class="content">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item"><a href="#">Vendor</a></li>
+        <li class="breadcrumb-item active">Delete Vendor</li>
+    </ol>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card ">
+                <div class="card-header bg-blue">
+                    <h2 class="text-white m-b-0">Delete</h2>
+                    <h3>Are you sure you want to delete this?</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h4>Vendor</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Vendor Id")
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.RecordId)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vendor.EmployeeID)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.EmployeeID)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vendor.VendorName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vendor.VendorOrg)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorOrg)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vendor.VendorMob)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorMob)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vendor.VendorAMob)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorAMob)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorEmail)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorEmail)
+                            </dd>
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorAdd1)
+                            </dt>
+                            
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorAdd1)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorAdd2)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorAdd2)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorCity)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.city)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorState)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.state)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorZipCode)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorZipCode)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorTaxDet)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorTaxDet)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.VendorDesc)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.VendorDesc)
+                            </dd>
+
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.vendor.CreatedDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.vendor.CreatedDate)
+                            </dd>
+
+                           
+
+
+
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-success" /> |
+                                @Html.ActionLink("Back to List", "ViewAll")
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

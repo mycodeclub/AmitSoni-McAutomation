@@ -1,0 +1,294 @@
+﻿@model IARTAutomationApp.Models.EmployeeAI
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item active">Update Employees Academic Information</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Update Employee Academic Information</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Employee Code</h4>
+                        <div class="row">
+
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Select Employee Code", "Select Employee Code", htmlAttributes: new { @class = "col-sm-3" })
+                                    @Html.TextBoxFor(model => model.EmployeeCode, "", new { @class = "form-control", @id = "EmployeeCode", @readonly = true })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <h4 class="form-heading-1">Academic Info</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    @Html.Label("InstitutionAttended", htmlAttributes: new { @class = "col-sm-3" })
+                                    <div class="col-sm-9 row">
+                                        <div class="input-group col-sm-4">
+                                            @Html.EditorFor(model => model.InstitutionAttended1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.InstitutionAttended1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.EditorFor(model => model.InstitutionAttended2, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.InstitutionAttended2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.EditorFor(model => model.InstitutionAttended3, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.InstitutionAttended3, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    @Html.Label("Qualification", htmlAttributes: new { @class = "col-sm-3" })
+                                    <div class="col-sm-9 row">
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownListFor(model => model.Qualification1, ViewBag.Qualification1s as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @id = "StateOfOrigin" })
+
+
+
+
+                                            @Html.ValidationMessageFor(model => model.Qualification1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownListFor(model => model.Qualification2, ViewBag.Qualification2s as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @id = "StateOfOrigin" })
+
+
+
+
+
+
+                                            @*@Html.DropDownList("Qualification2", new List<SelectListItem>
+                                                {new SelectListItem  { Text = "Select Qualification", Value = "Select Qualification", Selected=true},
+                                                                   new SelectListItem  { Text = "JSC", Value = "JSC"},
+                                                  new SelectListItem { Text = "TRADE TEST", Value = "TRADE TEST"},
+                                                  new SelectListItem { Text = "SSCE/NCE", Value = "SSCE/NCE"},
+                                                  new SelectListItem { Text = "OND", Value = "OND"},
+                                                  new SelectListItem { Text = "HND", Value = "HND"},
+                                                  new SelectListItem { Text = "BSC", Value = "BSC"},
+                                                  new SelectListItem { Text = "MSC", Value = "MSC"},
+                                                  new SelectListItem { Text = "PHD", Value = "PHD"},
+                                                  new SelectListItem { Text = "MBA", Value = "MBA"}
+                                                  }, new { @class = "form-control" }
+                                                                )*@
+                                            @Html.ValidationMessageFor(model => model.Qualification2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownListFor(model => model.Qualification3, ViewBag.Qualification3s as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @id = "StateOfOrigin" })
+
+
+
+
+
+
+                                            @Html.ValidationMessageFor(model => model.Qualification3, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.YearOfGraduation1, htmlAttributes: new { @class = "col-sm-3" })
+
+                                    <div class="col-sm-9 row">
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownList("YearOfGraduation1", (SelectList)ViewBag.YearOfGraduation1s, htmlAttributes: new { @class = "form-control" })
+
+
+                                            @Html.ValidationMessageFor(model => model.YearOfGraduation1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownList("YearOfGraduation2", (SelectList)ViewBag.YearOfGraduation2s, htmlAttributes: new { @class = "form-control" })
+
+
+                                            @Html.ValidationMessageFor(model => model.YearOfGraduation2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            @Html.DropDownList("YearOfGraduation3", (SelectList)ViewBag.YearOfGraduation3s, htmlAttributes: new { @class = "form-control" })
+
+
+                                            @Html.ValidationMessageFor(model => model.YearOfGraduation3, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <h4 class="form-heading-1">Professional Accociation</h4>
+                        <div class="row">
+
+                            <div class="col-md-9">
+                                <div class="form-group" id="aso">
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="Title">Title</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Title" id="ProfessionalAssociationsTitle" name="ProfessionalAssociationsTitle" type="text" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ProfessionalAssociationsTitle" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="ID_Number">ID Number</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Id" id="ProfessionalAssociationsIdNo" name="ProfessionalAssociationsIdNo" type="text" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ProfessionalAssociationsIdNo" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="Date">Date</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-date="The field Professional Associations Date must be a date." data-val-required="Please Input Professional Associations Date" id="ProfessionalAssociationsDate" name="ProfessionalAssociationsDate" type="date" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ProfessionalAssociationsDate" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @*<label for="Add_more_Associations">Add more Associations</label><br />*@
+                                            @*@Html.ActionLink("Add More", "Create", "EmpAIAssociations")*@
+                                            @*<button type="button" class="btn btn-sm btn-success" id="btn-aso">Add More</button>
+                                                <button type="button" class="btn btn-sm btn-success" id="btn-aso-rm">Remove</button>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <h4 class="form-heading-1">Conference / Seminar Attended</h4>
+                        <div class="row">
+
+                            <div class="col-md-9">
+                                <div class="form-group" id="cnf">
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="Name_of_Conference">Name of Conference</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" id="ConferenceAttendedName" name="ConferenceAttendedName" type="text" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedName" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="Title_of_Conference">Title of Conference</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" id="ConferenceAttendedTitle" name="ConferenceAttendedTitle" type="text" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedTitle" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="Date_of_Conference">Date of Conference</label>
+                                                <input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" type="date" value="" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedDate" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @*<label for="Add_more_Conference">Add more Conference</label><br />*@
+                                            @*@Html.ActionLink("Add More","Create", "EmpAIConferences")*@
+
+
+                                            @*<button type="button" class="btn btn-sm btn-success" id="btn-cnf">Add More</button>
+                                                <button type="button" class="btn btn-sm btn-success" id="btn-cnf-rm">Remove</button>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" value="Update" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to Update this record</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+ 

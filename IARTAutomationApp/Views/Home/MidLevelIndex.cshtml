@@ -1,0 +1,283 @@
+﻿@using IARTAutomationApp.Models
+
+@{
+    ViewBag.Title = "Home Page";
+    if (Session["Role"].ToString() == "")
+    {
+
+    }
+}
+
+@section my_script_variables {
+
+    <script type="text/javascript">
+        var variable1 = '@Html.Raw(ViewBag.emponleave)',
+        variable2 = '@Html.Raw(ViewBag.empdueforleave)',
+        variable3 = '@Html.Raw(ViewBag.emponduty)',
+        variable4 = '@Html.Raw(ViewBag.DataPoints)',
+          variable5 = '@Html.Raw(ViewBag.DataTender)',
+        varrialeJrStaff = '@Html.Raw(ViewBag.JrStaff)',
+        varrialeSrStaff = '@Html.Raw(ViewBag.SrStaff)',
+        varrialeNyscStaff = '@Html.Raw(ViewBag.NyscStaff)',
+        varrialeOthersStaff = '@Html.Raw(ViewBag.OthersStaff)';
+    </script>
+}
+    <!--Contant Start-->
+    <div class="content">
+        
+        <!--Row Start-->
+        <div class="row">
+            <!--Number of Staff BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-pink">
+                    <div class="tile-header">
+                        <h5>NUMBER OF STAFF</h5>
+                        <h3>@ViewBag.NoOfStaff</h3>
+                    </div>
+                    <div class="tile-footer">
+                        <h5> <span class="pct-counter">total employees</span></h5>
+                    </div>
+                </div>
+            </div>
+            <!--Number of Staff BOX End-->
+            <!--Awaiting Staff for Retirement BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-red">
+                    <div class="tile-header">
+                        <h5>AWAITING STAFF FOR RETIREMENT</h5>
+                        <h3>@ViewBag.NeartoRetirement</h3>
+                    </div>
+                    <div class="tile-footer">
+                        <h5> <span class="pct-counter">in next 6 month</span></h5>
+                    </div>
+                </div>
+            </div>
+            <!--Awaiting Staff for Retirement BOX End-->
+            <!--Employee Due for Leave BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-cyan">
+                    <div class="tile-header">
+                        <h5>EMPLOYEE DUE FOR LEAVE</h5>
+                        <h3>@ViewBag.empdueforleave</h3>
+                    </div>               
+                    <div class="tile-footer">
+                        <h5> <span class="pct-counter">on leave from tomarrow</span></h5>
+                    </div>
+                </div>
+            </div>
+            <!--Employee Due for Leave BOX End-->
+            <!--Employee on Leave BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-cyan">
+                    <div class="tile-header">
+                        <h5>EMPLOYEE ON LEAVE</h5>
+                        <h3>@ViewBag.emponleave</h3>
+                    </div>
+                    <div class="tile-footer">
+                        <h5> <span class="pct-counter">employees on leave </span></h5>
+                    </div>
+                </div>
+            </div>
+            <!--Employee on Leave BOX End-->
+            <!--Various Accounting Reports BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-aqua">
+                    <div class="tile-header">
+                        <h5>VARIOUS ACCOUNTING REPORTS</h5>
+                        <h3></h3>
+                    </div>
+                    <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                    <div class="tile-footer">
+                        <h5> <span class="pct-counter">75.5</span>% increase </h5>
+                    </div>
+                </div>
+            </div>
+            <!--Various Accounting Reports BOX End-->
+            <!--Contractor Assessment BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-aqua">
+                    <div class="tile-header">
+                        <h5>CONTRACTORS ASSESSMENT</h5>
+                    </div>
+                    <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                    <div class="tile-footer">
+                        <h4> <span class="pct-counter">75.5</span>% increase </h4>
+                    </div>
+                </div>
+            </div>
+            <!--Contractor Assessment BOX End-->
+            <!--Store Inventory BOX-->
+            <div class="col-lg-3">
+                <div class="tile-progress tile-aqua">
+                    <div class="tile-header">
+                        <h5>STORES INVENTORY</h5>
+                    </div>
+                    <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                    <div class="tile-footer">
+                        <h4> <span class="pct-counter">75.5</span>% increase </h4>
+                    </div>
+                </div>
+            </div>
+            <!--Store Inventory BOX End-->       
+        </div>
+        <!--Row End-->
+
+        <br />
+
+        <!--Row Start-->
+        <div class="row">
+            <!--Number of Staff Graphical View-->
+            <div class="col-lg-6">
+                <div class="info-box">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h5>Number of Staff</h5>
+                            </div>
+                            <div class="ml-auto">
+                                <ul class="list-inline">
+                                    <li class="chart-color-red"> <i class="fa fa-circle"></i> Junior Staff</li>
+                                    <li class="chart-color-orange"> <i class="fa fa-circle"></i> Senior Staff</li>
+                                    <li class="chart-color-green"> <i class="fa fa-circle"></i> NYSC Members</li>
+                                    <li class="chart-color-purple"> <i class="fa fa-circle"></i> Others</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="donut1"></div>
+                </div>
+            </div>
+            <!--Number of Staff Graphical View End-->
+            <!--Awaiting Staff for Retirement Graphical View-->
+            <div class="col-lg-6">
+                <div class="info-box">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h5>Staff Awaiting for Retirement</h5>
+                            </div>
+                            <div class="ml-auto">
+                                <ul class="list-inline">
+                                    <li class="text-blue"> <i class="fa fa-circle"></i> Employee Retirement</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="earning"></div>
+                </div>
+            </div>
+            <!--Awaiting Staff for Retirement Graphical View End-->
+            <!--Employee Due for Leave Graphical View-->
+            <div class="col-lg-6">
+                <div class="info-box">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h5>Employee Leave Information</h5>
+                            </div>
+                            <div class="ml-auto">
+                                <ul class="list-inline">
+                                    <li class="chart-color-green"> <i class="fa fa-circle"></i> On Duty</li>
+                                    <li class="chart-color-orange"> <i class="fa fa-circle"></i> Due for Leave</li>
+                                    <li class="chart-color-red"> <i class="fa fa-circle"></i> On Leave</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="donut"></div>
+                </div>
+            </div>
+            <!--Employee Due for Leave Graphical View End-->
+
+            
+
+            
+            
+
+            <!--Contractor Assessment Graphical View-->
+            <div class="col-lg-6">
+                <div class="info-box">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap">
+                            <div>
+                                <h5>Contractor Assement Report (Bar Chart)</h5>
+                            </div>
+                            <div class="ml-auto">
+                                <ul class="list-inline">
+                                    <li class="text-info"> <i class="fa fa-circle"></i> Bid Opening</li>
+                                    <li class="text-purple"> <i class="fa fa-circle"></i> Tenderers Information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bar-chart"></div>
+                </div>
+            </div>
+            <!--Contractor Assessment Graphical View End-->
+
+        </div>
+        <!--Row End-->
+
+    </div>
+    <!--Contant End-->
+
+
+
+
+@*<script type="text/javascript">
+    $(document).ready(function() {
+        $.get('@Url.Action("GetData","HRAdminReports")', function (result) {
+
+            new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'area-example',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: result,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'label',
+                ykeys: ['value'],
+                labels: ['Success requests'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
+
+        
+
+
+
+
+    });
+});
+</script>*@
+
+
+<script>
+$(document).ready(function () {
+    debugger;
+    $.ajax({
+        url: '/HRAdminReports/GetData',
+        success: function (result) {
+            debugger;
+            new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'earning',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: result,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'label',
+                ykeys: ['value'],
+                labels: ['Success requests'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });           
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+    });
+});
+</script>

@@ -1,0 +1,80 @@
+﻿@model IARTAutomationApp.Models.LeaveMaster
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item"><a href="#">Leave Management</a></li>
+            <li class="breadcrumb-item active">Edit Leave</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Edit Leave for Academic Year</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.LeaveId)
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Edit Leave</h4>
+                        <div class="row">
+
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Leave Type", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.LeaveTypeId, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.LeaveTypeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Total Number of Leaves for Academic Year", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.LeaveCount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LeaveCount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.Label("Academic Year (eg - 2018-19)", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.CalenderYear, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CalenderYear, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

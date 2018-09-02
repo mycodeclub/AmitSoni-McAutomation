@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.EmpAIAssociation>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Association Id")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDnumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendedDate)
+        </th>
+         
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociationsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendedDate)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssociationsId }) |
+             @Html.ActionLink("Delete", "Delete", new { id=item.AssociationsId })
+        </td>
+    </tr>
+}
+
+</table>

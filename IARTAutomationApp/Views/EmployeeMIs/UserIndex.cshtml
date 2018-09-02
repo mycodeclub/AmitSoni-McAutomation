@@ -1,0 +1,88 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.EmployeeMI>
+
+@{
+    ViewBag.Title = "Index";
+    
+    int SrNo = 0;
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+        <li class="breadcrumb-item active"> Medical Information</li>
+    </ol>
+    <h5 class="alert-danger"> @TempData["msg"] </h5>
+    <h5 class="text-success">  @TempData["successmsg"] </h5>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">Medical Information</h4>
+                            <p></p>
+                        
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">SrNo.</th>
+                                                <th style="width: 150px; text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.NhisNo)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.NhisProvider)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.BloodGroup)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.BloodGenotype)</th>
+                                                 
+                                            </tr>
+                                        </thead>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            { SrNo = SrNo + 1; }
+                                            <tr>
+                                                <td style="text-align: center;">@SrNo</td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.NhisNo)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.NhisProvider)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(model => item.BloodGroup)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.BloodGenotype)
+                                                </td>
+                                         
+                                            </tr>
+                                        }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">S. No.</th>
+                                                <th style="width: 150px; text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.NhisNo)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.NhisProvider)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.BloodGroup)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.BloodGenotype)</th>
+                                              
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<!-- /.content --> 

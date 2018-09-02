@@ -1,0 +1,171 @@
+﻿@model IARTAutomationApp.Models.PrequalificationScoring
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PrequalificationScoring</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LotNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LotNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidofReg_Cac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidofReg_Cac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxClearanceCertificate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxClearanceCertificate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidofReg_Bureau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidofReg_Bureau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AudittedAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudittedAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClearanceCert_Itf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClearanceCert_Itf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClearanceCert_Pencom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClearanceCert_Pencom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClearanceCert_Nsitf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClearanceCert_Nsitf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StaffStrength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StaffStrength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentFinStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentFinStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipmentList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipmentList)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidPreSimJob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidPreSimJob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpCompt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpCompt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

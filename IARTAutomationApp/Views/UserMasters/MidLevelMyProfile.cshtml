@@ -1,0 +1,1248 @@
+﻿
+@using IARTAutomationApp.Models
+
+@model  IARTAutomationApp.ViewModels.EmployeeAll
+@{
+    ViewBag.Title = "My Profile";
+ string permanentAddress = "", qualification = "", BloodGroup = "", BloodGenotype = "", address = "", StateOfOrigin = "", LGA = "", MobileNo = "", EmpEmailId = "", InstituteAttended = "", YearOfGraduation = "";
+    int EmployeeAIId = 0;
+    int sr = 1;
+
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">My Profile</a></li>
+        <li class="breadcrumb-item active">My Profile</li>
+    </ol>
+    @{int i = 0; int empcode = 0;}
+    <div class="row">
+        @foreach (var item in Model.employeegi)
+        {
+            <div class="col-lg-3">
+                <div class="user-profile-box m-b-3">
+
+                    @{ empcode = item.EmployeeCode; }
+
+
+                    <div class="box-profile text-white">
+
+                        @if (i == 0)
+                        {
+                            i = i + 1;
+                        }
+
+                        @*@IARTAutomationApp.Models.ImageHelper("Uploads/default-noman.png", "", "profile-user-img img-responsive img-circle m-b-2")*@
+
+                        @* <img class="profile-user-img img-responsive img-circle m-b-2" src="~/Uploads/@Html.Display(item.employeeGI.EmployeePhoto)"alt="User profile picture" />*@
+                        <img src="~/Uploads/@item.EmployeePhoto" class="profile-user-img img-responsive img-circle m-b-2" />
+                        <h3 class="profile-username text-center">
+
+                            @item.Title.
+                            @item.First_Name
+                            @item.Middle_Name
+                            @item.Surname
+                        </h3>
+                        <p class="text-center">Employee Code: @item.EmployeeCode </p>
+                    </div>
+
+                </div>
+
+                @foreach (var item1 in Model.employeeai.Where(x => x.EmployeeCode == empcode))
+                {
+                    EmployeeAIId = item1.EmployeeAIId;
+                    //InstituteAttended = item1.InstitutionAttended1 + " " + item1.InstitutionAttended2 + " " + item1.InstitutionAttended3;
+                    qualification = item1.Qualification3;
+                    //YearOfGraduation = item1.YearOfGraduation1 + " " + item1.YearOfGraduation2 + " " + item1.YearOfGraduation3;
+
+
+
+                }
+
+                @foreach (var item1 in Model.employeepi.Where(x => x.EmployeeCode == empcode))
+                {
+
+                    //InstituteAttended = item1.InstitutionAttended1 + " " + item1.InstitutionAttended2 + " " + item1.InstitutionAttended3;
+                    permanentAddress = item1.PermanentAddress;
+                    //YearOfGraduation = item1.YearOfGraduation1 + " " + item1.YearOfGraduation2 + " " + item1.YearOfGraduation3;
+                    EmpEmailId = item1.EmpEmailId;
+                    MobileNo = item1.MobileNo;
+
+
+
+                }
+
+                <div class="card m-b-3">
+                    <div class="card-body">
+                        <div class="box-body">
+                            <strong><i class="fa fa-book margin-r-5"></i> Employee Rank</strong>
+                            <p class="text-muted"> @item.Rank   @qualification </p>
+                            <hr>
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> Permanent Address</strong>
+                            <p class="text-muted">@permanentAddress</p>
+                            <hr>
+                            <strong><i class="fa fa-envelope margin-r-5"></i> Email address </strong>
+                            <p class="text-muted">@EmpEmailId</p>
+                            <hr>
+                            <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+                            <p>@MobileNo </p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+
+            </div>
+                        }
+        <div class="col-lg-9">
+            <div class="info-box">
+                <div class="card tab-style1">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#GI" role="tab" aria-expanded="true">General Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#PI" role="tab" aria-expanded="false">Personal Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AI" role="tab">Academic Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#SI" role="tab">Salary Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#MI" role="tab">Medical Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#LI" role="tab">Leave Info</a> </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!--General Info End-->
+                        <div class="tab-pane active" id="GI" role="tabpanel" aria-expanded="true">
+                            <div class="card-body">
+                                @foreach (var item in Model.employeegi)
+                                {
+
+                                    <div>
+                                        <h4>Employee General Information</h4>
+                                        <hr>
+                                        <h4 class="form-heading-1">Basic Details</h4>
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label><strong>Title</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Title
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><strong>First Name</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.First_Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><strong>Middle Name</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Middle_Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><strong>Surname</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Surname
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label><strong>Maiden Name</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Maiden_Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <h4 class="form-heading-1">Grade Details</h4>
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Rank</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Rank
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>File Number</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.File_No
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Grade Level</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Grade_Level
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Step</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Step
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Cadre/Job Schedule</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Cadre
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <h4 class="form-heading-1">Other Details</h4>
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Sex</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Sex
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Date of Birth</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+
+                                                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Place of Birth</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.PlaceOfBirth
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Marital Status</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Marital_Status
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Spouse (if any)</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Spouse_Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>State of Origin</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.StateOfOrigin
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>LGA</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.LGA
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Home Town</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Home_Town
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Religion</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Religion
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Contact Home Address</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.ContactHomeAddress
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <h4 class="form-heading-1">Appointment Details</h4>
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>First Appointment Date</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+
+                                                        @Html.DisplayFor(modelItem => item.FirstAppointmentDate)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>First Appointment Location</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.FirstAppointmentLocation
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Confirmation Date</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @Html.DisplayFor(modelItem => item.ConfirmationDate)
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Date of Retirement</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+
+                                                        @Html.DisplayFor(modelItem => item.DateOfRetirement)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Last Promotion Date</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+
+                                                        @Html.DisplayFor(modelItem => item.LastPromotionDate)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Programmes</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Programmes
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Unit (Research)</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Unit_Research
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Unit (Services)</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Unit_Services
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Station of Deployment</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Maiden_Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                        <div class="row">
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Section</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Section
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                        </div>
+
+                                        @*<hr class="m-t-0 m-b-3">*@
+
+
+
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+
+                                <!--EOF Submit Button-->
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <!--General Info End-->
+                        <!--Personal Info Tab-->
+                        <div class="tab-pane" id="PI" role="tabpanel" aria-expanded="false">
+                            <div class="card-body">
+
+                                @if (Model.employeepi.Count > 0)
+                                {
+                                    foreach (var item1 in Model.employeepi)
+                                    {
+                                        <div>
+                                            <h4>Employee Personal Information</h4>
+                                            <hr>
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Employee Status</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.EmployeeStatus
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Personal Information</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Email Address</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.EmpEmailId
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Permanent Address</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.PermanentAddress
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Mobile Number</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.MobileNo
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Kin Information</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Next of Kin Name</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.KinName
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Email of Next of Kin</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.EmailIdKin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Address of Next Of Kin</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.AddressNextOfKin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>State of Next Of Kin</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.StateNextOfKin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>LGA of Next of Kin</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.LGAextOfKin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Relationship</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.Relation
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Next Of Kin Phone No</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.PhoneNoNextOfKin
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Beneficiary Information</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Staff Beneficiary Name</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.NameOfStaffBenificiary
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Staff Beneficiary Phone</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.PhoneOfStaffBenificiary
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Staff Beneficiary Address</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.AddressOfStaffBenificiary
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+
+                                <!--EOF Submit Button-->
+                                    }
+                                }
+                                else
+                                {  <h4>Employee Personal Information</h4>
+                                <hr>
+                                    <h5>Personal Information data is not filled</h5>
+                                }
+                            </div>
+                        </div>
+
+                        <!--Personal Info End-->
+                        <!--Academic Info Tab-->
+                        <div class="tab-pane" id="AI" role="tabpanel">
+                            <div class="card-body">
+                                @if (Model.employeeai.Count > 0)
+                                {
+                                    foreach (var item1 in Model.employeeai)
+                                    {
+                                        <div>
+                                            <h4>Employee Academic Information</h4>
+                                            <hr>
+
+                                            <h4 class="form-heading-1">Qualification 1</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Institute Attended</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.InstitutionAttended1
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Qualification</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.Qualification1
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Year of Graduation</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.YearOfGraduation1
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Qualification 2</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Institute Attended</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.InstitutionAttended2
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Qualification</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.Qualification2
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Year of Graduation</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.YearOfGraduation2
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Qualification 3</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Institute Attended</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.InstitutionAttended3
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Qualification</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.Qualification3
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Year of Graduation</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item1.YearOfGraduation3
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Professional Association</h4>
+                                    foreach (var item in Model.employeeassociation)
+                                    {
+
+
+                                        <div class="row">
+
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Title</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Title
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>ID Number</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.IDnumber
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Date</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @Html.DisplayFor(modelItem => item.AttendedDate)
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+
+                                        </div>
+                                    }
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Conference / Seminar Attended</h4>
+                                    foreach (var item in Model.employeeconference)
+                                    {
+
+
+                                        <div class="row">
+
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Name of Conference</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Name
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Title of Conference</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.Title
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+                                            <!--Form Field-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Date of Conference</strong></label>
+                                                    <p class="form-control-static m-bot-1" id="staticInput">
+                                                        @item.AttendedDate
+
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--EOF-->
+
+                                        </div>
+                                    }
+                                }
+                                else
+                                {  <h4> Employee Academic Information</h4>
+
+
+                                <hr>
+
+
+                                    <h5>Academic Information data is not filled</h5>
+                                }
+                            </div>
+
+                            <hr class="m-t-0 m-b-3">
+
+                            <!--Form Field Submit Button-->
+                            <!--EOF Submit Button-->
+
+                        </div>
+
+
+
+                        <!--Academic Info Tab-->
+                        <!--Salary Info Tab-->
+
+
+                        <div class="tab-pane" id="SI" role="tabpanel">
+                            <div class="card-body">
+
+                                @if (Model.employeesi.Count > 0)
+                                {
+                                    foreach (var item2 in Model.employeesi)
+                                    {
+                                        <div>
+                                            <h4>Employee Salary Information</h4>
+                                            <hr>
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Current Posting</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.CurrentPosting
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">Account Details</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Bank Type</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.BankType
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Name Of Banks</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.NameOfBanks
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Bank Branch</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.BankBranch
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Account Type</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.AccountType
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Account Number</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.AccountNumber
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Account Name</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.AccountName
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-3">
+
+                                            <h4 class="form-heading-1">PFA Details</h4>
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>PFA</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.PFA
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>RSA Pin No</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.RSAPinNo
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Salary Scale</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item2.SalaryScale
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+
+                                <!--EOF Submit Button-->
+                                    }
+                                }
+                                else
+                                {  <h4> Employee Salary Information</h4>
+
+
+                                <hr>
+
+
+                                    <h5>Salary Information data is not filled</h5>
+                                }
+                            </div>
+                        </div>
+                        <!--Salary Info Tab-->
+                        <!--Medical Info Tab-->
+
+
+                        <div class="tab-pane" id="MI" role="tabpanel">
+                            <div class="card-body">
+                                @if (Model.employeemi.Count > 0)
+                                {
+                                    foreach (var item4 in Model.employeemi)
+                                    {
+                                        <div>
+                                            <h4>Employee Medical Information</h4>
+                                            <hr>
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>NHIS No</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.NhisNo
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>NHIS PROVIDER</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.NhisProvider
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label><strong>Blood Group</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.BloodGroup
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label><strong>Blood Genotype</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.BloodGenotype
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+
+                                <!--EOF Submit Button-->
+                                    }
+                                }
+                                else
+                                {  <h4> Employee Medical Information</h4>
+
+
+                                <hr>
+
+
+                                    <h5>Medical Information data is not filled</h5>
+                                }
+                            </div>
+                        </div>
+                        <!--Medical Info Tab-->
+                        <!--Medical Info Tab-->
+                        <div class="tab-pane" id="LI" role="tabpanel">
+                            <div class="card-body">
+                                @if (Model.employeeleaveledger.Count > 0)
+                                {
+                                    foreach (var item4 in Model.employeeleaveledger)
+                                    {
+                                        <div>
+                                            <h4>Employee Leave Information</h4>
+                                            <hr>
+
+                                            <div class="row">
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Leave Type</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.LeaveType
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Consumed Leaves</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.ConsumedLeaves
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                                <!--Form Field-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Remaining Leaves</strong></label>
+                                                        <p class="form-control-static m-bot-1" id="staticInput">
+                                                            @item4.BalanceLeaves
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--EOF-->
+                                            </div>
+
+                                        </div>
+
+                                        <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="button" id="btnPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                                <input type="button" value="Update" class="btn btn-nor btn-secondary" data-toggle="modal" data-target="#myModal" />
+                                            </div>
+                                        </div>
+                                <!--EOF Submit Button-->
+                                    }
+                                }
+                                else
+                                {  <h4> Employee Leave Information</h4>
+
+
+                                <hr>
+
+
+                                    <h5>Leave Information data is not filled</h5>
+                                }
+                            </div>
+                        </div>
+                        <!--Medical Info Tab-->
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Main row -->
+        </div>
+        <!-- /.content -->
+    </div>
+</div>
+
+
+

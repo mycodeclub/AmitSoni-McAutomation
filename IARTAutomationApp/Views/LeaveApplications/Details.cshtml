@@ -1,0 +1,91 @@
+﻿@model IARTAutomationApp.Models.LeaveApplication
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeaveApplication</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveFromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveFromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeaveAccId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

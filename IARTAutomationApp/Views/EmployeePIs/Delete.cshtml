@@ -1,0 +1,141 @@
+﻿@model IARTAutomationApp.Models.EmployeePI
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h3 class="alert-danger" style="text-align:center">Delete</h3>
+
+<h5 class="alert-danger" style="text-align:center">Are you sure you want to delete this?</h5>
+<div>
+    <h4>EmployeePI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeePIId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeePIId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpEmailId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpEmailId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PermanentAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermanentAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailIdKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailIdKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KinName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KinName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressNextOfKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressNextOfKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateNextOfKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateNextOfKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LGAextOfKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LGAextOfKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Relation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Relation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNoNextOfKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNoNextOfKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfStaffBenificiary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneOfStaffBenificiary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressOfStaffBenificiary)
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeStatus)
+        </dt>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.EmployeePhoto)
+        </dd>*@
+
+      
+         
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

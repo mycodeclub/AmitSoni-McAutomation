@@ -1,0 +1,56 @@
+﻿@model IARTAutomationApp.Models.DeductionsMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DeductionsMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeductionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeductionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValueMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValueMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeductionHead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeductionHead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeductionAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeductionAmount)
+        </dd>
+
+         
+
+       
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DeductionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,28 @@
+﻿@model IARTAutomationApp.Models.CadreMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CadreMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.CadreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CadreName)
+        </dd>
+
+         
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CadreId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

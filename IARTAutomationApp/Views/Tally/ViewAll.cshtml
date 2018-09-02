@@ -1,0 +1,108 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.CRIVDetails>
+
+@{
+    ViewBag.Title = "All Crive";
+
+}
+
+<div class="content">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">Vouchers</li>
+        <li class="breadcrumb-item active">Tally</li>
+    </ol>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">All Tally Card/Bin Card Information</h4>
+                            <p></p>
+                            <div class="row m-t-4">
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-blue-gradient text-white">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Tally Records</h6>
+                                                <h1 class="text-white">@ViewBag.CrivCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">StockTally Voucher ID</th>
+                                                <th style="text-align: center; color: white;">Store Receipt Voucher ID</th>
+                                                <th style="text-align: center; color: white;">Store Name</th>
+                                                <th style="text-align: center; color: white;">Date</th>
+                                                
+                                                <th style="text-align: center; color: white;">Voucher Created By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        @{
+                                            int counter = 1;
+                                            foreach (var model in Model)
+                                            {
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        @(counter++)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(item => model.criv.CRIVVoucherId)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(item => model.criv.Store)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(item => model.criv.DepartmentId)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(item => model.criv.DateIns)
+                                                    </td>
+                                                    
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(item => model.Emp)
+                                                        <br />Emp Id: @Html.DisplayFor(item => model.criv.EmployeeID)
+                                                        <br />On: @Html.DisplayFor(item => model.criv.CreatedDate)
+                                                    </td>
+
+                                                    <td style="text-align: center;">
+
+                                                        @Html.ActionLink("View Voucher", "Details", new { id = model.criv.CRIVVoucherId })
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">StockTally Voucher ID</th>
+                                                <th style="text-align: center; color: white;">Store Receipt Voucher ID</th>
+                                                <th style="text-align: center; color: white;">Store Name</th>
+                                                <th style="text-align: center; color: white;">Date</th>
+
+                                                <th style="text-align: center; color: white;">Voucher Created By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

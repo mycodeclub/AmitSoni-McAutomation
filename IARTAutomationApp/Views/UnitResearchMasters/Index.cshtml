@@ -1,0 +1,124 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.UnitResearchMaster>
+
+@{
+    ViewBag.Title = "Index";
+    
+    int SrNo = 0;
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">System Configuration</a></li>
+        <li class="breadcrumb-item active">All Unit (Research)</li>
+    </ol>
+
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">All Unit (Research)</h4>
+                            <p>This is the table for displaying list of Unit (Research).</p>
+                            <div class="row m-t-4">
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-green text-white">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Unit (Research)</h6>
+                                                <h1 class="text-white">@ViewBag.UnitResearchMasters</h1>
+                                                <span class="progress-description text-white"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-darkblue">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Employee Under CONTTISS Salary Scale</h6>
+                                                <h1 class="text-white">0</h1>
+                                                <span class="progress-description text-white"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-aqua">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-bar-chart"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Employee Under CONUASS Salary Scale</h6>
+                                                <h1 class="text-white">0</h1>
+                                                <span class="progress-description text-white"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-orange">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-money"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Employee Under CONMESS Salary Scale</h6>
+                                                <h1 class="text-white">0</h1>
+                                                <span class="progress-description text-white"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">S. No.</th>
+                                                <th>@Html.DisplayName("Unit (Research) Name")</th>
+                                                <th style="width:150px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            { SrNo = SrNo + 1; }
+                                            <tr>
+                                                <td style="text-align: center;">@SrNo</td>
+                                                <td>@Html.DisplayFor(modelItem => item.UnitResearchName)</td>
+                                                <td style="text-align: center;">
+                                                    <!--<i class="fas fa-pencil-alt edit-delete"></i>&nbsp;&nbsp; | &nbsp;&nbsp;
+                                                    <i class="fas fa-trash-alt edit-delete"></i>&nbsp;&nbsp; | &nbsp;&nbsp;
+                                                    <i class="fas fa-eye edit-delete"></i> <br />-->
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.UnitResearchId }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.UnitResearchId })
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">S. No.</th>
+                                                <th>@Html.DisplayName("Unit (Research) Name")</th>
+                                                <th style="width:150px; text-align: center;">Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<!-- /.content -->

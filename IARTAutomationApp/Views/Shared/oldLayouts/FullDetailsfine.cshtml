@@ -1,0 +1,1178 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.EmployeeDetails>
+@{
+    ViewBag.Title = "FullDetails";
+    
+}
+
+ <!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+        <li class="breadcrumb-item active">Employee Full Details</li>
+    </ol>
+    @{int i = 0;}
+@foreach (var item in Model)
+{
+    if (i == 0)
+    {
+        i = i + 1;
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="user-profile-box m-b-3">
+                <div class="box-profile text-white">                   
+                     @*@IARTAutomationApp.Models.ImageHelper("Uploads/default-noman.png", "", "profile-user-img img-responsive img-circle m-b-2")*@
+
+                    @* <img class="profile-user-img img-responsive img-circle m-b-2" src="~/Uploads/@Html.Display(item.employeeGI.EmployeePhoto)"alt="User profile picture" />*@
+                    <img src="~/Uploads/@item.employeeGI.EmployeePhoto" class="profile-user-img img-responsive img-circle m-b-2" />
+                    <h3 class="profile-username text-center">
+                    
+                        @item.employeeGI.Title. 
+                        @item.employeeGI.First_Name 
+                        @item.employeeGI.Middle_Name 
+                        @item.employeeGI.Surname
+                    </h3>
+                    <p class="text-center">Employee Code: @item.employeeGI.EmployeeCode </p>
+                </div>
+            </div>
+            <div class="card m-b-3">
+                <div class="card-body">
+                    <div class="box-body">
+                        <strong><i class="fa fa-book margin-r-5"></i> Employee Rank</strong>
+                        <p class="text-muted"> @item.employeeGI.Rank   @item.employeeAI.Qualification3 </p>
+                        <hr>
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Permanent Address</strong>
+                        <p class="text-muted">@item.employeePI.PermanentAddress</p>
+                        <hr>
+                        <strong><i class="fa fa-envelope margin-r-5"></i> Email address </strong>
+                        <p class="text-muted">@item.employeePI.EmpEmailId</p>
+                        <hr>
+                        <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+                        <p>@item.employeePI.MobileNo </p>                       
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="info-box">
+                <div class="card tab-style1">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#GI" role="tab" aria-expanded="true">General Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#PI" role="tab" aria-expanded="false">Personal Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#AI" role="tab">Academic Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#SI" role="tab">Salary Info</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#MI" role="tab">Medical Info</a> </li>
+                       @* <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#LI" role="tab">Leave Info</a> </li>*@
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!--General Info End-->
+                        <div class="tab-pane active" id="GI" role="tabpanel" aria-expanded="true">
+                            <div class="card-body">
+
+                                <div>
+                                    <h4>Employee General Information</h4>                                    
+                                    <hr>
+                                    <h4 class="form-heading-1">Basic Details</h4> 
+                                    <div class="row">
+                                        <!--Form Field-->                      
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label><strong>Title</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Title.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label><strong>First Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.First_Name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label><strong>Middle Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Middle_Name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label><strong>Surname</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Surname
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label><strong>Maiden Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Maiden_Name
+                                                </p>
+                                            </div>
+                                        </div>                                        
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Grade Details</h4> 
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Rank</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Rank
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>File Number</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.File_No
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Grade Level</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Grade_Level
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Step</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Step
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Cadre/Job Schedule</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Cadre
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Other Details</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Sex</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Sex
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Date of Birth</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                              
+                                                    @Html.DisplayFor(modelItem => item.employeeGI.DateOfBirth)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Place of Birth</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.PlaceOfBirth
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+                                    
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Marital Status</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Marital_Status
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Spouse (if any)</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Spouse_Name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>State of Origin</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.StateOfOrigin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->                                        
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+                                    
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>LGA</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.LGA
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Home Town</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Home_Town
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Religion</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Religion
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->                                        
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+                                    
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Contact Home Address</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.ContactHomeAddress
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Appointment Details</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>First Appointment Date</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    
+                                                    @Html.DisplayFor(modelItem => item.employeeGI.FirstAppointmentDate)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>First Appointment Location</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.FirstAppointmentLocation
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Confirmation Date</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @Html.DisplayFor(modelItem => item.employeeGI.ConfirmationDate)
+                                               
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+                                    
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Date of Retirement</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    
+                                                    @Html.DisplayFor(modelItem => item.employeeGI.DateOfRetirement)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Last Promotion Date</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 
+                                                    @Html.DisplayFor(modelItem => item.employeeGI.LastPromotionDate)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Programmes</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Programmes
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+                                    
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Unit (Research)</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Unit_Research
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Unit (Services)</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Unit_Services
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Station of Deployment</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Maiden_Name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Section</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeGI.Section
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                    @*<hr class="m-t-0 m-b-3">*@
+
+                                                      
+                                    
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnGPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                       @* <input type="button" value="Update" class="btn btn-nor btn-secondary" data-toggle="modal" data-target="#myModal" />*@
+                                        <a href="@Url.Action("Edit","EmployeeGIs", new {id=item.employeeGI.EmployeeCode })"
+                                           class="btn btn-nor btn-secondary">Edit</a>
+
+                                     </div>
+                                </div>
+                                <!--EOF Submit Button-->
+
+                            </div>                            
+                        </div>
+                        <!--General Info End-->
+                        
+                        <!--Personal Info Tab-->
+                        <div class="tab-pane" id="PI" role="tabpanel" aria-expanded="false">
+                            <div class="card-body">
+
+                                <div>
+                                    <h4>Employee Personal Information</h4>
+                                    <hr>
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Employee Status</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                             @item.employeePI.EmployeeStatus
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Personal Information</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Email Address</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeePI.EmpEmailId
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Permanent Address</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                @item.employeePI.PermanentAddress
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Mobile Number</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeePI.MobileNo
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Kin Information</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Next of Kin Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                @item.employeePI.KinName
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Email of Next of Kin</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeePI.EmailIdKin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Address of Next Of Kin</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeePI.AddressNextOfKin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>State of Next Of Kin</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                  @item.employeePI.StateNextOfKin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>LGA of Next of Kin</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                              @item.employeePI.LGAextOfKin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Relationship</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                               @item.employeePI.Relation
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Next Of Kin Phone No</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                           @item.employeePI.PhoneNoNextOfKin
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Beneficiary Information</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Staff Beneficiary Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeePI.NameOfStaffBenificiary
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Staff Beneficiary Phone</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                  @item.employeePI.PhoneOfStaffBenificiary
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Staff Beneficiary Address</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                  @item.employeePI.AddressOfStaffBenificiary
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+                                    
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnPPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                      @*  <input type="button" value="Update" class="btn btn-nor btn-secondary" data-toggle="modal" data-target="#myModal" />*@
+                                        <a href="@Url.Action("Edit","EmployeePIs", new {id=item.employeePI.EmployeePIId })"
+                                           class="btn btn-nor btn-secondary">Edit</a>
+                                     </div>
+                                </div>
+                                <!--EOF Submit Button-->
+
+                            </div>
+                        </div>
+                        <!--Personal Info End-->
+                        
+                        <!--Academic Info Tab-->
+                        <div class="tab-pane" id="AI" role="tabpanel">
+                            <div class="card-body">
+
+                                <div>
+                                    <h4>Employee Academic Information</h4>
+                                    <hr>
+
+                                    <h4 class="form-heading-1">Qualification 1</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Institute Attended</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeeAI.InstitutionAttended1
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Qualification</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.Qualification1
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Year of Graduation</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.YearOfGraduation1
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Qualification 2</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Institute Attended</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.InstitutionAttended2
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Qualification</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.Qualification2
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Year of Graduation</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.YearOfGraduation2
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Qualification 3</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Institute Attended</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.InstitutionAttended3
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Qualification</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.Qualification3
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Year of Graduation</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeAI.YearOfGraduation3
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Professional Association</h4>
+                                    <div class="row">
+                                      
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Title</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                               @item.empassociation.Title
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>ID Number</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.empassociation.IDnumber
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Date</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @Html.DisplayFor(modelItem => item.empassociation.AttendedDate)
+                                              
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                       
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Conference / Seminar Attended</h4>
+                                    <div class="row">
+                                        
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Name of Conference</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @Html.DisplayNameFor(model => model.empconference.Name)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Title of Conference</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @Html.DisplayNameFor(model => model.empconference.Title)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Date of Conference</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @Html.DisplayFor(modelItem => item.empconference.AttendedDate)
+                                                  
+                                                 
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    
+                                    </div>
+
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnAPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                        <a href="@Url.Action("Edit","EmployeeAIs", new {id=item.employeeAI.EmployeeAIId })"
+                                           class="btn btn-nor btn-secondary">Edit</a>                                    </div>
+                                </div>
+                                <!--EOF Submit Button-->
+                                    
+                            </div>
+                        </div>
+                        <!--Academic Info Tab-->
+
+                        <!--Salary Info Tab-->
+                        <div class="tab-pane" id="SI" role="tabpanel">
+                            <div class="card-body">
+                                
+                                <div>
+                                    <h4>Employee Salary Information</h4>
+                                    <hr>
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Current Posting</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeeSI.CurrentPosting
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">Account Details</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Bank Type</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                              @item.employeeSI.BankType
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Name Of Banks</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                            @item.employeeSI.NameOfBanks
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Bank Branch</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.BankBranch
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Account Type</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.AccountType
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Account Number</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.AccountNumber
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Account Name</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.AccountName
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                    <hr class="m-t-0 m-b-3">
+
+                                    <h4 class="form-heading-1">PFA Details</h4>
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>PFA</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.PFA
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>RSA Pin No</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.RSAPinNo
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Salary Scale</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeSI.SalaryScale
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>                                    
+
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnSPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                        <a href="@Url.Action("Edit","EmployeeSIs", new {id=item.employeeSI.EmployeeSIId })"
+                                           class="btn btn-nor btn-secondary">Edit</a>                                    </div>
+                                </div>
+                                <!--EOF Submit Button-->
+
+                            </div>
+                        </div>
+                        <!--Salary Info Tab-->
+
+                        <!--Medical Info Tab-->
+                        <div class="tab-pane" id="MI" role="tabpanel">
+                            <div class="card-body">
+                                
+                                <div>
+                                    <h4>Employee Medical Information</h4>
+                                    <hr>
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>NHIS No</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                 @item.employeeMI.NhisNo
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>NHIS PROVIDER</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeMI.NhisProvider
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label><strong>Blood Group</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeMI.BloodGroup
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label><strong>Blood Genotype</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    @item.employeeMI.BloodGenotype
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>                                    
+
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnMPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                        <a href="@Url.Action("Edit","EmployeeMIs", new {id=item.employeeMI.EmployeeMIId })"
+                                           class="btn btn-nor btn-secondary">Edit</a>                                    </div>
+                                </div>
+                                <!--EOF Submit Button-->
+
+                            </div>
+                        </div>
+                        <!--Medical Info Tab-->
+
+                        <!--Medical Info Tab-->
+                        <div class="tab-pane" id="LI" role="tabpanel">
+                            <div class="card-body">
+
+                                <div>
+                                    <h4>Employee Leave Information</h4>
+                                    <hr>
+
+                                    <div class="row">
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Leave Type</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    Display Leave Type here
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Consumed Leaves</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    Display Consumed Leaves here
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                        <!--Form Field-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><strong>Remaining Leaves</strong></label>
+                                                <p class="form-control-static m-bot-1" id="staticInput">
+                                                    Display Remaining Leaves here
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--EOF-->
+                                    </div>
+
+                                </div>
+
+                                <hr class="m-t-0 m-b-3">
+
+                                <!--Form Field Submit Button-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" id="btnPrint" value="Print" class="btn btn-nor btn-danger" data-toggle="modal" data-target="#myModal" />
+                                        <input type="button" value="Update" class="btn btn-nor btn-secondary" data-toggle="modal" data-target="#myModal" />
+                                    </div>
+                                </div>
+                                <!--EOF Submit Button-->
+
+                            </div>
+                        </div>
+                        <!--Medical Info Tab-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}
+    <!-- Main row -->
+</div>
+<!-- /.content --> 
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+        $('#btnSPrint, #btnMPrint,#btnGPrint,#btnAPrint,#btnPPrint').click(function () {
+
+            $('.col-md-offset-2 col-md-10').hide();
+            //$("#btnSPrint").hide();
+            //$("#btnMPrint").hide();
+            //$("#btnGPrint").hide();
+            //$("#btnAPrint").hide();
+            //$("#btnPPrint").hide();
+            window.print();
+            $('.col-md-offset-2 col-md-10').show();
+            //$("#btnMPrint").show();
+            //$("#btnGPrint").show();
+            //$("#btnAPrint").show();
+            //$("#btnPPrint").show();
+        });
+    });
+</script>
+

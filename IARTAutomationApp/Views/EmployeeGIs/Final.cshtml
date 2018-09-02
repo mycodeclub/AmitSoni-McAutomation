@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "Final";
+
+}
+
+<div class="content annuaL" id="divfinalform">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="form-group row" id="empcodeArea">
+                <div class="col-sm-2"><strong>Select Employee:</strong></div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        @Html.TextBox("EmployeeCode", "", new { @class = "form-control", @id = "EmployeeCode" })
+                    </div>
+                </div>
+
+            </div>
+            <h3 style="text-align:center;">INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING</h3>
+            <p style="text-align:center;"> <strong>OBAFEMI AWOLOWO UNIVERSITY</strong><br />MOOR PLANTATION, P.M.B. 5029, IBADAN, NIGERIA.</p>
+
+            <div class="row">
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                    <p style="margin: 0px;"><strong>Tel: </strong>07065283864, 08050928174</p>
+                    <p style=" margin: 0px;"><strong> Fax No: </strong>  234-2-2312567</p>
+                    <p ><strong>  E-mail:  </strong>  directoriat@yahoo.com,   directoriat@gmail.com</p>
+
+
+
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-cenetr">
+                    <img src="/Content/dist/img/logo.png" style="width: 100%;" />
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 text-right">
+                    <address style="margin: 0px;">
+                        J.A. ADEDIRAN, Dip. (Agric.), M.Sc., Ph.D. (Russia),
+
+
+                    </address>
+
+                    <p style="margin: 0px;">
+                        <strong>Director:</strong> PD Cert. (Res. Mngt.)
+                    </p>
+                    <p>
+
+                        <strong>website:</strong> www.iart-ngpnline.org, director@iart-ngonline.org
+
+                    </p>
+                </div>
+            </div>
+
+            <form>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> Our Ref: </label>
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtOurRefNo">
+                        </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">Your Ref: </label>
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtYourRefNo">
+                        </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">Date: </label>
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+                            <input type="date" id="txtDate" class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+            </form><hr />
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong> The State Director,</strong>
+                        <br>
+                        N.Y.S.C., P.M.B. 5500,
+                        <br>
+                        Agodi, Ibadan.
+
+                    </address>
+                    <p> Dear Sir,</p>
+                    <strong>FINAL CLEARANCE LETTER</strong><br />
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                    <p> This is to certify that &nbsp;<input type="text" style="border:hidden;" id="txtName"> &nbsp; NYSC Code No.<input type="text" style="border:hidden;width:80px;" id="txtNYSCCodeNo" maxlength="8"> &nbsp;. who is leaving the service of this institute with effect from &nbsp;<input type="date" id="txtEffectDate" style="border:hidden;">, has been cleared of any indebtedness to the institute. </p>
+                    <p>Kindly pay his/her entitlements and effect all necessary clearance.</p>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <p>Thank you.</p>
+
+                    <p>Yours sincerely,</p>
+
+                    <p>   Jide Oladipo</p>
+                    <strong>
+                        For: Deputy Registrar/Secretary to the institute
+                    </strong>
+                </div>
+
+            </div>
+
+            <form>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> Name:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtEmpName">
+                        </div>
+                    </div>
+
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> </label>
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> Code No:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+
+                            <input class="form-control sty1" id="txtEmpCodeNo" maxlength="10">
+                        </div>
+                    </div>
+
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> </label>
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> Signature:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> Bank Acct.No:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtBankAccNo">
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="form-group" style="margin-left: 17px;" id="divprintarea">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Print" id="btnPrint" class="btn btn-success" />
+    </div>
+</div>
+
+ 
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+        $("#btnPrint").click(function () {
+
+            var obj = {};
+            obj.Name = $("#txtName").val();
+            obj.EmployeeCode = $("#txtEmpCodeNo").val();//Reading text box values using Jquery
+            obj.OurRef = $("#txtOurRefNo").val();
+            obj.YourRef = $("#txtYourRefNo").val();
+            obj.Date = $("#txtDate").val();
+            obj.Name = $("#txtName").val();
+            obj.NYSC_Code = $("#txtEmpCodeNo").val();
+            obj.EffectDate = $("#txtEffectDate").val();
+            obj.BankAccountNo = $("#txtBankAccNo").val();
+            obj.CreatedDate = $("#txtDate").val();
+            obj.IsDeleted = false;
+            debugger;
+            $.ajax(
+     {
+         type: "POST", //HTTP POST Method
+         url: "/EmployeeGIs/FinalClearance", // Controller/View
+          data: '{obj: ' + JSON.stringify(obj) + '}',
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (response) {
+             alert("Final Clearance is Submitted Successfully: ");
+         },
+         failure: function (response) {
+             alert(response.responseText);
+         },
+         error: function (response) {
+             alert(response.responseText);
+         }
+
+     });
+            $("#empcodeArea").hide();
+            $("#divprintarea").hide();
+            window.print();
+            $("#empcodeArea").show();
+            $("#divprintarea").show();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $.noConflict();  $("#EmployeeCode").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "/EmployeePIs/AutoEmployeeCode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Value, value: item.Value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+
+<script>
+
+        $('#EmployeeCode').change(function () {
+            debugger;
+            var EmployeeCode = $(this).val();
+
+        // Send Ajax call and get Task name
+
+    //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+
+            $.ajax({
+
+                url: '/EmployeeGIs/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
+                success: function (response) {
+                    debugger;
+
+
+                    $('#txtEmpName').val(response[0].empcode);
+            $('#txtName').val(response[0].Name);
+            $('#txtNYSCCodeNo').val(response[0].empcode);
+
+            $('#txtEmpCodeNo').val(response[0].empcode);
+
+            $('#txtBankAccNo').val(response[0].BankAccNo);
+            $('#txtEmpName').val(response[0].Name);
+
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+
+    });
+
+});</script>

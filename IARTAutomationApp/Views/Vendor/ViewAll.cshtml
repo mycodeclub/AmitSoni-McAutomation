@@ -1,0 +1,189 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.VendorDetails>
+@{
+    ViewBag.Title = "All Vendor List";
+
+}
+
+<div class="content">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">Vendor</li>
+        <li class="breadcrumb-item active">View Vendor</li>
+    </ol>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">All Vendor Information</h4>
+                            <p></p>
+                            <div class="row m-t-4">
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-purple text-white">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Vendor Records</h6>
+                                                <h1 class="text-white">@ViewBag.TotalVendorCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-green ">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Active Vendor</h6>
+                                                <h1 class="text-white">@ViewBag.VendorActiveCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-red">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-na"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Closed Vendor</h6>
+                                                <h1 class="text-white">@ViewBag.VendorClosedCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorName)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorOrg)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorMob)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAMob)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorEmail)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorRepDesc)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAdd1)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAdd2)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorCity)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorState)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorCountry)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorZipCode)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorTaxDet)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorStatus)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorDesc)</th>
+                                                <th style="text-align: center; color: white;"> Vendor Added By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        @{
+                                            int counter = 1;
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        @(counter++)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorName)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                       @Html.DisplayFor(modelItem => item.vendor.VendorOrg)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorMob)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                       @Html.DisplayFor(modelItem => item.vendor.VendorAMob)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorEmail)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorRepDesc)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorAdd1)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorAdd2)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.city)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.state)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.country.NICENAME)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorZipCode)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorTaxDet)
+                                                    </td>
+                                                    
+                                                    <td style="text-align: center;">
+                                                        @if (item.status.StatusName == "Active")
+                                                        {
+                                                            <span class="label label-success">@Html.DisplayFor(modelItem => item.status.StatusName)</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="label label-danger">@Html.DisplayFor(modelItem => item.status.StatusName)</span>
+                                                        }
+
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.vendor.VendorDesc)
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.DisplayFor(modelItem => item.empName) <br />
+                                                        Emp Id: @Html.DisplayFor(modelItem => item.vendor.EmployeeID)<br />
+                                                        On: @Html.DisplayFor(modelItem => item.vendor.CreatedDate)
+                                                    </td>
+
+                                                    <td style="text-align: center;">
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.vendor.RecordId })  |
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.vendor.RecordId })
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorName)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorOrg)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorMob)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAMob)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorEmail)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorRepDesc)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAdd1)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorAdd2)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorCity)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorState)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorCountry)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorZipCode)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorTaxDet)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorStatus)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.vendor.VendorDesc)</th>
+                                                <th style="text-align: center; color: white;"> Vendor Added By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

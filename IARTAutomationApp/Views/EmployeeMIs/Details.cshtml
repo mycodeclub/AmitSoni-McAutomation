@@ -1,0 +1,59 @@
+﻿@model IARTAutomationApp.Models.EmployeeMI
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmployeeMI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhisProvider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhisProvider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodGroup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGenotype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodGenotype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeePI.EmpEmailId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeePI.EmpEmailId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

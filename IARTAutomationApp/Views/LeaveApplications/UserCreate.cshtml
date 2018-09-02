@@ -1,0 +1,186 @@
+﻿@model IARTAutomationApp.Models.LeaveApplication
+
+@{
+    ViewBag.Title = "Edit";
+    
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item"><a href="#">Leave Management</a></li>
+            <li class="breadcrumb-item active">Leave Approval</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Leave Approval</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.LeaveAccId)
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Leave Application</h4>
+                        <div class="col-lg-12">
+                            <div class="card ">
+                                <div class="card-header bg-blue">
+                                    <h5 class="text-white m-b-0">Add Leave Application</h5>
+                                </div>
+
+                                <div class="card-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <!--Row Employee Code-->
+                                    <h4 class="form-heading-1">Leave Application</h4>
+                                    <div class="row">
+
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Enter Employee Code", htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                                @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Leave Type", htmlAttributes: new { @class = "control-label" })
+                                                @Html.DropDownList("LeaveTypeName", (SelectList)ViewBag.LeaveTypeName, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.LeaveTypeName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Leave FROM Date", htmlAttributes: new { @class = "control-label" })
+                                                @Html.TextBoxFor(x => x.LeaveFromDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                @Html.ValidationMessageFor(model => model.LeaveFromDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Leave TO Date", htmlAttributes: new { @class = "control-label" })
+                                                @Html.TextBoxFor(x => x.LeaveToDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                @Html.ValidationMessageFor(model => model.LeaveToDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Total Leave Days", htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.NoOfDays, new { htmlAttributes = new { @class = "form-control" }, @readonly = true })
+                                                @Html.ValidationMessageFor(model => model.NoOfDays, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.Label("Leave Applied on Date", htmlAttributes: new { @class = "control-label" })
+                                                @Html.TextBoxFor(x => x.AppDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @readonly = true })
+                                                @Html.ValidationMessageFor(model => model.AppDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <!--EOF Employee Code-->
+                                        <!--Form Field Employee Code-->
+                                        <!--EOF Employee Code-->
+                                    
+                                        <!--EOF Row Employee Code-->
+                                        <!--EOF Row Employee Code-->
+
+                                        <hr class="m-t-3 m-b-3">
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Apply" class="btn btn-success" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $.noConflict();  $("#EmployeeCode").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "/EmployeeAIs/AutoEmployeeCode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Value, value: item.Value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+
+
+        $("#LeaveToDate").change(function () {
+            var dat1 = document.getElementById('LeaveFromDate').value;
+            var date1 = new Date(dat1)//converts string to date object
+            var dat2 = document.getElementById('LeaveToDate').value;
+            var date2 = new Date(dat2)//converts string to date object
+           
+            var from =$("#LeaveFromDate").val();
+            var to = $("#LeaveToDate").val();
+
+          
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+           
+            $("#NoOfDays").val(diffDays+1);
+
+            if (Date.parse(from) > Date.parse(to)) {
+                $("#LeaveToDate").val(from);
+                $("#NoOfDays").val(1);
+                alert("Invalid Date Range");
+            }
+            else {
+              
+                //alert("Valid date Range");
+            }
+
+            
+        });
+    })
+</script>

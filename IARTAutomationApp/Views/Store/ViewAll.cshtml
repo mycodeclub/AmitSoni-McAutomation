@@ -1,0 +1,40 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.StoreViewAllDetails>
+@{
+    ViewBag.Title = "ViewAll";
+    
+}
+
+<div class="content">
+    <div class="card">
+        <div class="card-header bg-blue">
+            <h5 class="text-white m-b-0">View Store</h5>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 m-b-3">
+                            <!-- Card -->
+                            <div class="card">
+                                <img class="card-img-top img-responsive" src="~/Uploads/@item.storeImg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>@item.store</b></h5>
+                                    <p class="card-text">@item.storeDesc</p>
+                                    <p class="card-text"><strong>Total Item Count: </strong>@item.count</p>
+                                    <a href="@Url.Action("Create", "Item")" class="btn btn-primary"> Add Item</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

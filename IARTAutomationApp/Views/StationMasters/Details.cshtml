@@ -1,0 +1,28 @@
+﻿@model IARTAutomationApp.Models.StationMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StationMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.StationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StationName)
+        </dd>
+
+         
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

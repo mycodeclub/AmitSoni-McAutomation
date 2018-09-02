@@ -1,0 +1,29 @@
+﻿@model IARTAutomationApp.Models.BankTypeMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BankTypeMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.BankTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankTypeName)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BankTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

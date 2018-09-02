@@ -1,0 +1,139 @@
+﻿@model IARTAutomationApp.Models.CasualLeave
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CasualLeave</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Post)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Post)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsiblePerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsiblePerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HodComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HodComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnyLeaveDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnyLeaveDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeInChargeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficeInChargeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeGI.Rank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeGI.Rank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeGI1.Rank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeGI1.Rank)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

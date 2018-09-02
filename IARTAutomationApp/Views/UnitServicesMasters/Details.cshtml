@@ -1,0 +1,29 @@
+﻿@model IARTAutomationApp.Models.UnitServicesMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UnitServicesMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitServicesName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitServicesName)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UnitServicesId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

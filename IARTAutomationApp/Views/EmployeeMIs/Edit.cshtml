@@ -1,0 +1,145 @@
+﻿@model IARTAutomationApp.Models.EmployeeMI
+
+@{
+    ViewBag.Title = "Edit";
+   
+
+    
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item active">Edit Employees Medical Information</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Edit Employee Medical Information</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Employee Code</h4>
+                        <div class="row">
+
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Employee Code", "Employee Code", htmlAttributes: new { })
+                                    @Html.TextBoxFor(model => model.EmployeeCode, "", new { @class = "form-control", @id = "EmployeeCode", @readonly = true })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <h4 class="form-heading-1">Medical Info</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NhisNo, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.NhisNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NhisNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NhisProvider, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.NhisProvider, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NhisProvider, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BloodGroup, htmlAttributes: new { })
+                                    @Html.DropDownList("BloodGroup", new List<SelectListItem>
+    { new SelectListItem  { Text = "Select Blood Group", Value = "Select Blood Group", Selected=true},
+    new SelectListItem  { Text = "A+", Value = "A+"},
+    new SelectListItem  { Text = "B+", Value = "B+"},
+    new SelectListItem  { Text = "O+", Value = "O+"},
+    new SelectListItem  { Text = "AB+", Value = "AB+"},
+        new SelectListItem  { Text = "A-", Value = "A-"},
+    new SelectListItem  { Text = "B-", Value = "B-"},
+    new SelectListItem  { Text = "O-", Value = "O-"},
+    new SelectListItem  { Text = "AB-", Value = "AB-"},
+
+
+        }, new { @class = "form-control" }
+                    )
+                                    @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BloodGenotype, htmlAttributes: new { })
+
+                                    @Html.DropDownList("BloodGenotype", new List<SelectListItem>
+        { new SelectListItem  { Text = "Select Blood Genotype", Value = "Select Blood Genotype", Selected=true},
+        new SelectListItem  { Text = "AA", Value = "AA"},
+        new SelectListItem  { Text = "AO", Value = "AO"},
+        new SelectListItem  { Text = "BB", Value = "BB"},
+        new SelectListItem  { Text = "BO", Value = "BO"},
+         new SelectListItem  { Text = "AB", Value = "AB"},
+         new SelectListItem  { Text = "OO", Value = "OO"},
+          }, new { @class = "form-control" }
+                        )
+                                    @Html.ValidationMessageFor(model => model.BloodGenotype, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" value="Update" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to Update this record</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+ 

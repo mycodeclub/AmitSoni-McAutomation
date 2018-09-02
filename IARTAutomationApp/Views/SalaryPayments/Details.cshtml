@@ -1,0 +1,92 @@
+﻿@model IARTAutomationApp.Models.SalaryPayment
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SalaryPayment</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeductionAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeductionAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowanceAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowanceAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherDeduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherDeduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherAllowance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherAllowance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SalaryPaymId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

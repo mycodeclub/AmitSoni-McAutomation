@@ -1,0 +1,65 @@
+﻿@model IARTAutomationApp.Models.LeaveLedger
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LeaveLedger</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumedLeaves)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumedLeaves)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BalanceLeaves)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BalanceLeaves)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FiscalYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FiscalYear)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-success" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

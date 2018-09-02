@@ -1,0 +1,149 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.PrequalificationScoring>
+
+@{
+    ViewBag.Title = "Index";
+    
+    int SrNo = 0;
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Procurement</a></li>
+        <li class="breadcrumb-item active">All Tenderers Information</li>
+    </ol>
+
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">All Tenderers Information</h4>
+                            <p></p>
+                            <div class="row m-t-4">
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-green text-white">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Registered Tenderers</h6>
+                                                <h1 class="text-white">3</h1>
+                                                <span class="progress-description text-white"> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-darkblue">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">New Employees</h6>
+                                                <h1 class="text-white">4</h1>
+                                                <span class="progress-description text-white"> 70% Increase in 30 Days </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-aqua">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-bar-chart"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">On Leave</h6>
+                                                <h1 class="text-white">1</h1>
+                                                <span class="progress-description text-white"> 50% Increase in 30 Days </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                                <!--<div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-orange">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-money"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Retiring Soon</h6>
+                                                <h1 class="text-white">0</h1>
+                                                <span class="progress-description text-white"> 35% Increase in 30 Days </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:80px; text-align: center;">S. No.</th>
+                                                <th>@Html.DisplayNameFor(model => model.CompanyName)</th>
+                                                <th>@Html.DisplayNameFor(model => model.ProjectTitle)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.LotNo)</th>
+                                                <th>@Html.DisplayNameFor(model => model.ContractorName)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.EvidofReg_Cac)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.TaxClearanceCertificate)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.EvidofReg_Bureau)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.FinalScore)</th>
+                                                <th style="width:150px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model)
+                                            {
+                                                SrNo = SrNo + 1;
+                                                <tr>
+                                                    <td style="text-align: center;">@SrNo</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.ProjectTitle)</td>
+                                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.LotNo)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.ContractorName)</td>
+                                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.EvidofReg_Cac)</td>
+                                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.TaxClearanceCertificate)</td>
+                                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.EvidofReg_Bureau)</td>                                                    
+                                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.FinalScore)</td>
+                                                    <td style="text-align: center;">
+                                                        <!--<i class="fas fa-pencil-alt edit-delete"></i>&nbsp;&nbsp; | &nbsp;&nbsp;
+                                                        <i class="fas fa-trash-alt edit-delete"></i>&nbsp;&nbsp; | &nbsp;&nbsp;
+                                                        <i class="fas fa-eye edit-delete"></i> <br />-->
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |                                                        
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) | 
+                                                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <td style="width:80px; text-align: center;">S. No.</td>
+                                                <td>@Html.DisplayNameFor(model => model.CompanyName)</td>
+                                                <td>@Html.DisplayNameFor(model => model.ProjectTitle)</td>
+                                                <td style="text-align: center;">@Html.DisplayNameFor(model => model.LotNo)</td>
+                                                <td>@Html.DisplayNameFor(model => model.ContractorName)</td>
+                                                <td style="text-align: center;">@Html.DisplayNameFor(model => model.EvidofReg_Cac)</td>
+                                                <td style="text-align: center;">@Html.DisplayNameFor(model => model.TaxClearanceCertificate)</td>
+                                                <td style="text-align: center;">@Html.DisplayNameFor(model => model.EvidofReg_Bureau)</td>
+                                                <td style="text-align: center;">@Html.DisplayNameFor(model => model.FinalScore)</td>
+                                                <td style="width:150px; text-align: center;">Action</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<!-- /.content -->

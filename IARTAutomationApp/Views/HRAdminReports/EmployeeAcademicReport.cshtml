@@ -1,0 +1,144 @@
+﻿@using IARTAutomationApp.Models
+
+@model  IARTAutomationApp.ViewModels.EmployeeAll
+@{
+    ViewBag.Title = "Reports";
+
+    string qualification = "", BloodGroup = "", BloodGenotype = "", address = "", StateOfOrigin = "", LGA = "", MobileNo = "", EmpEmailId = "",InstituteAttended="", YearOfGraduation="";
+
+    int sr = 1;
+
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Reports</a></li>
+        <li class="breadcrumb-item active">Employees Academic Information Report</li>
+    </ol>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-black">Employees Academic Information Report</h4>
+            <p>Export data to Copy, CSV, Excel & PDF</p>
+            <div class="table-responsive">
+                <table id="empai" class="table table-bordered table-hover" data-name="cool-table">
+                    <thead>
+                        <tr>
+                            
+
+                            <th>File No</th>
+                            <th>Employee Code</th>
+                            <th>Title</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Sur Name</th>
+                            <th>Sex</th>
+                            <th>Institute Attended</th>
+                            <th>Qualification</th>
+                            <th>Year Of Graduation</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.employeegi)
+                        {
+
+                            { sr = sr + 1; }
+                            <tr>
+                                <td>@item.File_No</td>
+                                <td>@item.EmployeeCode</td>
+                                <td>@item.Title</td>
+                                <td>@item.First_Name</td>
+                                <td>@item.Middle_Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Sex</td>
+                               
+                              
+
+                                @foreach (var item1 in Model.employeeai.Where(x => x.EmployeeCode == item.EmployeeCode))
+                                {
+                                    {
+                                        InstituteAttended = item1.InstitutionAttended1+" "+ item1.InstitutionAttended2+" "+item1.InstitutionAttended3;
+                                        qualification = item1.Qualification1 + " " + item1.Qualification2 + " " + item1.Qualification3;
+                                        YearOfGraduation = item1.YearOfGraduation1 + " " + item1.YearOfGraduation2 + " " + item1.YearOfGraduation3;
+
+                                    }
+
+                                }
+                                
+                                <td>@InstituteAttended</td>
+                                <td>@qualification</td>
+                                <td>@YearOfGraduation</td>
+                                
+                                
+                            </tr>
+                        } 
+                    </tbody>
+                    <tfoot>
+                        <tr>
+
+                            <th>File No</th>
+                            <th>Employee Code</th>
+                            <th>Title</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Sur Name</th>
+                            <th>Sex</th>
+                            <th>Institute Attended</th>
+                            <th>Qualification</th>
+                            <th>Year Of Graduation</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js" type="text/javascript"></script>
+
+<script>
+
+        $('#empai').DataTable({
+
+                dom: 'Bfrtip',
+                buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+                ],
+
+        });
+</script>
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+
+
+
+
+
+
+
+<script>
+        $('#empsn_wrapper, #empgi_wrapper, #emppi_wrapper, #empmi_wrapper, #empcps_wrapper, #empai_wrapper').find('button').addClass('btn btn-rounded btn-outline-success');
+</script>

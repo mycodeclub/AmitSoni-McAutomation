@@ -1,0 +1,497 @@
+﻿ 
+
+@{
+    ViewBag.Title = "AnnualLeave";
+
+}
+
+<div class="content annuaL" id="divannualform">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+        <li class="breadcrumb-item active">Employee Full Details</li>
+    </ol>
+
+    <p></p>
+
+    
+    <div></div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="form-group row" id="empcodeArea">
+                <div class="col-sm-2"><strong>Select Employee:</strong></div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        @Html.TextBox("EmployeeCode", "", new { @class = "form-control", @id = "EmployeeCode" })
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="m-t-3 m-b-3">
+
+            <h3 style="text-align:center;">INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING APPLICATION FOR ANNUAL LEAVE</h3>
+           
+            <form action="../Home/index" method="post">
+                
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">1. (a) Surname:</label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtSurname"  class="form-control sty1" >
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">1. (b) Other Names:</label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtName"  class="form-control sty1" >
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">2. (a) Faculty/Directorate: </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtFacultyname"  class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">2. (b) Department/Unit: </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtDepartment" class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">3. Marital Status:  </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtMaritalStatus" class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">4. Nationality: </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtNationality"  class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">5. (a) Phone No: </label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtPhoneNo"  class="form-control sty1">
+                        </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">5. (b) File No: </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtFileNo"  class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">6. (a) Present Status/Designation:  </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtDesignation"  class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">6. (b) Salary per Annum:  </label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input type="text" id="txtSalaryScale" class="form-control sty1">
+                        </div>
+                    </div>
+                    @*<label for="exampleInputuname3" class="col-sm-2 control-label">Contiss/Conuass:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                        
+                        </div>
+                    </div>*@
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">7.	Proposed Period of Annual Leave: </label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input  class="form-control sty1" id="txtProposedAnnualLeave">
+                        </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">From: </label>
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input type="date" class="form-control sty1" id="FromDate">
+ 
+
+                             @*<input  class="form-control sty1">*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-3">
+                       
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">To: </label>
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input type="date" class="form-control sty1" id="ToDate">
+                         </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-3">
+
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">Total No. of Working Days:  </label>
+
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input  class="form-control sty1" id="txtTotalWorkingday">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    
+                    <label for="exampleInputuname3" class="col-sm-12 control-label">8.	* Have you within the last 12 months been (or currently) on sabbatical leave/leave of Absence/ Study Leave/ Maternity Leave? (Yes/No)</label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            @Html.DropDownList("txtIsleave", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Yes", Value = "Yes"},
+                                        new SelectListItem { Text = "No", Value = "No"},
+                                    }, new { @class = "form-control sty1" })
+                        </div>
+                    </div>
+                                    
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Indicate the period: From:   </label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input type="date" class="form-control sty1" id="IndicatePFromDate">
+
+                         </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label">To:  </label>
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <input type="date" class="form-control sty1" id="IndicatePToDate">
+ 
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-4 control-label">9.	* Outstanding/ Deferred Leave No. of Days:   </label>
+
+                    <div class="col-sm-8">
+                        <div class="form-group has-feedback">
+
+                            <input  class="form-control sty1" id="txtOutstandingleavedays">
+                        </div>
+                        (Attach Photocopy of Registrar’s Approval)
+                    </div>
+                              
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-12 control-label">10.	*Is you Husband/Wife in the public Service (Yes/No)</label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            @Html.DropDownList("IsPublicService", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Yes", Value = "Yes"},
+                                        new SelectListItem { Text = "No", Value = "No"},
+                                    }, new { @class = "form-control sty1" })
+                       
+                        </div>
+                    </div>
+                </div>
+                 <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-9 control-label">11.	If you are a Head of Department/Unit indicate the name of officer to act for you during the period of (7) above </label>
+
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                          
+                            <input class="form-control sty1" id="txtIsHOD">
+                        </div>
+                       
+                    </div>
+                              
+                </div>
+               
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">
+
+                        12.	Approval of Head of Department/Unit
+                        @Html.DropDownList("IApprove", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Approve", Value = "Approve"},
+                                        new SelectListItem { Text = "Not Approve", Value = "Not Approve"},
+                                    }, new { @class = "form-control sty1" })
+                        If not approved state reason(s) below:
+                    </label>
+
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtActofficer">
+                        </div>
+                    </div>
+
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Signature of Applicant<br />Date: </label>
+
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+               
+            </form>
+            
+            @*<div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>Elf Cafe</strong>
+                        <br>
+                        2135 Sunset Blvd
+                        <br>
+                        Los Angeles, CA 90026
+                        <br>
+                        <abbr title="Phone">P:</abbr> (213) 484-6829
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>Date: 1st November, 2013</em>
+                    </p>
+                    <p>
+                        <em>Receipt #: 34522677W</em>
+                    </p>
+                </div>
+            </div>*@ 
+          
+           
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<div class="form-group" style="margin-left: 17px;" id="divprintArea">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Print" id="btnPrint"  class="btn btn-success" />
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+<script>
+    
+        $('#EmployeeCode').change(function () {
+            debugger;
+            var EmployeeCode = $(this).val();
+
+        // Send Ajax call and get Task name
+
+    //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+
+            $.ajax({
+
+                url: '/EmployeeGIs/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
+                success: function (response) {
+                    debugger;
+ 
+                 
+             $('#txtSurname').val(response[0].SurName);
+            $('#txtName').val(response[0].Name);
+            $('#txtDepartment').val(response[0].Programmes);
+            //$('#txtUnit').val(response.Unit);  
+            $('#txtMaritalStatus').val(response[0].MaritalStatus);
+            $('#txtNationality').val(response[0].Nationality);
+            $('#txtPhoneNo').val(response[0].PhoneNo);
+            $('#txtFileNo').val(response[0].FileNo);
+            $('#txtDesignation').val(response[0].Rank);
+            $('#txtSalaryScale').val(response[0].SalaryScale);
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+
+    });
+
+});</script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $.noConflict();  $("#EmployeeCode").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "/EmployeePIs/AutoEmployeeCode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Value, value: item.Value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+
+
+        $("#ToDate").change(function () {
+            var dat1 = document.getElementById('FromDate').value;
+            var date1 = new Date(dat1)//converts string to date object
+            var dat2 = document.getElementById('ToDate').value;
+            var date2 = new Date(dat2)//converts string to date object
+
+            var from = $("#FromDate").val();
+            var to = $("#ToDate").val();
+
+
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            $("#txtProposedAnnualLeave").val(diffDays + 1);
+
+            if (Date.parse(from) > Date.parse(to)) {
+                $("#ToDate").val(from);
+                $("#txtProposedAnnualLeave").val(1);
+                alert("Invalid Date Range");
+            }
+            else {
+
+                //alert("Valid date Range");
+            }
+
+
+        });
+    })
+</script>
+
+ 
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            //function will be called on button click having id btnsave
+            $("#btnPrint").click(function () {
+                $("#empcodeArea").hide();
+                //$("#divprintArea").hide();
+                debugger;
+
+                var obj={};
+                obj.EmployeeCode=$('#EmployeeCode').val();
+                obj.SurName = $('#txtSurname').val();
+                obj.OtherNames= $('#txtName').val();
+                obj.Faculty = $('#txtFacultyname').val();
+                obj.Department = $('#txtDepartment').val();
+                obj.MaritalStatus = $('#txtMaritalStatus').val();
+                obj.Nationality = $('#txtNationality').val();
+                obj.PhoneNo = $('#txtPhoneNo').val();
+                obj.FileNo = $('#txtFileNo').val();
+                obj.PresentStatus = $('#txtDesignation').val();
+                obj.Salaryperannum = $('#txtSalaryScale').val();
+                obj.Proposedannualleave = $('#txtProposedAnnualLeave').val();
+                obj.LeavefromDate = $('#FromDate').val();
+                obj.LeavetoDate = $('#ToDate').val();
+                obj.Totalworkingday = $('#txtTotalWorkingday').val();
+                obj.IsLeave = $('#txtIsleave').val();;
+                obj.Isleavefromdate = $('#IndicatePFromDate').val();
+                obj.Isleavetodate = $('#IndicatePToDate').val();
+                obj.Outstandingleavedays = $('#txtOutstandingleavedays').val();
+                obj.IsPublicService = $('#IsPublicService').val();
+                obj.IsHOD = $('#txtIsHOD').val();
+                obj.ActOfficer = $('#txtActofficer').val();
+                obj.IApprove = $('#IApprove').val();
+                obj.IsDeleted = false;
+                obj.CreatedDate = $('#IndicatePFromDate').val();
+            
+                //window.print();
+                $.ajax(
+          {
+              type: "POST", //HTTP POST Method
+              url: "/EmployeeGIs/AnnualLeave", // Controller/View
+         
+                data: '{obj: ' + JSON.stringify(obj) + '}',
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (response) {
+             alert("Annual Leave is Submitted Successfully: ");
+         },
+         failure: function (response) {
+             alert(response.responseText);
+         },
+         error: function (response) {
+             alert(response.responseText);
+         }
+
+     });
+            $("#empcodeArea").hide();
+            $("#divprintarea").hide();
+            window.print();
+            $("#empcodeArea").show();
+            $("#divprintarea").show();
+        });
+    });
+</script>
+ 
+
+
+
+        @*//$(function () {
+        //    $("#btnPrint").click(function () {
+        //        var contents = $("#divannualform").html();
+        //        var frame1 = $('<iframe />');
+        //        frame1[0].name = "frame1";
+        //        frame1.css({ "position": "absolute", "top": "-1000000px" });
+        //        $("body").append(frame1);
+        //        var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+        //        frameDoc.document.open();
+        //        //Create a new HTML document.
+        //        frameDoc.document.write('<html><head><title>DIV Contents</title>');
+        //        frameDoc.document.write('</head><body>');
+        //        //Append the external CSS file.
+        //        frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+        //        //Append the DIV contents.
+        //        frameDoc.document.write(contents);
+        //        frameDoc.document.write('</body></html>');
+        //        frameDoc.document.close();
+        //        setTimeout(function () {
+        //            window.frames["frame1"].focus();
+        //            window.frames["frame1"].print();
+        //            frame1.remove();
+        //        }, 500);
+        //    });
+        //});*@
+    
+
+
+ 
+

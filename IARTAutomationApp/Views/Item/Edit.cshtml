@@ -1,0 +1,191 @@
+﻿@model IARTAutomationApp.Models.ItemMaster
+@{
+    ViewBag.Title = "Edit Item";
+    
+}
+<link rel="stylesheet" href="/Content/dist/plugins/dropify/dropify.min.css">
+@using (Html.BeginForm("Edit", "Item", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+    <div class="content">
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Store</a></li>
+            <li class="breadcrumb-item"><a href="#">Item</a></li>
+            <li class="breadcrumb-item active">Edit Item</li>
+        </ol>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Add Item</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <h4 class="form-heading-1">Employee Code</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.EmployeeID, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="form-heading-1">Item Details</h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.StoreId, htmlAttributes: new { })
+                                    @Html.DropDownList("StoreId", (SelectList)ViewBag.Store, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StoreId, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.RecordId)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.ClassId, htmlAttributes: new { })
+                                    @Html.DropDownList("ClassId", (SelectList)ViewBag.Class, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemName, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemCat, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ItemCat, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ItemCat, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.UomId, htmlAttributes: new { })
+                                    @Html.DropDownList("UomId", (SelectList)ViewBag.Uom, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.UomId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.VendorId, htmlAttributes: new { })
+                                    @Html.DropDownList("VendorId", (SelectList)ViewBag.Vendor, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VendorId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemRate, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ItemRate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ItemRate, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemTax, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ItemTax, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ItemTax, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @*<label for="exampleInputuname3" class="col-sm-3 control-label">Username*</label>*@
+                                    @Html.LabelFor(model => model.StatusId, htmlAttributes: new { })
+                                    @Html.DropDownList("StatusId", (SelectList)ViewBag.Status, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemDesc, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ItemDesc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ItemDesc, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-6">
+
+                                <div class="form-group">
+                                    @Html.Label("Previous Store Image", htmlAttributes: new { })
+                                    <img src="~/Uploads/@Model.ItemImage" class="form-control" style="max-width:370px;" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+                                <div class="form-group">
+                                    @Html.Label("Upload New Image", htmlAttributes: new { })
+                                    @*@Html.TextBoxFor(model => model.StoreImgName, new { @class = "dropify", type = "file", name = "StoreImgName" })*@
+                                    <input type="file" name="ImageUpload" id="ImageUpload" class="dropify" data-allowed-file-extensions="jpg jpeg png" data-min-width="290" data-min-height="240" data-max-width="310" data-max-height="260" />
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="button" value="Update" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+      <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to Save this Item</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}

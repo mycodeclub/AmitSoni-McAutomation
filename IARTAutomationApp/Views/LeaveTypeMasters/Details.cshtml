@@ -1,0 +1,51 @@
+﻿@model IARTAutomationApp.Models.LeaveTypeMaster
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeaveTypeMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeaveTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

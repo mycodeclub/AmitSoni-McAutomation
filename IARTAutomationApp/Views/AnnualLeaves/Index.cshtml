@@ -1,0 +1,195 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.AnnualLeave>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+
+<div class="box-body">
+    <div class="table-responsive">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="bg-success" style="color: #fff;">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeCode)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OtherNames)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Faculty)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Maritalstatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nationality)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fileno)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PresentStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Salaryperannum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Proposedannualleave)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LeavefromDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LeavetoDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Totalworkingday)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsLeave)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsLeavefromDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsLeavetoDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OutstandingLeaveDays)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsPublicService)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsHOD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ActOfficer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IApprove)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsDeleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeGI.Rank)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeGI1.Rank)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OtherNames)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Faculty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Maritalstatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nationality)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fileno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PresentStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salaryperannum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Proposedannualleave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeavefromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeavetoDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Totalworkingday)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsLeavefromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsLeavetoDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OutstandingLeaveDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsPublicService)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsHOD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ActOfficer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IApprove)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsDeleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeGI.Rank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeGI1.Rank)
+                        </td>
+                        <td>
+                          
+                            @Html.ActionLink("View", "Details", new { id = item.Id }) 
+                        
+                        </td>
+                    </tr>
+                }
+
+        </table>
+        </div></div>

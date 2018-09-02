@@ -1,0 +1,379 @@
+﻿@model IARTAutomationApp.Models.EmployeeGI
+
+@{
+    ViewBag.Title = "Create";
+   
+    
+}
+
+ 
+
+ 
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Main content -->
+    <div class="content">
+
+        <div class="row m-t-3">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Employee General Information</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Title</label>
+                                        <select class="form-control custom-select" id="Title">
+                                            <option value="">Select</option>
+                                            <option value="">Mr</option>
+                                            <option value=""> Mrs</option>
+                                            <option value="">Miss</option>
+                                            <option value="">Dr</option>
+                                            <option value="">Prof</option>
+
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">First Name</label>
+                                        <input class="form-control" placeholder="First Name" type="text" id="First_Name">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Middle Name</label>
+                                        <input class="form-control" placeholder="Middle Name" type="text" id="Middle_Name">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Surname</label>
+                                        <input class="form-control" placeholder="Surname" type="text" id="Surname">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Maiden Name</label>
+                                        <input class="form-control" placeholder="Maiden Name" type="text" id="Maiden_Name">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Rank</label>
+                                        <input class="form-control" placeholder="Rank" type="text" id="Rank">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">File No</label>
+                                        <input class="form-control" placeholder="File No" type="text" id="File_No">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Employee code</label>
+                                        @*<input class="form-control" placeholder="Employee code" type="text" id="EmployeeCode">*@
+                                        @Html.DropDownList("EmployeeCode",null, new { htmlAttributes = new { @class = "form-control" } })
+ 
+
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Grade Level</label>
+                                        <select class="form-control custom-select" id="Grade_Level">
+                                            <option value="">Select</option>
+                                            <option value="">01</option>
+                                            <option value=""> 02</option>
+                                            <option value="">03</option>
+                                            <option value="">04</option>
+                                            <option value="">05</option>
+                                            <option value="">06</option>
+                                            <option value=""> 07</option>
+                                            <option value="">08</option>
+                                            <option value="">09</option>
+                                            <option value="">10</option>
+                                            <option value="">11</option>
+                                            <option value=""> 12</option>
+                                            <option value="">13</option>
+                                            <option value="">14</option>
+                                            <option value="">15</option>
+                                            <option value="">16</option>
+                                            <option value="">17</option>
+
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Step</label>
+                                        <select class="form-control custom-select" id="Step">
+                                            <option value="">Select</option>
+                                            <option value="">01</option>
+                                            <option value=""> 02</option>
+                                            <option value="">03</option>
+                                            <option value="">04</option>
+                                            <option value="">05</option>
+                                            <option value="">06</option>
+                                            <option value=""> 07</option>
+                                            <option value="">08</option>
+                                            <option value="">09</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Cadre/Job Schedule</label>
+                                        <select class="form-control custom-select" id="Cadre">
+                                            <option value="">Select</option>
+                                            <option value="">Junior</option>
+                                            <option value=""> Senior</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Sex</label>
+                                        <select class="form-control custom-select" id="Sex">
+                                            <option value="">Select</option>
+                                            <option value="">Male</option>
+                                            <option value=""> Female</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Date of Birth</label>
+                                        <input class="form-control" placeholder="Date of Birth" type="text" id="DateOfBirth">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Place of Birth</label>
+                                        <input class="form-control" placeholder="Place of Birth" type="text" id="PlaceOfBirth">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Marital Status</label>
+                                        <select class="form-control custom-select" id="Marital_Status">
+                                            <option value="">Select</option>
+                                            <option value="">Singled</option>
+                                            <option value=""> Married</option>
+                                            <option value=""> Widowed</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Spouse Name </label>
+                                        <input class="form-control" placeholder="Spouse Name" type="text" id="Spouse_Name">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">State of Origin</label>
+                                        <select class="form-control custom-select">
+                                            <option value="">Select</option>
+                                            <option value="">Abia</option>
+                                            <option value=""> Adamawa</option>
+                                            <option value=""> Akwa Ibom</option>
+                                            <option value="">Anambra</option>
+                                            <option value="">Bauchi</option>
+                                            <option value=""> Bayelsa</option>
+                                            <option value=""> Benue</option>
+                                            <option value="">Borno</option>
+                                            <option value="">Cross River</option>
+                                            <option value=""> Delta</option>
+                                            <option value=""> Ebonyi</option>
+                                            <option value="">Edo</option>
+                                            <option value="">Ekiti</option>
+                                            <option value=""> Enugu</option>
+                                            <option value=""> Gombe</option>
+                                            <option value="">Imo</option>
+                                            <option value="">Jigawa</option>
+                                            <option value=""> Kaduna</option>
+                                            <option value=""> Kano</option>
+                                            <option value="">Katsina</option>
+                                            <option value="">Kebbi</option>
+                                            <option value=""> Kogi</option>
+                                            <option value=""> Kwara</option>
+                                            <option value="">Lagos</option>
+                                            <option value=""> Nasarawa</option>
+                                            <option value=""> Niger</option>
+                                            <option value="">Ogun</option>
+                                            <option value="">Ondo</option>
+                                            <option value=""> Osun</option>
+                                            <option value=""> Oyo</option>
+                                            <option value="">Plateau</option>
+                                            <option value="">Rivers</option>
+                                            <option value=""> Sokoto</option>
+                                            <option value=""> Taraba</option>
+                                            <option value="">Yobe</option>
+                                            <option value="">Zamfara</option>
+                                            <option value=""> FCT</option>
+
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">LGA</label>
+                                        <select class="form-control custom-select" id="LGA">
+                                            <option value="">Select</option>
+                                            <option value="">Local </option>
+                                            <option value=""> Government</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Home Town </label>
+                                        <input class="form-control" placeholder="Home Town" type="text" id="Home_Town">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Religion</label>
+                                        <select class="form-control custom-select" id="Religion">
+                                            <option value="">Select</option>
+                                            <option value="">Christian </option>
+                                            <option value=""> Islam</option>
+                                            <option value=""> Others</option>
+                                        </select>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Contact Home Address</label>
+                                        <textarea class="form-control" id="ContactHomeAddress" rows="3" placeholder="Address"></textarea>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">First Appointment Date </label>
+                                        <input class="form-control" placeholder="First Appointment Date" type="text" id="FirstAppointmentDate">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">First Appointment Location </label>
+                                        <textarea class="form-control" rows="3" placeholder="Appointment Location" id="FirstAppointmentLocation"></textarea>
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Confirmation Date </label>
+                                        <input class="form-control" placeholder="Confirmation Date" type="text" id="ConfirmationDate">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Date of Retirement </label>
+                                        <input class="form-control" placeholder="Date of Retirement" type="text" id="DateOfRetirement">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Last Promotion Date </label>
+                                        <input class="form-control" placeholder="Last Promotion Date" type="text" id="LastPromotionDate">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Department </label>
+                                        <input class="form-control" placeholder="Department" type="text" id="Department">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Unit </label>
+                                        <input class="form-control" placeholder="Unit" type="text" id="Unit">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Section </label>
+                                        <input class="form-control" placeholder="Section" type="text" id="Section">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Ministry/Agency </label>
+                                        <input class="form-control" placeholder="Ministry/Agency" type="text" id="Section">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Numbers of Days of Annual Leave </label>
+                                        <input class="form-control" placeholder="From Date" type="text" id="Leave_fromDate">
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label"> </label>
+                                        <input class="form-control" placeholder="To Date" type="text" style="margin-top: 5px; padding-top :10px;" id="Leave_ToDate">
+
+
+                                        <span class="form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" value="Create" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+ 
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+ 

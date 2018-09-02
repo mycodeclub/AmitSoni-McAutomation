@@ -1,0 +1,57 @@
+﻿@model IARTAutomationApp.Models.RankMaster
+
+@{
+    ViewBag.Title = "Delete";
+    
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RankMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.RankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RankName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RankDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RankDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

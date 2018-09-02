@@ -1,0 +1,51 @@
+﻿@model IARTAutomationApp.Models.RankMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RankMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.RankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RankName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RankDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RankDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RankId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

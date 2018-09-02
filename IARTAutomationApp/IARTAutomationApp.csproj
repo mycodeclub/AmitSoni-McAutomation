@@ -1,0 +1,1138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{52B91B1A-B007-4562-8ED4-FFAB852FB27A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IARTAutomationApp</RootNamespace>
+    <AssemblyName>IARTAutomationApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.92.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.92.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllowanceMastersController.cs" />
+    <Compile Include="Controllers\AnnualLeavesController.cs" />
+    <Compile Include="Controllers\BankMastersController.cs" />
+    <Compile Include="Controllers\BankTypeMastersController.cs" />
+    <Compile Include="Controllers\CadreMastersController.cs" />
+    <Compile Include="Controllers\CasualLeavesController.cs" />
+    <Compile Include="Controllers\CentralStoresController.cs" />
+    <Compile Include="Controllers\ChemicalStoresController.cs" />
+    <Compile Include="Controllers\CityMastersController.cs" />
+    <Compile Include="Controllers\CRIVController.cs" />
+    <Compile Include="Controllers\DeductionsMastersController.cs" />
+    <Compile Include="Controllers\DeliveryNoteController.cs" />
+    <Compile Include="Controllers\EmpAIAssociationsController.cs" />
+    <Compile Include="Controllers\EmpAIConferencesController.cs" />
+    <Compile Include="Controllers\EmployeeAIsController.cs" />
+    <Compile Include="Controllers\EmployeeGIsController.cs" />
+    <Compile Include="Controllers\EmployeeMIsController.cs" />
+    <Compile Include="Controllers\EmployeePIsController.cs" />
+    <Compile Include="Controllers\EmployeeSIsController.cs" />
+    <Compile Include="Controllers\FertilizerStoresController.cs" />
+    <Compile Include="Controllers\GraduateAttachmentFormsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HRAdminReportsController.cs" />
+    <Compile Include="Controllers\IARTAccountController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LeaveApplicationsController.cs" />
+    <Compile Include="Controllers\LeaveLedgersController.cs" />
+    <Compile Include="Controllers\LeaveMastersController.cs" />
+    <Compile Include="Controllers\LeaveTypeMastersController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NyscFinalClearancesController.cs" />
+    <Compile Include="Controllers\NyscMonthlyClearancesController.cs" />
+    <Compile Include="Controllers\PFAMastersController.cs" />
+    <Compile Include="Controllers\POrderController.cs" />
+    <Compile Include="Controllers\PrequalificationScoringsController.cs" />
+    <Compile Include="Controllers\ProcurementReportsController.cs" />
+    <Compile Include="Controllers\ProgrammeMastersController.cs" />
+    <Compile Include="Controllers\QualificationMastersController.cs" />
+    <Compile Include="Controllers\RankMastersController.cs" />
+    <Compile Include="Controllers\RoleMastersController.cs" />
+    <Compile Include="Controllers\SalaryPaymentsController.cs" />
+    <Compile Include="Controllers\SalaryStructureMastersController.cs" />
+    <Compile Include="Controllers\SectionMastersController.cs" />
+    <Compile Include="Controllers\StateMastersController.cs" />
+    <Compile Include="Controllers\StationMastersController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\StockReportController.cs" />
+    <Compile Include="Controllers\StoreClassController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\StoreCreditController.cs" />
+    <Compile Include="Controllers\StoreInventoryReportController.cs" />
+    <Compile Include="Controllers\StoreReciptController.cs" />
+    <Compile Include="Controllers\TallyController.cs" />
+    <Compile Include="Controllers\TendererInformationsController.cs" />
+    <Compile Include="Controllers\TenderOpeningsController.cs" />
+    <Compile Include="Controllers\UnitResearchMastersController.cs" />
+    <Compile Include="Controllers\UnitServicesMastersController.cs" />
+    <Compile Include="Controllers\UomController.cs" />
+    <Compile Include="Controllers\UserMastersController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Map\AllowanceMasterMap.cs" />
+    <Compile Include="Map\AnnualLeaveMap.cs" />
+    <Compile Include="Map\CasualLeaveMap.cs" />
+    <Compile Include="Map\CentralStoreMap.cs" />
+    <Compile Include="Map\ChemicalStoreMap.cs" />
+    <Compile Include="Map\ClassMasterMap.cs" />
+    <Compile Include="Map\DeductionsMasterMap.cs" />
+    <Compile Include="Map\EmployeeAIMap.cs" />
+    <Compile Include="Map\EmployeeAttendanceMap.cs" />
+    <Compile Include="Map\EmployeeGIMap.cs" />
+    <Compile Include="Map\EmployeeMIMap.cs" />
+    <Compile Include="Map\EmployeePIMap.cs" />
+    <Compile Include="Map\EmployeeSIMap.cs" />
+    <Compile Include="Map\FertilizerStoreMap.cs" />
+    <Compile Include="Map\GraduateAttachmentFormMap.cs" />
+    <Compile Include="Map\ImageHelper.cs" />
+    <Compile Include="Map\ItemMasterMap.cs" />
+    <Compile Include="Map\LeaveApplicationMap.cs" />
+    <Compile Include="Map\LeaveLedgerMap.cs" />
+    <Compile Include="Map\LeaveRoasterJuniorStaffMap.cs" />
+    <Compile Include="Map\NyscFinalClearanceMap.cs" />
+    <Compile Include="Map\NyscMonthlyClearanceMap.cs" />
+    <Compile Include="Map\PrequalificationScoringMap.cs" />
+    <Compile Include="Map\PurchaseOrderMap.cs" />
+    <Compile Include="Map\SalaryStructureMasterMap.cs" />
+    <Compile Include="Map\StationaryStoreMap.cs" />
+    <Compile Include="Map\StockMasterMap.cs" />
+    <Compile Include="Map\StoreMasterMap.cs" />
+    <Compile Include="Map\TendererInformationMap.cs" />
+    <Compile Include="Map\TenderOpeningMap.cs" />
+    <Compile Include="Map\UomMasterMap.cs" />
+    <Compile Include="Map\ValidatesDate.cs" />
+    <Compile Include="Map\ValidatesDateAttribute.cs" />
+    <Compile Include="Map\VendorMasterMap.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllowanceMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnnualLeave.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BankMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BankTypeMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CadreMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CasualLeave.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CentralStore.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChemicalStore.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CityMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COUNTRYLIST.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CrivVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DALModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DALModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DALModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DALModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DALModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DeductionsMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpAIAssociation.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpAIConference.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeAI.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeAttendance.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeGI.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeMI.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeePI.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeSI.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FertilizerStore.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GraduateAttachmentForm.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ItemMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveApplication.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveLedger.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveRoasterJuniorStaff.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveTypeMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NyscFinalClearance.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NyscMonthlyClearance.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PFAMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrequalificationScoring.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrintForm.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgrammeMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PurchaseOrder.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QualificationMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RankMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SalaryPayment.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SalaryStructureMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SectionMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StateMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StationaryStore.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StationMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StockMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreCreditVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreGateVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreReciptVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreTallyVoucher.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TendererInformation.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TenderOpening.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnitResearchMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnitServicesMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UomMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VendorMaster.cs">
+      <DependentUpon>DALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ClassDetails.cs" />
+    <Compile Include="ViewModels\CRIVDetails.cs" />
+    <Compile Include="ViewModels\DataPoint.cs" />
+    <Compile Include="ViewModels\Dataset.cs" />
+    <Compile Include="ViewModels\EmailModel.cs" />
+    <Compile Include="ViewModels\EmployeeAIAll.cs" />
+    <Compile Include="ViewModels\EmployeeAll.cs" />
+    <Compile Include="ViewModels\EmployeeDetails.cs" />
+    <Compile Include="ViewModels\GraphDataTender.cs" />
+    <Compile Include="ViewModels\GraphData.cs" />
+    <Compile Include="ViewModels\ItemDetails.cs" />
+    <Compile Include="ViewModels\PurchaseOrderDetails.cs" />
+    <Compile Include="ViewModels\StockDetails.cs" />
+    <Compile Include="ViewModels\StoreCreditDetails.cs" />
+    <Compile Include="ViewModels\StoreGatePassDetails.cs" />
+    <Compile Include="ViewModels\StoreInventoryDetails.cs" />
+    <Compile Include="ViewModels\StoreListDetails.cs" />
+    <Compile Include="ViewModels\StoreReciptDetails.cs" />
+    <Compile Include="ViewModels\StoreTallyDetails.cs" />
+    <Compile Include="ViewModels\StoreViewAllDetails.cs" />
+    <Compile Include="ViewModels\UomDetails.cs" />
+    <Compile Include="ViewModels\VendorDetails.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dist\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\dist\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\dist\css\et-line-font\et-line-font.css" />
+    <Content Include="Content\dist\css\et-line-font\fonts\et-line.svg" />
+    <Content Include="Content\dist\css\et-line-font\fonts\et-line_files\viewsource.css" />
+    <Content Include="Content\dist\css\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\dist\css\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\dist\css\font-awesome\fonts\fontawesome-webfont_files\viewsource.css" />
+    <Content Include="Content\dist\css\simple-lineicon\simple-line-icons.css" />
+    <Content Include="Content\dist\css\style.css" />
+    <Content Include="Content\dist\css\tabs.css" />
+    <Content Include="Content\dist\css\themify-icons\themify-icons.css" />
+    <Content Include="Content\dist\css\timeline.css" />
+    <Content Include="Content\dist\img\1.jpg" />
+    <Content Include="Content\dist\img\2.jpg" />
+    <Content Include="Content\dist\img\3.jpg" />
+    <Content Include="Content\dist\img\body-bg.jpg" />
+    <Content Include="Content\dist\img\body-bg1.jpg" />
+    <Content Include="Content\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\dist\img\crescent.jpg" />
+    <Content Include="Content\dist\img\crescentback5.JPG" />
+    <Content Include="Content\dist\img\crescentfront1.JPG" />
+    <Content Include="Content\dist\img\favicon-16x16.png" />
+    <Content Include="Content\dist\img\image.jpg" />
+    <Content Include="Content\dist\img\images %282%29.jpg" />
+    <Content Include="Content\dist\img\img1.jpg" />
+    <Content Include="Content\dist\img\img10.jpg" />
+    <Content Include="Content\dist\img\img11.png" />
+    <Content Include="Content\dist\img\img12.jpg" />
+    <Content Include="Content\dist\img\img13.jpg" />
+    <Content Include="Content\dist\img\img14.jpg" />
+    <Content Include="Content\dist\img\img15.jpg" />
+    <Content Include="Content\dist\img\img16.jpg" />
+    <Content Include="Content\dist\img\img17.jpg" />
+    <Content Include="Content\dist\img\img18.jpg" />
+    <Content Include="Content\dist\img\img19.jpg" />
+    <Content Include="Content\dist\img\img2.jpg" />
+    <Content Include="Content\dist\img\img20.jpg" />
+    <Content Include="Content\dist\img\img21.jpg" />
+    <Content Include="Content\dist\img\img3.jpg" />
+    <Content Include="Content\dist\img\img4.jpg" />
+    <Content Include="Content\dist\img\img5.jpg" />
+    <Content Include="Content\dist\img\img6.jpg" />
+    <Content Include="Content\dist\img\img7.jpg" />
+    <Content Include="Content\dist\img\img8.jpg" />
+    <Content Include="Content\dist\img\img9.jpg" />
+    <Content Include="Content\dist\img\it-support.jpg" />
+    <Content Include="Content\dist\img\logo-n.png" />
+    <Content Include="Content\dist\img\logo.jpg" />
+    <Content Include="Content\dist\img\logo.png" />
+    <Content Include="Content\dist\img\man.png" />
+    <Content Include="Content\dist\img\man1.png" />
+    <Content Include="Content\dist\img\Students.jpg" />
+    <Content Include="Content\dist\img\user-bg.jpg" />
+    <Content Include="Content\dist\js\adminkit.js" />
+    <Content Include="Content\dist\js\jquery.min.js" />
+    <Content Include="Content\dist\plugins\bootstrap-switch\bootstrap-switch.css" />
+    <Content Include="Content\dist\plugins\bootstrap-switch\bootstrap-switch.js" />
+    <Content Include="Content\dist\plugins\bootstrap-switch\highlight.js" />
+    <Content Include="Content\dist\plugins\bootstrap-switch\main.js" />
+    <Content Include="Content\dist\plugins\bootstrap-treeview-master\bootstrap-treeview.int.js" />
+    <Content Include="Content\dist\plugins\bootstrap-treeview-master\bootstrap-treeview.min.js" />
+    <Content Include="Content\dist\plugins\calendar\fullcalendar.min.css" />
+    <Content Include="Content\dist\plugins\calendar\fullcalendar.min.js" />
+    <Content Include="Content\dist\plugins\calendar\fullcalendar.print.min.css" />
+    <Content Include="Content\dist\plugins\chartist-js\chartist-plugin-tooltip.css" />
+    <Content Include="Content\dist\plugins\chartist-js\chartist-plugin-tooltip.js" />
+    <Content Include="Content\dist\plugins\chartist-js\chartist.min.css" />
+    <Content Include="Content\dist\plugins\chartist-js\chartist.min.js" />
+    <Content Include="Content\dist\plugins\chartjs\chart-int.js" />
+    <Content Include="Content\dist\plugins\chartjs\chart.min.js" />
+    <Content Include="Content\dist\plugins\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\dist\plugins\datatables\dataTables.bootstrap.min.css" />
+    <Content Include="Content\dist\plugins\datatables\dataTables.bootstrap.min.js" />
+    <Content Include="Content\dist\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\dist\plugins\dropify\dropify.min.css" />
+    <Content Include="Content\dist\plugins\dropify\dropify.min.js" />
+    <Content Include="Content\dist\plugins\formwizard\jquery-steps.css" />
+    <Content Include="Content\dist\plugins\formwizard\jquery-steps.js" />
+    <Content Include="Content\dist\plugins\functions\calendar-init.js" />
+    <Content Include="Content\dist\plugins\functions\chartist-init.js" />
+    <Content Include="Content\dist\plugins\functions\dashboard1.js" />
+    <Content Include="Content\dist\plugins\functions\ion-rangeslider-int.js" />
+    <Content Include="Content\dist\plugins\functions\jquery.peity.init.js" />
+    <Content Include="Content\dist\plugins\functions\morris-init.js" />
+    <Content Include="Content\dist\plugins\horizontaltimeline\jtline.js" />
+    <Content Include="Content\dist\plugins\horizontaltimeline\modernizr.js" />
+    <Content Include="Content\dist\plugins\horizontaltimeline\timeline-int.js" />
+    <Content Include="Content\dist\plugins\horizontaltimeline\timeline-style.css" />
+    <Content Include="Content\dist\plugins\ion-rangeslider\ion.rangeSlider.css" />
+    <Content Include="Content\dist\plugins\ion-rangeslider\ion.rangeSlider.min.js" />
+    <Content Include="Content\dist\plugins\ion-rangeslider\ion.rangeSlider.skinModern.css" />
+    <Content Include="Content\dist\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\dist\plugins\jsgrid\db.js" />
+    <Content Include="Content\dist\plugins\jsgrid\jsgrid.css" />
+    <Content Include="Content\dist\plugins\jsgrid\jsgrid.int.js" />
+    <Content Include="Content\dist\plugins\jsgrid\jsgrid.min.js" />
+    <Content Include="Content\dist\plugins\jsgrid\theme.css" />
+    <Content Include="Content\dist\plugins\knob\jquery.knob.js" />
+    <Content Include="Content\dist\plugins\moment\moment.js" />
+    <Content Include="Content\dist\plugins\morris\morris.js" />
+    <Content Include="Content\dist\plugins\peity\jquery.peity.min.js" />
+    <Content Include="Content\dist\plugins\popover\bootstrap-popover-x.css" />
+    <Content Include="Content\dist\plugins\popover\bootstrap-popover-x.js" />
+    <Content Include="Content\dist\plugins\raphael\raphael-min.js" />
+    <Content Include="Content\dist\plugins\summernote\summernote-bs4.css" />
+    <Content Include="Content\dist\plugins\summernote\summernote-bs4.js" />
+    <Content Include="Content\dist\plugins\table-expo\filesaver.min.js" />
+    <Content Include="Content\dist\plugins\table-expo\tableexport.js" />
+    <Content Include="Content\dist\plugins\table-expo\xls.core.min.js" />
+    <Content Include="Content\dist\plugins\tooltip\script.js" />
+    <Content Include="Content\dist\plugins\tooltip\tooltip.css" />
+    <Content Include="Content\dist\plugins\tooltip\tooltip.js" />
+    <Content Include="Content\images\store1.jpg" />
+    <Content Include="Content\images\store2.jpg" />
+    <Content Include="Content\images\store3.jpg" />
+    <Content Include="Content\images\store4.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\DALModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DALModel.edmx</DependentUpon>
+      <LastGenOutput>DALModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DALModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DALModel.edmx</DependentUpon>
+      <LastGenOutput>DALModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Uploads\default-noman.png" />
+    <Content Include="Uploads\download2.jpg" />
+    <Content Include="Views\EmployeeGIs\AnnualLeave.cshtml" />
+    <Content Include="Views\EmployeeGIs\Final.cshtml" />
+    <Content Include="Views\EmployeeGIs\Monthly.cshtml" />
+    <Content Include="Views\CentralStores\Create.cshtml" />
+    <Content Include="Views\CentralStores\Delete.cshtml" />
+    <Content Include="Views\CentralStores\Details.cshtml" />
+    <Content Include="Views\CentralStores\Edit.cshtml" />
+    <Content Include="Views\CentralStores\Index.cshtml" />
+    <Content Include="Views\ChemicalStores\Create.cshtml" />
+    <Content Include="Views\ChemicalStores\Delete.cshtml" />
+    <Content Include="Views\ChemicalStores\Details.cshtml" />
+    <Content Include="Views\ChemicalStores\Edit.cshtml" />
+    <Content Include="Views\ChemicalStores\Index.cshtml" />
+    <Content Include="Views\FertilizerStores\Create.cshtml" />
+    <Content Include="Views\FertilizerStores\Delete.cshtml" />
+    <Content Include="Views\FertilizerStores\Details.cshtml" />
+    <Content Include="Views\FertilizerStores\Edit.cshtml" />
+    <Content Include="Views\FertilizerStores\Index.cshtml" />
+    <Content Include="Views\EmployeeGIs\Graduateattachement.cshtml" />
+    <Content Include="Views\EmployeeGIs\Casualleave.cshtml" />
+    <Content Include="Views\AllowanceMasters\Create.cshtml" />
+    <Content Include="Views\AllowanceMasters\Delete.cshtml" />
+    <Content Include="Views\AllowanceMasters\Details.cshtml" />
+    <Content Include="Views\AllowanceMasters\Edit.cshtml" />
+    <Content Include="Views\AllowanceMasters\Index.cshtml" />
+    <Content Include="Views\DeductionsMasters\Create.cshtml" />
+    <Content Include="Views\DeductionsMasters\Delete.cshtml" />
+    <Content Include="Views\DeductionsMasters\Details.cshtml" />
+    <Content Include="Views\DeductionsMasters\Edit.cshtml" />
+    <Content Include="Views\DeductionsMasters\Index.cshtml" />
+    <Content Include="Views\EmployeePIs\Create-New.cshtml" />
+    <Content Include="Views\Home\UserIndex.cshtml" />
+    <Content Include="Views\EmployeeGIs\UserIndex.cshtml" />
+    <Content Include="Views\EmployeeMIs\UserIndex.cshtml" />
+    <Content Include="Views\EmployeePIs\UserIndex.cshtml" />
+    <Content Include="Views\EmployeeSIs\UserIndex.cshtml" />
+    <Content Include="Views\EmployeeAIs\UserIndex.cshtml" />
+    <Content Include="Views\EmployeeGIs\Edit_old.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\EmployeeAIs\MidLevelIndex.cshtml" />
+    <Content Include="Views\EmployeeGIs\MidLevelIndex.cshtml" />
+    <Content Include="Views\EmployeeMIs\MidLevelIndex.cshtml" />
+    <Content Include="Views\EmployeePIs\MidLevelIndex.cshtml" />
+    <Content Include="Views\EmployeeSIs\MidLevelIndex.cshtml" />
+    <Content Include="Views\Home\MidLevelIndex.cshtml" />
+    <Content Include="Views\CRIV\Create.cshtml" />
+    <Content Include="Views\CRIV\ViewAll.cshtml" />
+    <Content Include="Views\CRIV\Details.cshtml" />
+    <Content Include="Views\DeliveryNote\Create.cshtml" />
+    <Content Include="Views\DeliveryNote\ViewAll.cshtml" />
+    <Content Include="Views\EmployeeAIs\MidLevelCreate.cshtml" />
+    <Content Include="Views\EmployeeAIs\MidLevelEdit.cshtml" />
+    <Content Include="Views\EmployeeGIs\Create1.cshtml" />
+    <Content Include="Views\EmployeeGIs\MidLevelCreate.cshtml" />
+    <Content Include="Views\EmployeeGIs\MidLevelEdit.cshtml" />
+    <Content Include="Views\EmployeeMIs\MidLevelCreate.cshtml" />
+    <Content Include="Views\EmployeeMIs\MidLevelEdit.cshtml" />
+    <Content Include="Views\EmployeePIs\MidLevelCreate.cshtml" />
+    <Content Include="Views\EmployeePIs\MidLevelEdit.cshtml" />
+    <Content Include="Views\EmployeeSIs\MidLevelCreate.cshtml" />
+    <Content Include="Views\EmployeeSIs\MidLevelEdit.cshtml" />
+    <Content Include="Views\IARTAccount\PaymentVoucher.cshtml" />
+    <Content Include="Views\IARTAccount\EXPENDITURE.cshtml" />
+    <Content Include="Views\IARTAccount\PurchaseDayBook.cshtml" />
+    <Content Include="Views\IARTAccount\RevenueDayBook.cshtml" />
+    <Content Include="Views\IARTAccount\CapitalCashbookReceipt.cshtml" />
+    <Content Include="Views\IARTAccount\CapitalCashbookPayment.cshtml" />
+    <Content Include="Views\BankMasters\Create.cshtml" />
+    <Content Include="Views\BankMasters\Delete.cshtml" />
+    <Content Include="Views\BankMasters\Details.cshtml" />
+    <Content Include="Views\BankMasters\Edit.cshtml" />
+    <Content Include="Views\BankMasters\Index.cshtml" />
+    <Content Include="Views\BankTypeMasters\Create.cshtml" />
+    <Content Include="Views\BankTypeMasters\Delete.cshtml" />
+    <Content Include="Views\BankTypeMasters\Details.cshtml" />
+    <Content Include="Views\BankTypeMasters\Edit.cshtml" />
+    <Content Include="Views\BankTypeMasters\Index.cshtml" />
+    <Content Include="Views\CadreMasters\Create.cshtml" />
+    <Content Include="Views\CadreMasters\Delete.cshtml" />
+    <Content Include="Views\CadreMasters\Details.cshtml" />
+    <Content Include="Views\CadreMasters\Edit.cshtml" />
+    <Content Include="Views\CadreMasters\Index.cshtml" />
+    <Content Include="Views\EmpAIAssociations\Create.cshtml" />
+    <Content Include="Views\EmpAIAssociations\Delete.cshtml" />
+    <Content Include="Views\EmpAIAssociations\Details.cshtml" />
+    <Content Include="Views\EmpAIAssociations\Edit.cshtml" />
+    <Content Include="Views\EmpAIAssociations\Index.cshtml" />
+    <Content Include="Views\CityMasters\Create.cshtml" />
+    <Content Include="Views\CityMasters\Delete.cshtml" />
+    <Content Include="Views\CityMasters\Details.cshtml" />
+    <Content Include="Views\CityMasters\Edit.cshtml" />
+    <Content Include="Views\CityMasters\Index.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\Create.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\Delete.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\Details.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\Edit.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\Index.cshtml" />
+    <Content Include="Views\LeaveMasters\Create.cshtml" />
+    <Content Include="Views\LeaveMasters\Delete.cshtml" />
+    <Content Include="Views\LeaveMasters\Details.cshtml" />
+    <Content Include="Views\LeaveMasters\Edit.cshtml" />
+    <Content Include="Views\LeaveMasters\Index.cshtml" />
+    <Content Include="Views\LeaveApplications\Create.cshtml" />
+    <Content Include="Views\LeaveApplications\Delete.cshtml" />
+    <Content Include="Views\LeaveApplications\Details.cshtml" />
+    <Content Include="Views\LeaveApplications\Edit.cshtml" />
+    <Content Include="Views\LeaveApplications\Index.cshtml" />
+    <Content Include="Views\GraduateAttachmentForms\Create.cshtml" />
+    <Content Include="Views\GraduateAttachmentForms\Delete.cshtml" />
+    <Content Include="Views\GraduateAttachmentForms\Details.cshtml" />
+    <Content Include="Views\GraduateAttachmentForms\Edit.cshtml" />
+    <Content Include="Views\GraduateAttachmentForms\Index.cshtml" />
+    <Content Include="Views\AnnualLeaves\Create.cshtml" />
+    <Content Include="Views\AnnualLeaves\Delete.cshtml" />
+    <Content Include="Views\AnnualLeaves\Details.cshtml" />
+    <Content Include="Views\AnnualLeaves\Edit.cshtml" />
+    <Content Include="Views\AnnualLeaves\Index.cshtml" />
+    <Content Include="Views\CasualLeaves\Create.cshtml" />
+    <Content Include="Views\CasualLeaves\Delete.cshtml" />
+    <Content Include="Views\CasualLeaves\Details.cshtml" />
+    <Content Include="Views\CasualLeaves\Edit.cshtml" />
+    <Content Include="Views\CasualLeaves\Index.cshtml" />
+    <Content Include="Views\EmpAIConferences\Create.cshtml" />
+    <Content Include="Views\EmpAIConferences\Delete.cshtml" />
+    <Content Include="Views\EmpAIConferences\Details.cshtml" />
+    <Content Include="Views\EmpAIConferences\Edit.cshtml" />
+    <Content Include="Views\EmpAIConferences\Index.cshtml" />
+    <Content Include="Views\LeaveLedgers\Create.cshtml" />
+    <Content Include="Views\LeaveLedgers\Delete.cshtml" />
+    <Content Include="Views\LeaveLedgers\Details.cshtml" />
+    <Content Include="Views\LeaveLedgers\Edit.cshtml" />
+    <Content Include="Views\LeaveLedgers\Index.cshtml" />
+    <Content Include="Views\Login\AdminLogin.cshtml" />
+    <EntityDeploy Include="Models\DALModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DALModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DALModel.edmx.diagram">
+      <DependentUpon>DALModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\LeaveApplications\UserCreate.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Item\ViewAll.cshtml" />
+    <Content Include="Views\Item\Edit.cshtml" />
+    <Content Include="Views\Item\Delete.cshtml" />
+    <Content Include="Views\HRAdminReports\Chart.cshtml" />
+    <Content Include="Views\HRAdminReports\chartchartjs.cshtml" />
+    <Content Include="Views\HRAdminReports\chartmorris - Copy.cshtml" />
+    <Content Include="Views\HRAdminReports\chartmorris.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeeAcademicReport.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeeCPSsReport.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeeGeneralReport.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeeMedicalReport.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeePersonalReport.cshtml" />
+    <Content Include="Views\HRAdminReports\EmployeeStafNominalReport.cshtml" />
+    <Content Include="Views\LeaveApplications\MidLevelIndex.cshtml" />
+    <Content Include="Views\EmployeeAIs\IndexEdit.cshtml" />
+    <Content Include="Views\EmployeeAIs\EditAll.cshtml" />
+    <Content Include="Views\EmployeeAIs\Editold.cshtml" />
+    <None Include="Views\LeaveApplications\UserIndex.cshtml" />
+    <Content Include="Views\LeaveLedgers\MidLevelIndex.cshtml" />
+    <Content Include="Views\LeaveMasters\MidLevelIndex.cshtml" />
+    <Content Include="Views\LeaveTypeMasters\MidLevelIndex.cshtml" />
+    <None Include="Views\Login\index.cshtml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\dist\css\et-line-font\fonts\et-line.eot" />
+    <Content Include="Content\dist\css\et-line-font\fonts\et-line.ttf" />
+    <Content Include="Content\dist\css\et-line-font\fonts\et-line.woff" />
+    <Content Include="Content\dist\css\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\dist\css\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\dist\css\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\dist\css\simple-lineicon\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\dist\css\simple-lineicon\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\dist\css\simple-lineicon\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\dist\css\themify-icons\fonts\themify.eot" />
+    <Content Include="Content\dist\css\themify-icons\fonts\themify.ttf" />
+    <Content Include="Content\dist\css\themify-icons\fonts\themify.woff" />
+    <Content Include="Content\dist\plugins\datatables\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\dist\plugins\datatables\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\dist\plugins\datatables\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\dist\plugins\dropify\fonts\dropify.eot" />
+    <Content Include="Content\dist\plugins\dropify\fonts\dropify.ttf" />
+    <Content Include="Content\dist\plugins\dropify\fonts\dropify.woff" />
+    <Content Include="Content\dist\plugins\summernote\fonts\summernote.eot" />
+    <Content Include="Content\dist\plugins\summernote\fonts\summernote.ttf" />
+    <Content Include="Content\dist\plugins\summernote\fonts\summernote.woff" />
+    <None Include="Properties\PublishProfiles\IARTNew.pubxml" />
+    <None Include="Properties\PublishProfiles\MyIART.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\SalaryStructureMasters\Create.cshtml" />
+    <Content Include="Views\SalaryStructureMasters\Delete.cshtml" />
+    <Content Include="Views\SalaryStructureMasters\Details.cshtml" />
+    <Content Include="Views\SalaryStructureMasters\Edit.cshtml" />
+    <Content Include="Views\SalaryStructureMasters\Index.cshtml" />
+    <Content Include="Views\SalaryPayments\Create.cshtml" />
+    <Content Include="Views\SalaryPayments\Delete.cshtml" />
+    <Content Include="Views\SalaryPayments\Details.cshtml" />
+    <Content Include="Views\SalaryPayments\Edit.cshtml" />
+    <Content Include="Views\SalaryPayments\Index.cshtml" />
+    <Content Include="Views\PrequalificationScorings\Create.cshtml" />
+    <Content Include="Views\PrequalificationScorings\Delete.cshtml" />
+    <Content Include="Views\PrequalificationScorings\Details.cshtml" />
+    <Content Include="Views\PrequalificationScorings\Edit.cshtml" />
+    <Content Include="Views\PrequalificationScorings\Index.cshtml" />
+    <Content Include="Views\PFAMasters\Create.cshtml" />
+    <Content Include="Views\PFAMasters\Delete.cshtml" />
+    <Content Include="Views\PFAMasters\Details.cshtml" />
+    <Content Include="Views\PFAMasters\Edit.cshtml" />
+    <Content Include="Views\PFAMasters\Index.cshtml" />
+    <Content Include="Views\QualificationMasters\Create.cshtml" />
+    <Content Include="Views\QualificationMasters\Delete.cshtml" />
+    <Content Include="Views\QualificationMasters\Details.cshtml" />
+    <Content Include="Views\QualificationMasters\Edit.cshtml" />
+    <Content Include="Views\QualificationMasters\Index.cshtml" />
+    <Content Include="Views\SectionMasters\Create.cshtml" />
+    <Content Include="Views\SectionMasters\Delete.cshtml" />
+    <Content Include="Views\SectionMasters\Details.cshtml" />
+    <Content Include="Views\SectionMasters\Edit.cshtml" />
+    <Content Include="Views\SectionMasters\Index.cshtml" />
+    <Content Include="Views\ProgrammeMasters\Create.cshtml" />
+    <Content Include="Views\ProgrammeMasters\Delete.cshtml" />
+    <Content Include="Views\ProgrammeMasters\Details.cshtml" />
+    <Content Include="Views\ProgrammeMasters\Edit.cshtml" />
+    <Content Include="Views\ProgrammeMasters\Index.cshtml" />
+    <Content Include="Views\ProcurementReports\TenderinformationReportold.cshtml" />
+    <Content Include="Views\ProcurementReports\TenderOpeningReportold.cshtml" />
+    <Content Include="Views\ProcurementReports\ContractorAssessmentReportold.cshtml" />
+    <Content Include="Views\RankMasters\Create.cshtml" />
+    <Content Include="Views\RankMasters\Delete.cshtml" />
+    <Content Include="Views\RankMasters\Details.cshtml" />
+    <Content Include="Views\RankMasters\Edit.cshtml" />
+    <Content Include="Views\RankMasters\Index.cshtml" />
+    <Content Include="Views\NyscFinalClearances\Create.cshtml" />
+    <Content Include="Views\NyscFinalClearances\Delete.cshtml" />
+    <Content Include="Views\NyscFinalClearances\Details.cshtml" />
+    <Content Include="Views\NyscFinalClearances\Edit.cshtml" />
+    <Content Include="Views\NyscFinalClearances\Index.cshtml" />
+    <Content Include="Views\NyscMonthlyClearances\Create.cshtml" />
+    <Content Include="Views\NyscMonthlyClearances\Delete.cshtml" />
+    <Content Include="Views\NyscMonthlyClearances\Details.cshtml" />
+    <Content Include="Views\NyscMonthlyClearances\Edit.cshtml" />
+    <Content Include="Views\NyscMonthlyClearances\Index.cshtml" />
+    <Content Include="Views\RoleMasters\Create.cshtml" />
+    <Content Include="Views\RoleMasters\Delete.cshtml" />
+    <Content Include="Views\RoleMasters\Details.cshtml" />
+    <Content Include="Views\RoleMasters\Edit.cshtml" />
+    <Content Include="Views\RoleMasters\Index.cshtml" />
+    <Content Include="Views\POrder\Create.cshtml" />
+    <Content Include="Views\POrder\ViewAll.cshtml" />
+    <Content Include="Views\POrder\Edit.cshtml" />
+    <Content Include="Views\POrder\Delete.cshtml" />
+    <Content Include="Views\ProcurementReports\TenderinformationReport.cshtml" />
+    <Content Include="Views\ProcurementReports\TenderOpeningReport.cshtml" />
+    <Content Include="Views\ProcurementReports\ContractorAssessmentReport.cshtml" />
+    <None Include="Views\Shared\blank.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Indexold.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\EmployeePIs\Create.cshtml" />
+    <Content Include="Views\EmployeePIs\Delete.cshtml" />
+    <Content Include="Views\EmployeePIs\Details.cshtml" />
+    <Content Include="Views\EmployeePIs\Edit.cshtml" />
+    <Content Include="Views\EmployeePIs\Index.cshtml" />
+    <Content Include="Views\EmployeeAIs\Create.cshtml" />
+    <Content Include="Views\EmployeeAIs\Delete.cshtml" />
+    <Content Include="Views\EmployeeAIs\Details.cshtml" />
+    <Content Include="Views\EmployeeAIs\Edit.cshtml" />
+    <Content Include="Views\EmployeeAIs\Index.cshtml" />
+    <Content Include="Views\EmployeeGIs\Create.cshtml" />
+    <Content Include="Views\EmployeeGIs\Delete.cshtml" />
+    <Content Include="Views\EmployeeGIs\Edit.cshtml" />
+    <Content Include="Views\EmployeeGIs\Index.cshtml" />
+    <Content Include="Views\EmployeeMIs\Create.cshtml" />
+    <Content Include="Views\EmployeeMIs\Delete.cshtml" />
+    <Content Include="Views\EmployeeMIs\Details.cshtml" />
+    <Content Include="Views\EmployeeMIs\Edit.cshtml" />
+    <Content Include="Views\EmployeeMIs\Index.cshtml" />
+    <Content Include="Views\EmployeeSIs\Create.cshtml" />
+    <Content Include="Views\EmployeeSIs\Delete.cshtml" />
+    <Content Include="Views\EmployeeSIs\Details.cshtml" />
+    <Content Include="Views\EmployeeSIs\Edit.cshtml" />
+    <Content Include="Views\EmployeeSIs\Index.cshtml" />
+    <Content Include="Views\TendererInformations\Create.cshtml" />
+    <Content Include="Views\TendererInformations\Delete.cshtml" />
+    <Content Include="Views\TendererInformations\Details.cshtml" />
+    <Content Include="Views\TendererInformations\Edit.cshtml" />
+    <Content Include="Views\TendererInformations\Index.cshtml" />
+    <Content Include="Views\TenderOpenings\Create.cshtml" />
+    <Content Include="Views\TenderOpenings\Delete.cshtml" />
+    <Content Include="Views\TenderOpenings\Details.cshtml" />
+    <Content Include="Views\TenderOpenings\Edit.cshtml" />
+    <Content Include="Views\TenderOpenings\Index.cshtml" />
+    <Content Include="Views\StateMasters\Create.cshtml" />
+    <Content Include="Views\StateMasters\Delete.cshtml" />
+    <Content Include="Views\StateMasters\Details.cshtml" />
+    <Content Include="Views\StateMasters\Edit.cshtml" />
+    <Content Include="Views\StateMasters\Index.cshtml" />
+    <Content Include="Views\StationMasters\Create.cshtml" />
+    <Content Include="Views\StationMasters\Delete.cshtml" />
+    <Content Include="Views\StationMasters\Details.cshtml" />
+    <Content Include="Views\StationMasters\Edit.cshtml" />
+    <Content Include="Views\StationMasters\Index.cshtml" />
+    <Content Include="Views\UnitResearchMasters\Create.cshtml" />
+    <Content Include="Views\UnitResearchMasters\Delete.cshtml" />
+    <Content Include="Views\UnitResearchMasters\Details.cshtml" />
+    <Content Include="Views\UnitResearchMasters\Edit.cshtml" />
+    <Content Include="Views\UnitResearchMasters\Index.cshtml" />
+    <Content Include="Views\UnitServicesMasters\Create.cshtml" />
+    <Content Include="Views\UnitServicesMasters\Delete.cshtml" />
+    <Content Include="Views\UnitServicesMasters\Details.cshtml" />
+    <Content Include="Views\UnitServicesMasters\Edit.cshtml" />
+    <Content Include="Views\UnitServicesMasters\Index.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutMain.cshtml" />
+    <Content Include="Views\Shared\FullDetails.cshtml" />
+    <Content Include="Views\UserMasters\Create.cshtml" />
+    <Content Include="Views\UserMasters\Delete.cshtml" />
+    <Content Include="Views\UserMasters\Details.cshtml" />
+    <Content Include="Views\UserMasters\Edit.cshtml" />
+    <Content Include="Views\UserMasters\Index.cshtml" />
+    <Content Include="Views\UserMasters\MyProfile.cshtml" />
+    <Content Include="Views\UserMasters\MidLevelMyProfile.cshtml" />
+    <Content Include="Views\Store\Create.cshtml" />
+    <Content Include="Views\Store\ViewAll.cshtml" />
+    <Content Include="Views\Store\StoreList.cshtml" />
+    <Content Include="Views\Vendor\Create.cshtml" />
+    <Content Include="Views\Store\Edit.cshtml" />
+    <Content Include="Views\Store\Delete.cshtml" />
+    <Content Include="Views\Vendor\ViewAll.cshtml" />
+    <Content Include="Views\Vendor\Edit.cshtml" />
+    <Content Include="Views\Vendor\Delete.cshtml" />
+    <Content Include="Views\StoreClass\Create.cshtml" />
+    <Content Include="Views\StoreClass\ViewAll.cshtml" />
+    <Content Include="Views\StoreClass\Edit.cshtml" />
+    <Content Include="Views\StoreClass\Delete.cshtml" />
+    <Content Include="Views\Uom\Create.cshtml" />
+    <Content Include="Views\Uom\ViewAll.cshtml" />
+    <Content Include="Views\Uom\Edit.cshtml" />
+    <Content Include="Views\Uom\Delete.cshtml" />
+    <Content Include="Views\Stock\Create.cshtml" />
+    <Content Include="Views\Stock\ViewAll.cshtml" />
+    <Content Include="Views\Stock\Edit.cshtml" />
+    <Content Include="Views\Stock\Delete.cshtml" />
+    <Content Include="Views\StoreRecipt\Create.cshtml" />
+    <Content Include="Views\StoreRecipt\ViewAll.cshtml" />
+    <Content Include="Views\StoreRecipt\Details.cshtml" />
+    <Content Include="Views\StoreCredit\Create.cshtml" />
+    <Content Include="Views\StoreCredit\ViewAll.cshtml" />
+    <Content Include="Views\StoreCredit\Details.cshtml" />
+    <Content Include="Views\Tally\Create.cshtml" />
+    <Content Include="Views\Tally\ViewAll.cshtml" />
+    <Content Include="Views\StoreInventoryReport\Index.cshtml" />
+    <Content Include="Views\StockReport\Index.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_Layout.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutIndex.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutLowLevelAdmin.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutMainold.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutMainUser.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutMidLevelAdmin.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutReports.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LayoutSuperAdmin.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\blank.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\Error.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\FullDetailsfine.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\FullDetailstest.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\Index.cshtml" />
+    <Content Include="Views\Shared\oldLayouts\Lockout.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutIndex.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutLowLevelAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutMainUser.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutMidLevelAdmin.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutMidLevelIndex.cshtml" />
+    <Content Include="Views\Shared\beforetemp\_LayoutReports.cshtml" />
+    <Content Include="Views\Shared\_LayoutSuperAdmin.cshtml" />
+    <Content Include="Views\UserMasters\Edit_ChangePwd.cshtml" />
+    <Content Include="Views\UserMasters\SuperLevelMyProfile.cshtml" />
+    <Content Include="Views\UserMasters\UserChangePassword.cshtml" />
+    <Content Include="Views\Shared\_LayoutProcurementAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutStoreAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutHRAdmin.cshtml" />
+    <Content Include="Views\Shared\ComingSoonAccount.cshtml" />
+    <Content Include="Views\Shared\ComingSoonAudit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52447</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52447/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

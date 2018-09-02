@@ -1,0 +1,306 @@
+﻿@model IARTAutomationApp.Models.PrequalificationScoring
+
+@{
+    ViewBag.Title = "Edit";
+    
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+
+    <!-- Main content -->
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Procurement</a></li>
+            <li class="breadcrumb-item active">Edit Pre-Qualification Scoring</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Edit Pre-Qualification Scoring</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Company Qualification</h4>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ProjectTitle, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ProjectTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ProjectTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LotNo, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.LotNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LotNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ContractorName, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ContractorName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ContractorName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EvidofReg_Cac, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("EvidofReg_Cac", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Yes", Value = "Yes"},
+                                        new SelectListItem { Text = "No", Value = "No"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EvidofReg_Cac, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TaxClearanceCertificate, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("TaxClearanceCertificate", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Yes", Value = "Yes"},
+                                        new SelectListItem { Text = "No", Value = "No"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TaxClearanceCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EvidofReg_Bureau, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("EvidofReg_Bureau", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Value", Value = "Select Value", Selected=true},
+                                        new SelectListItem { Text = "Yes", Value = "Yes"},
+                                        new SelectListItem { Text = "No", Value = "No"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EvidofReg_Bureau, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <h4 class="form-heading-1">Scoring</h4>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AudittedAccount, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("AudittedAccount", (SelectList)ViewBag.AudittedAccount, htmlAttributes: new { @class = "form-control-qty" })
+
+
+                                    @Html.ValidationMessageFor(model => model.AudittedAccount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ClearanceCert_Itf, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("ClearanceCert_Itf", (SelectList)ViewBag.ClearanceCert_Itf, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.ClearanceCert_Itf, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ClearanceCert_Pencom, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("ClearanceCert_Pencom", (SelectList)ViewBag.ClearanceCert_Pencom, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.ClearanceCert_Pencom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ClearanceCert_Nsitf, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("ClearanceCert_Nsitf", (SelectList)ViewBag.ClearanceCert_Nsitf, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.ClearanceCert_Nsitf, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StaffStrength, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("StaffStrength", (SelectList)ViewBag.StaffStrength, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.StaffStrength, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CurrentFinStatus, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("CurrentFinStatus", (SelectList)ViewBag.CurrentFinStatus, htmlAttributes: new { @class = "form-control-qty" })
+
+
+
+                                    @Html.ValidationMessageFor(model => model.CurrentFinStatus, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EquipmentList, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("EquipmentList", (SelectList)ViewBag.EquipmentList, htmlAttributes: new { @class = "form-control-qty" })
+
+
+                                    @Html.ValidationMessageFor(model => model.EquipmentList, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EvidPreSimJob, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("EvidPreSimJob", (SelectList)ViewBag.EvidPreSimJob, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.EvidPreSimJob, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ExpCompt, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("ExpCompt", (SelectList)ViewBag.ExpCompt, htmlAttributes: new { @class = "form-control-qty" })
+                                    @Html.ValidationMessageFor(model => model.ExpCompt, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FinalScore, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.FinalScore, new { htmlAttributes = new { @class = "form-control-total", @id = "FinalScore", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.FinalScore, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Update" class="btn btn-success" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+<script>
+
+    debugger;
+    $(document).on("change", ".form-control-qty", function () {
+        var sum = 0;
+        $(".form-control-qty").each(function () {
+            sum += +$(this).val();
+        });
+        $("#FinalScore").val(sum);
+    });</script>
+
+
+
+<script src="~/scripts/jquery.validate.js"> </script>
+<script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $(".form-control-qty").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
+@*<script type="text/javascript">
+        $(document).ready(function() {
+            $("#StateName,#Country").keypress(function (key) {
+                if ((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90) && ((key.charCode != 45) && (key.charCode != 32))) return false;
+            });});
+    </script>*@
+<script>
+    $('select#EmpId').change(function () {
+
+        var EmpId = $(this).val();
+
+        // Send Ajax call and get Task name
+
+        //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+
+        $.ajax({
+            url: '/SalaryPayments/GetEmpName/?EmpId=' + EmpId,
+            success: function (result) {
+                $('input#taskname').val(result.Name);
+                $('input#salaryx').val(result.Salary);
+                $('input#EmpId').val(result.Empidj);
+
+            },
+            error: function (error) {
+                alert(errorss);
+            }
+
+        });
+
+    });</script>
+
+<script>
+    $('select#Year').change(function () {
+
+        var Year = $('#Year').val();
+        var EmpId = $('#EmpId').val();
+        var Month = $('#Month').val();
+        var OtherAllowance = $('#OtherAllowance').val();
+        var OtherDeduction = $('#OtherDeduction').val();
+
+
+        $.ajax({
+            url: '/SalaryPayments/GetSalary/?EmpId=' + EmpId + '&Year=' + Year + '&Month=' + Month + '&OtherAllowance=' + OtherAllowance + '&OtherDeduction=' + OtherDeduction,
+            success: function (result) {
+                $('input#PaidSal').val(result.PaySal);
+                $('input#Workingday').val(result.Workingdays);
+
+            },
+            error: function (error) {
+                alert(errorss);
+            }
+
+        });
+
+
+    });</script>

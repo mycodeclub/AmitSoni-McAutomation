@@ -1,0 +1,366 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<div class="content voucher">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">Voucher</li>
+    </ol>
+    <div class="card">
+        <div class="card-body">
+            <span class="logo-lg"><img src="/Content/dist/img/logo.png" style="width:150px; margin:auto; display:block" alt=""></span>
+            <h3 style="text-align:center;">INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING<br />OBAFEMI AWOLOWO UNIVERSITY</h3>
+            <p style="text-align:center;"> <u><strong>STOCK TALLY CARD /BIN CARD</strong></u></p>
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-5 control-label">LEDGER FOLIO: </label>
+                            <div class="col-md-7">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtTo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-5 control-label">Code: </label>
+                            <div class="col-md-7">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtlpoNo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">StockTally Voucher ID</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtVoucherNo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Store Receipt Voucher ID</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtVoucherNo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">STORE NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("StoreId", (SelectList)ViewBag.Store, htmlAttributes: new { @class = "form-control sty1" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="date" id="DateIns">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-7 control-label">Received from you the items listed below</label>
+                </div>
+                <div class="form-group row" id="noprint">
+
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">VENDOR NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("ItemId", (SelectList)ViewBag.Vendor, htmlAttributes: new { @class = "form-control sty1", id = "txtVendorId" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">ITEM NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("ItemId", (SelectList)ViewBag.Item, htmlAttributes: new { @class = "form-control sty1", id = "txtItemId" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">QUNATITY NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtQunatity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">UNIT OF MEASURMENT</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("UomId", (SelectList)ViewBag.Uom, htmlAttributes: new { @class = "form-control sty1", id = "txtUomId" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">RATE</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtRate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">TOTAL VALUE </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtTotalValue">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <input align="center" type="button" id="btnAdd" onclick="Add()" class="btn btn-primary" value="Add" />
+                        </div>
+                    </div>
+                </div>
+                <table class="table text-bold" id="tblCriv">
+
+                    <thead>
+
+                        <tr>
+                            <th style="text-align:center">ITEM NAME</th>
+                            <th style="text-align:center">CLASS NAME</th>
+                            <th style="text-align:center">QUANTITY</th>
+                            <th style="text-align:center">UOM</th>
+                            <th style="text-align:center">RATE</th>
+                            <th style="text-align:center">TOTAL VALUE</th>
+                            <th style="text-align:center">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @*@foreach (var criv in Model)
+                            {
+                                            <tr>
+                                                <td><input class="form-control sty1" value="@criv.ItemId"></td>
+                                                <td><input class="form-control sty1" value="@criv.ClassId"></td>
+                                                <td><input class="form-control sty1" value="@criv.Qunatity"></td>
+                                                <td><input class="form-control sty1" value="@criv.UomId"></td>
+                                                <td><input class="form-control sty1" value="@criv.Rate"></td>
+                                                <td><input class="form-control sty1" value="@criv.TotalValue"></td>
+                                                <td><button class="btn btn-primary" id="btnRemove" onclick="Remove(this)">Remove</button></td>
+
+                                                <td><input type="button" value="Remove" onclick="Remove(this)" /></td>
+                                            </tr>
+                                        }*@
+                    </tbody>
+
+                </table>
+                <hr />
+
+            </form>
+        </div>
+        <div class="form-group" id="divprintArea">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="btnSave" class="btn btn-success" onclick="Save()" value="Save" />
+
+
+                <input type="submit" value="Print" id="btnPrint" onclick="Print()" class="btn btn-success" />
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        //function will be called on button click having id btnsave
+        //function Print() {
+        //    $("#empcodeArea").hide();
+        //    //$("#divprintArea").hide();
+
+
+        //    $("#noprint").hide();
+        //    $("#empcodeArea").hide();
+        //    $("#divprintarea").hide();
+        //    $("#btnPrint").hide();
+        //    $(".breadcrumb").hide();
+        //    $(".main-footer").hide();
+        //    window.print();
+        //};
+    });
+
+    function Print() {
+        $("#empcodeArea").hide();
+        //$("#divprintArea").hide();
+
+
+        $("#noprint").hide();
+        $("#empcodeArea").hide();
+        $("#divprintarea").hide();
+        $("#btnPrint").hide();
+        $(".breadcrumb").hide();
+        $(".main-footer").hide();
+        window.print();
+    };
+
+    function Add() {
+        debugger;
+        //Reference the Name and Country TextBoxes.
+        var txtItemId = $("#txtItemId option:selected");
+
+        var txtClassId = $("#txtVendorId option:selected");
+        var txtQunatity = $("#txtQunatity");
+        var txtUomId = $("#txtUomId option:selected");
+
+        var txtRate = $("#txtRate");
+        var txtTotalValue = $("#txtTotalValue");
+
+        //Get the reference of the Table's TBODY element.
+        var tBody = $("#tblCriv > TBODY")[0];
+
+        //Add Row.
+        var row = tBody.insertRow(-1);
+
+        //Add Name cell.
+        var cell = $(row.insertCell(-1));
+        var itemId = $("<p>");
+        itemId.attr("data-info", txtItemId.val());
+        itemId.html(txtItemId.text());
+        cell.append(itemId);
+
+        cell = $(row.insertCell(-1));
+        var itemId = $("<p>");
+        itemId.attr("data-info", txtClassId.val());
+        itemId.html(txtClassId.text());
+        cell.append(itemId);
+
+        //Add Country cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtQunatity.val());
+
+        cell = $(row.insertCell(-1));
+        var itemId = $("<p>");
+        itemId.attr("data-info", txtUomId.val());
+        itemId.html(txtUomId.text());
+        cell.append(itemId);
+
+        cell = $(row.insertCell(-1));
+        cell.html(txtRate.val());
+        cell = $(row.insertCell(-1));
+        cell.html(txtTotalValue.val());
+
+        //Add Button cell.
+        cell = $(row.insertCell(-1));
+        var btnRemove = $("<input />");
+        btnRemove.attr("class", "btn btn-danger");
+        btnRemove.attr("type", "button");
+        btnRemove.attr("onclick", "Remove(this);");
+        btnRemove.val("Remove");
+        cell.append(btnRemove);
+
+        $('#txtItemId').val('');
+        $('#txtVendorId').val('');
+        $('#txtQunatity').val('');
+        $('#txtUomId').val('');
+        $('#txtRate').val('');
+        $('#txtTotalValue').val('');
+        //Clear the TextBoxes.
+
+    };
+
+    function Remove(button) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(0).html();
+        if (confirm("Do you want to delete: " + name)) {
+            //Get the reference of the Table.
+            var table = $("#tblCriv")[0];
+
+            //Delete the Table row using it's Index.
+            table.deleteRow(row[0].rowIndex);
+        }
+    };
+
+    function Save() {
+        //Loop through the Table rows and build a JSON array.
+
+        var crivs = new Array();
+        $("#tblCriv TBODY TR").each(function () {
+            var row = $(this);
+            debugger;
+            var criv = {};
+            criv.CRIVVoucherId = $("#txtVoucherNo").val();
+            criv.DepartmentId = $("#txtDepartment").val();
+            criv.StoreId = $("#StoreId").val();
+            criv.DateIns = $("#DateIns").val();
+            criv.ItemId = row.find("TD p").eq(0).data('info');
+            criv.ClassId = row.find("TD p").eq(1).data('info');
+            criv.Qunatity = row.find("TD").eq(2).html();
+            criv.UomId = row.find("TD p").eq(3).data('info');
+            criv.Rate = row.find("TD").eq(4).html();
+            criv.TotalValue = row.find("TD").eq(5).html();
+            criv.BatchDetail = $("#txtBatch").val();
+            criv.RequisitionOfficer = $("#txtReq").val();
+            criv.RecivingPerson = $("#txtRecPer").val();
+            criv.Remarks = $("#txtRemark").val();
+            crivs.push(criv);
+        });
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/CRIV/InsertCriv",
+        //    data: JSON.stringify(crivs),
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json",
+        //    success: function (r) {
+        //    }
+        //});
+
+
+    };
+</script>
+
+
+
+
+
+

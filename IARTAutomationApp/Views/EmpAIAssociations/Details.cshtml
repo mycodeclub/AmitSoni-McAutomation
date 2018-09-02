@@ -1,0 +1,52 @@
+﻿@model IARTAutomationApp.Models.EmpAIAssociation
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmpAIAssociation</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendedDate)
+        </dd>
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AssociationsId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

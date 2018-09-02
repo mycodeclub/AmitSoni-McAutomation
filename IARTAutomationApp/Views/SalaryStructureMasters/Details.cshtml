@@ -1,0 +1,63 @@
+﻿@model IARTAutomationApp.Models.SalaryStructureMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SalaryStructureMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryScale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryScale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GradeLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GradeLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryAmount)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScaleYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScaleYear)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SalaryScaleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

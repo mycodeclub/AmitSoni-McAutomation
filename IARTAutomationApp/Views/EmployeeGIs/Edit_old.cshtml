@@ -1,0 +1,651 @@
+﻿@model IARTAutomationApp.Models.EmployeeGI
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+@using (Html.BeginForm("Edit", "EmployeeGIs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Main content -->
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item active">Edit Employees General Information</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Edit Employee General Information</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })                        
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Employee Code</h4>
+                        <div class="row">
+
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Employee Code", "Employee Code", htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control" ,@readonly=true} })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+                            <!--Form Field Upload Photo-->
+                            <div class="col-md-6">
+                                <div class="form-group" style="width: 250px; text-align: center; float: right;">
+                                    @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-12" })
+                                    @Html.TextBoxFor(model => model.EmployeePhoto, new { htmlAttributes = new { @class = "control-label col-md-12" } })
+
+
+                                    @*  <img  src="~/Uploads/@Url.Content(Model.EmployeePhoto)"  style="height:200px;width:200px;"/>*@
+                                    <img src="~/Uploads/@Html.DisplayFor(model =>model.EmployeePhoto)" style="height:200px;width:200px;" />
+                                    @Html.TextBoxFor(model => model.EmployeePhotoImage, new { type = "file", name = "EmployeePhotoImage", @class = "dropify" })
+
+                                    @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Upload Photo-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+                        <hr class="m-t-3 m-b-3">
+
+                        <!--Row Basic Details-->
+                        <h4 class="form-heading-1">Basic Details</h4>
+                        <div class="row">
+
+                            <!--Form Field Title-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { })
+                                    @Html.DropDownList("Title", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Title", Value = "Select Title", Selected=true},
+                                        new SelectListItem { Text = "Mr", Value = "Mr"},
+                                        new SelectListItem { Text = "Mrs", Value = "Mrs"},
+                                        new SelectListItem { Text = "Miss", Value = "Miss"},
+                                        new SelectListItem { Text = "Dr", Value = "Dr"},
+                                        new SelectListItem { Text = "Prof", Value = "Prof"},
+                                    }, new { @class = "form-control", maxLength = "4" })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Title-->
+                            <!--Form Field First Name-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.First_Name, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF First Name-->
+                            <!--Form Field Middle Name-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Middle_Name, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.Middle_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <!--EOF Middle Name-->
+                            <!--Form Field Surname-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Surname-->
+                            <!--Form Field Maiden Name-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Maiden_Name, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.Maiden_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Maiden_Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Maiden Name-->
+                            <!--Form Field Mothers Maiden Name-->
+                            <!--EOF Mothers Maiden Name-->
+
+                        </div>
+                        <!--EOF Row Basic Details-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <!--Row Employee Grade Details-->
+                        <h4 class="form-heading-1">Grade Details</h4>
+                        <div class="row">
+
+                            <!--Form Field Rank-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Rank, htmlAttributes: new { })
+                                   @* @Html.DropDownList("Rank", (SelectList)ViewBag.Rank, htmlAttributes: new { @class = "form-control" })*@
+                                  @*  @Html.DropDownList("Rank",Model.Rank )*@
+
+ 
+                                    @Html.DropDownListFor(x => x.Rank, new SelectList(ViewBag.Rank, "Text", "Text"))
+                                    @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Rank-->
+                            <!--Form Field File No-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                     @Html.LabelFor(model => model.File_No, htmlAttributes: new { })
+                                  @*  @Html.DropDownListFor(m=>m.File_No, (SelectList)ViewBag.File_No,Model.File_No, htmlAttributes: new { @class = "form-control" })*@
+ 
+                                    @Html.DropDownListFor(x => x.File_No, new SelectList(ViewBag.File_No, "Text", "Text"),Model.File_No)
+
+
+                                  @*  @Html.DropDownList("File_No", (SelectList)ViewBag.File_No, htmlAttributes: new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.File_No, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF File No-->
+                            <!--Form Field Grade Level-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Grade_Level, htmlAttributes: new { })
+                                    @Html.DropDownList("Grade_Level", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Grade Level", Value = "Select Grade Level1", Selected=true},
+                                        new SelectListItem { Text = "01", Value = "01"},
+                                        new SelectListItem { Text = "02", Value = "02"},
+                                        new SelectListItem { Text = "03", Value = "03"},
+                                        new SelectListItem { Text = "04", Value = "04"},
+                                        new SelectListItem { Text = "05", Value = "05"},
+                                        new SelectListItem { Text = "06", Value = "06"},
+                                        new SelectListItem { Text = "07", Value = "07"},
+                                        new SelectListItem { Text = "08", Value = "08"},
+                                        new SelectListItem { Text = "09", Value = "09"},
+                                        new SelectListItem { Text = "10", Value = "10"},
+                                        new SelectListItem { Text = "11", Value = "11"},
+                                        new SelectListItem { Text = "12", Value = "12"},
+                                        new SelectListItem { Text = "13", Value = "13"},
+                                        new SelectListItem { Text = "14", Value = "14"},
+                                        new SelectListItem { Text = "15", Value = "15"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Grade_Level, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Grade Level-->
+                            <!--Form Steps-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Step, htmlAttributes: new { })
+                                    @Html.DropDownList("Step", new List<SelectListItem> {
+                                        new SelectListItem { Text = "Select Step", Value = "Select Step", Selected=true},
+                                        new SelectListItem { Text = "01", Value = "01"},
+                                        new SelectListItem { Text = "02", Value = "02"},
+                                        new SelectListItem { Text = "03", Value = "03"},
+                                        new SelectListItem { Text = "04", Value = "04"},
+                                        new SelectListItem { Text = "05", Value = "05"},
+                                        new SelectListItem { Text = "06", Value = "06"},
+                                        new SelectListItem { Text = "07", Value = "07"},
+                                        new SelectListItem { Text = "08", Value = "08"},
+                                        new SelectListItem { Text = "09", Value = "09"},
+                                        new SelectListItem { Text = "10", Value = "10"},
+                                        new SelectListItem { Text = "11", Value = "11"},
+                                        new SelectListItem { Text = "12", Value = "12"},
+                                        new SelectListItem { Text = "13", Value = "13"},
+
+                                        new SelectListItem { Text = "14", Value = "14"},
+                                        new SelectListItem { Text = "15", Value = "15"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Steps-->
+                            <!--Form Field Cadre-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cadre, htmlAttributes: new { })
+                                    @Html.DropDownList("Cadre", (SelectList)ViewBag.Cadre, htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.DropDownList("Cadre", new List<SelectListItem> {
+                        new SelectListItem { Text = "Select Cadre", Value = "Select Cadre" , Selected=true},
+                        new SelectListItem { Text = "Academic Staff", Value = "Academic"},
+                        new SelectListItem { Text = "Non-Academic Staff", Value = "Non Academic"},
+                        new SelectListItem { Text = "Senior Staff", Value = "Senior"},
+                        new SelectListItem { Text = "Junior Staff", Value = "Junior"},
+                    }, new { @class = "form-control", maxLength = "6" })*@
+                                    @Html.ValidationMessageFor(model => model.Cadre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Cadre-->
+
+                        </div>
+                        <!--EOF Employee Grade Details-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <!--Row Employee Other Details-->
+                        <h4 class="form-heading-1">Other Details</h4>
+                        <div class="row">
+
+                            <!--Form Field Sex-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Sex, htmlAttributes: new { })
+                                    @Html.DropDownList("Sex", new List<SelectListItem> {
+                                        new SelectListItem  { Text = "Select Sex", Value = "Select Sex", Selected=true},
+                                        new SelectListItem  { Text = "Male", Value = "Male"},
+                                        new SelectListItem  { Text = "Female", Value = "Female"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Sex-->
+                            <!--Form Field DOB-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { })
+                                    @Html.TextBoxFor(x => x.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                    @*   @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF DOB-->
+                            <!--Form Field Place of Birth-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PlaceOfBirth, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.PlaceOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Place of Birth-->
+                            <!--Form Field Marital Status-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Marital_Status, htmlAttributes: new { })
+                                    @Html.DropDownList("Marital_Status", new List<SelectListItem> {
+                                        new SelectListItem  { Text = "Select Marital Status", Value = "Select Marital Status", Selected=true},
+                                        new SelectListItem  { Text = "Single", Value = "Single"},
+                                        new SelectListItem  { Text = "Married", Value = "Married"},
+                                        new SelectListItem  { Text = "Widowed", Value = "Widowed"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Marital_Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Marital Status-->
+                            <!--Form Field Spouse Name-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Spouse Name (if any)", htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.Spouse_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Spouse_Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Spouse Name-->
+                            <!--Form Field State of Origin-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StateOfOrigin, htmlAttributes: new { })
+                                    @Html.DropDownListFor(m => m.StateOfOrigin, (SelectList)ViewBag.States)
+                                  @*  @Html.DropDownList("States", (SelectList)ViewBag.States,Model.StateOfOrigin)*@
+                                    
+                                   @* @Html.DropDownList("StateOfOrigin", null, Model.StateOfOrigin, new { @id = Model.StateOfOrigin, @class = "form-control" })*@
+
+                                   @*@Html.DropDownList("StateOfOrigin", (SelectList)ViewBag.StateOfOrigin, htmlAttributes: new { @class = "form-control" })*@
+
+
+                                    @*@Html.DropDownList("StateOfOrigin", new List<SelectListItem> {
+                        new SelectListItem  { Text = "Select State Of Origin", Value = "Select State Of Origin", Selected=true},
+                        new SelectListItem  { Text = "Abia", Value = "Abia"},
+                        new SelectListItem  { Text = "Adamawa", Value = "Adamawa"},
+                        new SelectListItem  { Text = "Akwa Ibom", Value = "Akwa Ibom"},
+                        new SelectListItem  { Text = "Anambra", Value = "Anambra"},
+                        new SelectListItem  { Text = "Bauchi", Value = "Bauchi"},
+                        new SelectListItem  { Text = "Bayelsa", Value = "Bayelsa"},
+                        new SelectListItem  { Text = "Benue", Value = "Benue"},
+                        new SelectListItem  { Text = "Borno", Value = "Borno"},
+                        new SelectListItem  { Text = "Cross River", Value = "Cross River"},
+                        new SelectListItem  { Text = "Delta", Value = "Delta"},
+                        new SelectListItem  { Text = "Edo", Value = "Edo"},
+                        new SelectListItem  { Text = "Ekiti", Value = "Ekiti"},
+                        new SelectListItem  { Text = "Enugu", Value = "Enugu"},
+                        new SelectListItem  { Text = "Gombe", Value = "Gombe"},
+                        new SelectListItem  { Text = "Imo", Value = "Imo"},
+                        new SelectListItem  { Text = "Jigawa", Value = "Jigawa"},
+                        new SelectListItem  { Text = "Gombe", Value = "Gombe"},
+                        new SelectListItem  { Text = "Kaduna", Value = "Kaduna"},
+                        new SelectListItem  { Text = "Kano", Value = "Kano"},
+                        new SelectListItem  { Text = "Katsina", Value = "Katsina"},
+                        new SelectListItem  { Text = "Kebbi", Value = "Kebbi"},
+                        new SelectListItem  { Text = "Kogi", Value = "Kogi"},
+                        new SelectListItem  { Text = "Kwara", Value = "Kwara"},
+                        new SelectListItem  { Text = "Osun", Value = "Osun"},
+                        new SelectListItem  { Text = "Oyo", Value = "Oyo"},
+                        new SelectListItem  { Text = "Plateau", Value = "Plateau"},
+                        new SelectListItem  { Text = "Rivers", Value = "Rivers"},
+                        new SelectListItem  { Text = "Sokoto", Value = "Sokoto"},
+                        new SelectListItem  { Text = "Lagos", Value = "Lagos"},
+                        new SelectListItem  { Text = "Nasarawa", Value = "Nasarawa"},
+                        new SelectListItem  { Text = "Niger", Value = "Niger"},
+                        new SelectListItem  { Text = "Ogun", Value = "Ogun"},
+                        new SelectListItem  { Text = "Ondo", Value = "Ondo"},
+                        new SelectListItem  { Text = "Taraba", Value = "Taraba"},
+                        new SelectListItem  { Text = "Yobe", Value = "Yobe"},
+                        new SelectListItem  { Text = "Zamfara", Value = "Zamfara"},
+                        new SelectListItem  { Text = "FCT", Value = "FCT"},
+                    }, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF State of Origin-->
+                            <!--Form Field LGA-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LGA, htmlAttributes: new { })
+                                    @Html.DropDownList("LGA", (SelectList)ViewBag.LGA, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("LGA", new List<SelectListItem> {
+                        new SelectListItem  { Text = "Select LGA", Value = "Select LGA", Selected=true},
+                        new SelectListItem  { Text = "Local", Value = "Local"},
+                        new SelectListItem  { Text = "Government", Value = "Government"},
+                    }, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.LGA, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF LGA-->
+                            <!--Form Field Home Town-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Home_Town, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.Home_Town, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Home_Town, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Home Town-->
+                            <!--Form Field Religion-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Religion, htmlAttributes: new { })
+                                    @Html.DropDownList("Religion", new List<SelectListItem> {
+                                        new SelectListItem  { Text = "Select Religion", Value = "Select Religion", Selected=true},
+                                        new SelectListItem  { Text = "Christian", Value = "Christian"},
+                                        new SelectListItem  { Text = "Islam", Value = "Islam"},
+                                        new SelectListItem  { Text = "Others", Value = "Others"},
+                                    }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Religion-->
+                            <!--Form Field Home Address-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ContactHomeAddress, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.ContactHomeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ContactHomeAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Home Address-->
+
+                        </div>
+                        <!--EOF Row Employee Other Details-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <!--Row Appointment Details-->
+                        <h4 class="form-heading-1">Appointment Details</h4>
+                        <div class="row">
+
+                            <!--Form Field First Appointment Date-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FirstAppointmentDate, htmlAttributes: new { })
+                                    @Html.TextBoxFor(x => x.FirstAppointmentDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                    @*  @Html.EditorFor(model => model.FirstAppointmentDate, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @Html.ValidationMessageFor(model => model.FirstAppointmentDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF First Appointment Date-->
+                            <!--Form Field First Appointment Location-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FirstAppointmentLocation, htmlAttributes: new { })
+                                    @Html.EditorFor(model => model.FirstAppointmentLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FirstAppointmentLocation, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF First Appointment Location-->
+                            <!--Form Field Confirmation Date-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmationDate, htmlAttributes: new { })
+                                    @Html.TextBoxFor(x => x.ConfirmationDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                    @* @Html.EditorFor(model => model.ConfirmationDate, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @Html.ValidationMessageFor(model => model.ConfirmationDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Confirmation Date-->
+                            <!--Form Field Date of Retirement-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfRetirement, htmlAttributes: new { })
+                                    @Html.TextBoxFor(x => x.DateOfRetirement, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                    @*  @Html.EditorFor(model => model.DateOfRetirement, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @Html.ValidationMessageFor(model => model.DateOfRetirement, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Date of Retirement-->
+                            <!--Form Field Last Promotion Date-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LastPromotionDate, htmlAttributes: new { })
+                                    @Html.TextBoxFor(x => x.LastPromotionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                    @Html.ValidationMessageFor(model => model.LastPromotionDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Last Promotion Date-->
+                            <!--Form Field Department-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Programmes", htmlAttributes: new { })
+                                    @Html.DropDownList("Programmes", (SelectList)ViewBag.Programmes, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("Programmes", new List<SelectListItem> {
+                        new SelectListItem  { Text = "Select Programmes", Value = "Select Programmes", Selected=true},
+                        new SelectListItem  { Text = "Land & water Resources management Program", Value = "Land & water Resources management Program"},
+                        new SelectListItem  { Text = "South west Farming systems & extension program", Value = "South west Farming systems & extension program"},
+                        new SelectListItem  { Text = "Kenaf & Jute Improvement Program", Value = "Kenaf & Jute Improvement Program"},
+                          new SelectListItem  { Text = "Maize Improvement Program for southern Ecologies", Value = "Maize Improvement Program for southern Ecologies"},
+                            new SelectListItem  { Text = "Trypanotolerant Livestock Improvement Program", Value = "Trypanotolerant Livestock Improvement Program"},
+                              new SelectListItem  { Text = "Product Development Program", Value = "Product Development Program"},
+                                new SelectListItem  { Text = "Grain Legumes Improvement Program", Value = "Grain Legumes Improvement Program"},
+                    }, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Programmes, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Department-->
+                            <!--Form Field Unit-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Unit (Research)", htmlAttributes: new { })
+                                    @Html.DropDownList("Unit_Research", (SelectList)ViewBag.Unit_Research, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("Unit_Research", new List<SelectListItem>
+                    { new SelectListItem  { Text = "Select Unit of Research", Value = "Select Unit of Research" , Selected=true},
+                      new SelectListItem  { Text = "Information Technology Unit", Value = "Information Technology Unit"},
+                      new SelectListItem { Text = "Library & Documentation Unit", Value = "Library & Documentation Unit"},
+                         new SelectListItem { Text = "Biotech Unit", Value = "Biotech Unit"},
+                           new SelectListItem { Text = "Agricultural& Environmental Engineering Unit", Value = "Agricultural& Environmental Engineering Unit"},
+                                          new SelectListItem { Text = "Crop Production Unit", Value = "Crop Production Unit"},
+                           new SelectListItem { Text = "Publication Unit", Value = "Publication Unit"},
+
+
+                      }, new { @class = "form-control" }
+                                    )*@
+                                    @Html.ValidationMessageFor(model => model.Unit_Research, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Unit-->
+                            <!--Form Field Ministry-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.Label("Unit (Services)", htmlAttributes: new { })
+                                    @Html.DropDownList("Unit_Services", (SelectList)ViewBag.Unit_Services, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("Unit_Services", new List<SelectListItem>
+                    { new SelectListItem  { Text = "Select Unit of Services", Value = "Select Unit of Services" , Selected=true},
+                      new SelectListItem  { Text = "Physical Plant & Services Unit", Value = "Physical Plant & Services Unit"},
+                      new SelectListItem { Text = "Transport & Maintenance Unit", Value = "Transport & Maintenance Unit"},
+                         new SelectListItem { Text = "Health Center ", Value = "Health Center "},
+                           new SelectListItem { Text = "Public Relation Unit", Value = "Public Relation Unit"},
+
+
+                      }, new { @class = "form-control" }
+                                    )*@
+                                    @Html.ValidationMessageFor(model => model.Unit_Services, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Ministry-->
+                            <!--Form Field Station of Deployment-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StationOfDeployment, htmlAttributes: new { })
+                                    @Html.DropDownList("StationOfDeployment", (SelectList)ViewBag.StationOfDeployment, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("StationOfDeployment", new List<SelectListItem>
+                    { new SelectListItem  { Text = "Select Station Of Deployment", Value = "Select Station Of Deployment" , Selected=true},
+                      new SelectListItem  { Text = "Ibadan", Value = "Ibadan"},
+                      new SelectListItem { Text = "Ikenne", Value = "Ikenne"},
+                         new SelectListItem { Text = "Amakama", Value = "Amakama"},
+                            new SelectListItem { Text = "Ile-Ife", Value = "Ile-Ife"},
+                               new SelectListItem { Text = "Ballah", Value = "Ballah"},
+                                  new SelectListItem { Text = "Kishi", Value = "Kishi"},
+                                     new SelectListItem { Text = "Orin- Ekiti", Value = "Orin- Ekiti"},
+
+                      }, new { @class = "form-control" }
+                                    )*@
+
+                                    @Html.ValidationMessageFor(model => model.StationOfDeployment, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Station of Deployment-->
+                            <!--Form Field Section-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Section, htmlAttributes: new { })
+                                    @Html.DropDownList("Section", (SelectList)ViewBag.Section, htmlAttributes: new { @class = "form-control" })
+
+
+                                    @*@Html.DropDownList("Section", new List<SelectListItem>
+                    { new SelectListItem  { Text = "Select Section", Value = "Select Section" , Selected=true},
+                      new SelectListItem  { Text = "Admin", Value = "Admin"},
+                      new SelectListItem { Text = "Bursary", Value = "Bursary"},
+
+                               new SelectListItem { Text = "Audit", Value = "Audit"},
+                                     new SelectListItem { Text = "Procurement", Value = "Procurement"},
+
+                      }, new { @class = "form-control" }
+                                    )*@
+                                    @Html.ValidationMessageFor(model => model.Section, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Section-->
+
+                        </div>
+                        <!--EOF Row Appointment Details-->
+
+                        <hr class="m-t-3 m-b-3">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" value="Update" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Row Leave Details-->
+                        <!--EOF Row Leave Details-->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to Update this record</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        $("#StateOfOrigin").change(function () {
+
+            var stateId = $("#StateOfOrigin").val();
+
+            $("#LGA").empty();
+            $.ajax({
+                type: 'POST',
+                url: '/EmployeeGIs/GetLGAList/?stateId=' + stateId,
+                datatype: 'application/json',
+                contentType: 'application/json',
+                success: function (zCity) {
+
+                    $.each(zCity, function (i, zCity) {
+                        $("#LGA").append('<option value="'
+                                                   + zCity.Value + '">'
+                                             + zCity.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>

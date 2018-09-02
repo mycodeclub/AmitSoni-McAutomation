@@ -1,0 +1,67 @@
+﻿@model IARTAutomationApp.Models.LeaveMaster
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeaveMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalenderYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalenderYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDelete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCreated)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeaveId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

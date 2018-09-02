@@ -1,0 +1,147 @@
+﻿@model IARTAutomationApp.Models.EmployeeAI
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h3 class="alert-danger" style="text-align:center">Delete</h3>
+
+<h5 class="alert-danger" style="text-align:center">Are you sure you want to delete this?</h5>
+<div>
+    <h4>EmployeeAI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutionAttended1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionAttended1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutionAttended2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionAttended2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutionAttended3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionAttended3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfGraduation1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfGraduation1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfGraduation2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfGraduation2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfGraduation3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfGraduation3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfessionalAssociationsTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfessionalAssociationsTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfessionalAssociationsIdNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfessionalAssociationsIdNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfessionalAssociationsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfessionalAssociationsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConferenceAttendedName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConferenceAttendedName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConferenceAttendedTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConferenceAttendedTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConferenceAttendedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConferenceAttendedDate)
+        </dd>
+
+       
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

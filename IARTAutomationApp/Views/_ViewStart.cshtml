@@ -1,0 +1,32 @@
+﻿
+
+@{
+    try
+    {
+        if (Session["Role"].ToString().Trim() == "Super Level Admin" || Session["Role"].ToString().Trim() == "Admin" || Session["Role"].ToString().Trim() == "Super Admin")
+        {
+            Layout = "~/Views/Shared/_LayoutSuperAdmin.cshtml";
+        }
+        else if (Session["Role"].ToString().Trim() == "HR Admin")
+        {
+            Layout = "~/Views/Shared/_LayoutStoreAdmin.cshtml";
+        }
+        else if (Session["Role"].ToString().Trim() == "Store Admin")
+        {
+            Layout = "~/Views/Shared/_LayoutStoreAdmin.cshtml";
+        }
+        else if (Session["Role"].ToString().Trim() == "Procurement Admin")
+        {
+            Layout = "~/Views/Shared/_LayoutProcurementAdmin.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutMainUser.cshtml";
+
+        }
+    }
+    catch (Exception ext)
+    { Layout = null; }
+}
+
+

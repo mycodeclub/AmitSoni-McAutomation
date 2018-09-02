@@ -1,0 +1,37 @@
+﻿@model IARTAutomationApp.Models.QualificationMaster
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QualificationMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.QualificationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QualificationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QualificationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

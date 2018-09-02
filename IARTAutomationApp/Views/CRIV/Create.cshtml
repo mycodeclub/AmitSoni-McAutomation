@@ -1,0 +1,502 @@
+﻿@*@model IEnumerable<IARTAutomationApp.Models.CrivVoucher>*@
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+
+<div class="content voucher">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">Voucher</li>
+    </ol>
+    <div class="card">
+        <div class="card-body">
+            <span class="logo-lg"><img src="/Content/dist/img/logo.png" style="width:150px; margin:auto; display:block" alt=""></span>
+            <h3 style="text-align:center;">OBAFEMI AWOLOWO UNIVERSITY<br />INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING, IBADAN/AKURE</h3>
+            <p style="text-align:center;"> <strong>COMBINED REQUISITION AND ISSSUED VOUCHER (CRIV) </strong></p>
+
+
+
+            <form>
+
+                <div class="form-group row">
+
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">VOUCHER NUMBER </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtVoucherNo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">STORE NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("StoreId", (SelectList)ViewBag.Store, htmlAttributes: new { @class = "form-control sty1" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">DEPARTMENT NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtDepartment">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="date" id="DateIns">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h4 class="form-heading-1">ITEMS DETAILS</h4>
+                <div class="form-group row" id="noprint">
+
+
+
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">ITEM NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("Item", (SelectList)ViewBag.Item, htmlAttributes: new { @class = "form-control sty1", id = "txtItemId" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">CLASS NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("ClassId", (SelectList)ViewBag.Class, htmlAttributes: new { @class = "form-control sty1", id = "txtClassId" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">QUNATITY NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtQunatity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">UNIT OF MEASURMENT</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownList("UomId", (SelectList)ViewBag.Uom, htmlAttributes: new { @class = "form-control sty1" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">RATE</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtRate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">TOTAL VALUE </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtTotalValue">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="row">
+                            <input align="center" type="button" id="btnAdd" class="btn btn-primary" value="Add" />
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table text-bold" id="tblCriv">
+
+                    <thead>
+
+                        <tr>
+                            <th style="text-align:center">ITEM NAME</th>
+                            <th style="text-align:center">CLASS NAME</th>
+                            <th style="text-align:center">QUANTITY</th>
+                            <th style="text-align:center">UOM</th>
+                            <th style="text-align:center">RATE</th>
+                            <th style="text-align:center">TOTAL VALUE</th>
+                            <th style="text-align:center">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+
+                </table>
+
+                <div class="form-group row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Batch Details</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtBatch">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Requisition Officer</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtReq">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Receiving Person Details</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtRecPer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Remarks/Notes</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtRemark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">ESTIMATED TOTAL COST: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtTotalCost">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">AMOUNT IN WORDS : </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="text" id="txtAmtWord">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Name: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtName1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Signature: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="text" id="txtSign1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Fac./Dept./Institute/Service: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" id="txtFac1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="date" id="Date1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>Certified that the funds are available under the expenditure Details shown above and that this commitment has been noted and that the allocation shown is correct.</p>
+                <div class="form-group row">
+
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Signature: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="text" id="txtSign2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Accountant</p>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="date" id="Date2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>The article shown on this voucher have been received in good condition and taken on charge.</p>
+                <div class="form-group row">
+
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Name &amp; Sign: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="text" id="txtName3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Fac. /Dept./Institute/Service: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="text" id="txtFac3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Accountant</p>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control sty1" type="date" id="Date3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+            </form>
+        </div>
+        <div class="form-group" id="divprintArea">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="btnSave" class="btn btn-success" onclick="Save()" value="Save" />
+                <input type="submit" value="Print" id="btnPrint" class="btn btn-primary" />
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //function will be called on button click having id btnsave
+        $("#btnPrint").click(function () {
+            $("#empcodeArea").hide();
+            //$("#divprintArea").hide();
+
+
+
+            $("#empcodeArea").hide();
+            $("#noprint").hide();
+            $("#divprintarea").hide();
+            $("#btnPrint").hide();
+            $(".breadcrumb").hide();
+            $(".main-footer").hide();
+            window.print();
+        });
+    });
+</script>
+<script type="text/javascript">
+    $("#btnAdd").click(function () {
+        debugger;
+        var txtItemId =  $("#txtItemId option:selected");
+
+            var txtClassId = $("#txtClassId option:selected");
+            var txtQunatity = $("#txtQunatity");
+            var txtUomId = $("#UomId option:selected");
+
+            var txtRate = $("#txtRate");
+            var txtTotalValue = $("#txtTotalValue");
+            var tBody = $("#tblCriv > TBODY")[0];
+
+            var row = tBody.insertRow(-1);
+
+            var cell = $(row.insertCell(-1));
+            cell.html(txtItemId.val());
+           
+
+            cell = $(row.insertCell(-1));
+            cell.html(txtClassId.val());
+            
+            cell = $(row.insertCell(-1));
+            cell.html(txtQunatity.val());
+
+            cell = $(row.insertCell(-1));
+            cell.html(txtUomId.val());
+            
+            cell = $(row.insertCell(-1));
+            cell.html(txtRate.val());
+            cell = $(row.insertCell(-1));
+            cell.html(txtTotalValue.val());
+
+            cell = $(row.insertCell(-1));
+            var btnRemove = $("<input />");
+            btnRemove.attr("class", "btn btn-danger");
+            btnRemove.attr("type", "button");
+            btnRemove.attr("onclick", "Remove(this);");
+            btnRemove.val("Remove");
+            cell.append(btnRemove);
+
+            $('#txtItemId').val('');
+            $('#txtClassId').val('');
+            $('#txtQunatity').val('');
+            $('#txtUomId').val('');
+            $('#txtRate').val('');
+            $('#txtTotalValue').val('');
+
+        });
+
+        function Remove(button) {
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(0).html();
+            if (confirm("Do you want to delete: " + name)) {
+                var table = $("#tblCriv")[0];
+
+                table.deleteRow(row[0].rowIndex);
+            }
+        };
+
+        function Save() {
+
+            var crivs = new Array();
+            $("#tblCriv TBODY TR").each(function () {
+                var row = $(this);
+                debugger;
+                var criv = {};
+                criv.CRIVVoucherId = $("#txtVoucherNo").val();
+                criv.DepartmentId = $("#txtDepartment").val();
+                criv.Store = $("#StoreId").val();
+               
+                criv.DateIns = $("#DateIns").val();
+
+                criv.Item = row.find("TD").eq(0).html();
+                criv.Class = row.find("TD").eq(1).html();
+                criv.Qunatity = row.find("TD").eq(2).html();
+                criv.Uom = row.find("TD").eq(3).html();
+                criv.Rate = row.find("TD").eq(4).html();
+                criv.TotalValue = row.find("TD").eq(5).html();
+                criv.BatchDetail = $("#txtBatch").val();
+                criv.RequisitionOfficer = $("#txtReq").val();
+                criv.RecivingPerson = $("#txtRecPer").val();
+                criv.Remarks = $("#txtRemark").val();
+                criv.Remarks = $("#txtRemark").val();
+
+                criv.TotalCost = $("#txtTotalCost").val();
+                criv.AmtWord = $("#txtAmtWord").val();
+                criv.Name1 = $("#txtName1").val();
+                criv.Fac1 = $("#txtFac1").val();
+                criv.Date1 = $("#Date1").val();
+                criv.Sign1 = $("#txtSign1").val();
+                criv.Sign2 = $("#txtSign2").val();
+                criv.Date2 = $("#Date2").val();
+                criv.Name3 = $("#txtName3").val();
+                criv.Fac3 = $("#txtFac3").val();
+                criv.Date3 = $("#Date3").val();
+
+                crivs.push(criv);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/CRIV/InsertCriv",
+                data: JSON.stringify(crivs),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    debugger;
+                    window.location = '/CRIV/Create';
+                }
+            });
+
+
+        };
+</script>
+
+
+
+
+
+
+
+

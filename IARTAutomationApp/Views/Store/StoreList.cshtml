@@ -1,0 +1,158 @@
+﻿@model IEnumerable<IARTAutomationApp.ViewModels.StoreListDetails>
+
+@{
+    ViewBag.Title = "AllStoreList";
+
+}
+
+<div class="content">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">View Stores</li>
+    </ol>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">All Store Information</h4>
+                            <p></p>
+                            <div class="row m-t-4">
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-blue-gradient text-white">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Store Records</h6>
+                                                <h1 class="text-white">@ViewBag.TotalStoreCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-green ">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Active Store</h6>
+                                                <h1 class="text-white">@ViewBag.StoreActiveCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-red">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-na"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Closed Store</h6>
+                                                <h1 class="text-white">@ViewBag.StoreClosedCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-facebook">
+                                        <div class="col-12">
+                                            <span class="info-box-icon bg-transparent"><i class="ti-bar-chart text-white"></i></span>
+                                            <div class="info-box-content">
+                                                <h6 class="info-box-text text-white">Total Items Records</h6>
+                                                <h1 class="text-white">@ViewBag.TotalStoreItemCount</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeImage)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeName)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeNumber)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeDesc)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeStatus)</th>
+                                                <th style="text-align: center; color: white;">Store Created By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        @{ 
+                                            int counter = 1;
+                                            foreach (var item in Model)
+                                            {
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    @(counter++)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <img alt=@item.storeImage class="img" src="~/Uploads/@item.storeImage" style="width: 50px; height: 50px">
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.storeName)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.storeNumber)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.storeDesc)
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @if (item.storeStatus == "Active")
+                                                    {
+                                                        <span class="label label-success">@Html.DisplayFor(modelItem => item.storeStatus)</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="label label-danger">@Html.DisplayFor(modelItem => item.storeStatus)</span>
+                                                    }
+                                                    
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.empName)
+                                                    <br />Emp Id: @Html.DisplayFor(modelItem => item.empId)
+                                                    <br />On: @Html.DisplayFor(modelItem => item.createdDate)
+                                                </td>
+                                                
+                                                <td style="text-align: center;">
+                                                   @Html.ActionLink("Edit", "Edit", new { id = item.recordId })  |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.recordId })
+
+                                                </td>
+                                            </tr>
+                                                }
+                                            }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center; color: white;">S. No.</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeImage)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeName)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeNumber)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeDesc)</th>
+                                                <th style="text-align: center; color: white;">@Html.DisplayNameFor(model => model.storeStatus)</th>
+                                                <th style="text-align: center; color: white;">Store Created By</th>
+                                                <th style="width: 150px; text-align: center; color: white;">Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,329 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.CrivVoucher>
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+
+<div class="content voucher">
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active">Voucher</li>
+    </ol>
+    <div class="card">
+        <div class="card-body">
+            <span class="logo-lg"><img src="/Content/dist/img/logo.png" style="width:150px; margin:auto; display:block" alt=""></span>
+            <h3 style="text-align:center;">OBAFEMI AWOLOWO UNIVERSITY<br />INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING, IBADAN/AKURE</h3>
+            <p style="text-align:center;"> <strong>COMBINED REQUISITION AND ISSSUED VOUCHER (CRIV) </strong></p>
+
+
+
+            <form>
+@{
+                <div class="form-group row">
+
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">VOUCHER NUMBER </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <label for="exampleInputuname3" class="col-md-4 control-label">@Model.FirstOrDefault().CRIVVoucherId</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">STORE NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <label for="exampleInputuname3" class="col-md-4 control-label">@Model.FirstOrDefault().Store</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">DEPARTMENT NAME </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <label for="exampleInputuname3" class="col-md-4 control-label">@Model.FirstOrDefault().DepartmentId</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    <label for="exampleInputuname3" class="col-md-4 control-label">@Model.FirstOrDefault().DateIns</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h4 class="form-heading-1">ITEMS DETAILS</h4>
+              
+
+                <table class="table text-bold" id="tblCriv">
+
+                    <thead>
+
+                        <tr>
+                            <th style="text-align:center">ITEM NAME</th>
+                            <th style="text-align:center">CLASS NAME</th>
+                            <th style="text-align:center">QUANTITY</th>
+                            <th style="text-align:center">UOM</th>
+                            <th style="text-align:center">RATE</th>
+                            <th style="text-align:center">TOTAL VALUE</th>
+                            
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var items in Model)
+                        {
+                            <tr>
+                               
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.Item)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.Class)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.Qunatity)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.Uom)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.Rate)
+                                </td>
+                                <td style="text-align: center;">
+                                    @Html.DisplayFor(item => items.TotalValue)
+                                </td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+                <div class="form-group row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Batch Details</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().BatchDetail)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Requisition Officer</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().RequisitionOfficer)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Receiving Person Details</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                   @Html.DisplayFor(item => Model.FirstOrDefault().RecivingPerson)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Remarks/Notes</label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                   @Html.DisplayFor(item => Model.FirstOrDefault().Remarks)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">ESTIMATED TOTAL COST: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().TotalCost)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">AMOUNT IN WORDS : </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                   @Html.DisplayFor(item => Model.FirstOrDefault().AmtWord)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Name: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Name1)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Signature: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Sign1)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Fac./Dept./Institute/Service: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Fac1)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Date1)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>Certified that the funds are available under the expenditure Details shown above and that this commitment has been noted and that the allocation shown is correct.</p>
+                <div class="form-group row">
+
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Signature: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Sign2)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Accountant</p>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Date2)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>The article shown on this voucher have been received in good condition and taken on charge.</p>
+                <div class="form-group row">
+
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Name &amp; Sign: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Name3)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Fac. /Dept./Institute/Service: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Fac3)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Accountant</p>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <label for="exampleInputuname3" class="col-md-4 control-label">Date: </label>
+                            <div class="col-md-8">
+                                <div class="form-group has-feedback">
+                                    @Html.DisplayFor(item => Model.FirstOrDefault().Date3)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+    }
+            </form>
+        </div>
+        <div class="form-group" id="divprintArea">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Print" id="btnPrint" class="btn btn-primary" />
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //function will be called on button click having id btnsave
+        $("#btnPrint").click(function () {
+            $("#empcodeArea").hide();
+            //$("#divprintArea").hide();
+
+
+
+            $("#empcodeArea").hide();
+            $("#noprint").hide();
+            $("#divprintarea").hide();
+            $(".breadcrumb").hide();
+            $(".main-footer").hide();
+            window.print();
+        });
+    });
+</script>
+
+
+
+
+

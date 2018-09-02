@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@section my_script_variables {
+
+<script type="text/javascript">
+    var variable1 = '@Html.Raw(ViewBag.emponleave)',
+            variable2 = '@Html.Raw(ViewBag.empdueforleave)',
+            variable3 = '@Html.Raw(ViewBag.emponduty)',
+    variable4 = '@Html.Raw(ViewBag.DataPoints)',
+
+        varrialeJrStaff = '@Html.Raw(ViewBag.JrStaff)',
+    varrialeSrStaff = '@Html.Raw(ViewBag.SrStaff)',
+    varrialeNyscStaff = '@Html.Raw(ViewBag.NyscStaff)',
+        varrialeOthersStaff = '@Html.Raw(ViewBag.OthersStaff)';
+
+
+
+</script>
+
+}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<div class="content-header sty-one">
+    <h1>Employee Admin & HR Chart</h1>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><i class="fa fa-angle-right"></i> Employee Admin & HR Chart</li>
+    </ol>
+</div>
+
+<!-- Main content -->
+<div class="content">
+
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Employee Retirement</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <ul class="list-inline">
+                                <li class="text-blue"> <i class="fa fa-circle"></i> Employee Retirement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="earning"></div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Leave Status Graphical View</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="donut"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Staff Graphical View</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="donut1"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Area Chart</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <ul class="list-inline">
+                                <li class="text-purple"> <i class="fa fa-circle"></i> India</li>
+                                <li class="text-muted"> <i class="fa fa-circle"></i> USA</li>
+                                <li class="text-info"> <i class="fa fa-circle"></i> UK</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="area"></div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Bar Chart</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <ul class="list-inline">
+                                <li class="text-purple"> <i class="fa fa-circle"></i> India</li>
+                                <li class="text-muted"> <i class="fa fa-circle"></i> USA</li>
+                                <li class="text-info"> <i class="fa fa-circle"></i> UK</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="bar-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.content -->

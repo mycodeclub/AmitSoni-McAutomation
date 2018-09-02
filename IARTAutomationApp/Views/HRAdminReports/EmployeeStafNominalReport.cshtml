@@ -1,0 +1,202 @@
+﻿@using IARTAutomationApp.Models
+
+@model  IARTAutomationApp.ViewModels.EmployeeAll
+   @{
+       ViewBag.Title = "Reports";
+
+  
+
+
+       string qualification = "", BloodGroup = "", BloodGenotype = "", address = "", StateOfOrigin = "", LGA = "", MobileNo = "", EmpEmailId = "";
+
+       string BankType = "", NameOfBanks = "", BankBranch = "", AccountNumber = "", AccountName = "", PFA = "", RSAPinNo = "", SalaryScale = "", NhisNo = "", NhisProvider = "", Bloodgroup = "", Genotype = "";
+
+
+}
+
+
+    <!-- Main content -->
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Reports</a></li>
+            <li class="breadcrumb-item active">Staff Nominal Report</li>
+        </ol>
+      <div class="card">
+      <div class="card-body">
+      <h4 class="text-black">Staff Nominal Report</h4>
+      <p>Export data to Copy, CSV, Excel & PDF</p>
+      <div class="table-responsive">
+                  <table id="empsn" class="table table-bordered table-hover" data-name="cool-table">
+                    <thead>
+                      <tr>
+                        
+                        <th>File No</th>
+                        <th>EmplyeeId</th>
+                        <th>Name</th>
+                        <th>Cadre</th>
+                        <th>Rank</th>
+                        <th>DateOfBirth</th>
+                          <th>FirstAppointmentLocation</th>
+                          <th>FirstAppointmentDate</th>
+                          <th>LastPromotionDate</th>
+                          <th>Qualification3</th>
+                          <th>StateOfOrigin</th>
+                          <th>LGA</th>
+                          <th>Sex</th>
+                          <th>SalaryScale</th>
+                          <th>NhisNo</th>
+                          <th>NhisProvider</th>
+                          <th>StationOfDeployment</th>
+                          <th>PFA</th>
+                          <th>MobileNo</th>
+                          <th>DateOfRetirement</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                         @foreach (var item in Model.employeegi)
+                         {
+                      <tr>
+                        <td>@item.File_No</td>
+                        <td>@item.EmployeeCode</td>
+                          <td>@item.Surname @item.First_Name @item.Middle_Name</td>
+                        <td>@item.Cadre</td>
+                         <td>@item.Rank</td>
+                          <td>@item.DateOfBirth</td>
+                          <td>@item.FirstAppointmentLocation</td>
+                          <td>@item.FirstAppointmentDate</td>
+                          <td>@item.LastPromotionDate</td>
+
+
+
+                          @foreach (var item1 in Model.employeeai.Where(x => x.EmployeeCode == item.EmployeeCode))
+                          {
+                              { qualification = item1.Qualification3; }
+
+                          }
+                          <td>@qualification</td>
+                          <td>@item.StateOfOrigin</td>
+                          <td>@item.LGA</td>
+                          <td>@item.Sex</td>
+                          @foreach (var salary in Model.employeesi.Where(x => x.EmployeeCode == item.EmployeeCode))
+                          {
+                              {
+                                 
+                                  PFA = salary.PFA;
+                               
+                                  SalaryScale = salary.SalaryScale;
+                              }
+
+
+
+                          }
+                          @foreach (var personal in Model.employeepi.Where(x => x.EmployeeCode == item.EmployeeCode))
+                          {
+                              {
+                                 
+                                  MobileNo = personal.PermanentAddress;
+                                
+                              }
+
+                          }
+
+                          <td>@SalaryScale</td>
+                          @foreach (var medical in Model.employeemi.Where(x => x.EmployeeCode == item.EmployeeCode))
+                          {
+                              {
+                                  
+                                  NhisNo = medical.NhisNo;
+                                  NhisProvider = medical.NhisProvider;
+
+                              }
+
+                          }
+                          <td>@NhisNo</td>
+                          <td>@NhisProvider</td>
+                          <td>@item.StationOfDeployment</td>
+                          <td>@PFA</td>
+                          <td>@MobileNo</td>
+                          <td>@item.DateOfRetirement</td>
+
+                        
+                      </tr>
+                            }
+                        
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                          
+                          <th>File No</th>
+                          <th>EmplyeeId</th>
+                          <th>Name</th>
+                          <th>Cadre</th>
+                          <th>Rank</th>
+                          <th>DateOfBirth</th>
+                          <th>FirstAppointmentLocation</th>
+                          <th>FirstAppointmentDate</th>
+                          <th>LastPromotionDate</th>
+                          <th>Qualification3</th>
+                          <th>StateOfOrigin</th>
+                          <th>LGA</th>
+                          <th>Sex</th>
+                          <th>SalaryScale</th>
+                          <th>NhisNo</th>
+                          <th>NhisProvider</th>
+                          <th>StationOfDeployment</th>
+                          <th>PFA</th>
+                          <th>MobileNo</th>
+                          <th>DateOfRetirement</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  </div>
+      </div></div>
+      
+       
+    </div>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js" type="text/javascript"></script>
+
+<script>
+
+        $('#empsn').DataTable({
+
+                dom: 'Bfrtip',
+                buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+                ],
+
+        });
+</script>
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+
+
+
+
+
+
+
+<script>
+        $('#empsn_wrapper, #empgi_wrapper, #emppi_wrapper, #empmi_wrapper, #empcps_wrapper, #empai_wrapper').find('button').addClass('btn btn-rounded btn-outline-success');
+</script>

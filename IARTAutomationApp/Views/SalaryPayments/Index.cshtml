@@ -1,0 +1,105 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.SalaryPayment>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaryAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeductionAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowanceAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherDeduction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherAllowance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSalarySlipPrint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalaryAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeductionAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllowanceAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherDeduction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherAllowance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSalarySlipPrint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SalaryPaymId }) |
+             @Html.ActionLink("Delete", "Delete", new { id=item.SalaryPaymId })
+        </td>
+    </tr>
+}
+
+</table>

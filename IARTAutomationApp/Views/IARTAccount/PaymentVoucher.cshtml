@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "PaymentVoucher";
+    
+}
+
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("PaymentVoucher", "IARTAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Main content -->
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active">CAPTURING REVENUE</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">New Payment Voucher Information</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+
+                            <!--Form Field Title-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Date</label>                                  
+                                    @*@Html.TextBox("Date",null,new { @class = "form-control",@required="required" })*@
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                            <!--EOF Title-->
+                            <!--Form Field First Name-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name of Supplier</label>
+                                    @Html.TextBox("txtSupplierName", null, new { @class = "form-control", @required = "required" })
+                                   
+                                </div>
+                            </div>
+                            <!--EOF First Name-->
+                            <!--Form Field Middle Name-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Remark</label>
+                                    @Html.TextArea("Remark",null, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                            <!--EOF Middle Name-->
+                            <!--Form Field Surname-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    @Html.TextBox("txtAmount", null, new { @class = "form-control", @required = "required" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label></label>
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="button" value="Submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                      
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to Save this record</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+
+

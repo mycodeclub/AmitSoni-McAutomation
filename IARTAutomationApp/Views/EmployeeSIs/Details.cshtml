@@ -1,0 +1,107 @@
+﻿@model IARTAutomationApp.Models.EmployeeSI
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmployeeSI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentPosting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentPosting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfBanks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfBanks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankBranch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankBranch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PFA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PFA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RSAPinNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RSAPinNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryScale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryScale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,65 @@
+﻿@model IARTAutomationApp.Models.EmployeeMI
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h3 class="alert-danger" style="text-align:center">Delete</h3>
+
+<h5 class="alert-danger" style="text-align:center">Are you sure you want to delete this?</h5>
+<div>
+    <h4>EmployeeMI</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhisProvider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhisProvider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodGroup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGenotype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodGenotype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

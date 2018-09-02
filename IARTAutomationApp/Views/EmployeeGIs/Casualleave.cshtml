@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "Casualleave";
+
+}
+
+<div class="content annuaL" id="divannualform">
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group row" id="empcodeArea">
+                <div class="col-sm-2"><strong>Select Employee:</strong></div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        @Html.TextBox("EmployeeCode", "", new { @class = "form-control", @id = "EmployeeCode" })
+                    </div>
+                </div>
+
+            </div>
+            <h4 style="text-align:center;">OBAFEMI AWOLOWO UNIVERSITY, ILE-IFE, NIGERIA INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING MOOR PLANTATION, P.M.B. 5029, IBADAN.</h4>
+            <h6 style="text-align:center;">TO BE COMPLETED IN DUPLICATE</h6>
+            <form action="../Home/index" method="post">
+                <p>The Director/Deputy Registration/Secretary</p>
+                <h6>APPLICICATION FOR CAUSUAL LEAVE FROM THE INSTITUTE</h6>
+                <div class="form-group row">
+
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Name of Applicant:</label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Department /Division:</label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtDepartment">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Post: </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtPost">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Period of casual Leave:  </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">From Date:
+                            <input type="date" class="form-control sty1" id="txtfromDate">
+                        </div>
+                        <div class="form-group has-feedback">To Date:
+                            <input type="date" class="form-control sty1" id="txtToDate">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Reason for Casual Leave:  </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtReason">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Person responsible for duties during Casual Leave (If any):  </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtResponsiblePerson">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Signature of Applicant with dates:</label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Comments of Head of DIVISION: </label>
+                    <div class="col-sm-9">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1" id="txtHodComments">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-12 control-label">Application has not/already taken a/any …………………………………………………… days casual leave during the current leave year.</label>
+                    <label for="exampleInputuname3" class="col-sm-12 control-label">Name and Signature of the office-in charge of Records: ……………………………………………………………………………………………………</label>
+</div>
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-12 control-label"> </label>
+                </div>  
+                <div class="form-group row">
+                    <h4 style="margin:0 auto;">APPROVED/NOT APPROVED</h4>   
+                    <label for="exampleInputuname3" class="col-sm-12 control-label">Please note that the …………………….. Days approved shall be deducted from your Annual Leave or its balance.</label>       
+                </div> 
+                <div class="form-group row">
+                    <strong style="margin-left:10px;"> DIRECTOR/DEPUTY REGISTRAR/SECRETARY TO THE INSTITUTE</strong>
+               
+                </div>  
+               
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-1 control-label">DATE:  </label>
+                    <div class="col-sm-3">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1">
+                        </div>
+                    </div>
+                    <label for="exampleInputuname3" class="col-sm-2 control-label"> SIGNATURE: </label>
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback">
+                            <input class="form-control sty1">
+                        </div>
+                    </div>
+                </div>
+                  
+            </form>
+            
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<div class="form-group" style="margin-left: 17px;" id="divprintarea">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Print" id="btnPrint" class="btn btn-success" />
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+        $("#btnPrint").click(function () {
+
+            var obj = {};
+            obj.Name = $("#txtName").val();
+            obj.EmployeeCode = $("#EmployeeCode").val();//Reading text box values using Jquery
+          
+            //obj.Date = $("#txtDate").val();
+
+            obj.Department = $("#txtDepartment").val();
+           
+            obj.Post = $("#txtPost").val();
+            obj.FromDate = $("#txtfromDate").val();
+            obj.ToDate = $("#txtToDate").val();
+
+            obj.Reason = $("#txtReason").val();
+            obj.ResponsiblePerson = $("#txtResponsiblePerson").val();
+            obj.HodComment = $("#txtHodComments").val();
+
+            obj.AnyLeaveDays = 0;
+            obj.OfficeInChargeName = $("#txtToDate").val();
+            obj.ApprovedDays = 0;// $("#txtToDate").val() - $("#txtfromDate").val();
+            obj.CreatedDate = $("#txtfromDate").val();
+            obj.IsDeleted = false;
+            debugger;
+            $.ajax(
+     {
+         type: "POST", //HTTP POST Method
+         url: "/EmployeeGIs/CasualLeave", // Controller/View
+          data: '{obj: ' + JSON.stringify(obj) + '}',
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (response) {
+             alert("Causal Leave form is Submitted Successfully: ");
+         },
+         failure: function (response) {
+             alert(response.responseText);
+         },
+         error: function (response) {
+             alert(response.responseText);
+         }
+
+     });
+            $("#empcodeArea").hide();
+            $("#divprintarea").hide();
+            window.print();
+            $("#empcodeArea").show();
+            $("#divprintarea").show();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        $.noConflict();  $("#EmployeeCode").autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "/EmployeePIs/AutoEmployeeCode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Value, value: item.Value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+
+<script>
+
+        $('#EmployeeCode').change(function () {
+            debugger;
+            var EmployeeCode = $(this).val();
+
+        // Send Ajax call and get Task name
+
+    //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+
+            $.ajax({
+
+                url: '/EmployeeGIs/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
+                success: function (response) {
+                    debugger;
+
+
+                    $('#txtPost').val(response[0].Rank);
+                    $('#txtName').val(response[0].Name);
+                    $('#txtDepartment').val(response[0].Programmes);
+
+
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+
+    });
+
+});</script>

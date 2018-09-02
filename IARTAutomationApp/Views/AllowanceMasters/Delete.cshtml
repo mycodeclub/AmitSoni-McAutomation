@@ -1,0 +1,81 @@
+﻿@model IARTAutomationApp.Models.AllowanceMaster
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AllowanceMaster</h4>
+    <hr />
+  <dl style="text-align:center">
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowanceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowanceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValueMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValueMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowanceHead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowanceHead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllowanceAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllowanceAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.EmployeeSI>
+
+@{
+    ViewBag.Title = "Index";
+    
+    int SrNo = 0;
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+        <li class="breadcrumb-item active"> Salary Information</li>
+    </ol>
+    <h5 class="alert-danger"> @TempData["msg"] </h5>
+    <h5 class="text-success">  @TempData["successmsg"] </h5>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1"> Salary Information</h4>
+                            <p></p>
+                    
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">S. No.</th>
+                                                <th style="width: 150px; text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th>@Html.DisplayNameFor(model => model.CurrentPosting)</th>
+                                                <th>@Html.DisplayName("Bank Details")</th>
+                                                <th>@Html.DisplayName("Account Details")</th>
+                                                <th>@Html.DisplayName("PF Details")</th>
+                                                <th>@Html.DisplayName("Salary Scale")</th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            { SrNo = SrNo + 1; }
+                                            <tr>
+                                                <td style="text-align: center;">@SrNo</td>
+                                                <td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CurrentPosting)
+                                                </td>
+                                                <td>
+                                                    <strong>Bank Type:</strong> @Html.DisplayFor(modelItem => item.BankType) <br />
+                                                    <strong>Bank Name:</strong> @Html.DisplayFor(modelItem => item.NameOfBanks) <br />
+                                                    <strong>Bank Branch:</strong> @Html.DisplayFor(modelItem => item.BankBranch)
+                                                </td>
+                                                <td>
+                                                    <strong>Name on Account:</strong> @Html.DisplayFor(modelItem => item.AccountName) <br />
+                                                    <strong>Accont Number:</strong> @Html.DisplayFor(modelItem => item.AccountNumber) <br />
+                                                    <strong>Account Type:</strong> @Html.DisplayFor(modelItem => item.AccountType)
+                                                </td>
+                                                <td>
+                                                    <strong>PFA:</strong> @Html.DisplayFor(modelItem => item.PFA) <br />
+                                                    <strong>RSA Pin:</strong> @Html.DisplayFor(modelItem => item.RSAPinNo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SalaryScale)
+                                                </td>
+                                                 
+                                            </tr>
+                                        }
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:100px; text-align: center;">S. No.</th>
+                                                <th style="width: 150px; text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th>@Html.DisplayNameFor(model => model.CurrentPosting)</th>
+                                                <th>@Html.DisplayName("Bank Details")</th>
+                                                <th>@Html.DisplayName("Account Details")</th>
+                                                <th>@Html.DisplayName("PF Details")</th>
+                                                <th>@Html.DisplayName("Salary Scale")</th>
+                                              
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<!-- /.content --> 

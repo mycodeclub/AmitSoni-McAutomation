@@ -1,0 +1,149 @@
+﻿@model IARTAutomationApp.Models.SalaryStructureMaster
+
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <!-- Main content -->
+    <div class="content">
+
+        <ol class="breadcrumb bc-colored bg-success m-b-3">
+            <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+            <li class="breadcrumb-item">Payroll</li>
+            <li class="breadcrumb-item active">Add Salary Structure</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-blue">
+                        <h5 class="text-white m-b-0">Add Payroll Salary Structure</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <!--Row Employee Code-->
+                        <h4 class="form-heading-1">Salary Structure</h4>
+                        <div class="row">
+
+                            <!--Form Field Employee Code-->
+                            <div class="col-md-6">
+                                <div class="form-group">                                    
+                                    @Html.LabelFor(model => model.SalaryScale, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.DropDownList("SalaryScale", new List<SelectListItem>
+        { new SelectListItem  { Text = "Select Salary Scale", Value = "Select Salary Scale", Selected=true},
+        new SelectListItem  { Text = "CONHESS", Value = "CONHESS"},
+        new SelectListItem  { Text = "CONTTISS", Value = "CONTTISS"},
+         new SelectListItem  { Text = "CONUASS", Value = "CONUASS"},
+        new SelectListItem  { Text = "CONMESS", Value = "CONMESS"},
+
+          }, new { @class = "form-control" }
+                        )
+                                    @Html.ValidationMessageFor(model => model.SalaryScale, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Employee Code-->
+                            <!--Form Field Upload Photo-->
+                            <div class="col-md-6">
+                                <div class="form-group">                                    
+                                    @Html.LabelFor(model => model.GradeLevel, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("GradeLevel", new List<SelectListItem>
+        { new SelectListItem  { Text = "Select Grade Level", Value = "Select Grade Level1", Selected=true},
+          new SelectListItem  { Text = "01", Value = "01"},
+          new SelectListItem { Text = "02", Value = "02"},
+          new SelectListItem { Text = "03", Value = "03"},
+          new SelectListItem { Text = "04", Value = "04"},
+          new SelectListItem { Text = "05", Value = "05"},
+          new SelectListItem { Text = "06", Value = "06"},
+          new SelectListItem { Text = "07", Value = "07"},
+          new SelectListItem { Text = "08", Value = "08"},
+          new SelectListItem { Text = "09", Value = "09"},
+          new SelectListItem { Text = "10", Value = "10"},
+          new SelectListItem { Text = "11", Value = "11"},
+          new SelectListItem { Text = "12", Value = "12"},
+          new SelectListItem { Text = "13", Value = "13"},
+          new SelectListItem { Text = "14", Value = "14"},
+            new SelectListItem { Text = "15", Value = "15"},
+          }, new { @class = "form-control" }
+                        )
+                                    @Html.ValidationMessageFor(model => model.GradeLevel, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Upload Photo-->
+
+                            <!--Form Field Upload Photo-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                   @Html.LabelFor(model => model.Step, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("Step", new List<SelectListItem>
+        { new SelectListItem  { Text = "Select Step", Value = "Select Step", Selected=true},
+          new SelectListItem  { Text = "01", Value = "01"},
+          new SelectListItem { Text = "02", Value = "02"},
+          new SelectListItem { Text = "03", Value = "03"},
+          new SelectListItem { Text = "04", Value = "04"},
+          new SelectListItem { Text = "05", Value = "05"},
+          new SelectListItem { Text = "06", Value = "06"},
+          new SelectListItem { Text = "07", Value = "07"},
+          new SelectListItem { Text = "08", Value = "08"},
+          new SelectListItem { Text = "09", Value = "09"},
+new SelectListItem { Text = "10", Value = "10"},
+          new SelectListItem { Text = "11", Value = "11"},
+          new SelectListItem { Text = "12", Value = "12"},
+          new SelectListItem { Text = "13", Value = "13"},
+          new SelectListItem { Text = "14", Value = "14"},
+            new SelectListItem { Text = "15", Value = "15"},
+          }, new { @class = "form-control" }
+                        )
+                                    @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Upload Photo-->
+
+
+                            <!--Form Field Upload Photo-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SalaryAmount, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.SalaryAmount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SalaryAmount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Upload Photo-->
+
+
+                            <!--Form Field Upload Photo-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ScaleYear, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ScaleYear, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ScaleYear, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!--EOF Upload Photo-->
+
+                        </div>
+                        <!--EOF Row Employee Code-->
+
+                        <hr class="m-t-3 m-b-3">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">   
+                                    <input type="submit" value="Create" class="btn btn-success" />
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

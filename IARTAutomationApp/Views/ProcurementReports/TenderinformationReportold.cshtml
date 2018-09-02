@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "TenderinformationReport";
+    
+}
+
+<h2>Tender information Report</h2>
+
+@using (Html.BeginForm("TenderinformationReport", "ProcurementReports", FormMethod.Post))
+{
+    <input type="submit" value="Export Report" class="btn-btn-success" />
+}
+

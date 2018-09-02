@@ -1,0 +1,331 @@
+﻿@model IEnumerable<IARTAutomationApp.Models.EmployeeGI>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<!-- Main content -->
+<div class="content">
+
+    <ol class="breadcrumb bc-colored bg-success m-b-3">
+        <li class="breadcrumb-item"><a href="#">Admin-HR</a></li>
+        <li class="breadcrumb-item active">General Information</li>
+    </ol>
+    <h5 class="alert-danger"> @TempData["msg"] </h5>
+    <h5 class="text-success">  @TempData["successmsg"] </h5>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-black m-b-1">General Information</h4>
+                            <p></p>
+                          
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="width:150px; text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th>@Html.DisplayName("Employee Name")</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.Sex)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.StateOfOrigin)</th>
+                                                                                             
+                                                @*<th style="width:150px; text-align: center;">Action</th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody id="employeeGItbl">
+                                            @foreach (var item in Model) {
+                                            <tr>
+                                                <td style="text-align: center;">@Html.DisplayFor(modelItem => item.EmployeeCode)</td>
+                                                <td>
+                                                @IARTAutomationApp.Models.ImageHelper.Image("Uploads/" + item.EmployeePhoto, item.EmployeePhoto, "", "img-circle img-w-30 img-h-30")
+                                                <a href="#">@Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.First_Name) @Html.DisplayFor(modelItem => item.Middle_Name) @Html.DisplayFor(modelItem => item.Surname)</a></td>
+                                                <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Sex)</td>
+                                                <td style="text-align: center;">@Html.DisplayFor(modelItem => item.DateOfBirth)</td>
+                                                <td style="text-align: center;">@Html.DisplayFor(modelItem => item.StateOfOrigin)</td>
+                                               
+                                                @*<td style="text-align: center;">
+                                                    @Html.DisplayFor(modelItem => item.Leave_fromDate) <br />
+                                                    @Html.DisplayFor(modelItem => item.Leave_ToDate)
+                                                </td>*@                                                
+                                              
+                                            </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot class="bg-success" style="color: #fff;">
+                                            <tr>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                                <th>@Html.DisplayName("Employee Name")</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.Sex)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                                                <th style="text-align: center;">@Html.DisplayNameFor(model => model.StateOfOrigin)</th>
+                                               
+                                                
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main row -->
+</div>
+<!-- /.content --> 
+@*
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12 m-b-3">
+
+                        <h4>Employees General Details</h4>
+                        <p>Input any Value to Search:</p>
+                        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        <br>
+                        <div class="table-responsive table-bordered">
+                            <table class="table table-bordered table-striped" id="mytable">
+
+
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Rank)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.File_No)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Grade_Level)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Step)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Cadre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.First_Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Middle_Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Surname)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Sex)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DateOfBirth)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Marital_Status)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Maiden_Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Mother_Maidenname)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Spouse_Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.StateOfOrigin)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LGA)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Home_Town)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Religion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ContactHomeAddress)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstAppointmentDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstAppointmentLocation)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ConfirmationDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DateOfRetirement)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LastPromotionDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Department)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Unit)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Section)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Ministry_Agency)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Leave_fromDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Leave_ToDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EmployeePhoto)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EmployeeCode)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                <tbody id="employeeGItbl">
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Rank)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.File_No)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Grade_Level)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Step)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cadre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.First_Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Middle_Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Surname)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Sex)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PlaceOfBirth)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Marital_Status)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Maiden_Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Mother_Maidenname)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Spouse_Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.StateOfOrigin)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LGA)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Home_Town)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Religion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ContactHomeAddress)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FirstAppointmentDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FirstAppointmentLocation)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ConfirmationDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfRetirement)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LastPromotionDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Department)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Unit)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Section)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ministry_Agency)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Leave_fromDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Leave_ToDate)
+                                            </td>
+                                            <td>
+                                                @IARTAutomationApp.Models.ImageHelper.Image("../" + item.EmployeePhoto, item.EmployeePhoto, "270", "img-responsive")
+
+
+                                                @Html.DisplayFor(modelItem => item.EmployeePhoto)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                            </td>
+
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }) |
+
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode })
+                                            </td>
+
+                                        </tr>
+
+                                    }
+                                </tbody>
+                                </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

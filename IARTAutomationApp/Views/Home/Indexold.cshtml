@@ -1,0 +1,269 @@
+﻿@using IARTAutomationApp.Models
+
+ 
+
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@section my_script_variables {
+
+    <script type="text/javascript">
+    var variable1 = '@Html.Raw(ViewBag.emponleave)',
+            variable2 = '@Html.Raw(ViewBag.empdueforleave)',
+            variable3 = '@Html.Raw(ViewBag.emponduty)',
+    variable4 = '@Html.Raw(ViewBag.DataPoints)',
+        variable5 = '@Html.Raw(ViewBag.DataTender)',
+        varrialeJrStaff = '@Html.Raw(ViewBag.JrStaff)',
+    varrialeSrStaff = '@Html.Raw(ViewBag.SrStaff)',
+    varrialeNyscStaff = '@Html.Raw(ViewBag.NyscStaff)',
+        varrialeOthersStaff = '@Html.Raw(ViewBag.OthersStaff)';
+
+
+
+    </script>
+
+}
+   <!-- /.row -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="tile-progress tile-pink">
+                <div class="tile-header">
+                    <h5>NUMBER OF STAFF</h5>
+                    <h3>@ViewBag.NoOfStaff</h3>
+                </div>
+                <div class="tile-footer">
+                    <h5> <span class="pct-counter">total employees</span></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-red">
+                <div class="tile-header">
+                    <h5>AWAITING STAFF FOR RETIREMENT</h5>
+                    <h3>@ViewBag.NeartoRetirement</h3>
+                </div>
+                <div class="tile-footer">
+                    <h5> <span class="pct-counter">in next 6 month</span></h5>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-cyan">
+                <div class="tile-header">
+                    <h5>EMPLOYEE DUE FOR LEAVE</h5>
+                    <h3>@ViewBag.empdueforleave</h3>
+                </div>
+               
+                <div class="tile-footer">
+                    <h5> <span class="pct-counter">on leave from tomarrow</span></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-cyan">
+                <div class="tile-header">
+                    <h5>EMPLOYEE ON LEAVE</h5>
+                    <h3>@ViewBag.emponleave</h3>
+                </div>
+
+                <div class="tile-footer">
+                    <h5> <span class="pct-counter">employees on leave </span></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-aqua">
+                <div class="tile-header">
+                    <h5>VARIOUS ACCOUNTING REPORTS</h5>
+                    <h3></h3>
+                </div>
+                <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                <div class="tile-footer">
+                    <h5> <span class="pct-counter">75.5</span>% increase </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-aqua">
+                <div class="tile-header">
+                    <h5>CONTRACTORS ASSESSMENT</h5>
+                    <h3></h3>
+                </div>
+                <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                <div class="tile-footer">
+                    <h4> <span class="pct-counter">75.5</span>% increase </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="tile-progress tile-aqua">
+                <div class="tile-header">
+                    <h5>STORES INVENTORY</h5>
+                    <h3></h3>
+                </div>
+                <div class="tile-progressbar"> <span data-fill="75.5%" style="width: 75.5%;"></span> </div>
+                <div class="tile-footer">
+                    <h4> <span class="pct-counter">75.5</span>% increase </h4>
+                </div>
+            </div>
+        </div>
+      
+
+
+        <div class="clearfix"></div>
+       
+    </div>
+
+    <!-- /.row -->
+
+</div>
+
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+ 
+
+<!-- Main content -->
+ 
+
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Leave Graphical View</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="donut"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Staff Graphical View</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="donut1"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-box">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <h5>Employee Retirement</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <ul class="list-inline">
+                                <li class="text-blue"> <i class="fa fa-circle"></i> Employee Retirement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="earning"></div>
+            </div>
+        </div>
+       
+
+
+        <div class="col-lg-6" id="divbarchart">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="area-example"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+ 
+         
+    </div>
+ 
+<!-- /.content -->
+
+
+
+
+@*<script type="text/javascript">
+    $(document).ready(function() {
+        $.get('@Url.Action("GetData","HRAdminReports")', function (result) {
+
+            new Morris.Area({
+                // ID of the element in which to draw the chart.
+                element: 'area-example',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: result,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'label',
+                ykeys: ['value'],
+                labels: ['Success requests'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
+
+        
+
+
+
+
+    });
+});
+</script>*@
+
+
+<script>
+
+
+    $(document).ready(function () {
+            debugger;
+        
+ 
+
+            $.ajax({
+
+                url: '/HRAdminReports/GetData',
+                success: function (result) {
+                    debugger;
+
+                    new Morris.Area({
+                        // ID of the element in which to draw the chart.
+                        element: 'earning',
+                        // Chart data records -- each entry in this array corresponds to a point on
+                        // the chart.
+                        data: result,
+                        // The name of the data record attribute that contains x-values.
+                        xkey: 'label',
+                        ykeys: ['value'],
+                        labels: ['Success requests'],
+                        pointSize: 2,
+                        hideHover: 'auto',
+                        resize: true
+                    });
+
+           
+        },
+        error: function (error) {
+            alert(errorss);
+        }
+
+    });
+
+});</script>
