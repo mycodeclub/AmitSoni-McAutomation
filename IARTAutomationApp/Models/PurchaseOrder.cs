@@ -27,5 +27,6 @@ namespace IARTAutomationApp.Models
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

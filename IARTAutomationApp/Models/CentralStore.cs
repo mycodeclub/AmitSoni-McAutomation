@@ -20,5 +20,6 @@ namespace IARTAutomationApp.Models
         public string Price { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

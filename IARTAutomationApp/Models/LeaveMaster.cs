@@ -21,5 +21,6 @@ namespace IARTAutomationApp.Models
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<bool> IsCreated { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

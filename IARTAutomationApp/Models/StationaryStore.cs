@@ -20,5 +20,6 @@ namespace IARTAutomationApp.Models
         public decimal Price { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

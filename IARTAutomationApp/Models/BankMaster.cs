@@ -19,5 +19,6 @@ namespace IARTAutomationApp.Models
         public Nullable<int> BankTypeId { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace IARTAutomationApp.Models
             this.NyscMonthlyClearances = new HashSet<NyscMonthlyClearance>();
             this.NyscMonthlyClearances1 = new HashSet<NyscMonthlyClearance>();
         }
-    
+
         public int EmployeeGIId { get; set; }
         public int EmployeeCode { get; set; }
         public string Rank { get; set; }
@@ -60,6 +60,7 @@ namespace IARTAutomationApp.Models
         public string Home_Town { get; set; }
         public string Religion { get; set; }
         public string ContactHomeAddress { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public Nullable<System.DateTime> FirstAppointmentDate { get; set; }
         public string FirstAppointmentLocation { get; set; }
         public Nullable<System.DateTime> ConfirmationDate { get; set; }

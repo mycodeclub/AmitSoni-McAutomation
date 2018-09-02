@@ -20,5 +20,6 @@ namespace IARTAutomationApp.Models
         public decimal ConsumedLeaves { get; set; }
         public decimal BalanceLeaves { get; set; }
         public string FiscalYear { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

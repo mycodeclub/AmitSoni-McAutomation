@@ -19,5 +19,6 @@ namespace IARTAutomationApp.Models
         public System.DateTime LoginTime { get; set; }
         public System.DateTime LogoutTime { get; set; }
         public string Status { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

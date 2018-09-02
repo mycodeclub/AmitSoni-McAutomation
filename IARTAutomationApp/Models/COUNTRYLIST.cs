@@ -21,5 +21,6 @@ namespace IARTAutomationApp.Models
         public string ISO3 { get; set; }
         public Nullable<int> NUMCODE { get; set; }
         public int PHONECODE { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }

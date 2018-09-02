@@ -30,6 +30,7 @@ namespace IARTAutomationApp.Models
         public string PaymentFromDate { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     
         public virtual EmployeeGI EmployeeGI { get; set; }
         public virtual EmployeeGI EmployeeGI1 { get; set; }

@@ -17,6 +17,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsCreated" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="AnnualLeave">
           <Key>
@@ -48,6 +49,7 @@
           <Property Name="IApprove" Type="nvarchar" MaxLength="10" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="BankMaster">
           <Key>
@@ -58,6 +60,7 @@
           <Property Name="BankTypeId" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="BankTypeMaster">
           <Key>
@@ -67,6 +70,7 @@
           <Property Name="BankTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CadreMaster">
           <Key>
@@ -76,6 +80,7 @@
           <Property Name="CadreName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CasualLeave">
           <Key>
@@ -96,6 +101,7 @@
           <Property Name="ApprovedDays" Type="nvarchar" MaxLength="10" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CentralStores">
           <Key>
@@ -107,6 +113,7 @@
           <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="ChemicalStores">
           <Key>
@@ -118,6 +125,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -127,6 +135,7 @@
           <Property Name="City" Type="nvarchar" MaxLength="50" />
           <Property Name="StateId" Type="int" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="ClassMaster">
           <Key>
@@ -139,6 +148,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="COUNTRYLIST">
           <Key>
@@ -151,6 +161,7 @@
           <Property Name="ISO3" Type="char" MaxLength="3" />
           <Property Name="NUMCODE" Type="int" />
           <Property Name="PHONECODE" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CrivVoucher">
           <Key>
@@ -185,6 +196,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="CustomerMaster">
           <Key>
@@ -210,6 +222,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsCreated" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmpAIAssociation">
           <Key>
@@ -222,6 +235,7 @@
           <Property Name="AttendedDate" Type="datetime" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmpAIConference">
           <Key>
@@ -234,6 +248,7 @@
           <Property Name="AttendedDate" Type="datetime" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeAI">
           <Key>
@@ -258,6 +273,7 @@
           <Property Name="ConferenceAttendedDate" Type="date" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeAttendance">
           <Key>
@@ -269,6 +285,7 @@
           <Property Name="LoginTime" Type="datetime" Nullable="false" />
           <Property Name="LogoutTime" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeGI">
           <Key>
@@ -312,6 +329,7 @@
           <Property Name="Unit_Services" Type="nvarchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeMI">
           <Key>
@@ -325,6 +343,7 @@
           <Property Name="BloodGenotype" Type="nvarchar" MaxLength="10" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeePI">
           <Key>
@@ -348,6 +367,7 @@
           <Property Name="EmployeeStatus" Type="nvarchar" MaxLength="30" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeSI">
           <Key>
@@ -367,6 +387,7 @@
           <Property Name="SalaryScale" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="FertilizerStores">
           <Key>
@@ -378,6 +399,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="18" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="GraduateAttachmentForm">
           <Key>
@@ -399,6 +421,7 @@
           <Property Name="PaymentFromDate" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="ItemMaster">
           <Key>
@@ -419,6 +442,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="LeaveApplication">
           <Key>
@@ -435,6 +459,7 @@
           <Property Name="IsApproved" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="LeaveLedger">
           <Key>
@@ -446,6 +471,7 @@
           <Property Name="ConsumedLeaves" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="BalanceLeaves" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="FiscalYear" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="LeaveMaster">
           <Key>
@@ -458,6 +484,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="IsCreated" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="LeaveRoasterJuniorStaff">
           <Key>
@@ -474,6 +501,7 @@
           <Property Name="Contiss" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="LeaveTypeMaster">
           <Key>
@@ -484,6 +512,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -512,6 +541,7 @@
           <Property Name="BankAccountNo" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="NyscMonthlyClearance">
           <Key>
@@ -528,6 +558,7 @@
           <Property Name="AllowanceMonth" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="PFAMaster">
           <Key>
@@ -537,6 +568,7 @@
           <Property Name="PFAName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="PrequalificationScoring">
           <Key>
@@ -562,6 +594,7 @@
           <Property Name="FinalScore" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="PrintForms">
           <Key>
@@ -574,6 +607,7 @@
           <Property Name="AppDate" Type="date" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="ProgrammeMaster">
           <Key>
@@ -583,6 +617,7 @@
           <Property Name="ProgrammeName" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
@@ -601,6 +636,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="QualificationMaster">
           <Key>
@@ -611,6 +647,7 @@
           <Property Name="Duration" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="RankMaster">
           <Key>
@@ -621,6 +658,7 @@
           <Property Name="RankDescription" Type="nvarchar" MaxLength="150" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
@@ -632,6 +670,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="SalaryPayment">
           <Key>
@@ -651,6 +690,7 @@
           <Property Name="IsSalarySlipPrint" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="SalaryStructureMaster">
           <Key>
@@ -665,6 +705,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="ScaleYear" Type="varchar" MaxLength="10" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="SectionMaster">
           <Key>
@@ -674,6 +715,7 @@
           <Property Name="SectionName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StateMaster">
           <Key>
@@ -682,6 +724,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StationaryStores">
           <Key>
@@ -693,6 +736,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StationMaster">
           <Key>
@@ -730,6 +774,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StoreCreditVoucher">
           <Key>
@@ -756,6 +801,7 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="int" Type="int" />
         </EntityType>
         <EntityType Name="StoreGateVoucher">
           <Key>
@@ -789,6 +835,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StoreMaster">
           <Key>
@@ -803,6 +850,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StoreReciptVoucher">
           <Key>
@@ -833,6 +881,7 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StoreTallyVoucher">
           <Key>
@@ -854,6 +903,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="SuperAdmin">
           <Key>
@@ -880,6 +930,7 @@
           <Property Name="YearofProject" Type="nvarchar" MaxLength="10" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="TenderOpening">
           <Key>
@@ -897,6 +948,7 @@
           <Property Name="YearofProject" Type="nvarchar" MaxLength="10" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="UnitResearchMaster">
           <Key>
@@ -906,6 +958,7 @@
           <Property Name="UnitResearchName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="UnitServicesMaster">
           <Key>
@@ -915,6 +968,7 @@
           <Property Name="UnitServicesName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="UomMaster">
           <Key>
@@ -928,6 +982,7 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="UOMStatus" Type="int" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -946,6 +1001,7 @@
           <Property Name="LastLoginDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="VendorMaster">
           <Key>
@@ -970,6 +1026,7 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
           <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
@@ -1291,6 +1348,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsCreated" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="AnnualLeave">
           <Key>
@@ -1324,6 +1382,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__AnnualLea__Emplo__4F7CD00D" FromRole="AnnualLeave" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__AnnualLea__Emplo__5812160E" FromRole="AnnualLeave" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="BankMaster">
           <Key>
@@ -1334,6 +1393,7 @@
           <Property Name="BankTypeId" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="BankTypeMaster">
           <Key>
@@ -1343,6 +1403,7 @@
           <Property Name="BankTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="CadreMaster">
           <Key>
@@ -1352,6 +1413,7 @@
           <Property Name="CadreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="CasualLeave">
           <Key>
@@ -1374,6 +1436,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__CasualLea__Emplo__5070F446" FromRole="CasualLeave" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__CasualLea__Emplo__59063A47" FromRole="CasualLeave" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="CentralStore">
           <Key>
@@ -1385,6 +1448,7 @@
           <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="ChemicalStore">
           <Key>
@@ -1396,6 +1460,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -1405,6 +1470,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="DeductionsMaster">
           <Key>
@@ -1418,6 +1484,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsCreated" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmpAIAssociation">
           <Key>
@@ -1430,6 +1497,7 @@
           <Property Name="AttendedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmpAIConference">
           <Key>
@@ -1442,6 +1510,7 @@
           <Property Name="AttendedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeAI">
           <Key>
@@ -1467,6 +1536,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeA__Emplo__07020F21" FromRole="EmployeeAI" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeAttendance">
           <Key>
@@ -1478,6 +1548,7 @@
           <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LogoutTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeGI">
           <Key>
@@ -1536,6 +1607,7 @@
           <NavigationProperty Name="NyscFinalClearances1" Relationship="Self.FK__NyscFinal__Emplo__5629CD9C" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
           <NavigationProperty Name="NyscMonthlyClearances" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <NavigationProperty Name="NyscMonthlyClearances1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeMI">
           <Key>
@@ -1550,6 +1622,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeM__Emplo__08EA5793" FromRole="EmployeeMI" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeePI">
           <Key>
@@ -1574,6 +1647,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeP__Emplo__07F6335A" FromRole="EmployeePI" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeSI">
           <Key>
@@ -1594,6 +1668,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeS__Emplo__09DE7BCC" FromRole="EmployeeSI" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="FertilizerStore">
           <Key>
@@ -1605,6 +1680,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="18" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="GraduateAttachmentForm">
           <Key>
@@ -1628,6 +1704,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__GraduateA__Emplo__4CA06362" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__GraduateA__Emplo__5441852A" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="LeaveApplication">
           <Key>
@@ -1644,6 +1721,7 @@
           <Property Name="IsApproved" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="LeaveLedger">
           <Key>
@@ -1655,6 +1733,7 @@
           <Property Name="ConsumedLeaves" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="BalanceLeaves" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="FiscalYear" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="LeaveMaster">
           <Key>
@@ -1667,6 +1746,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="IsCreated" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="LeaveRoasterJuniorStaff">
           <Key>
@@ -1684,6 +1764,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__LeaveRoas__Emplo__5535A963" FromRole="LeaveRoasterJuniorStaff" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="LeaveTypeMaster">
           <Key>
@@ -1694,6 +1775,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -1724,6 +1806,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__NyscFinal__Emplo__4D94879B" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__NyscFinal__Emplo__5629CD9C" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="NyscMonthlyClearance">
           <Key>
@@ -1742,6 +1825,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PFAMaster">
           <Key>
@@ -1751,6 +1835,7 @@
           <Property Name="PFAName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PrequalificationScoring">
           <Key>
@@ -1776,6 +1861,7 @@
           <Property Name="FinalScore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PrintForm">
           <Key>
@@ -1788,6 +1874,7 @@
           <Property Name="AppDate" Type="DateTime" Precision="0" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="ProgrammeMaster">
           <Key>
@@ -1797,6 +1884,7 @@
           <Property Name="ProgrammeName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="QualificationMaster">
           <Key>
@@ -1807,6 +1895,7 @@
           <Property Name="Duration" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="RankMaster">
           <Key>
@@ -1817,6 +1906,7 @@
           <Property Name="RankDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
@@ -1828,6 +1918,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="SalaryPayment">
           <Key>
@@ -1847,6 +1938,7 @@
           <Property Name="IsSalarySlipPrint" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="SalaryStructureMaster">
           <Key>
@@ -1861,6 +1953,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="ScaleYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="SectionMaster">
           <Key>
@@ -1870,6 +1963,7 @@
           <Property Name="SectionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StateMaster">
           <Key>
@@ -1878,6 +1972,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StationaryStore">
           <Key>
@@ -1889,6 +1984,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StationMaster">
           <Key>
@@ -1913,6 +2009,7 @@
           <Property Name="YearofProject" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="TenderOpening">
           <Key>
@@ -1930,6 +2027,7 @@
           <Property Name="YearofProject" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="UnitResearchMaster">
           <Key>
@@ -1939,6 +2037,7 @@
           <Property Name="UnitResearchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="UnitServicesMaster">
           <Key>
@@ -1948,6 +2047,7 @@
           <Property Name="UnitServicesName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -1966,6 +2066,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
           <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
@@ -2284,6 +2385,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StatusMaster">
           <Key>
@@ -2313,6 +2415,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="VendorMaster">
           <Key>
@@ -2337,6 +2440,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="COUNTRYLIST">
           <Key>
@@ -2349,6 +2453,7 @@
           <Property Name="ISO3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="NUMCODE" Type="Int32" />
           <Property Name="PHONECODE" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="ClassMaster">
           <Key>
@@ -2361,6 +2466,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="UomMaster">
           <Key>
@@ -2374,6 +2480,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="UOMStatus" Type="Int32" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
@@ -2392,6 +2499,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StockMaster">
           <Key>
@@ -2411,6 +2519,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="CrivVoucher">
           <Key>
@@ -2445,6 +2554,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StoreReciptVoucher">
           <Key>
@@ -2475,6 +2585,7 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StoreCreditVoucher">
           <Key>
@@ -2501,6 +2612,7 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="int" Type="Int32" />
         </EntityType>
         <EntityType Name="StoreGateVoucher">
           <Key>
@@ -2534,6 +2646,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="StoreTallyVoucher">
           <Key>
@@ -2555,6 +2668,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="SuperAdmin">
           <Key>
@@ -2588,6 +2702,7 @@
           <EntitySetMapping Name="AllowanceMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.AllowanceMaster">
               <MappingFragment StoreEntitySet="AllowanceMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="AllowanceId" ColumnName="AllowanceId" />
                 <ScalarProperty Name="AllowanceType" ColumnName="AllowanceType" />
                 <ScalarProperty Name="ValueMethod" ColumnName="ValueMethod" />
@@ -2602,6 +2717,7 @@
           <EntitySetMapping Name="AnnualLeaves">
             <EntityTypeMapping TypeName="IARTDBNEWModel.AnnualLeave">
               <MappingFragment StoreEntitySet="AnnualLeave">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -2634,6 +2750,7 @@
           <EntitySetMapping Name="BankMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.BankMaster">
               <MappingFragment StoreEntitySet="BankMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="BankId" ColumnName="BankId" />
                 <ScalarProperty Name="BankName" ColumnName="BankName" />
                 <ScalarProperty Name="BankTypeId" ColumnName="BankTypeId" />
@@ -2645,6 +2762,7 @@
           <EntitySetMapping Name="BankTypeMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.BankTypeMaster">
               <MappingFragment StoreEntitySet="BankTypeMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="BankTypeId" ColumnName="BankTypeId" />
                 <ScalarProperty Name="BankTypeName" ColumnName="BankTypeName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -2655,6 +2773,7 @@
           <EntitySetMapping Name="CadreMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CadreMaster">
               <MappingFragment StoreEntitySet="CadreMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="CadreId" ColumnName="CadreId" />
                 <ScalarProperty Name="CadreName" ColumnName="CadreName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -2665,6 +2784,7 @@
           <EntitySetMapping Name="CasualLeaves">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CasualLeave">
               <MappingFragment StoreEntitySet="CasualLeave">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2686,6 +2806,7 @@
           <EntitySetMapping Name="CentralStores">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CentralStore">
               <MappingFragment StoreEntitySet="CentralStores">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
@@ -2698,6 +2819,7 @@
           <EntitySetMapping Name="ChemicalStores">
             <EntityTypeMapping TypeName="IARTDBNEWModel.ChemicalStore">
               <MappingFragment StoreEntitySet="ChemicalStores">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
@@ -2710,6 +2832,7 @@
           <EntitySetMapping Name="CityMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CityMaster">
               <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
@@ -2720,6 +2843,7 @@
           <EntitySetMapping Name="DeductionsMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.DeductionsMaster">
               <MappingFragment StoreEntitySet="DeductionsMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="DeductionId" ColumnName="DeductionId" />
                 <ScalarProperty Name="DeductionType" ColumnName="DeductionType" />
                 <ScalarProperty Name="ValueMethod" ColumnName="ValueMethod" />
@@ -2734,6 +2858,7 @@
           <EntitySetMapping Name="EmpAIAssociations">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmpAIAssociation">
               <MappingFragment StoreEntitySet="EmpAIAssociation">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="AssociationsId" ColumnName="AssociationsId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -2747,6 +2872,7 @@
           <EntitySetMapping Name="EmpAIConferences">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmpAIConference">
               <MappingFragment StoreEntitySet="EmpAIConference">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="ConferenceId" ColumnName="ConferenceId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2760,6 +2886,7 @@
           <EntitySetMapping Name="EmployeeAIs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeAI">
               <MappingFragment StoreEntitySet="EmployeeAI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeAIId" ColumnName="EmployeeAIId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="InstitutionAttended1" ColumnName="InstitutionAttended1" />
@@ -2785,6 +2912,7 @@
           <EntitySetMapping Name="EmployeeAttendances">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeAttendance">
               <MappingFragment StoreEntitySet="EmployeeAttendance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="OnDate" ColumnName="OnDate" />
                 <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
@@ -2796,6 +2924,7 @@
           <EntitySetMapping Name="EmployeeGIs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeGI">
               <MappingFragment StoreEntitySet="EmployeeGI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Rank" ColumnName="Rank" />
@@ -2840,6 +2969,7 @@
           <EntitySetMapping Name="EmployeeMIs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeMI">
               <MappingFragment StoreEntitySet="EmployeeMI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeMIId" ColumnName="EmployeeMIId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="NhisNo" ColumnName="NhisNo" />
@@ -2854,6 +2984,7 @@
           <EntitySetMapping Name="EmployeePIs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeePI">
               <MappingFragment StoreEntitySet="EmployeePI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeePIId" ColumnName="EmployeePIId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="EmpEmailId" ColumnName="EmpEmailId" />
@@ -2878,6 +3009,7 @@
           <EntitySetMapping Name="EmployeeSIs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeSI">
               <MappingFragment StoreEntitySet="EmployeeSI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeSIId" ColumnName="EmployeeSIId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="CurrentPosting" ColumnName="CurrentPosting" />
@@ -2898,6 +3030,7 @@
           <EntitySetMapping Name="FertilizerStores">
             <EntityTypeMapping TypeName="IARTDBNEWModel.FertilizerStore">
               <MappingFragment StoreEntitySet="FertilizerStores">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
@@ -2910,6 +3043,7 @@
           <EntitySetMapping Name="GraduateAttachmentForms">
             <EntityTypeMapping TypeName="IARTDBNEWModel.GraduateAttachmentForm">
               <MappingFragment StoreEntitySet="GraduateAttachmentForm">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="OurRef" ColumnName="OurRef" />
@@ -2932,6 +3066,7 @@
           <EntitySetMapping Name="LeaveApplications">
             <EntityTypeMapping TypeName="IARTDBNEWModel.LeaveApplication">
               <MappingFragment StoreEntitySet="LeaveApplication">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="LeaveAccId" ColumnName="LeaveAccId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
@@ -2949,6 +3084,7 @@
           <EntitySetMapping Name="LeaveLedgers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.LeaveLedger">
               <MappingFragment StoreEntitySet="LeaveLedger">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="LeaveLogId" ColumnName="LeaveLogId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="LeaveType" ColumnName="LeaveType" />
@@ -2961,6 +3097,7 @@
           <EntitySetMapping Name="LeaveMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.LeaveMaster">
               <MappingFragment StoreEntitySet="LeaveMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
                 <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
                 <ScalarProperty Name="LeaveCount" ColumnName="LeaveCount" />
@@ -2974,6 +3111,7 @@
           <EntitySetMapping Name="LeaveRoasterJuniorStaffs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.LeaveRoasterJuniorStaff">
               <MappingFragment StoreEntitySet="LeaveRoasterJuniorStaff">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="SNo" ColumnName="SNo" />
@@ -2991,6 +3129,7 @@
           <EntitySetMapping Name="LeaveTypeMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.LeaveTypeMaster">
               <MappingFragment StoreEntitySet="LeaveTypeMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
                 <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -3015,6 +3154,7 @@
           <EntitySetMapping Name="NyscFinalClearances">
             <EntityTypeMapping TypeName="IARTDBNEWModel.NyscFinalClearance">
               <MappingFragment StoreEntitySet="NyscFinalClearance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="OurRef" ColumnName="OurRef" />
@@ -3032,6 +3172,7 @@
           <EntitySetMapping Name="NyscMonthlyClearances">
             <EntityTypeMapping TypeName="IARTDBNEWModel.NyscMonthlyClearance">
               <MappingFragment StoreEntitySet="NyscMonthlyClearance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="OurRef" ColumnName="OurRef" />
@@ -3049,6 +3190,7 @@
           <EntitySetMapping Name="PFAMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.PFAMaster">
               <MappingFragment StoreEntitySet="PFAMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="PFAId" ColumnName="PFAId" />
                 <ScalarProperty Name="PFAName" ColumnName="PFAName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3059,6 +3201,7 @@
           <EntitySetMapping Name="PrequalificationScorings">
             <EntityTypeMapping TypeName="IARTDBNEWModel.PrequalificationScoring">
               <MappingFragment StoreEntitySet="PrequalificationScoring">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="ProjectTitle" ColumnName="ProjectTitle" />
@@ -3085,6 +3228,7 @@
           <EntitySetMapping Name="PrintForms">
             <EntityTypeMapping TypeName="IARTDBNEWModel.PrintForm">
               <MappingFragment StoreEntitySet="PrintForms">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="FormType" ColumnName="FormType" />
                 <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
@@ -3098,6 +3242,7 @@
           <EntitySetMapping Name="ProgrammeMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.ProgrammeMaster">
               <MappingFragment StoreEntitySet="ProgrammeMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
                 <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3108,6 +3253,7 @@
           <EntitySetMapping Name="QualificationMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.QualificationMaster">
               <MappingFragment StoreEntitySet="QualificationMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="QualificationId" ColumnName="QualificationId" />
                 <ScalarProperty Name="QualificationName" ColumnName="QualificationName" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -3119,6 +3265,7 @@
           <EntitySetMapping Name="RankMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.RankMaster">
               <MappingFragment StoreEntitySet="RankMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="RankId" ColumnName="RankId" />
                 <ScalarProperty Name="RankName" ColumnName="RankName" />
                 <ScalarProperty Name="RankDescription" ColumnName="RankDescription" />
@@ -3130,6 +3277,7 @@
           <EntitySetMapping Name="RoleMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.RoleMaster">
               <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -3142,6 +3290,7 @@
           <EntitySetMapping Name="SalaryPayments">
             <EntityTypeMapping TypeName="IARTDBNEWModel.SalaryPayment">
               <MappingFragment StoreEntitySet="SalaryPayment">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalaryPaymId" ColumnName="SalaryPaymId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="SalaryAmount" ColumnName="SalaryAmount" />
@@ -3162,6 +3311,7 @@
           <EntitySetMapping Name="SalaryStructureMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.SalaryStructureMaster">
               <MappingFragment StoreEntitySet="SalaryStructureMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalaryScaleId" ColumnName="SalaryScaleId" />
                 <ScalarProperty Name="SalaryScale" ColumnName="SalaryScale" />
                 <ScalarProperty Name="GradeLevel" ColumnName="GradeLevel" />
@@ -3177,6 +3327,7 @@
           <EntitySetMapping Name="SectionMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.SectionMaster">
               <MappingFragment StoreEntitySet="SectionMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="SectionName" ColumnName="SectionName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3187,6 +3338,7 @@
           <EntitySetMapping Name="StateMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StateMaster">
               <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -3196,6 +3348,7 @@
           <EntitySetMapping Name="StationaryStores">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StationaryStore">
               <MappingFragment StoreEntitySet="StationaryStores">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
@@ -3218,6 +3371,7 @@
           <EntitySetMapping Name="TendererInformations">
             <EntityTypeMapping TypeName="IARTDBNEWModel.TendererInformation">
               <MappingFragment StoreEntitySet="TendererInformation">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="LotNo" ColumnName="LotNo" />
@@ -3234,6 +3388,7 @@
           <EntitySetMapping Name="TenderOpenings">
             <EntityTypeMapping TypeName="IARTDBNEWModel.TenderOpening">
               <MappingFragment StoreEntitySet="TenderOpening">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RepresentativeName" ColumnName="RepresentativeName" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
@@ -3252,6 +3407,7 @@
           <EntitySetMapping Name="UnitResearchMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.UnitResearchMaster">
               <MappingFragment StoreEntitySet="UnitResearchMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="UnitResearchId" ColumnName="UnitResearchId" />
                 <ScalarProperty Name="UnitResearchName" ColumnName="UnitResearchName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3262,6 +3418,7 @@
           <EntitySetMapping Name="UnitServicesMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.UnitServicesMaster">
               <MappingFragment StoreEntitySet="UnitServicesMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="UnitServicesId" ColumnName="UnitServicesId" />
                 <ScalarProperty Name="UnitServicesName" ColumnName="UnitServicesName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3272,6 +3429,7 @@
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
@@ -3291,6 +3449,7 @@
           <EntitySetMapping Name="StoreMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreMaster">
               <MappingFragment StoreEntitySet="StoreMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3316,6 +3475,7 @@
           <EntitySetMapping Name="ItemMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.ItemMaster">
               <MappingFragment StoreEntitySet="ItemMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3337,6 +3497,7 @@
           <EntitySetMapping Name="VendorMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.VendorMaster">
               <MappingFragment StoreEntitySet="VendorMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3362,6 +3523,7 @@
           <EntitySetMapping Name="COUNTRYLISTs">
             <EntityTypeMapping TypeName="IARTDBNEWModel.COUNTRYLIST">
               <MappingFragment StoreEntitySet="COUNTRYLIST">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="PHONECODE" ColumnName="PHONECODE" />
                 <ScalarProperty Name="NUMCODE" ColumnName="NUMCODE" />
                 <ScalarProperty Name="ISO3" ColumnName="ISO3" />
@@ -3375,6 +3537,7 @@
           <EntitySetMapping Name="ClassMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.ClassMaster">
               <MappingFragment StoreEntitySet="ClassMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3388,6 +3551,7 @@
           <EntitySetMapping Name="UomMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.UomMaster">
               <MappingFragment StoreEntitySet="UomMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UOMStatus" ColumnName="UOMStatus" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -3402,6 +3566,7 @@
           <EntitySetMapping Name="PurchaseOrders">
             <EntityTypeMapping TypeName="IARTDBNEWModel.PurchaseOrder">
               <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3421,6 +3586,7 @@
           <EntitySetMapping Name="StockMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StockMaster">
               <MappingFragment StoreEntitySet="StockMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3441,6 +3607,7 @@
           <EntitySetMapping Name="CrivVouchers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CrivVoucher">
               <MappingFragment StoreEntitySet="CrivVoucher">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3476,6 +3643,7 @@
           <EntitySetMapping Name="StoreReciptVouchers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreReciptVoucher">
               <MappingFragment StoreEntitySet="StoreReciptVoucher">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -3507,6 +3675,7 @@
           <EntitySetMapping Name="StoreCreditVouchers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreCreditVoucher">
               <MappingFragment StoreEntitySet="StoreCreditVoucher">
+                <ScalarProperty Name="int" ColumnName="int" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -3534,6 +3703,7 @@
           <EntitySetMapping Name="StoreGateVouchers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreGateVoucher">
               <MappingFragment StoreEntitySet="StoreGateVoucher">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3568,6 +3738,7 @@
           <EntitySetMapping Name="StoreTallyVouchers">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreTallyVoucher">
               <MappingFragment StoreEntitySet="StoreTallyVoucher">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

@@ -18,5 +18,6 @@ namespace IARTAutomationApp.Models
         public string PFAName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<int> CustomerId { get; set; }
     }
 }
