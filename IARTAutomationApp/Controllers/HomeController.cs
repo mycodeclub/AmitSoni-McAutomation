@@ -45,7 +45,7 @@ namespace IARTAutomationApp.Controllers
                 ViewBag.NeartoRetirement = employees.Where(emp => emp.DateOfRetirement <= extDateRange).Count();
                 //----------- in progress .....
 
-                var TenderAssesment = (from a in db.PrequalificationScorings select a).ToList().Count();
+                var TenderAssesment = (from a in db.PrequalificationScorings where a.CustomerId == user.CustomerId select a).ToList().Count();
                 ViewBag.TenderAssesment = TenderAssesment;
                 DateTime today = DateTime.Now.Date;
                 var emponleave = (from a in db.LeaveApplications where a.LeaveFromDate >= today && a.LeaveToDate >= today && a.IsApproved == true select a).Count();

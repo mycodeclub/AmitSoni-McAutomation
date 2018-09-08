@@ -36,6 +36,7 @@ namespace IARTAutomationApp.Models
             this.NyscFinalClearances1 = new HashSet<NyscFinalClearance>();
             this.NyscMonthlyClearances = new HashSet<NyscMonthlyClearance>();
             this.NyscMonthlyClearances1 = new HashSet<NyscMonthlyClearance>();
+            this.CustomerMasters = new HashSet<CustomerMaster>();
         }
 
         public int EmployeeGIId { get; set; }
@@ -60,7 +61,6 @@ namespace IARTAutomationApp.Models
         public string Home_Town { get; set; }
         public string Religion { get; set; }
         public string ContactHomeAddress { get; set; }
-        public Nullable<int> CustomerId { get; set; }
         public Nullable<System.DateTime> FirstAppointmentDate { get; set; }
         public string FirstAppointmentLocation { get; set; }
         public Nullable<System.DateTime> ConfirmationDate { get; set; }
@@ -77,12 +77,12 @@ namespace IARTAutomationApp.Models
         public string Unit_Services { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-
         [NotMapped]
         [DisplayName("Upload Passport Photo Of Employee")]
         [DataType(DataType.Upload)]
         //[RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
         public HttpPostedFileBase EmployeePhotoImage { get; set; }
+        public Nullable<int> CustomerId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnnualLeave> AnnualLeaves { get; set; }
@@ -114,5 +114,7 @@ namespace IARTAutomationApp.Models
         public virtual ICollection<NyscMonthlyClearance> NyscMonthlyClearances { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NyscMonthlyClearance> NyscMonthlyClearances1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerMaster> CustomerMasters { get; set; }
     }
 }

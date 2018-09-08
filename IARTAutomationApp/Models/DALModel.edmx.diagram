@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b7ca1253aee44d57b30512f3e0d1c4a8" Name="Diagram1">
+      <Diagram DiagramId="b7ca1253aee44d57b30512f3e0d1c4a8" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="IARTDBNEWModel.AllowanceMaster" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.AnnualLeave" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.BankMaster" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
@@ -82,6 +82,7 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreTallyVoucher" Width="1.5" PointX="9.375" PointY="21.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.SuperAdmin" Width="1.5" PointX="22.375" PointY="0.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.CustomerMaster" Width="1.5" PointX="22.375" PointY="3.75" />
+        <AssociationConnector Association="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

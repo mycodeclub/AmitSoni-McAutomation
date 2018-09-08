@@ -20,7 +20,8 @@ namespace IARTAutomationApp.Controllers
         // GET: CustomerMasters
         public ActionResult Index()
         {
-            return View(db.CustomerMasters.ToList());
+            var tenetnt = db.CustomerMasters.ToList();
+            return View(tenetnt);
         }
 
         // GET: CustomerMasters/Details/5

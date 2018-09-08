@@ -209,6 +209,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="250" />
           <Property Name="Email" Type="nvarchar" MaxLength="250" />
           <Property Name="Website" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmployeeCode" Type="int" />
         </EntityType>
         <EntityType Name="DeductionsMaster">
           <Key>
@@ -275,10 +276,14 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CustomerId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EmployeeAttendance">
           <Key>
             <PropertyRef Name="EmployeeCode" />
             <PropertyRef Name="OnDate" />
+            
+            
           </Key>
           <Property Name="EmployeeCode" Type="int" Nullable="false" />
           <Property Name="OnDate" Type="date" Nullable="false" />
@@ -1208,6 +1213,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerMaster_CustomerMaster">
+          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
+          <End Role="CustomerMaster" Type="Self.CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="IARTDBNEWModelStoreContainer">
           <EntitySet Name="AllowanceMaster" EntityType="Self.AllowanceMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualLeave" EntityType="Self.AnnualLeave" Schema="dbo" store:Type="Tables" />
@@ -1226,7 +1243,6 @@
           <EntitySet Name="EmpAIAssociation" EntityType="Self.EmpAIAssociation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAIConference" EntityType="Self.EmpAIConference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeAI" EntityType="Self.EmployeeAI" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmployeeAttendance" EntityType="Self.EmployeeAttendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeGI" EntityType="Self.EmployeeGI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeMI" EntityType="Self.EmployeeMI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeePI" EntityType="Self.EmployeePI" Schema="dbo" store:Type="Tables" />
@@ -1271,6 +1287,16 @@
           <EntitySet Name="UomMaster" EntityType="Self.UomMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorMaster" EntityType="Self.VendorMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeAttendance" EntityType="Self.EmployeeAttendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeAttendance].[EmployeeCode] AS [EmployeeCode], 
+    [EmployeeAttendance].[OnDate] AS [OnDate], 
+    [EmployeeAttendance].[LoginTime] AS [LoginTime], 
+    [EmployeeAttendance].[LogoutTime] AS [LogoutTime], 
+    [EmployeeAttendance].[Status] AS [Status], 
+    [EmployeeAttendance].[CustomerId] AS [CustomerId]
+    FROM [dbo].[EmployeeAttendance] AS [EmployeeAttendance]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__AnnualLea__Emplo__4F7CD00D" Association="Self.FK__AnnualLea__Emplo__4F7CD00D">
             <End Role="EmployeeGI" EntitySet="EmployeeGI" />
             <End Role="AnnualLeave" EntitySet="AnnualLeave" />
@@ -1330,6 +1356,10 @@
           <AssociationSet Name="FK__NyscMonth__Emplo__571DF1D5" Association="Self.FK__NyscMonth__Emplo__571DF1D5">
             <End Role="EmployeeGI" EntitySet="EmployeeGI" />
             <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerMaster_CustomerMaster" Association="Self.FK_CustomerMaster_CustomerMaster">
+            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
+            <End Role="CustomerMaster" EntitySet="CustomerMaster" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1608,6 +1638,7 @@
           <NavigationProperty Name="NyscMonthlyClearances" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <NavigationProperty Name="NyscMonthlyClearances1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="CustomerMasters" Relationship="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" FromRole="EmployeeGI" ToRole="CustomerMaster" />
         </EntityType>
         <EntityType Name="EmployeeMI">
           <Key>
@@ -2371,6 +2402,10 @@
           <EntitySet Name="StoreTallyVouchers" EntityType="IARTDBNEWModel.StoreTallyVoucher" />
           <EntitySet Name="SuperAdmins" EntityType="IARTDBNEWModel.SuperAdmin" />
           <EntitySet Name="CustomerMasters" EntityType="IARTDBNEWModel.CustomerMaster" />
+          <AssociationSet Name="FK_CustomerMaster_CustomerMaster" Association="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StoreMaster">
           <Key>
@@ -2692,7 +2727,21 @@
           <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCode" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
         </EntityType>
+        <Association Name="FK_CustomerMaster_CustomerMaster">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3773,6 +3822,7 @@
           <EntitySetMapping Name="CustomerMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CustomerMaster">
               <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />

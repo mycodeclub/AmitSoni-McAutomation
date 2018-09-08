@@ -66,7 +66,6 @@ namespace IARTAutomationApp.Controllers
                         catch { }
                         FormsAuthentication.SetAuthCookie(userName, true);
                         return RedirectToAction("index", "Home");
-
                     }
                 }
                 else
