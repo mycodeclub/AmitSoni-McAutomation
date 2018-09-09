@@ -86,6 +86,5 @@ namespace IARTAutomationApp.Models
         public virtual DbSet<StoreGateVoucher> StoreGateVouchers { get; set; }
         public virtual DbSet<StoreTallyVoucher> StoreTallyVouchers { get; set; }
         public virtual DbSet<SuperAdmin> SuperAdmins { get; set; }
-        public virtual DbSet<CustomerMaster> CustomerMasters { get; set; }
     }
 }

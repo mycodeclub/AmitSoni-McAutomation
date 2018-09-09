@@ -1607,7 +1607,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <NavigationProperty Name="NyscMonthlyClearances" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <NavigationProperty Name="NyscMonthlyClearances1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <Property Name="CustomerId" Type="Int32" />
-          <NavigationProperty Name="CustomerMasters" Relationship="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" FromRole="EmployeeGI" ToRole="CustomerMaster" />
         </EntityType>
         <EntityType Name="EmployeeMI">
           <Key>
@@ -2370,11 +2369,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="StoreGateVouchers" EntityType="IARTDBNEWModel.StoreGateVoucher" />
           <EntitySet Name="StoreTallyVouchers" EntityType="IARTDBNEWModel.StoreTallyVoucher" />
           <EntitySet Name="SuperAdmins" EntityType="IARTDBNEWModel.SuperAdmin" />
-          <EntitySet Name="CustomerMasters" EntityType="IARTDBNEWModel.CustomerMaster" />
-          <AssociationSet Name="FK_CustomerMaster_CustomerMaster" Association="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StoreMaster">
           <Key>
@@ -2685,32 +2679,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="CustomerMaster">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeCode" Type="Int32" />
-          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
-        </EntityType>
-        <Association Name="FK_CustomerMaster_CustomerMaster">
-          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
-          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="CustomerMaster">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

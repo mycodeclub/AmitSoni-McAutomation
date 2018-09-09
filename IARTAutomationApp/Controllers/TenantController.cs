@@ -26,19 +26,19 @@ namespace IARTAutomationApp.Controllers
         }
 
         // GET: Tenant/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-            if (customerMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerMaster);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+        //    if (customerMaster == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customerMaster);
+        //}
 
         // GET: CustomerMasters/Create
         public ActionResult Create()
@@ -78,61 +78,61 @@ namespace IARTAutomationApp.Controllers
         }
 
         // GET: CustomerMasters/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-            if (customerMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerMaster);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+        //    if (customerMaster == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customerMaster);
+        //}
 
-        // POST: CustomerMasters/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] CustomerMaster customerMaster)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(customerMaster).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customerMaster);
-        }
+        //// POST: CustomerMasters/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] EmployeeGI customerMaster)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(customerMaster).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(customerMaster);
+        //}
 
-        // GET: CustomerMasters/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-            if (customerMaster == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerMaster);
-        }
+        //// GET: CustomerMasters/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+        //    if (customerMaster == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customerMaster);
+        //}
 
-        // POST: CustomerMasters/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-            db.CustomerMasters.Remove(customerMaster);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: CustomerMasters/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+        //    db.CustomerMasters.Remove(customerMaster);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -150,7 +150,7 @@ namespace IARTAutomationApp.Controllers
             var citys = (from cm in db.CityMasters where cm.StateId == db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id select cm).ToList();
             return PartialView(citys);
         }
-        private bool AddNewTenant(CustomerMaster tenent)
+        private bool AddNewTenant(EmployeeGI tenent)
         {
 
             return true;

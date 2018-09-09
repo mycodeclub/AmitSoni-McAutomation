@@ -81,8 +81,6 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreGateVoucher" Width="1.5" PointX="7.375" PointY="21.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreTallyVoucher" Width="1.5" PointX="9.375" PointY="21.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.SuperAdmin" Width="1.5" PointX="22.375" PointY="0.75" />
-        <EntityTypeShape EntityType="IARTDBNEWModel.CustomerMaster" Width="1.5" PointX="22.375" PointY="3.75" />
-        <AssociationConnector Association="IARTDBNEWModel.FK_CustomerMaster_CustomerMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

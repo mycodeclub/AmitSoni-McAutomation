@@ -332,9 +332,6 @@
     <Compile Include="Models\CrivVoucher.cs">
       <DependentUpon>DALModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerMaster.cs">
-      <DependentUpon>DALModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DALModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

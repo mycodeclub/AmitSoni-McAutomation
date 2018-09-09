@@ -36,7 +36,6 @@ namespace IARTAutomationApp.Models
             this.NyscFinalClearances1 = new HashSet<NyscFinalClearance>();
             this.NyscMonthlyClearances = new HashSet<NyscMonthlyClearance>();
             this.NyscMonthlyClearances1 = new HashSet<NyscMonthlyClearance>();
-            this.CustomerMasters = new HashSet<CustomerMaster>();
         }
 
         public int EmployeeGIId { get; set; }
@@ -82,8 +81,6 @@ namespace IARTAutomationApp.Models
         [DataType(DataType.Upload)]
         //[RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
         public HttpPostedFileBase EmployeePhotoImage { get; set; }
-        public Nullable<int> CustomerId { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnnualLeave> AnnualLeaves { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -114,7 +111,5 @@ namespace IARTAutomationApp.Models
         public virtual ICollection<NyscMonthlyClearance> NyscMonthlyClearances { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NyscMonthlyClearance> NyscMonthlyClearances1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerMaster> CustomerMasters { get; set; }
     }
 }
