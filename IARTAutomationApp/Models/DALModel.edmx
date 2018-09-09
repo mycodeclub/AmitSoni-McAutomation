@@ -1232,30 +1232,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EmployeeGI_EmployeeGI">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeeGI1" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeGI1">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeGI_EmployeeGI1">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeeGI1" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeGI1">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="IARTDBNEWModelStoreContainer">
           <EntitySet Name="AllowanceMaster" EntityType="Self.AllowanceMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualLeave" EntityType="Self.AnnualLeave" Schema="dbo" store:Type="Tables" />
@@ -1396,14 +1372,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <End Role="CustomerMaster" EntitySet="CustomerMaster" />
             <End Role="EmployeeGI" EntitySet="EmployeeGI" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeGI_EmployeeGI" Association="Self.FK_EmployeeGI_EmployeeGI">
-            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
-            <End Role="EmployeeGI1" EntitySet="EmployeeGI" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeGI_EmployeeGI1" Association="Self.FK_EmployeeGI_EmployeeGI1">
-            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
-            <End Role="EmployeeGI1" EntitySet="EmployeeGI" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1456,7 +1424,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" />
           <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" FromRole="AnnualLeave" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" FromRole="AnnualLeave" ToRole="EmployeeGI" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="BankMaster">
           <Key>
             <PropertyRef Name="BankId" />
@@ -1510,7 +1478,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" />
           <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" FromRole="CasualLeave" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47" FromRole="CasualLeave" ToRole="EmployeeGI" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="CentralStore">
           <Key>
             <PropertyRef Name="Id" />
@@ -1719,7 +1687,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" />
           <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="LeaveApplication">
           <Key>
             <PropertyRef Name="LeaveAccId" />
@@ -1821,7 +1789,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" />
           <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="NyscMonthlyClearance">
           <Key>
             <PropertyRef Name="Id" />
@@ -1840,7 +1808,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" />
           <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
           <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="PFAMaster">
           <Key>
             <PropertyRef Name="PFAId" />
@@ -2213,14 +2181,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <AssociationSet Name="FK__NyscMonth__Emplo__571DF1D5" Association="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5">
             <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
             <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeGI_EmployeeGI" Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeeGI1" EntitySet="EmployeeGIs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeGI_EmployeeGI1" Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeeGI1" EntitySet="EmployeeGIs" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="StoreMaster">
@@ -2613,10 +2573,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <NavigationProperty Name="NyscFinalClearances1" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
           <NavigationProperty Name="NyscMonthlyClearances" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <NavigationProperty Name="NyscMonthlyClearances1" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" FromRole="EmployeeGI" ToRole="EmployeeGI1" />
-          <NavigationProperty Name="EmployeeGI2" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" FromRole="EmployeeGI1" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI11" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" FromRole="EmployeeGI" ToRole="EmployeeGI1" />
-          <NavigationProperty Name="EmployeeGI3" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" FromRole="EmployeeGI1" ToRole="EmployeeGI" />
         </EntityType>
         <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
           <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
@@ -2806,30 +2762,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
               <PropertyRef Name="EmployeeCode" />
             </Principal>
             <Dependent Role="NyscMonthlyClearance">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeGI_EmployeeGI">
-          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
-          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeGI1">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeGI_EmployeeGI1">
-          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
-          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeGI1">
               <PropertyRef Name="EmployeeCode" />
             </Dependent>
           </ReferentialConstraint>

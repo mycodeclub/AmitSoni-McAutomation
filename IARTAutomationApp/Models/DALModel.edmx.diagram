@@ -67,7 +67,7 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.SuperAdmin" Width="1.5" PointX="22.375" PointY="0.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.CustomerMaster" Width="2.125" PointX="20" PointY="27.75" />
         <AssociationConnector Association="IARTDBNEWModel.FK_CustomerMaster_UserMaster" />
-        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeGI" Width="1.5" PointX="22.875" PointY="22.5" />
+        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeGI" Width="1.5" PointX="22.875" PointY="23" />
         <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" />
         <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" />
         <AssociationConnector Association="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" />
@@ -84,8 +84,6 @@
         <AssociationConnector Association="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" />
         <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" />
         <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" />
-        <AssociationConnector Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" />
-        <AssociationConnector Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
