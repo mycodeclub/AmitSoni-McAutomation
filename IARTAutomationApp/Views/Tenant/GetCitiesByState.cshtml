@@ -1,0 +1,7 @@
+﻿@model List<IARTAutomationApp.Models.CityMaster>
+<select class="form-control valid" data-val="true" data-val-required="Please Select a LGA " id="LGA" name="LGA">
+    @foreach (var lga in Model)
+    {
+        <option value="@lga.City">@lga.City</option>
+    }
+</select>

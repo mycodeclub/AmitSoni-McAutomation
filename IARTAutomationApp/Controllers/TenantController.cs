@@ -12,19 +12,20 @@ namespace IARTAutomationApp.Controllers
 {
     [Authorize(Roles = "SuperAdmin")]
 
-    public class CustomerMastersController : Controller
+    public class TenantController : Controller
     {
 
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
 
-        // GET: CustomerMasters
+        // GET: Tenant
         public ActionResult Index()
         {
-            var tenetnt = db.CustomerMasters.ToList();
+            var tenEmpIds = (from u in db.UserMasters where u.RoleId == 1 select u.EmployeeCode).ToList();
+            var tenetnt = db.EmployeeGIs.Where(emp => tenEmpIds.Contains(emp.EmployeeCode)).ToList();
             return View(tenetnt);
         }
 
-        // GET: CustomerMasters/Details/5
+        // GET: Tenant/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,6 +43,8 @@ namespace IARTAutomationApp.Controllers
         // GET: CustomerMasters/Create
         public ActionResult Create()
         {
+            ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
+            ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
             return View();
         }
 
@@ -50,16 +53,28 @@ namespace IARTAutomationApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] CustomerMaster customerMaster)
+        public ActionResult Create([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank")] EmployeeGI tenent)
         {
             if (ModelState.IsValid)
             {
-                db.CustomerMasters.Add(customerMaster);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                tenent.DateOfRetirement = DateTime.Now.AddYears(20);
+                tenent.EmployeeCode = (db.EmployeeGIs.Max(e => e.EmployeeGIId) + 1);
+                var loginUser = new UserMaster()
+                {
+                    EmployeeCode = tenent.EmployeeCode,
+                    EmailId = "Update Your Mail Id",
+                    UserName = tenent.EmployeeCode.ToString(),
+                    Password = "Pwd" + tenent.EmployeeCode.ToString(),
+                    RoleId = 1,
+                    RoleName = "Admin",
+                };
+                db.UserMasters.Add(loginUser);
+                db.EmployeeGIs.Add(tenent);
+                var x = db.SaveChanges();
             }
-
-            return View(customerMaster);
+            ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
+            ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
+            return View(tenent);
         }
 
         // GET: CustomerMasters/Edit/5
@@ -126,6 +141,19 @@ namespace IARTAutomationApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult GetCitiesByState(string stateName)
+        {
+            var x = db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id;
+            var citys = (from cm in db.CityMasters where cm.StateId == db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id select cm).ToList();
+            return PartialView(citys);
+        }
+        private bool AddNewTenant(CustomerMaster tenent)
+        {
+
+            return true;
         }
     }
 }

@@ -13,7 +13,7 @@ using IARTAutomationApp.ViewModels;
 using PagedList;
 namespace IARTAutomationApp.Controllers
 {
-   
+
     public class EmployeeGIsController : Controller
     {
         IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -70,7 +70,7 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-     
+
         public ActionResult UserIndex()
         {
 
@@ -147,19 +147,13 @@ namespace IARTAutomationApp.Controllers
             {
                 EmployeeGI empgi = new EmployeeGI();
                 empgi.DateOfBirth = DateTime.Now.Date.AddYears(-18).Date;
-
                 ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode");
-
                 List<SelectListItem> File_Nos = new List<SelectListItem>();
-                //File_Nos.Add(new SelectListItem { Text = "Select", Value = "0" });
                 for (int i = 1; i <= 111; i++)
                 {
                     File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
                 }
-
                 ViewBag.File_Nos = new SelectList(File_Nos, "Value", "Text");
-
-                ///////
                 ViewBag.Ranks = new SelectList(db.RankMasters, "RankName", "RankName");
                 ViewBag.LGAs = new SelectList(db.CityMasters, "City", "City");
                 ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
@@ -169,69 +163,6 @@ namespace IARTAutomationApp.Controllers
                 ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters, "UnitServicesName", "UnitServicesName");
                 ViewBag.StationOfDeployments = new SelectList(db.StationMasters, "StationName", "StationName");
                 ViewBag.Sections = new SelectList(db.SectionMasters, "SectionName", "SectionName");
-
-
-
-                //List<RankMaster> Ranklist = new List<RankMaster>();
-                //Ranklist = (from a in db.RankMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.Rank = new SelectList(Ranklist, "RankId", "RankName");
-
-                ///////
-
-                //List<CityMaster> CityList = new List<CityMaster>();
-                //CityList = (from a in db.CityMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.LGA = new SelectList(CityList, "Id", "City");
-                ///////
-                //List<StateMaster> StateList = new List<StateMaster>();
-                //StateList = (from State in db.StateMasters select State).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.StateOfOrigin = new SelectList(StateList, "Id", "State");
-                ///////
-
-                //List<CadreMaster> cadrelist = new List<CadreMaster>();
-                //cadrelist = (from a in db.CadreMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.cadre = new SelectList(cadrelist, "CadreId", "CadreName");
-
-                ///////
-
-                //List<ProgrammeMaster> Programlist = new List<ProgrammeMaster>();
-                //Programlist = (from a in db.ProgrammeMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.Programmes = new SelectList(Programlist, "ProgrammeId", "ProgrammeName");
-
-                ///////
-
-                //List<UnitResearchMaster> UnitResearchlist = new List<UnitResearchMaster>();
-                //UnitResearchlist = (from a in db.UnitResearchMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.Unit_Research = new SelectList(UnitResearchlist, "UnitResearchId", "UnitResearchName");
-
-                ///////
-
-                //List<UnitServicesMaster> UnitServicelist = new List<UnitServicesMaster>();
-                //UnitServicelist = (from a in db.UnitServicesMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.Unit_Services = new SelectList(UnitServicelist, "UnitServicesId", "UnitServicesName");
-
-                ///////
-
-                //List<StationMaster> Stationlist = new List<StationMaster>();
-                //Stationlist = (from a in db.StationMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.StationOfDeployment = new SelectList(Stationlist, "StationId", "StationName");
-
-
-                ///////
-
-                //List<SectionMaster> Sectionlist = new List<SectionMaster>();
-                //Sectionlist = (from a in db.SectionMasters select a).ToList();
-                ////ViewBag.CountryList = CountryList;
-                //ViewBag.Section = new SelectList(Sectionlist, "SectionId", "SectionName");
-
-
                 return View(empgi);
             }
             catch (Exception ext)
@@ -240,7 +171,7 @@ namespace IARTAutomationApp.Controllers
             }
         }
 
-      
+
 
         // POST: EmployeeGIs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -351,54 +282,25 @@ namespace IARTAutomationApp.Controllers
         public ActionResult Edit(int? id)
         {
             EmployeeGI employeeGI = db.EmployeeGIs.Find(id);
-
             List<SelectListItem> File_Nos = new List<SelectListItem>();
             File_Nos.Add(new SelectListItem { Text = "Select", Value = "0" });
-            for (int i = 1; i <= 200; i++)
-            {
-                //if (i != 9)
-                File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
-                //else
-                //    File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = true });
-            }
-
+            for (int i = 1; i <= 200; i++) File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             List<SelectListItem> Titles = new List<SelectListItem>();
-            //Titles.Add(new SelectListItem { Text = "Select", Value = "0" });
             Titles.Add(new SelectListItem { Text = "Mr", Value = "0" });
             Titles.Add(new SelectListItem { Text = "Mrs", Value = "1" });
             Titles.Add(new SelectListItem { Text = "Miss", Value = "2" });
             Titles.Add(new SelectListItem { Text = "Dr", Value = "3" });
             Titles.Add(new SelectListItem { Text = "Prof", Value = "4" });
             ViewBag.Titles = new SelectList(Titles, "Text", "Text");
-
             List<SelectListItem> Steps = new List<SelectListItem>();
             Steps.Add(new SelectListItem { Text = "Select", Value = "0" });
-            for (int i = 1; i <= 15; i++)
-            {
-                Steps.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
-            }
+            for (int i = 1; i <= 15; i++) Steps.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             List<SelectListItem> Grades = new List<SelectListItem>();
             Grades.Add(new SelectListItem { Text = "Select", Value = "0" });
-            for (int i = 1; i <= 15; i++)
-            {
-                Grades.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
-            }
-            //ViewBag.File_No = new SelectList(File_Nos, "Value", "Text", employeeGI.File_No);
-
+            for (int i = 1; i <= 15; i++) Grades.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             ViewBag.Steps = new SelectList(Steps, "Value", "Text");
             ViewBag.Grade_Levels = new SelectList(Grades, "Value", "Text");
-            //ViewBag.Rank = new SelectList(db.RankMasters, "RankName", "RankName", employeeGI.Rank);
-            //ViewBag.LGA = new SelectList(db.CityMasters, "City", "City", employeeGI.LGA);
-            //ViewBag.StateOfOrigin = new SelectList(db.StateMasters, "State", "State", employeeGI.StateOfOrigin);
-            //ViewBag.cadre = new SelectList(db.CadreMasters, "CadreName", "CadreName");
-            //ViewBag.Programmes = new SelectList(db.ProgrammeMasters, "ProgrammeName", "ProgrammeName");
-            //ViewBag.Unit_Research = new SelectList(db.UnitResearchMasters, "UnitResearchName", "UnitResearchName");
-            //ViewBag.Unit_Services = new SelectList(db.UnitServicesMasters, "UnitServicesName", "UnitServicesName");
-            //ViewBag.StationOfDeployment = new SelectList(db.StationMasters, "StationName", "StationName");
-            //ViewBag.Section = new SelectList(db.SectionMasters, "SectionName", "SectionName");
             ViewBag.File_Noa = new SelectList(File_Nos, "Value", "Text");
-
-            ///////
             ViewBag.Ranks = new SelectList(db.RankMasters, "RankName", "RankName");
             ViewBag.LGAs = new SelectList(db.CityMasters, "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
@@ -408,18 +310,9 @@ namespace IARTAutomationApp.Controllers
             ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters, "UnitServicesName", "UnitServicesName");
             ViewBag.StationOfDeployments = new SelectList(db.StationMasters, "StationName", "StationName");
             ViewBag.Sections = new SelectList(db.SectionMasters, "SectionName", "SectionName");
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            if (employeeGI == null)
-            {
-                return HttpNotFound();
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (employeeGI == null) return HttpNotFound();
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeGI.EmployeeCode);
-
             return View(employeeGI);
         }
 
@@ -463,14 +356,14 @@ namespace IARTAutomationApp.Controllers
                 db.SaveChanges();
                 TempData["successmsg"] = "Record is Successfully Updated";
                 TempData["msg"] = "";
-               int empcode = Convert.ToInt32(@Session["employeecode"]);
+                int empcode = Convert.ToInt32(@Session["employeecode"]);
 
                 DateTime dttoday = DateTime.Now.Date;
                 var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
                 var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
                 //if (RoleName == "Admin" || RoleName == "Super Admin")
                 //{
-                   return RedirectToAction("Index");
+                return RedirectToAction("Index");
                 //}
                 //else if (RoleName == "Mid Level Admin")
                 //{
@@ -488,7 +381,7 @@ namespace IARTAutomationApp.Controllers
             catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-              
+
                 TempData["msg"] = "Record is not Updated,Try again";
 
             }
@@ -834,10 +727,6 @@ namespace IARTAutomationApp.Controllers
         {
             try
             {
-
-
-                //if (ModelState.IsValid)
-                //{
                 if (employeeGI.EmployeePhotoImage != null && employeeGI.EmployeePhotoImage.ContentLength > 0)
                 {
                     var uploadDir = "~/uploads";
@@ -849,12 +738,9 @@ namespace IARTAutomationApp.Controllers
                 }
                 if (employeeGI.Marital_Status != "Married")
                     employeeGI.Spouse_Name = "N/A";
-
-
                 employeeGI.Leave_fromDate = DateTime.Now.Date;
                 employeeGI.Leave_ToDate = DateTime.Now.Date;
                 TimeSpan daydiff = Convert.ToDateTime(employeeGI.Leave_ToDate) - Convert.ToDateTime(employeeGI.Leave_fromDate);
-
                 employeeGI.LeaveDays = daydiff.Days;
                 employeeGI.CreatedDate = DateTime.Now.Date;
                 employeeGI.IsDeleted = false;
@@ -863,28 +749,16 @@ namespace IARTAutomationApp.Controllers
                 TempData["successmsg"] = "Record is Successfully Updated";
                 TempData["msg"] = "";
                 int empcode = Convert.ToInt32(@Session["employeecode"]);
-
-                
-                    return RedirectToAction("MidLevelIndex");
-               
+                return RedirectToAction("MidLevelIndex");
             }
             catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-
                 TempData["msg"] = "Record is not Updated,Try again";
-
             }
-            //}
-            //ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeGI.EmployeeCode);
             return RedirectToAction("Index");
         }
-
-
-         
         #endregion
-
-
         ///
         // GET: EmployeeGIs/Delete/5
         public ActionResult Delete(int? id)
@@ -920,7 +794,7 @@ namespace IARTAutomationApp.Controllers
             catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-               TempData["msg"] = "Please delete Other Information records of this Employee, before General Information deletion";
+                TempData["msg"] = "Please delete Other Information records of this Employee, before General Information deletion";
             }
             return RedirectToAction("Index");
         }
@@ -941,7 +815,7 @@ namespace IARTAutomationApp.Controllers
             empall.employeeleaveledger = (from a in db.LeaveLedgers where a.EmployeeCode == id select a).ToList();
 
             return View(empall);
- 
+
         }
 
 
@@ -1111,8 +985,6 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult Monthly()
         {
-
-
             return View();
         }
 

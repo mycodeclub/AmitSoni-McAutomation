@@ -2,9 +2,9 @@
 
 @{
     ViewBag.Title = "Edit";
- 
 
-   
+
+
 }
 
 @using (Html.BeginForm("Edit", "EmployeeGIs", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -70,19 +70,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Title, htmlAttributes: new { })
-                                   
+
                                     @Html.DropDownListFor(model => model.Title, ViewBag.Titles as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
 
                                     @*@Html.DropDownList("Title", new List<SelectListItem>
-                               {
-                                        new SelectListItem { Text = "Select Title", Value = "Select Title", Selected=true},
-                                        new SelectListItem { Text = "Mr", Value = "Mr"},
-                                        new SelectListItem { Text = "Mrs", Value = "Mrs"},
-                                        new SelectListItem { Text = "Miss", Value = "Miss"},
-                                        new SelectListItem { Text = "Dr", Value = "Dr"},
-                                        new SelectListItem { Text = "Prof", Value = "Prof"},
-                                    },
-                                    new { @class = "form-control" })*@
+                                        {
+                                                 new SelectListItem { Text = "Select Title", Value = "Select Title", Selected=true},
+                                                 new SelectListItem { Text = "Mr", Value = "Mr"},
+                                                 new SelectListItem { Text = "Mrs", Value = "Mrs"},
+                                                 new SelectListItem { Text = "Miss", Value = "Miss"},
+                                                 new SelectListItem { Text = "Dr", Value = "Dr"},
+                                                 new SelectListItem { Text = "Prof", Value = "Prof"},
+                                             },
+                                             new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -156,29 +156,29 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Grade_Level, htmlAttributes: new { })
-                                    @Html.DropDownListFor(model => model.Grade_Level, ViewBag.Grade_Levels as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control"  })
+                                    @Html.DropDownListFor(model => model.Grade_Level, ViewBag.Grade_Levels as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
 
 
 
 
                                     @*@Html.DropDownList("Grade_Level", new List<SelectListItem> {
-                                        new SelectListItem { Text = "Select Grade Level", Value = "Select Grade Level1", Selected=true},
-                                        new SelectListItem { Text = "01", Value = "01"},
-                                        new SelectListItem { Text = "02", Value = "02"},
-                                        new SelectListItem { Text = "03", Value = "03"},
-                                        new SelectListItem { Text = "04", Value = "04"},
-                                        new SelectListItem { Text = "05", Value = "05"},
-                                        new SelectListItem { Text = "06", Value = "06"},
-                                        new SelectListItem { Text = "07", Value = "07"},
-                                        new SelectListItem { Text = "08", Value = "08"},
-                                        new SelectListItem { Text = "09", Value = "09"},
-                                        new SelectListItem { Text = "10", Value = "10"},
-                                        new SelectListItem { Text = "11", Value = "11"},
-                                        new SelectListItem { Text = "12", Value = "12"},
-                                        new SelectListItem { Text = "13", Value = "13"},
-                                        new SelectListItem { Text = "14", Value = "14"},
-                                        new SelectListItem { Text = "15", Value = "15"},
-                                    }, new { @class = "form-control" })*@
+                                            new SelectListItem { Text = "Select Grade Level", Value = "Select Grade Level1", Selected=true},
+                                            new SelectListItem { Text = "01", Value = "01"},
+                                            new SelectListItem { Text = "02", Value = "02"},
+                                            new SelectListItem { Text = "03", Value = "03"},
+                                            new SelectListItem { Text = "04", Value = "04"},
+                                            new SelectListItem { Text = "05", Value = "05"},
+                                            new SelectListItem { Text = "06", Value = "06"},
+                                            new SelectListItem { Text = "07", Value = "07"},
+                                            new SelectListItem { Text = "08", Value = "08"},
+                                            new SelectListItem { Text = "09", Value = "09"},
+                                            new SelectListItem { Text = "10", Value = "10"},
+                                            new SelectListItem { Text = "11", Value = "11"},
+                                            new SelectListItem { Text = "12", Value = "12"},
+                                            new SelectListItem { Text = "13", Value = "13"},
+                                            new SelectListItem { Text = "14", Value = "14"},
+                                            new SelectListItem { Text = "15", Value = "15"},
+                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.Grade_Level, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -187,26 +187,26 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Step, htmlAttributes: new { })
-                                    @Html.DropDownListFor(model => model.Step, ViewBag.Steps as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control"  })
+                                    @Html.DropDownListFor(model => model.Step, ViewBag.Steps as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
                                     @*@Html.DropDownList("Step", new List<SelectListItem> {
-                                        new SelectListItem { Text = "Select Step", Value = "Select Step", Selected=true},
-                                        new SelectListItem { Text = "01", Value = "01"},
-                                        new SelectListItem { Text = "02", Value = "02"},
-                                        new SelectListItem { Text = "03", Value = "03"},
-                                        new SelectListItem { Text = "04", Value = "04"},
-                                        new SelectListItem { Text = "05", Value = "05"},
-                                        new SelectListItem { Text = "06", Value = "06"},
-                                        new SelectListItem { Text = "07", Value = "07"},
-                                        new SelectListItem { Text = "08", Value = "08"},
-                                        new SelectListItem { Text = "09", Value = "09"},
-                                        new SelectListItem { Text = "10", Value = "10"},
-                                        new SelectListItem { Text = "11", Value = "11"},
-                                        new SelectListItem { Text = "12", Value = "12"},
-                                        new SelectListItem { Text = "13", Value = "13"},
+                                            new SelectListItem { Text = "Select Step", Value = "Select Step", Selected=true},
+                                            new SelectListItem { Text = "01", Value = "01"},
+                                            new SelectListItem { Text = "02", Value = "02"},
+                                            new SelectListItem { Text = "03", Value = "03"},
+                                            new SelectListItem { Text = "04", Value = "04"},
+                                            new SelectListItem { Text = "05", Value = "05"},
+                                            new SelectListItem { Text = "06", Value = "06"},
+                                            new SelectListItem { Text = "07", Value = "07"},
+                                            new SelectListItem { Text = "08", Value = "08"},
+                                            new SelectListItem { Text = "09", Value = "09"},
+                                            new SelectListItem { Text = "10", Value = "10"},
+                                            new SelectListItem { Text = "11", Value = "11"},
+                                            new SelectListItem { Text = "12", Value = "12"},
+                                            new SelectListItem { Text = "13", Value = "13"},
 
-                                        new SelectListItem { Text = "14", Value = "14"},
-                                        new SelectListItem { Text = "15", Value = "15"},
-                                    }, new { @class = "form-control" })*@
+                                            new SelectListItem { Text = "14", Value = "14"},
+                                            new SelectListItem { Text = "15", Value = "15"},
+                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Cadre, htmlAttributes: new { })
-                                    @Html.DropDownListFor(model => model.Cadre, ViewBag.Cadres as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control"  })
+                                    @Html.DropDownListFor(model => model.Cadre, ViewBag.Cadres as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
                                     @*@Html.DropDownList("Cadre", new List<SelectListItem> {
                                             new SelectListItem { Text = "Select Cadre", Value = "Select Cadre" , Selected=true},
                                             new SelectListItem { Text = "Academic Staff", Value = "Academic"},
@@ -248,7 +248,7 @@
                                     }, new { @class = "form-control" })
 
 
-                                   
+
                                     @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -301,69 +301,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.StateOfOrigin, htmlAttributes: new { })
-                                   @* @Html.DropDownList("StateOfOrigin", (SelectList)ViewBag.StateOfOrigin, htmlAttributes: new { @class = "form-control" ,@id= "StateOfOrigin" })*@
                                     @Html.DropDownListFor(model => model.StateOfOrigin, ViewBag.StateOfOrigins as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", @id = "StateOfOrigin" })
-
-
-
-
-                                    @*@Html.DropDownList("StateOfOrigin", new List<SelectListItem> {
-                                            new SelectListItem  { Text = "Select State Of Origin", Value = "Select State Of Origin", Selected=true},
-                                            new SelectListItem  { Text = "Abia", Value = "Abia"},
-                                            new SelectListItem  { Text = "Adamawa", Value = "Adamawa"},
-                                            new SelectListItem  { Text = "Akwa Ibom", Value = "Akwa Ibom"},
-                                            new SelectListItem  { Text = "Anambra", Value = "Anambra"},
-                                            new SelectListItem  { Text = "Bauchi", Value = "Bauchi"},
-                                            new SelectListItem  { Text = "Bayelsa", Value = "Bayelsa"},
-                                            new SelectListItem  { Text = "Benue", Value = "Benue"},
-                                            new SelectListItem  { Text = "Borno", Value = "Borno"},
-                                            new SelectListItem  { Text = "Cross River", Value = "Cross River"},
-                                            new SelectListItem  { Text = "Delta", Value = "Delta"},
-                                            new SelectListItem  { Text = "Edo", Value = "Edo"},
-                                            new SelectListItem  { Text = "Ekiti", Value = "Ekiti"},
-                                            new SelectListItem  { Text = "Enugu", Value = "Enugu"},
-                                            new SelectListItem  { Text = "Gombe", Value = "Gombe"},
-                                            new SelectListItem  { Text = "Imo", Value = "Imo"},
-                                            new SelectListItem  { Text = "Jigawa", Value = "Jigawa"},
-                                            new SelectListItem  { Text = "Gombe", Value = "Gombe"},
-                                            new SelectListItem  { Text = "Kaduna", Value = "Kaduna"},
-                                            new SelectListItem  { Text = "Kano", Value = "Kano"},
-                                            new SelectListItem  { Text = "Katsina", Value = "Katsina"},
-                                            new SelectListItem  { Text = "Kebbi", Value = "Kebbi"},
-                                            new SelectListItem  { Text = "Kogi", Value = "Kogi"},
-                                            new SelectListItem  { Text = "Kwara", Value = "Kwara"},
-                                            new SelectListItem  { Text = "Osun", Value = "Osun"},
-                                            new SelectListItem  { Text = "Oyo", Value = "Oyo"},
-                                            new SelectListItem  { Text = "Plateau", Value = "Plateau"},
-                                            new SelectListItem  { Text = "Rivers", Value = "Rivers"},
-                                            new SelectListItem  { Text = "Sokoto", Value = "Sokoto"},
-                                            new SelectListItem  { Text = "Lagos", Value = "Lagos"},
-                                            new SelectListItem  { Text = "Nasarawa", Value = "Nasarawa"},
-                                            new SelectListItem  { Text = "Niger", Value = "Niger"},
-                                            new SelectListItem  { Text = "Ogun", Value = "Ogun"},
-                                            new SelectListItem  { Text = "Ondo", Value = "Ondo"},
-                                            new SelectListItem  { Text = "Taraba", Value = "Taraba"},
-                                            new SelectListItem  { Text = "Yobe", Value = "Yobe"},
-                                            new SelectListItem  { Text = "Zamfara", Value = "Zamfara"},
-                                            new SelectListItem  { Text = "FCT", Value = "FCT"},
-                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <!--EOF State of Origin-->
-                            <!--Form Field LGA-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.LGA, htmlAttributes: new { })
-                                  @*  @Html.DropDownList("LGA", (SelectList)ViewBag.LGA, htmlAttributes: new { @class = "form-control" })*@
-
                                     @Html.DropDownListFor(model => model.LGA, ViewBag.LGAs as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
-
-                                    @*@Html.DropDownList("LGA", new List<SelectListItem> {
-                                            new SelectListItem  { Text = "Select LGA", Value = "Select LGA", Selected=true},
-                                            new SelectListItem  { Text = "Local", Value = "Local"},
-                                            new SelectListItem  { Text = "Government", Value = "Government"},
-                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.LGA, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -468,7 +413,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.Label("Programmes", htmlAttributes: new { })
-                                   @* @Html.DropDownList("Programmes", (SelectList)ViewBag.Programmes, htmlAttributes: new { @class = "form-control" })*@
+                                    @* @Html.DropDownList("Programmes", (SelectList)ViewBag.Programmes, htmlAttributes: new { @class = "form-control" })*@
 
                                     @Html.DropDownListFor(model => model.Programmes, ViewBag.Programmess as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
 
@@ -644,8 +589,8 @@
 
                     $.each(zCity, function (i, zCity) {
                         $("#LGA").append('<option value="'
-                                                   + zCity.Value + '">'
-                                             + zCity.Text + '</option>');
+                            + zCity.Value + '">'
+                            + zCity.Text + '</option>');
                     });
                 },
                 error: function (ex) {
