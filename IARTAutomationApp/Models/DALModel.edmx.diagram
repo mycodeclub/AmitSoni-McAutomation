@@ -19,10 +19,9 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.EmpAIConference" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeAI" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeAttendance" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeGI" Width="1.5" PointX="0.75" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeMI" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.EmployeePI" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeSI" Width="1.5" PointX="3" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeSI" Width="1.5" PointX="3.875" PointY="29.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.FertilizerStore" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.GraduateAttachmentForm" Width="1.5" PointX="3" PointY="34.625" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.LeaveApplication" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
@@ -51,21 +50,6 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.UnitResearchMaster" Width="1.5" PointX="11.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.UnitServicesMaster" Width="1.5" PointX="13.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IARTDBNEWModel.UserMaster" Width="1.5" PointX="17.75" PointY="15.75" IsExpanded="true" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeA__Emplo__07020F21" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeM__Emplo__08EA5793" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeP__Emplo__07F6335A" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeS__Emplo__09DE7BCC" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__LeaveRoas__Emplo__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" ManuallyRouted="false" />
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreMaster" Width="1.5" PointX="18.375" PointY="3.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.StatusMaster" Width="1.5" PointX="18.375" PointY="7.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.ItemMaster" Width="1.5" PointX="5.375" PointY="19.75" />
@@ -81,7 +65,28 @@
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreGateVoucher" Width="1.5" PointX="7.375" PointY="21.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.StoreTallyVoucher" Width="1.5" PointX="9.375" PointY="21.75" />
         <EntityTypeShape EntityType="IARTDBNEWModel.SuperAdmin" Width="1.5" PointX="22.375" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="IARTDBNEWModel.CustomerMaster" Width="2.125" PointX="20" PointY="27.75" />
+        <AssociationConnector Association="IARTDBNEWModel.FK_CustomerMaster_UserMaster" />
+        <EntityTypeShape EntityType="IARTDBNEWModel.EmployeeGI" Width="1.5" PointX="22.875" PointY="22.5" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47" />
+        <AssociationConnector Association="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeA__Emplo__07020F21" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeM__Emplo__08EA5793" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeP__Emplo__07F6335A" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__EmployeeS__Emplo__09DE7BCC" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__LeaveRoas__Emplo__5535A963" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" />
+        <AssociationConnector Association="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" />
+        <AssociationConnector Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" />
+        <AssociationConnector Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

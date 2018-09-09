@@ -14,6 +14,12 @@ namespace IARTAutomationApp.Models
     
     public partial class UserMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserMaster()
+        {
+            this.CustomerMasters = new HashSet<CustomerMaster>();
+        }
+    
         public int UserId { get; set; }
         public int EmployeeCode { get; set; }
         public string EmailId { get; set; }
@@ -28,5 +34,8 @@ namespace IARTAutomationApp.Models
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string RoleName { get; set; }
         public Nullable<int> CustomerId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerMaster> CustomerMasters { get; set; }
     }
 }

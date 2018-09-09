@@ -39,7 +39,6 @@ namespace IARTAutomationApp.Models
         public virtual DbSet<EmpAIConference> EmpAIConferences { get; set; }
         public virtual DbSet<EmployeeAI> EmployeeAIs { get; set; }
         public virtual DbSet<EmployeeAttendance> EmployeeAttendances { get; set; }
-        public virtual DbSet<EmployeeGI> EmployeeGIs { get; set; }
         public virtual DbSet<EmployeeMI> EmployeeMIs { get; set; }
         public virtual DbSet<EmployeePI> EmployeePIs { get; set; }
         public virtual DbSet<EmployeeSI> EmployeeSIs { get; set; }
@@ -86,5 +85,7 @@ namespace IARTAutomationApp.Models
         public virtual DbSet<StoreGateVoucher> StoreGateVouchers { get; set; }
         public virtual DbSet<StoreTallyVoucher> StoreTallyVouchers { get; set; }
         public virtual DbSet<SuperAdmin> SuperAdmins { get; set; }
+        public virtual DbSet<CustomerMaster> CustomerMasters { get; set; }
+        public virtual DbSet<EmployeeGI> EmployeeGIs { get; set; }
     }
 }

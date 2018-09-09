@@ -71,6 +71,12 @@ namespace IARTAutomationApp.Controllers
                 db.UserMasters.Add(loginUser);
                 db.EmployeeGIs.Add(tenent);
                 var x = db.SaveChanges();
+                db.CustomerMasters.Add(new CustomerMaster()
+                {
+                    EmployeeGIId = tenent.EmployeeGIId,
+                    LoginUserId = loginUser.UserId
+                });
+                db.SaveChanges();
             }
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");

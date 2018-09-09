@@ -198,6 +198,14 @@
           <Property Name="EmployeeID" Type="int" />
           <Property Name="CustomerId" Type="int" />
         </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeGIId" Type="int" Nullable="false" />
+          <Property Name="LoginUserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="DeductionsMaster">
           <Key>
             <PropertyRef Name="DeductionId" />
@@ -321,6 +329,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="Unit_Services" Type="nvarchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeMI">
           <Key>
@@ -1199,6 +1208,54 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerMaster_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="CustomerMaster" Type="Self.CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="LoginUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_CustomerMaster">
+          <End Role="CustomerMaster" Type="Self.CustomerMaster" Multiplicity="0..1" />
+          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerMaster">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="EmployeeGI">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_EmployeeGI">
+          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
+          <End Role="EmployeeGI1" Type="Self.EmployeeGI" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeGI1">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_EmployeeGI1">
+          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
+          <End Role="EmployeeGI1" Type="Self.EmployeeGI" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeGI1">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="IARTDBNEWModelStoreContainer">
           <EntitySet Name="AllowanceMaster" EntityType="Self.AllowanceMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualLeave" EntityType="Self.AnnualLeave" Schema="dbo" store:Type="Tables" />
@@ -1212,6 +1269,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="ClassMaster" EntityType="Self.ClassMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COUNTRYLIST" EntityType="Self.COUNTRYLIST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CrivVoucher" EntityType="Self.CrivVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerMaster" EntityType="Self.CustomerMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeductionsMaster" EntityType="Self.DeductionsMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAIAssociation" EntityType="Self.EmpAIAssociation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAIConference" EntityType="Self.EmpAIConference" Schema="dbo" store:Type="Tables" />
@@ -1330,6 +1388,22 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <End Role="EmployeeGI" EntitySet="EmployeeGI" />
             <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearance" />
           </AssociationSet>
+          <AssociationSet Name="FK_CustomerMaster_UserMaster" Association="Self.FK_CustomerMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="CustomerMaster" EntitySet="CustomerMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_CustomerMaster" Association="Self.FK_EmployeeGI_CustomerMaster">
+            <End Role="CustomerMaster" EntitySet="CustomerMaster" />
+            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_EmployeeGI" Association="Self.FK_EmployeeGI_EmployeeGI">
+            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
+            <End Role="EmployeeGI1" EntitySet="EmployeeGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_EmployeeGI1" Association="Self.FK_EmployeeGI_EmployeeGI1">
+            <End Role="EmployeeGI" EntitySet="EmployeeGI" />
+            <End Role="EmployeeGI1" EntitySet="EmployeeGI" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1379,9 +1453,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="IApprove" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__AnnualLea__Emplo__4F7CD00D" FromRole="AnnualLeave" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__AnnualLea__Emplo__5812160E" FromRole="AnnualLeave" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" FromRole="AnnualLeave" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" FromRole="AnnualLeave" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="BankMaster">
           <Key>
@@ -1433,9 +1507,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="ApprovedDays" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__CasualLea__Emplo__5070F446" FromRole="CasualLeave" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__CasualLea__Emplo__59063A47" FromRole="CasualLeave" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" FromRole="CasualLeave" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47" FromRole="CasualLeave" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="CentralStore">
           <Key>
@@ -1534,8 +1608,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="ConferenceAttendedDate" Type="DateTime" Precision="0" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeA__Emplo__07020F21" FromRole="EmployeeAI" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__EmployeeA__Emplo__07020F21" FromRole="EmployeeAI" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="EmployeeAttendance">
           <Key>
@@ -1547,65 +1621,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LogoutTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="EmployeeGI">
-          <Key>
-            <PropertyRef Name="EmployeeCode" />
-          </Key>
-          <Property Name="EmployeeGIId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeCode" Type="Int32" Nullable="false" />
-          <Property Name="Rank" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="File_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Grade_Level" Type="Int32" />
-          <Property Name="Step" Type="Int32" />
-          <Property Name="Cadre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="First_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Middle_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="PlaceOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Marital_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Maiden_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Spouse_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="StateOfOrigin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LGA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Home_Town" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Religion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ContactHomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FirstAppointmentDate" Type="DateTime" Precision="3" />
-          <Property Name="FirstAppointmentLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ConfirmationDate" Type="DateTime" Precision="3" />
-          <Property Name="DateOfRetirement" Type="DateTime" Precision="3" />
-          <Property Name="LastPromotionDate" Type="DateTime" Precision="3" />
-          <Property Name="Unit_Research" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LeaveDays" Type="Int32" />
-          <Property Name="Leave_fromDate" Type="DateTime" Precision="3" />
-          <Property Name="Leave_ToDate" Type="DateTime" Precision="3" />
-          <Property Name="EmployeePhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="StationOfDeployment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Programmes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Unit_Services" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AnnualLeaves" Relationship="Self.FK__AnnualLea__Emplo__4F7CD00D" FromRole="EmployeeGI" ToRole="AnnualLeave" />
-          <NavigationProperty Name="AnnualLeaves1" Relationship="Self.FK__AnnualLea__Emplo__5812160E" FromRole="EmployeeGI" ToRole="AnnualLeave" />
-          <NavigationProperty Name="CasualLeaves" Relationship="Self.FK__CasualLea__Emplo__5070F446" FromRole="EmployeeGI" ToRole="CasualLeave" />
-          <NavigationProperty Name="CasualLeaves1" Relationship="Self.FK__CasualLea__Emplo__59063A47" FromRole="EmployeeGI" ToRole="CasualLeave" />
-          <NavigationProperty Name="EmployeeAIs" Relationship="Self.FK__EmployeeA__Emplo__07020F21" FromRole="EmployeeGI" ToRole="EmployeeAI" />
-          <NavigationProperty Name="EmployeeMIs" Relationship="Self.FK__EmployeeM__Emplo__08EA5793" FromRole="EmployeeGI" ToRole="EmployeeMI" />
-          <NavigationProperty Name="EmployeePIs" Relationship="Self.FK__EmployeeP__Emplo__07F6335A" FromRole="EmployeeGI" ToRole="EmployeePI" />
-          <NavigationProperty Name="EmployeeSIs" Relationship="Self.FK__EmployeeS__Emplo__09DE7BCC" FromRole="EmployeeGI" ToRole="EmployeeSI" />
-          <NavigationProperty Name="GraduateAttachmentForms" Relationship="Self.FK__GraduateA__Emplo__4CA06362" FromRole="EmployeeGI" ToRole="GraduateAttachmentForm" />
-          <NavigationProperty Name="GraduateAttachmentForms1" Relationship="Self.FK__GraduateA__Emplo__5441852A" FromRole="EmployeeGI" ToRole="GraduateAttachmentForm" />
-          <NavigationProperty Name="LeaveRoasterJuniorStaffs" Relationship="Self.FK__LeaveRoas__Emplo__5535A963" FromRole="EmployeeGI" ToRole="LeaveRoasterJuniorStaff" />
-          <NavigationProperty Name="NyscFinalClearances" Relationship="Self.FK__NyscFinal__Emplo__4D94879B" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
-          <NavigationProperty Name="NyscFinalClearances1" Relationship="Self.FK__NyscFinal__Emplo__5629CD9C" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
-          <NavigationProperty Name="NyscMonthlyClearances" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
-          <NavigationProperty Name="NyscMonthlyClearances1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeMI">
@@ -1620,8 +1635,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="BloodGenotype" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeM__Emplo__08EA5793" FromRole="EmployeeMI" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__EmployeeM__Emplo__08EA5793" FromRole="EmployeeMI" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="EmployeePI">
           <Key>
@@ -1645,8 +1660,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="EmployeeStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeP__Emplo__07F6335A" FromRole="EmployeePI" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__EmployeeP__Emplo__07F6335A" FromRole="EmployeePI" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="EmployeeSI">
           <Key>
@@ -1666,8 +1681,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="SalaryScale" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__EmployeeS__Emplo__09DE7BCC" FromRole="EmployeeSI" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__EmployeeS__Emplo__09DE7BCC" FromRole="EmployeeSI" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="FertilizerStore">
           <Key>
@@ -1701,9 +1716,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="PaymentFromDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__GraduateA__Emplo__4CA06362" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__GraduateA__Emplo__5441852A" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A" FromRole="GraduateAttachmentForm" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="LeaveApplication">
           <Key>
@@ -1762,8 +1777,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="Contiss" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__LeaveRoas__Emplo__5535A963" FromRole="LeaveRoasterJuniorStaff" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__LeaveRoas__Emplo__5535A963" FromRole="LeaveRoasterJuniorStaff" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="LeaveTypeMaster">
           <Key>
@@ -1803,9 +1818,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="BankAccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__NyscFinal__Emplo__4D94879B" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__NyscFinal__Emplo__5629CD9C" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" FromRole="NyscFinalClearance" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="NyscMonthlyClearance">
           <Key>
@@ -1822,9 +1837,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="AllowanceMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EmployeeGI" Relationship="Self.FK__NyscMonth__Emplo__4E88ABD4" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
-          <NavigationProperty Name="EmployeeGI1" Relationship="Self.FK__NyscMonth__Emplo__571DF1D5" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="EmployeeGI" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" FromRole="NyscMonthlyClearance" ToRole="EmployeeGI" />
         </EntityType>
         <EntityType Name="PFAMaster">
           <Key>
@@ -2066,187 +2081,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="CustomerMasters" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="UserMaster" ToRole="CustomerMaster" />
         </EntityType>
-        <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="AnnualLeave" Type="Self.AnnualLeave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="AnnualLeave">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AnnualLea__Emplo__5812160E">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="AnnualLeave" Type="Self.AnnualLeave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="AnnualLeave">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CasualLea__Emplo__5070F446">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="CasualLeave" Type="Self.CasualLeave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="CasualLeave">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CasualLea__Emplo__59063A47">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="CasualLeave" Type="Self.CasualLeave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="CasualLeave">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EmployeeA__Emplo__07020F21">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeeAI" Type="Self.EmployeeAI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeAI">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EmployeeM__Emplo__08EA5793">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeeMI" Type="Self.EmployeeMI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeMI">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EmployeeP__Emplo__07F6335A">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeePI" Type="Self.EmployeePI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeePI">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EmployeeS__Emplo__09DE7BCC">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="EmployeeSI" Type="Self.EmployeeSI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="EmployeeSI">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__GraduateA__Emplo__4CA06362">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="GraduateAttachmentForm" Type="Self.GraduateAttachmentForm" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="GraduateAttachmentForm">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__GraduateA__Emplo__5441852A">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="GraduateAttachmentForm" Type="Self.GraduateAttachmentForm" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="GraduateAttachmentForm">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__LeaveRoas__Emplo__5535A963">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="1" />
-          <End Role="LeaveRoasterJuniorStaff" Type="Self.LeaveRoasterJuniorStaff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="LeaveRoasterJuniorStaff">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NyscFinal__Emplo__4D94879B">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="NyscFinalClearance" Type="Self.NyscFinalClearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="NyscFinalClearance">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NyscFinal__Emplo__5629CD9C">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="NyscFinalClearance" Type="Self.NyscFinalClearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="NyscFinalClearance">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NyscMonth__Emplo__4E88ABD4">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="NyscMonthlyClearance" Type="Self.NyscMonthlyClearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="NyscMonthlyClearance">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NyscMonth__Emplo__571DF1D5">
-          <End Role="EmployeeGI" Type="Self.EmployeeGI" Multiplicity="0..1" />
-          <End Role="NyscMonthlyClearance" Type="Self.NyscMonthlyClearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeGI">
-              <PropertyRef Name="EmployeeCode" />
-            </Principal>
-            <Dependent Role="NyscMonthlyClearance">
-              <PropertyRef Name="EmployeeCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="IARTDBNEWEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AllowanceMasters" EntityType="Self.AllowanceMaster" />
           <EntitySet Name="AnnualLeaves" EntityType="Self.AnnualLeave" />
@@ -2262,7 +2098,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="EmpAIConferences" EntityType="Self.EmpAIConference" />
           <EntitySet Name="EmployeeAIs" EntityType="Self.EmployeeAI" />
           <EntitySet Name="EmployeeAttendances" EntityType="Self.EmployeeAttendance" />
-          <EntitySet Name="EmployeeGIs" EntityType="Self.EmployeeGI" />
           <EntitySet Name="EmployeeMIs" EntityType="Self.EmployeeMI" />
           <EntitySet Name="EmployeePIs" EntityType="Self.EmployeePI" />
           <EntitySet Name="EmployeeSIs" EntityType="Self.EmployeeSI" />
@@ -2294,66 +2129,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="UnitResearchMasters" EntityType="Self.UnitResearchMaster" />
           <EntitySet Name="UnitServicesMasters" EntityType="Self.UnitServicesMaster" />
           <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
-          <AssociationSet Name="FK__AnnualLea__Emplo__4F7CD00D" Association="Self.FK__AnnualLea__Emplo__4F7CD00D">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="AnnualLeave" EntitySet="AnnualLeaves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AnnualLea__Emplo__5812160E" Association="Self.FK__AnnualLea__Emplo__5812160E">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="AnnualLeave" EntitySet="AnnualLeaves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CasualLea__Emplo__5070F446" Association="Self.FK__CasualLea__Emplo__5070F446">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="CasualLeave" EntitySet="CasualLeaves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CasualLea__Emplo__59063A47" Association="Self.FK__CasualLea__Emplo__59063A47">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="CasualLeave" EntitySet="CasualLeaves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EmployeeA__Emplo__07020F21" Association="Self.FK__EmployeeA__Emplo__07020F21">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeeAI" EntitySet="EmployeeAIs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EmployeeM__Emplo__08EA5793" Association="Self.FK__EmployeeM__Emplo__08EA5793">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeeMI" EntitySet="EmployeeMIs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EmployeeP__Emplo__07F6335A" Association="Self.FK__EmployeeP__Emplo__07F6335A">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeePI" EntitySet="EmployeePIs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EmployeeS__Emplo__09DE7BCC" Association="Self.FK__EmployeeS__Emplo__09DE7BCC">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="EmployeeSI" EntitySet="EmployeeSIs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GraduateA__Emplo__4CA06362" Association="Self.FK__GraduateA__Emplo__4CA06362">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="GraduateAttachmentForm" EntitySet="GraduateAttachmentForms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GraduateA__Emplo__5441852A" Association="Self.FK__GraduateA__Emplo__5441852A">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="GraduateAttachmentForm" EntitySet="GraduateAttachmentForms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__LeaveRoas__Emplo__5535A963" Association="Self.FK__LeaveRoas__Emplo__5535A963">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="LeaveRoasterJuniorStaff" EntitySet="LeaveRoasterJuniorStaffs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NyscFinal__Emplo__4D94879B" Association="Self.FK__NyscFinal__Emplo__4D94879B">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="NyscFinalClearance" EntitySet="NyscFinalClearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NyscFinal__Emplo__5629CD9C" Association="Self.FK__NyscFinal__Emplo__5629CD9C">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="NyscFinalClearance" EntitySet="NyscFinalClearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NyscMonth__Emplo__4E88ABD4" Association="Self.FK__NyscMonth__Emplo__4E88ABD4">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NyscMonth__Emplo__571DF1D5" Association="Self.FK__NyscMonth__Emplo__571DF1D5">
-            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
-            <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearances" />
-          </AssociationSet>
           <EntitySet Name="StoreMasters" EntityType="IARTDBNEWModel.StoreMaster" />
           <EntitySet Name="StatusMasters" EntityType="IARTDBNEWModel.StatusMaster" />
           <EntitySet Name="ItemMasters" EntityType="IARTDBNEWModel.ItemMaster" />
@@ -2369,7 +2144,85 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="StoreGateVouchers" EntityType="IARTDBNEWModel.StoreGateVoucher" />
           <EntitySet Name="StoreTallyVouchers" EntityType="IARTDBNEWModel.StoreTallyVoucher" />
           <EntitySet Name="SuperAdmins" EntityType="IARTDBNEWModel.SuperAdmin" />
-        </EntityContainer>
+          <EntitySet Name="CustomerMasters" EntityType="IARTDBNEWModel.CustomerMaster" />
+          <AssociationSet Name="FK_CustomerMaster_UserMaster" Association="IARTDBNEWModel.FK_CustomerMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeGIs" EntityType="IARTDBNEWModel.EmployeeGI" />
+          <AssociationSet Name="FK__AnnualLea__Emplo__4F7CD00D" Association="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="AnnualLeave" EntitySet="AnnualLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnnualLea__Emplo__5812160E" Association="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="AnnualLeave" EntitySet="AnnualLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CasualLea__Emplo__5070F446" Association="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="CasualLeave" EntitySet="CasualLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CasualLea__Emplo__59063A47" Association="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="CasualLeave" EntitySet="CasualLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_CustomerMaster" Association="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster">
+            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeA__Emplo__07020F21" Association="IARTDBNEWModel.FK__EmployeeA__Emplo__07020F21">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeeAI" EntitySet="EmployeeAIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeM__Emplo__08EA5793" Association="IARTDBNEWModel.FK__EmployeeM__Emplo__08EA5793">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeeMI" EntitySet="EmployeeMIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeP__Emplo__07F6335A" Association="IARTDBNEWModel.FK__EmployeeP__Emplo__07F6335A">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeePI" EntitySet="EmployeePIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeS__Emplo__09DE7BCC" Association="IARTDBNEWModel.FK__EmployeeS__Emplo__09DE7BCC">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeeSI" EntitySet="EmployeeSIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GraduateA__Emplo__4CA06362" Association="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="GraduateAttachmentForm" EntitySet="GraduateAttachmentForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GraduateA__Emplo__5441852A" Association="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="GraduateAttachmentForm" EntitySet="GraduateAttachmentForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LeaveRoas__Emplo__5535A963" Association="IARTDBNEWModel.FK__LeaveRoas__Emplo__5535A963">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="LeaveRoasterJuniorStaff" EntitySet="LeaveRoasterJuniorStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NyscFinal__Emplo__4D94879B" Association="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="NyscFinalClearance" EntitySet="NyscFinalClearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NyscFinal__Emplo__5629CD9C" Association="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="NyscFinalClearance" EntitySet="NyscFinalClearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NyscMonth__Emplo__4E88ABD4" Association="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NyscMonth__Emplo__571DF1D5" Association="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="NyscMonthlyClearance" EntitySet="NyscMonthlyClearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_EmployeeGI" Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeeGI1" EntitySet="EmployeeGIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeGI_EmployeeGI1" Association="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1">
+            <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
+            <End Role="EmployeeGI1" EntitySet="EmployeeGIs" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="StoreMaster">
           <Key>
             <PropertyRef Name="RecordId" />
@@ -2679,7 +2532,309 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeGIId" Type="Int32" Nullable="false" />
+          <Property Name="LoginUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserMaster" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="CustomerMaster" ToRole="UserMaster" />
+          <NavigationProperty Name="EmployeeGIs" Relationship="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
+        </EntityType>
+        <Association Name="FK_CustomerMaster_UserMaster">
+          <End Type="IARTDBNEWModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="LoginUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmployeeGI">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+          </Key>
+          <Property Name="EmployeeGIId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeCode" Type="Int32" Nullable="false" />
+          <Property Name="Rank" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="File_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Grade_Level" Type="Int32" />
+          <Property Name="Step" Type="Int32" />
+          <Property Name="Cadre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="First_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Middle_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Marital_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Maiden_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Spouse_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="StateOfOrigin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LGA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Home_Town" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactHomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstAppointmentDate" Type="DateTime" Precision="3" />
+          <Property Name="FirstAppointmentLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmationDate" Type="DateTime" Precision="3" />
+          <Property Name="DateOfRetirement" Type="DateTime" Precision="3" />
+          <Property Name="LastPromotionDate" Type="DateTime" Precision="3" />
+          <Property Name="Unit_Research" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeaveDays" Type="Int32" />
+          <Property Name="Leave_fromDate" Type="DateTime" Precision="3" />
+          <Property Name="Leave_ToDate" Type="DateTime" Precision="3" />
+          <Property Name="EmployeePhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="StationOfDeployment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Programmes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Unit_Services" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="AnnualLeaves" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D" FromRole="EmployeeGI" ToRole="AnnualLeave" />
+          <NavigationProperty Name="AnnualLeaves1" Relationship="IARTDBNEWModel.FK__AnnualLea__Emplo__5812160E" FromRole="EmployeeGI" ToRole="AnnualLeave" />
+          <NavigationProperty Name="CasualLeaves" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__5070F446" FromRole="EmployeeGI" ToRole="CasualLeave" />
+          <NavigationProperty Name="CasualLeaves1" Relationship="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47" FromRole="EmployeeGI" ToRole="CasualLeave" />
+          <NavigationProperty Name="CustomerMaster" Relationship="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" FromRole="EmployeeGI" ToRole="CustomerMaster" />
+          <NavigationProperty Name="EmployeeAIs" Relationship="IARTDBNEWModel.FK__EmployeeA__Emplo__07020F21" FromRole="EmployeeGI" ToRole="EmployeeAI" />
+          <NavigationProperty Name="EmployeeMIs" Relationship="IARTDBNEWModel.FK__EmployeeM__Emplo__08EA5793" FromRole="EmployeeGI" ToRole="EmployeeMI" />
+          <NavigationProperty Name="EmployeePIs" Relationship="IARTDBNEWModel.FK__EmployeeP__Emplo__07F6335A" FromRole="EmployeeGI" ToRole="EmployeePI" />
+          <NavigationProperty Name="EmployeeSIs" Relationship="IARTDBNEWModel.FK__EmployeeS__Emplo__09DE7BCC" FromRole="EmployeeGI" ToRole="EmployeeSI" />
+          <NavigationProperty Name="GraduateAttachmentForms" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__4CA06362" FromRole="EmployeeGI" ToRole="GraduateAttachmentForm" />
+          <NavigationProperty Name="GraduateAttachmentForms1" Relationship="IARTDBNEWModel.FK__GraduateA__Emplo__5441852A" FromRole="EmployeeGI" ToRole="GraduateAttachmentForm" />
+          <NavigationProperty Name="LeaveRoasterJuniorStaffs" Relationship="IARTDBNEWModel.FK__LeaveRoas__Emplo__5535A963" FromRole="EmployeeGI" ToRole="LeaveRoasterJuniorStaff" />
+          <NavigationProperty Name="NyscFinalClearances" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__4D94879B" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
+          <NavigationProperty Name="NyscFinalClearances1" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
+          <NavigationProperty Name="NyscMonthlyClearances" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
+          <NavigationProperty Name="NyscMonthlyClearances1" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
+          <NavigationProperty Name="EmployeeGI1" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" FromRole="EmployeeGI" ToRole="EmployeeGI1" />
+          <NavigationProperty Name="EmployeeGI2" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI" FromRole="EmployeeGI1" ToRole="EmployeeGI" />
+          <NavigationProperty Name="EmployeeGI11" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" FromRole="EmployeeGI" ToRole="EmployeeGI1" />
+          <NavigationProperty Name="EmployeeGI3" Relationship="IARTDBNEWModel.FK_EmployeeGI_EmployeeGI1" FromRole="EmployeeGI1" ToRole="EmployeeGI" />
+        </EntityType>
+        <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.AnnualLeave" Role="AnnualLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="AnnualLeave">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnnualLea__Emplo__5812160E">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.AnnualLeave" Role="AnnualLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="AnnualLeave">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CasualLea__Emplo__5070F446">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.CasualLeave" Role="CasualLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="CasualLeave">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CasualLea__Emplo__59063A47">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.CasualLeave" Role="CasualLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="CasualLeave">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_CustomerMaster">
+          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerMaster">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="EmployeeGI">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeA__Emplo__07020F21">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeeAI" Role="EmployeeAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeAI">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeM__Emplo__08EA5793">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeeMI" Role="EmployeeMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeMI">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeP__Emplo__07F6335A">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeePI" Role="EmployeePI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeePI">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeS__Emplo__09DE7BCC">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeeSI" Role="EmployeeSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeSI">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GraduateA__Emplo__4CA06362">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.GraduateAttachmentForm" Role="GraduateAttachmentForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="GraduateAttachmentForm">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GraduateA__Emplo__5441852A">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.GraduateAttachmentForm" Role="GraduateAttachmentForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="GraduateAttachmentForm">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LeaveRoas__Emplo__5535A963">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.LeaveRoasterJuniorStaff" Role="LeaveRoasterJuniorStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="LeaveRoasterJuniorStaff">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NyscFinal__Emplo__4D94879B">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.NyscFinalClearance" Role="NyscFinalClearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="NyscFinalClearance">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NyscFinal__Emplo__5629CD9C">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.NyscFinalClearance" Role="NyscFinalClearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="NyscFinalClearance">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NyscMonth__Emplo__4E88ABD4">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.NyscMonthlyClearance" Role="NyscMonthlyClearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="NyscMonthlyClearance">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NyscMonth__Emplo__571DF1D5">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="0..1" />
+          <End Type="IARTDBNEWModel.NyscMonthlyClearance" Role="NyscMonthlyClearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="NyscMonthlyClearance">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_EmployeeGI">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeGI1">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeGI_EmployeeGI1">
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeGI">
+              <PropertyRef Name="EmployeeCode" />
+            </Principal>
+            <Dependent Role="EmployeeGI1">
+              <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2904,50 +3059,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
                 <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
                 <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeGIs">
-            <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeGI">
-              <MappingFragment StoreEntitySet="EmployeeGI">
-                <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
-                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="File_No" ColumnName="File_No" />
-                <ScalarProperty Name="Grade_Level" ColumnName="Grade_Level" />
-                <ScalarProperty Name="Step" ColumnName="Step" />
-                <ScalarProperty Name="Cadre" ColumnName="Cadre" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
-                <ScalarProperty Name="Marital_Status" ColumnName="Marital_Status" />
-                <ScalarProperty Name="Maiden_Name" ColumnName="Maiden_Name" />
-                <ScalarProperty Name="Spouse_Name" ColumnName="Spouse_Name" />
-                <ScalarProperty Name="StateOfOrigin" ColumnName="StateOfOrigin" />
-                <ScalarProperty Name="LGA" ColumnName="LGA" />
-                <ScalarProperty Name="Home_Town" ColumnName="Home_Town" />
-                <ScalarProperty Name="Religion" ColumnName="Religion" />
-                <ScalarProperty Name="ContactHomeAddress" ColumnName="ContactHomeAddress" />
-                <ScalarProperty Name="FirstAppointmentDate" ColumnName="FirstAppointmentDate" />
-                <ScalarProperty Name="FirstAppointmentLocation" ColumnName="FirstAppointmentLocation" />
-                <ScalarProperty Name="ConfirmationDate" ColumnName="ConfirmationDate" />
-                <ScalarProperty Name="DateOfRetirement" ColumnName="DateOfRetirement" />
-                <ScalarProperty Name="LastPromotionDate" ColumnName="LastPromotionDate" />
-                <ScalarProperty Name="Unit_Research" ColumnName="Unit_Research" />
-                <ScalarProperty Name="Section" ColumnName="Section" />
-                <ScalarProperty Name="LeaveDays" ColumnName="LeaveDays" />
-                <ScalarProperty Name="Leave_fromDate" ColumnName="Leave_fromDate" />
-                <ScalarProperty Name="Leave_ToDate" ColumnName="Leave_ToDate" />
-                <ScalarProperty Name="EmployeePhoto" ColumnName="EmployeePhoto" />
-                <ScalarProperty Name="StationOfDeployment" ColumnName="StationOfDeployment" />
-                <ScalarProperty Name="Programmes" ColumnName="Programmes" />
-                <ScalarProperty Name="Unit_Services" ColumnName="Unit_Services" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3752,6 +3863,60 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerMasters">
+            <EntityTypeMapping TypeName="IARTDBNEWModel.CustomerMaster">
+              <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="LoginUserId" ColumnName="LoginUserId" />
+                <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeGIs">
+            <EntityTypeMapping TypeName="IARTDBNEWModel.EmployeeGI">
+              <MappingFragment StoreEntitySet="EmployeeGI">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Unit_Services" ColumnName="Unit_Services" />
+                <ScalarProperty Name="Programmes" ColumnName="Programmes" />
+                <ScalarProperty Name="StationOfDeployment" ColumnName="StationOfDeployment" />
+                <ScalarProperty Name="EmployeePhoto" ColumnName="EmployeePhoto" />
+                <ScalarProperty Name="Leave_ToDate" ColumnName="Leave_ToDate" />
+                <ScalarProperty Name="Leave_fromDate" ColumnName="Leave_fromDate" />
+                <ScalarProperty Name="LeaveDays" ColumnName="LeaveDays" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Unit_Research" ColumnName="Unit_Research" />
+                <ScalarProperty Name="LastPromotionDate" ColumnName="LastPromotionDate" />
+                <ScalarProperty Name="DateOfRetirement" ColumnName="DateOfRetirement" />
+                <ScalarProperty Name="ConfirmationDate" ColumnName="ConfirmationDate" />
+                <ScalarProperty Name="FirstAppointmentLocation" ColumnName="FirstAppointmentLocation" />
+                <ScalarProperty Name="FirstAppointmentDate" ColumnName="FirstAppointmentDate" />
+                <ScalarProperty Name="ContactHomeAddress" ColumnName="ContactHomeAddress" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Home_Town" ColumnName="Home_Town" />
+                <ScalarProperty Name="LGA" ColumnName="LGA" />
+                <ScalarProperty Name="StateOfOrigin" ColumnName="StateOfOrigin" />
+                <ScalarProperty Name="Spouse_Name" ColumnName="Spouse_Name" />
+                <ScalarProperty Name="Maiden_Name" ColumnName="Maiden_Name" />
+                <ScalarProperty Name="Marital_Status" ColumnName="Marital_Status" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Cadre" ColumnName="Cadre" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Grade_Level" ColumnName="Grade_Level" />
+                <ScalarProperty Name="File_No" ColumnName="File_No" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
