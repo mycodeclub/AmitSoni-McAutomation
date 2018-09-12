@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ExcelDataReader;
 using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
@@ -57,26 +59,7 @@ namespace IARTAutomationApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                tenent.DateOfRetirement = DateTime.Now.AddYears(20);
-                tenent.EmployeeCode = (db.EmployeeGIs.Max(e => e.EmployeeGIId) + 1);
-                var loginUser = new UserMaster()
-                {
-                    EmployeeCode = tenent.EmployeeCode,
-                    EmailId = "Update Your Mail Id",
-                    UserName = tenent.EmployeeCode.ToString(),
-                    Password = "Pwd" + tenent.EmployeeCode.ToString(),
-                    RoleId = 1,
-                    RoleName = "Admin",
-                };
-                db.UserMasters.Add(loginUser);
-                db.EmployeeGIs.Add(tenent);
-                var x = db.SaveChanges();
-                db.CustomerMasters.Add(new CustomerMaster()
-                {
-                    EmployeeGIId = tenent.EmployeeGIId,
-                    LoginUserId = loginUser.UserId
-                });
-                db.SaveChanges();
+                AddNewTenant(tenent);
             }
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
@@ -148,8 +131,6 @@ namespace IARTAutomationApp.Controllers
             }
             base.Dispose(disposing);
         }
-
-
         public ActionResult GetCitiesByState(string stateName)
         {
             var x = db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id;
@@ -158,8 +139,200 @@ namespace IARTAutomationApp.Controllers
         }
         private bool AddNewTenant(EmployeeGI tenent)
         {
+            tenent.DateOfRetirement = DateTime.Now.AddYears(20);
+            tenent.EmployeeCode = (db.EmployeeGIs.Max(e => e.EmployeeGIId) + 1);
+            var loginUser = new UserMaster()
+            {
+                EmployeeCode = tenent.EmployeeCode,
+                EmailId = "Update Your Mail Id",
+                UserName = tenent.EmployeeCode.ToString(),
+                Password = "Pwd" + tenent.EmployeeCode.ToString(),
+                RoleId = 1,
+                RoleName = "Admin",
+            };
+            db.UserMasters.Add(loginUser);
+            db.EmployeeGIs.Add(tenent);
+            db.SaveChanges();
+            var customer = new CustomerMaster()
+            {
+                EmployeeGIId = tenent.EmployeeGIId,
+                LoginUserId = loginUser.UserId
+            };
+            db.CustomerMasters.Add(customer);
+            db.SaveChanges();
+            tenent.CustomerId = customer.CustomerId;
+            return AddSystemConfig(tenent);
+        }
+        private bool AddSystemConfig(EmployeeGI tenent)
+        {
+            string filepath = @"E:/MyProjects/AmitSoni-McAutomation/IARTAutomationApp/App_Data/SystemConfig.xlsx";
+            FileStream fs = System.IO.File.Open(filepath, FileMode.Open, FileAccess.Read);
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fs);
+            DataSet ds = excelReader.AsDataSet();
+            db.RankMasters.AddRange(AddRank(ds.Tables["Cadre"].Rows, tenent.CustomerId.Value));
+            db.CadreMasters.AddRange(AddCadres(ds.Tables["Rank"].Rows, tenent.CustomerId.Value)); // Not reading from excel as data is not avilable in excel. 
+            db.ProgrammeMasters.AddRange(AddProgrammeMasters(ds.Tables["Programmes"].Rows, tenent.CustomerId.Value));
+            db.UnitResearchMasters.AddRange(AddUnitResearchMaster(ds.Tables["Unit - Research"].Rows, tenent.CustomerId.Value));
+            db.UnitServicesMasters.AddRange(AddUnitServicesMaster(ds.Tables["Unit - Service"].Rows, tenent.CustomerId.Value));
+            db.StationMasters.AddRange(AddStationOfDeployment(ds.Tables["Station of Deployment"].Rows, tenent.CustomerId.Value));
+            db.SectionMasters.AddRange(AddSectionMaster(ds.Tables["Section"].Rows, tenent.CustomerId.Value));
+            db.BankTypeMasters.AddRange(AddTypeOfBank(ds.Tables["Bank Types"].Rows, tenent.CustomerId.Value));
+            db.BankMasters.AddRange(AddBank(ds.Tables["Bank Names"].Rows, tenent.CustomerId.Value));
+            db.PFAMasters.AddRange(AddPFAMaster(ds.Tables["PFA"].Rows, tenent.CustomerId.Value));
+            return db.SaveChanges() > 0 ? true : false;
+        }
+        private List<RankMaster> AddRank(DataRowCollection rows, int customerId)
+        {
+            var ranks = new List<RankMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                ranks.Add(new RankMaster()
+                {
+                    RankName = "Manager",
+                    RankDescription = "etc",
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return ranks;
+        }
+        private List<CadreMaster> AddCadres(DataRowCollection rows, int customerId)
+        {
+            var cadres = new List<CadreMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                cadres.Add(new CadreMaster()
+                {
+                    CadreName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return cadres;
+        }
+        private List<ProgrammeMaster> AddProgrammeMasters(DataRowCollection rows, int customerId)
+        {
+            var programmes = new List<ProgrammeMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                programmes.Add(new ProgrammeMaster()
+                {
+                    ProgrammeName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return programmes;
+        }
+        private List<UnitResearchMaster> AddUnitResearchMaster(DataRowCollection rows, int customerId)
+        {
+            var units = new List<UnitResearchMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new UnitResearchMaster()
+                {
+                    UnitResearchName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<UnitServicesMaster> AddUnitServicesMaster(DataRowCollection rows, int customerId)
+        {
 
-            return true;
+            var units = new List<UnitServicesMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new UnitServicesMaster()
+                {
+                    UnitServicesName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<StationMaster> AddStationOfDeployment(DataRowCollection rows, int customerId)
+        {
+
+            var units = new List<StationMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new StationMaster()
+                {
+                    StationName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    //   CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<SectionMaster> AddSectionMaster(DataRowCollection rows, int customerId)
+        {
+            var units = new List<SectionMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new SectionMaster()
+                {
+                    SectionName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<BankTypeMaster> AddTypeOfBank(DataRowCollection rows, int customerId)
+        {
+            var units = new List<BankTypeMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new BankTypeMaster()
+                {
+                    BankTypeName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<BankMaster> AddBank(DataRowCollection rows, int customerId)
+        {
+            var units = new List<BankMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new BankMaster()
+                {
+                    BankName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
+        }
+        private List<PFAMaster> AddPFAMaster(DataRowCollection rows, int customerId)
+        {
+            var units = new List<PFAMaster>() { };
+            for (int i = 1; i < rows.Count - 1; i++)
+            {
+                units.Add(new PFAMaster()
+                {
+                    PFAName = rows[i][1].ToString(),
+                    CreatedDate = System.DateTime.Now,
+                    CustomerId = customerId,
+                    IsDeleted = false
+                });
+            }
+            return units;
         }
     }
 }
