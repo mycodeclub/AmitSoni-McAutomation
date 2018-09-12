@@ -743,9 +743,10 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <PropertyRef Name="StationId" />
           </Key>
           <Property Name="StationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StationName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="StationName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CustomerId" Type="int" />
         </EntityType>
         <EntityType Name="StatusMaster">
           <Key>
@@ -1973,9 +1974,10 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <PropertyRef Name="StationId" />
           </Key>
           <Property Name="StationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StationName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CustomerId" Type="Int32" />
         </EntityType>
         <EntityType Name="TendererInformation">
           <Key>
@@ -3389,6 +3391,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySetMapping Name="StationMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StationMaster">
               <MappingFragment StoreEntitySet="StationMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="StationId" ColumnName="StationId" />
                 <ScalarProperty Name="StationName" ColumnName="StationName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
