@@ -22,9 +22,8 @@ namespace IARTAutomationApp.Controllers
         // GET: Tenant
         public ActionResult Index()
         {
-            var tenEmpIds = (from u in db.UserMasters where u.RoleId == 1 select u.EmployeeCode).ToList();
-            var tenetnt = db.EmployeeGIs.Where(emp => tenEmpIds.Contains(emp.EmployeeCode)).ToList();
-            return View(tenetnt);
+            ViewBag.NoOfTenants = db.CustomerMasters.Count();
+            return View(db.CustomerMasters.Include("UserMaster").OrderByDescending(c => c.CustomerId).ToList());
         }
 
         // GET: Tenant/Details/5
@@ -59,7 +58,10 @@ namespace IARTAutomationApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                AddNewTenant(tenent);
+                var customer = new CustomerMaster() { EmployeeGIs = new List<EmployeeGI>() { tenent } };
+                if (AddNewTenant(customer))
+                    TempData["NewTenent"] = customer;
+                return RedirectToAction("Index", "Tenant");
             }
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
@@ -137,10 +139,11 @@ namespace IARTAutomationApp.Controllers
             var citys = (from cm in db.CityMasters where cm.StateId == db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id select cm).ToList();
             return PartialView(citys);
         }
-        private bool AddNewTenant(EmployeeGI tenent)
+        private bool AddNewTenant(CustomerMaster customer)
         {
+            var tenent = customer.EmployeeGIs.FirstOrDefault();
             tenent.DateOfRetirement = DateTime.Now.AddYears(20);
-            tenent.EmployeeCode = (db.EmployeeGIs.Max(e => e.EmployeeGIId) + 1);
+            tenent.EmployeeCode = (db.EmployeeGIs.Any()) ? (db.EmployeeGIs.Max(e => e.EmployeeCode) + 1) : 1000;
             var loginUser = new UserMaster()
             {
                 EmployeeCode = tenent.EmployeeCode,
@@ -151,17 +154,21 @@ namespace IARTAutomationApp.Controllers
                 RoleName = "Admin",
             };
             db.UserMasters.Add(loginUser);
-            db.EmployeeGIs.Add(tenent);
             db.SaveChanges();
-            var customer = new CustomerMaster()
-            {
-                EmployeeGIId = tenent.EmployeeGIId,
-                LoginUserId = loginUser.UserId
-            };
+            customer.EmployeeGIId = tenent.EmployeeGIId;
+            customer.LoginUserId = loginUser.UserId;
             db.CustomerMasters.Add(customer);
             db.SaveChanges();
-            tenent.CustomerId = customer.CustomerId;
-            return AddSystemConfig(tenent);
+            tenent.CustomerId = loginUser.CustomerId = customer.CustomerId;
+            var isSaved = AddSystemConfig(tenent);
+            db.Entry(loginUser).State = EntityState.Modified;
+            var rank = db.RankMasters.Where(r => r.CustomerId == customer.CustomerId).FirstOrDefault()?.RankName;
+            tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
+            db.Entry(tenent).State = EntityState.Modified;
+            db.SaveChanges();
+            customer.EmployeeGIs.Add(tenent);
+            customer.UserMaster = loginUser;
+            return isSaved;
         }
         private bool AddSystemConfig(EmployeeGI tenent)
         {
@@ -169,8 +176,9 @@ namespace IARTAutomationApp.Controllers
             FileStream fs = System.IO.File.Open(filepath, FileMode.Open, FileAccess.Read);
             IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fs);
             DataSet ds = excelReader.AsDataSet();
-            db.RankMasters.AddRange(AddRank(ds.Tables["Cadre"].Rows, tenent.CustomerId.Value));
-            db.CadreMasters.AddRange(AddCadres(ds.Tables["Rank"].Rows, tenent.CustomerId.Value)); // Not reading from excel as data is not avilable in excel. 
+            fs.Close();
+            db.RankMasters.AddRange(AddRank(ds.Tables["Rank"].Rows, tenent.CustomerId.Value));// Not reading from excel as data is not avilable in excel.  
+            db.CadreMasters.AddRange(AddCadres(ds.Tables["Cadre"].Rows, tenent.CustomerId.Value));
             db.ProgrammeMasters.AddRange(AddProgrammeMasters(ds.Tables["Programmes"].Rows, tenent.CustomerId.Value));
             db.UnitResearchMasters.AddRange(AddUnitResearchMaster(ds.Tables["Unit - Research"].Rows, tenent.CustomerId.Value));
             db.UnitServicesMasters.AddRange(AddUnitServicesMaster(ds.Tables["Unit - Service"].Rows, tenent.CustomerId.Value));
@@ -184,12 +192,12 @@ namespace IARTAutomationApp.Controllers
         private List<RankMaster> AddRank(DataRowCollection rows, int customerId)
         {
             var ranks = new List<RankMaster>() { };
-            for (int i = 1; i < rows.Count - 1; i++)
+            for (int i = 1; i < rows.Count; i++)
             {
                 ranks.Add(new RankMaster()
                 {
-                    RankName = "Manager",
-                    RankDescription = "etc",
+                    RankName = rows[i][1].ToString(),
+                    RankDescription = rows[i][2].ToString(),
                     CreatedDate = System.DateTime.Now,
                     CustomerId = customerId,
                     IsDeleted = false

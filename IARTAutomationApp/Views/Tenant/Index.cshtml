@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<IARTAutomationApp.Models.CustomerMaster>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,7 +30,7 @@
                                             <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
                                             <div class="info-box-content">
                                                 <h6 class="info-box-text text-white">Total Tenant</h6>
-                                                <h1 class="text-white">1</h1>
+                                                <h1 class="text-white">@ViewBag.NoOfTenants</h1>
                                                 <span class="progress-description text-white"> all tenants </span>
                                             </div>
                                         </div>
@@ -46,12 +45,9 @@
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead class="bg-success" style="color: #fff;">
                                             <tr>
-                                                <th>@Html.DisplayName("Tenant Name")</th>
-                                                <th>@Html.DisplayName("Tenant Email")</th>
-                                                <th>@Html.DisplayName("Tenant Phone")</th>
-                                                <th>@Html.DisplayName("Website (if any)")</th>
-                                                <th>@Html.DisplayName("Username")</th>
+                                                <th>@Html.DisplayName("Login Name (EmpCode)")</th>
                                                 <th>@Html.DisplayName("Password")</th>
+                                                <th>@Html.DisplayName("User Name")</th>
                                                 <th style="text-align: center;">Action</th>
                                             </tr>
                                         </thead>
@@ -59,12 +55,9 @@
                                             @foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Website)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.LoginName)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.EmployeeCode)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.Password)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.UserName)</td>
                                                     <td style="text-align:center;">
                                                         @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
                                                         @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
@@ -76,12 +69,9 @@
                                         </tbody>
                                         <tfoot class="bg-success" style="color: #fff;">
                                             <tr>
-                                                <th>@Html.DisplayName("Tenant Name")</th>
-                                                <th>@Html.DisplayName("Tenant Email")</th>
-                                                <th>@Html.DisplayName("Tenant Phone")</th>
-                                                <th>@Html.DisplayName("Website (if any)")</th>
-                                                <th>@Html.DisplayName("Username")</th>
+                                                <th>@Html.DisplayName("Login Name (EmpCode)")</th>
                                                 <th>@Html.DisplayName("Password")</th>
+                                                <th>@Html.DisplayName("User Name")</th>
                                                 <th style="text-align: center;">Action</th>
                                             </tr>
                                         </tfoot>

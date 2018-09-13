@@ -39,12 +39,11 @@ namespace IARTAutomationApp.Controllers
 
             if (Session.SessionID != "")
             {
+                var x = db.EmployeeGIs.ToList();
                 var employees = db.EmployeeGIs.Where(emp => emp.CustomerId == user.CustomerId).ToList();
                 ViewBag.NoOfStaff = employees.Count;
                 DateTime extDateRange = DateTime.Now.Date.AddMonths(6);
                 ViewBag.NeartoRetirement = employees.Where(emp => emp.DateOfRetirement <= extDateRange).Count();
-                //----------- in progress .....
-
                 var TenderAssesment = (from a in db.PrequalificationScorings where a.CustomerId == user.CustomerId select a).ToList().Count();
                 ViewBag.TenderAssesment = TenderAssesment;
                 DateTime today = DateTime.Now.Date;
@@ -64,10 +63,7 @@ namespace IARTAutomationApp.Controllers
                 ViewBag.SrStaff = (from a in db.EmployeeGIs where a.Cadre == "Senior" select a).Count();
                 ViewBag.NyscStaff = (from a in db.EmployeeGIs where a.Cadre == "NYSC Members" select a).Count();
                 ViewBag.OthersStaff = (from a in db.EmployeeGIs where a.Cadre == "Others" select a).Count();
-
-
                 List<GraphData> GraphDataList = new List<GraphData>();
-
                 var results = (from tn in db.EmployeeGIs
                                group tn by tn.DateOfRetirement.Year into bGroup
                                orderby bGroup.Key
@@ -77,9 +73,6 @@ namespace IARTAutomationApp.Controllers
                                    value = bGroup.Count()
                                }).ToList();
                 ViewBag.DataPoints = JsonConvert.SerializeObject(results);
-
-
-
                 var resultstender = (from tn in db.TenderOpenings
                                      group tn by tn.YearofProject into bGroup
                                      orderby bGroup.Key
@@ -89,11 +82,7 @@ namespace IARTAutomationApp.Controllers
                                          value = bGroup.Count()
                                      }).ToList();
                 ViewBag.DataTender = JsonConvert.SerializeObject(resultstender);
-
-
-                ////////////////////////
                 EmployeeAll empall = new EmployeeAll();
-
                 empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
                 empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
                 empall.employeepi = (from a in db.EmployeePIs select a).ToList();

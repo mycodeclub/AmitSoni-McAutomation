@@ -712,7 +712,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <PropertyRef Name="SectionId" />
           </Key>
           <Property Name="SectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SectionName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="SectionName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="CustomerId" Type="int" />
@@ -1943,7 +1943,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             <PropertyRef Name="SectionId" />
           </Key>
           <Property Name="SectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SectionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SectionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CustomerId" Type="Int32" />
