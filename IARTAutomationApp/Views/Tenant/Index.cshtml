@@ -45,23 +45,26 @@
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead class="bg-success" style="color: #fff;">
                                             <tr>
-                                                <th>@Html.DisplayName("Login Name (EmpCode)")</th>
+                                                <th>@Html.DisplayName("Customer Name")</th>
+                                                <th>@Html.DisplayName("Username")</th>
                                                 <th>@Html.DisplayName("Password")</th>
-                                                <th>@Html.DisplayName("User Name")</th>
+
                                                 <th style="text-align: center;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="employeeGItbl">
                                             @foreach (var item in Model)
                                             {
+                                                var name = item.EmployeeGIs.Where(em => em.EmployeeCode == item.UserMaster.EmployeeCode).FirstOrDefault();
+                                                var empName = string.Format(name.Title + " " + name.First_Name + " " + name.Surname).Trim(' ');
+
                                                 <tr>
-                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.EmployeeCode)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.Password)</td>
+                                                    <td>@Html.DisplayFor(modelItem => empName)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.UserMaster.UserName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.UserMaster.Password)</td>
                                                     <td style="text-align:center;">
                                                         @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
-                                                        @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
-                                                        @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
+                                                        @Html.ActionLink("Details", "Details", new { id = item.CustomerId })
                                                     </td>
 
                                                 </tr>
@@ -69,9 +72,9 @@
                                         </tbody>
                                         <tfoot class="bg-success" style="color: #fff;">
                                             <tr>
-                                                <th>@Html.DisplayName("Login Name (EmpCode)")</th>
+                                                <th>@Html.DisplayName("Customer Name")</th>
+                                                <th>@Html.DisplayName("Username")</th>
                                                 <th>@Html.DisplayName("Password")</th>
-                                                <th>@Html.DisplayName("User Name")</th>
                                                 <th style="text-align: center;">Action</th>
                                             </tr>
                                         </tfoot>

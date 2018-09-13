@@ -40,7 +40,7 @@ namespace IARTAutomationApp.RoleManag
         public override string[] GetRolesForUser(string username)
         {
             string[] roal = new[] { string.Empty };
-            if (username.Equals("IART")) roal[0] = "SuperAdmin";
+            if (username.Equals("SuperAdmin")) roal[0] = "SuperAdmin";
             return roal;
 
         }
