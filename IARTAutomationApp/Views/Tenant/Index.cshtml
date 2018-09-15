@@ -55,15 +55,18 @@
                                         <tbody id="employeeGItbl">
                                             @foreach (var item in Model)
                                             {
+                                                string empName = string.Empty;
                                                 var name = item.EmployeeGIs.Where(em => em.EmployeeCode == item.UserMaster.EmployeeCode).FirstOrDefault();
-                                                var empName = string.Format(name.Title + " " + name.First_Name + " " + name.Surname).Trim(' ');
-
+                                                if (name != null)
+                                                {
+                                                    empName = string.Format(name.Title + " " + name.First_Name + " " + name.Surname);
+                                                }
                                                 <tr>
                                                     <td>@Html.DisplayFor(modelItem => empName)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.UserMaster.UserName)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.UserMaster.Password)</td>
                                                     <td style="text-align:center;">
-                                                        @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeGIId }) |
                                                         @Html.ActionLink("Details", "Details", new { id = item.CustomerId })
                                                     </td>
 

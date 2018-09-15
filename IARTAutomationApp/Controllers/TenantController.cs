@@ -27,19 +27,19 @@ namespace IARTAutomationApp.Controllers
         }
 
         // GET: Tenant/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-        //    if (customerMaster == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customerMaster);
-        //}
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+            if (customerMaster == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customerMaster);
+        }
 
         // GET: CustomerMasters/Create
         public ActionResult Create()
@@ -67,34 +67,66 @@ namespace IARTAutomationApp.Controllers
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
             return View(tenent);
         }
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    //EmployeeGI tenent = db.EmployeeAIs.Find(db.EmployeeAIs.Find(id).CustomerId); 
-        //    //if (customerMaster == null)
-        //    //{
-        //    //    return HttpNotFound();
-        //    //}
-        //    //return View(customerMaster);
-        //}
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var empCode = (from emp in db.EmployeeGIs where emp.EmployeeGIId == id.Value select emp.EmployeeCode).FirstOrDefault();
+            EmployeeGI tenent = db.EmployeeGIs.Find(empCode);
+            if (tenent == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
+            ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
+            return View(tenent);
+        }
 
         // POST: CustomerMasters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] EmployeeGI customerMaster)
+        public ActionResult Edit([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank,EmployeeGIId")] EmployeeGI tenent)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customerMaster).State = EntityState.Modified;
+                var tenentUpdate = db.EmployeeGIs.Find(tenent.EmployeeCode);
+                tenentUpdate.First_Name = tenent.First_Name;
+                tenentUpdate.Surname = tenent.Surname;
+                tenentUpdate.Sex = tenent.Sex;
+                tenentUpdate.DateOfBirth = tenent.DateOfBirth;
+                tenentUpdate.Maiden_Name = tenent.Maiden_Name;
+                tenentUpdate.Middle_Name = tenent.Middle_Name;
+                tenentUpdate.Title = tenent.Title;
+                tenentUpdate.StateOfOrigin = tenent.StateOfOrigin;
+                tenentUpdate.LGA = tenent.LGA;
+                tenentUpdate.Religion = tenent.Religion;
+                tenentUpdate.DateOfRetirement = tenent.DateOfRetirement;
+                tenentUpdate.EmployeeCode = tenent.EmployeeCode;
+                tenentUpdate.Unit_Research = tenent.Unit_Research;
+                tenentUpdate.Section = tenent.Section;
+                tenentUpdate.StationOfDeployment = tenent.StationOfDeployment;
+                tenentUpdate.File_No = tenent.File_No;
+                tenentUpdate.Grade_Level = tenent.Grade_Level;
+                tenentUpdate.Step = tenent.Step;
+                tenentUpdate.Cadre = tenent.Cadre;
+                tenentUpdate.Marital_Status = tenent.Marital_Status;
+                tenentUpdate.PlaceOfBirth = tenent.PlaceOfBirth;
+                tenentUpdate.Home_Town = tenent.Home_Town;
+                tenentUpdate.ContactHomeAddress = tenent.ContactHomeAddress;
+                tenentUpdate.FirstAppointmentDate = tenent.FirstAppointmentDate;
+                tenentUpdate.FirstAppointmentLocation = tenent.FirstAppointmentLocation;
+                tenentUpdate.ConfirmationDate = tenent.ConfirmationDate;
+                tenentUpdate.LastPromotionDate = tenent.LastPromotionDate;
+                tenentUpdate.Rank = tenent.Rank;
+                db.Entry(tenentUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customerMaster);
+            return View(tenent);
         }
 
         // GET: CustomerMasters/Delete/5
@@ -122,7 +154,6 @@ namespace IARTAutomationApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -153,14 +184,11 @@ namespace IARTAutomationApp.Controllers
             };
             db.UserMasters.Add(loginUser);
             db.SaveChanges();
-            customer.EmployeeGIId = tenent.EmployeeGIId;
             customer.LoginUserId = loginUser.UserId;
             db.CustomerMasters.Add(customer);
             db.SaveChanges();
-
-
+            customer.EmployeeGIId = tenent.EmployeeGIId;
             var isSaved = AddSystemConfig(tenent);
-
             var rank = db.RankMasters.Where(r => r.CustomerId == customer.CustomerId).FirstOrDefault()?.RankName;
             tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
             db.SaveChanges();
@@ -169,8 +197,8 @@ namespace IARTAutomationApp.Controllers
             loginUser.CustomerId = customer.CustomerId;
             db.Entry(loginUser).State = EntityState.Modified;
             db.Entry(customer).State = EntityState.Modified;
-            db.Entry(tenent).State = EntityState.Modified; customer.UserMaster = loginUser;
-
+            db.Entry(tenent).State = EntityState.Modified;
+            customer.UserMaster = loginUser;
             return isSaved;
         }
         private bool AddSystemConfig(EmployeeGI tenent)
