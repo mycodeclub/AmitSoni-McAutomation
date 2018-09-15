@@ -67,63 +67,61 @@ namespace IARTAutomationApp.Controllers
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
             return View(tenent);
         }
-
-        // GET: CustomerMasters/Edit/5
         //public ActionResult Edit(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-        //    if (customerMaster == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customerMaster);
+        //    //EmployeeGI tenent = db.EmployeeAIs.Find(db.EmployeeAIs.Find(id).CustomerId); 
+        //    //if (customerMaster == null)
+        //    //{
+        //    //    return HttpNotFound();
+        //    //}
+        //    //return View(customerMaster);
         //}
 
-        //// POST: CustomerMasters/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] EmployeeGI customerMaster)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(customerMaster).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(customerMaster);
-        //}
+        // POST: CustomerMasters/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CustomerId,Name,LoginName,Password,Phone,Email,Website")] EmployeeGI customerMaster)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customerMaster).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customerMaster);
+        }
 
-        //// GET: CustomerMasters/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-        //    if (customerMaster == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customerMaster);
-        //}
+        // GET: CustomerMasters/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+            if (customerMaster == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customerMaster);
+        }
 
-        //// POST: CustomerMasters/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    CustomerMaster customerMaster = db.CustomerMasters.Find(id);
-        //    db.CustomerMasters.Remove(customerMaster);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: CustomerMasters/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            CustomerMaster customerMaster = db.CustomerMasters.Find(id);
+            db.CustomerMasters.Remove(customerMaster);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -159,15 +157,20 @@ namespace IARTAutomationApp.Controllers
             customer.LoginUserId = loginUser.UserId;
             db.CustomerMasters.Add(customer);
             db.SaveChanges();
-            tenent.CustomerId = loginUser.CustomerId = customer.CustomerId;
+
+
             var isSaved = AddSystemConfig(tenent);
-            db.Entry(loginUser).State = EntityState.Modified;
+
             var rank = db.RankMasters.Where(r => r.CustomerId == customer.CustomerId).FirstOrDefault()?.RankName;
             tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
-            db.Entry(tenent).State = EntityState.Modified;
             db.SaveChanges();
-            customer.EmployeeGIs.Add(tenent);
-            customer.UserMaster = loginUser;
+            customer.EmployeeGIId = tenent.EmployeeGIId;
+            tenent.CustomerId = customer.CustomerId;
+            loginUser.CustomerId = customer.CustomerId;
+            db.Entry(loginUser).State = EntityState.Modified;
+            db.Entry(customer).State = EntityState.Modified;
+            db.Entry(tenent).State = EntityState.Modified; customer.UserMaster = loginUser;
+
             return isSaved;
         }
         private bool AddSystemConfig(EmployeeGI tenent)
