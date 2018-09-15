@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var EmployeGI = Model.EmployeeGIs.Where(em => em.EmployeeCode == Model.UserMaster.EmployeeCode).FirstOrDefault();
+    var empName = string.Format(EmployeGI.Title + " " + EmployeGI.First_Name + " " + EmployeGI.Middle_Name + " " + EmployeGI.Surname);
 }
 
 
@@ -12,34 +14,39 @@
         <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
         <li class="breadcrumb-item active">Tenant's Full Details</li>
     </ol>
-
     <div class="row">
-
-
         <div class="col-lg-3">
 
             <div class="card m-b-3">
                 <div class="card-body">
                     <div class="box-body">
                         <strong>Tenant Name</strong>
-                        <p class="text-muted"> @Html.DisplayFor(model => model.Name) </p>
+                        <p class="text-muted"> @empName</p>
                         <hr>
-                        <strong>Tenant Email</strong>
-                        <p class="text-muted"> @Html.DisplayFor(model => model.Email) </p>
+                        <strong>Gender</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.Sex) </p>
                         <hr>
-                        <strong>Tenant Phone</strong>
-                        <p class="text-muted"> @Html.DisplayFor(model => model.Phone) </p>
+                        <strong>Date Of Birth</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.DateOfBirth) </p>
                         <hr>
-                        <strong>Website</strong>
-                        <p> @Html.DisplayFor(model => model.Website) </p>
+                        <strong>State Of Origin</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.StateOfOrigin) </p>
+                        <hr>
+                        <strong>LGA</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.LGA) </p>
+                        <hr>
+                        <strong>Religion</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.Religion) </p>
+                        <hr>
+                        <strong>Maiden Name</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.Maiden_Name) </p>
                         <hr>
                         <strong>Username</strong>
-                        <p> @Html.DisplayFor(model => model.LoginName) </p>
+                        <p class="text-muted"> @Html.DisplayFor(model => Model.UserMaster.EmployeeCode) </p>
                         <hr>
                         <strong>Password</strong>
-                        <p> @Html.DisplayFor(model => model.Password) </p>
-
-                        <hr />
+                        <p class="text-muted"> @Html.DisplayFor(model => Model.UserMaster.Password) </p>
+                        <hr>
                         <p>@Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId })</p>
                     </div>
                     <!-- /.box-body -->
