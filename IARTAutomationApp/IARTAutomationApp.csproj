@@ -669,6 +669,8 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Uploads\default-noman.png" />
     <Content Include="Uploads\download2.jpg" />
+    <Content Include="Uploads\Logos\Default\countryLogo.jpg" />
+    <Content Include="Uploads\Logos\Default\organization Logo.jpg" />
     <Content Include="Views\EmployeeGIs\AnnualLeave.cshtml" />
     <Content Include="Views\EmployeeGIs\Final.cshtml" />
     <Content Include="Views\EmployeeGIs\Monthly.cshtml" />
