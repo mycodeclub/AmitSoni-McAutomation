@@ -205,6 +205,13 @@
           <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeGIId" Type="int" Nullable="false" />
           <Property Name="LoginUserId" Type="int" Nullable="false" />
+          <Property Name="OrgName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="250" />
+          <Property Name="OrgLogoUrl" Type="nvarchar(max)" />
+          <Property Name="CountryLogoIrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DeductionsMaster">
           <Key>
@@ -316,7 +323,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="FirstAppointmentDate" Type="datetime" />
           <Property Name="FirstAppointmentLocation" Type="nvarchar" MaxLength="250" />
           <Property Name="ConfirmationDate" Type="datetime" />
-          <Property Name="DateOfRetirement" Type="datetime" />
+          <Property Name="DateOfRetirement" Type="datetime" Nullable="false" />
           <Property Name="LastPromotionDate" Type="datetime" />
           <Property Name="Unit_Research" Type="nvarchar" MaxLength="100" />
           <Property Name="Section" Type="nvarchar" MaxLength="50" />
@@ -2503,6 +2510,13 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="LoginUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserMaster" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="CustomerMaster" ToRole="UserMaster" />
           <NavigationProperty Name="EmployeeGIs" Relationship="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
+          <Property Name="OrgName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrgLogoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryLogoIrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CustomerMaster_UserMaster">
           <End Type="IARTDBNEWModel.UserMaster" Role="UserMaster" Multiplicity="1" />
@@ -2545,7 +2559,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="FirstAppointmentDate" Type="DateTime" Precision="3" />
           <Property Name="FirstAppointmentLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmationDate" Type="DateTime" Precision="3" />
-          <Property Name="DateOfRetirement" Type="DateTime" Precision="3" />
+          <Property Name="DateOfRetirement" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="LastPromotionDate" Type="DateTime" Precision="3" />
           <Property Name="Unit_Research" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -3804,6 +3818,13 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySetMapping Name="CustomerMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.CustomerMaster">
               <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="CountryLogoIrl" ColumnName="CountryLogoIrl" />
+                <ScalarProperty Name="OrgLogoUrl" ColumnName="OrgLogoUrl" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OrgName" ColumnName="OrgName" />
                 <ScalarProperty Name="LoginUserId" ColumnName="LoginUserId" />
                 <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />

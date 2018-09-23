@@ -11,7 +11,11 @@ namespace IARTAutomationApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class CustomerMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +23,25 @@ namespace IARTAutomationApp.Models
         {
             this.EmployeeGIs = new HashSet<EmployeeGI>();
         }
-    
+
         public int CustomerId { get; set; }
         public int EmployeeGIId { get; set; }
         public int LoginUserId { get; set; }
-    
+        public string OrgName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string ContactPerson { get; set; }
+        public string OrgLogoUrl { get; set; }
+        public string CountryLogoIrl { get; set; }
+        [NotMapped]
+        [DisplayName("Upload Organization Logo")]
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase OrgLogo { get; set; }
+        [NotMapped]
+        [DisplayName("Upload Country Logo")]
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase CountryLogo { get; set; }
         public virtual UserMaster UserMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeGI> EmployeeGIs { get; set; }
