@@ -46,6 +46,7 @@ namespace IARTAutomationApp.Controllers
         {
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
+            var emp = new EmployeeGI() { CustomerMaster = new CustomerMaster() };
             return View();
         }
 
@@ -54,13 +55,26 @@ namespace IARTAutomationApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank")] EmployeeGI tenent)
+        public ActionResult Create([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank," +
+            "CustomerMaster.CountryLogo," +
+            "CustomerMaster.CountryLogoIrl," +
+            "CustomerMaster.OrgLogo," +
+            "CustomerMaster.OrgLogoUrl," +
+            "CustomerMaster.OrgName," +
+            "CustomerMaster.PhoneNumber," +
+            "CustomerMaster.Email")] EmployeeGI tenent, FormCollection fc)
         {
             if (ModelState.IsValid)
             {
-                var customer = new CustomerMaster() { EmployeeGIs = new List<EmployeeGI>() { tenent } };
-                if (AddNewTenant(customer))
-                    TempData["NewTenent"] = customer;
+                var x = fc["CustomerMaster.OrgName"];
+                var y = fc["CustomerMaster.OrgLogo"];
+
+                tenent.CustomerMaster.CountryLogoIrl = @"/Uploads/Logos/Default/countryLogo.jpg";
+                tenent.CustomerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/organizationLogo.jpg";
+                //   var customer = new CustomerMaster() { EmployeeGIs = new List<EmployeeGI>() { tenent } };
+
+                if (AddNewTenant(tenent))
+                    TempData["NewTenent"] = tenent.CustomerMaster;
                 return RedirectToAction("Index", "Tenant");
             }
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
@@ -168,9 +182,9 @@ namespace IARTAutomationApp.Controllers
             var citys = (from cm in db.CityMasters where cm.StateId == db.StateMasters.Where(s => s.State.Equals(stateName)).FirstOrDefault().Id select cm).ToList();
             return PartialView(citys);
         }
-        private bool AddNewTenant(CustomerMaster customer)
+        private bool AddNewTenant(EmployeeGI tenent)
         {
-            var tenent = customer.EmployeeGIs.FirstOrDefault();
+            //  var tenent = customer.EmployeeGIs.FirstOrDefault();
             tenent.DateOfRetirement = DateTime.Now.AddYears(20);
             tenent.EmployeeCode = (db.EmployeeGIs.Any()) ? (db.EmployeeGIs.Max(e => e.EmployeeCode) + 1) : 1000;
             var loginUser = new UserMaster()
@@ -184,21 +198,21 @@ namespace IARTAutomationApp.Controllers
             };
             db.UserMasters.Add(loginUser);
             db.SaveChanges();
-            customer.LoginUserId = loginUser.UserId;
-            db.CustomerMasters.Add(customer);
+            tenent.CustomerMaster.LoginUserId = loginUser.UserId;
+            //   db.CustomerMasters.Add(customer);
             db.SaveChanges();
-            customer.EmployeeGIId = tenent.EmployeeGIId;
+            tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
             var isSaved = AddSystemConfig(tenent);
-            var rank = db.RankMasters.Where(r => r.CustomerId == customer.CustomerId).FirstOrDefault()?.RankName;
+            var rank = db.RankMasters.Where(r => r.CustomerId == tenent.CustomerMaster.CustomerId).FirstOrDefault()?.RankName;
             tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
             db.SaveChanges();
-            customer.EmployeeGIId = tenent.EmployeeGIId;
-            tenent.CustomerId = customer.CustomerId;
-            loginUser.CustomerId = customer.CustomerId;
+            tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
+            tenent.CustomerId = tenent.CustomerMaster.CustomerId;
+            loginUser.CustomerId = tenent.CustomerMaster.CustomerId;
             db.Entry(loginUser).State = EntityState.Modified;
-            db.Entry(customer).State = EntityState.Modified;
+            db.Entry(tenent.CustomerMaster).State = EntityState.Modified;
             db.Entry(tenent).State = EntityState.Modified;
-            customer.UserMaster = loginUser;
+            tenent.CustomerMaster.UserMaster = loginUser;
             db.SaveChanges();
             return isSaved;
         }

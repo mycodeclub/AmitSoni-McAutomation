@@ -89,7 +89,7 @@ namespace IARTAutomationApp.Models
         public virtual ICollection<CasualLeave> CasualLeaves { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CasualLeave> CasualLeaves1 { get; set; }
-        public virtual CustomerMaster CustomerMaster { get; set; }
+        public CustomerMaster CustomerMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeAI> EmployeeAIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

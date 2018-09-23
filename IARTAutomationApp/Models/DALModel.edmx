@@ -2040,26 +2040,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="CustomerId" Type="Int32" />
         </EntityType>
-        <EntityType Name="UserMaster">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeCode" Type="Int32" Nullable="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="UserKeyId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerId" Type="Int32" />
-          <NavigationProperty Name="CustomerMasters" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="UserMaster" ToRole="CustomerMaster" />
-        </EntityType>
         <EntityContainer Name="IARTDBNEWEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AllowanceMasters" EntityType="Self.AllowanceMaster" />
           <EntitySet Name="AnnualLeaves" EntityType="Self.AnnualLeave" />
@@ -2105,7 +2085,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="TenderOpenings" EntityType="Self.TenderOpening" />
           <EntitySet Name="UnitResearchMasters" EntityType="Self.UnitResearchMaster" />
           <EntitySet Name="UnitServicesMasters" EntityType="Self.UnitServicesMaster" />
-          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
           <EntitySet Name="StoreMasters" EntityType="IARTDBNEWModel.StoreMaster" />
           <EntitySet Name="StatusMasters" EntityType="IARTDBNEWModel.StatusMaster" />
           <EntitySet Name="ItemMasters" EntityType="IARTDBNEWModel.ItemMaster" />
@@ -2122,11 +2101,8 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <EntitySet Name="StoreTallyVouchers" EntityType="IARTDBNEWModel.StoreTallyVoucher" />
           <EntitySet Name="SuperAdmins" EntityType="IARTDBNEWModel.SuperAdmin" />
           <EntitySet Name="CustomerMasters" EntityType="IARTDBNEWModel.CustomerMaster" />
-          <AssociationSet Name="FK_CustomerMaster_UserMaster" Association="IARTDBNEWModel.FK_CustomerMaster_UserMaster">
-            <End Role="UserMaster" EntitySet="UserMasters" />
-            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
-          </AssociationSet>
           <EntitySet Name="EmployeeGIs" EntityType="IARTDBNEWModel.EmployeeGI" />
+          <EntitySet Name="UserMasters" EntityType="IARTDBNEWModel.UserMaster" />
           <AssociationSet Name="FK__AnnualLea__Emplo__4F7CD00D" Association="IARTDBNEWModel.FK__AnnualLea__Emplo__4F7CD00D">
             <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
             <End Role="AnnualLeave" EntitySet="AnnualLeaves" />
@@ -2142,6 +2118,10 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <AssociationSet Name="FK__CasualLea__Emplo__59063A47" Association="IARTDBNEWModel.FK__CasualLea__Emplo__59063A47">
             <End Role="EmployeeGI" EntitySet="EmployeeGIs" />
             <End Role="CasualLeave" EntitySet="CasualLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerMaster_UserMaster" Association="IARTDBNEWModel.FK_CustomerMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_EmployeeGI_CustomerMaster" Association="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster">
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
@@ -2508,8 +2488,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeGIId" Type="Int32" Nullable="false" />
           <Property Name="LoginUserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserMaster" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="CustomerMaster" ToRole="UserMaster" />
-          <NavigationProperty Name="EmployeeGIs" Relationship="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
           <Property Name="OrgName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -2517,19 +2495,9 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="ContactPerson" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OrgLogoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountryLogoIrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserMaster" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="CustomerMaster" ToRole="UserMaster" />
+          <NavigationProperty Name="EmployeeGIs" Relationship="IARTDBNEWModel.FK_EmployeeGI_CustomerMaster" FromRole="CustomerMaster" ToRole="EmployeeGI" />
         </EntityType>
-        <Association Name="FK_CustomerMaster_UserMaster">
-          <End Type="IARTDBNEWModel.UserMaster" Role="UserMaster" Multiplicity="1" />
-          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserMaster">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="CustomerMaster">
-              <PropertyRef Name="LoginUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="EmployeeGI">
           <Key>
             <PropertyRef Name="EmployeeCode" />
@@ -2559,7 +2527,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="FirstAppointmentDate" Type="DateTime" Precision="3" />
           <Property Name="FirstAppointmentLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmationDate" Type="DateTime" Precision="3" />
-          <Property Name="DateOfRetirement" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="DateOfRetirement" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastPromotionDate" Type="DateTime" Precision="3" />
           <Property Name="Unit_Research" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2589,6 +2557,26 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <NavigationProperty Name="NyscFinalClearances1" Relationship="IARTDBNEWModel.FK__NyscFinal__Emplo__5629CD9C" FromRole="EmployeeGI" ToRole="NyscFinalClearance" />
           <NavigationProperty Name="NyscMonthlyClearances" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__4E88ABD4" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
           <NavigationProperty Name="NyscMonthlyClearances1" Relationship="IARTDBNEWModel.FK__NyscMonth__Emplo__571DF1D5" FromRole="EmployeeGI" ToRole="NyscMonthlyClearance" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeCode" Type="Int32" Nullable="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserKeyId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Int32" />
+          <NavigationProperty Name="CustomerMasters" Relationship="IARTDBNEWModel.FK_CustomerMaster_UserMaster" FromRole="UserMaster" ToRole="CustomerMaster" />
         </EntityType>
         <Association Name="FK__AnnualLea__Emplo__4F7CD00D">
           <End Type="IARTDBNEWModel.EmployeeGI" Role="EmployeeGI" Multiplicity="1" />
@@ -2635,6 +2623,18 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
             </Principal>
             <Dependent Role="CasualLeave">
               <PropertyRef Name="EmployeeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerMaster_UserMaster">
+          <End Type="IARTDBNEWModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="IARTDBNEWModel.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="LoginUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3471,26 +3471,6 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="IARTDBNEWModel.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserKeyId" ColumnName="UserKeyId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="StoreMasters">
             <EntityTypeMapping TypeName="IARTDBNEWModel.StoreMaster">
               <MappingFragment StoreEntitySet="StoreMaster">
@@ -3873,6 +3853,26 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
                 <ScalarProperty Name="Rank" ColumnName="Rank" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="EmployeeGIId" ColumnName="EmployeeGIId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="IARTDBNEWModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="UserKeyId" ColumnName="UserKeyId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
