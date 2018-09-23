@@ -199,6 +199,7 @@ namespace IARTAutomationApp.Controllers
             db.Entry(customer).State = EntityState.Modified;
             db.Entry(tenent).State = EntityState.Modified;
             customer.UserMaster = loginUser;
+            db.SaveChanges();
             return isSaved;
         }
         private bool AddSystemConfig(EmployeeGI tenent)

@@ -36,11 +36,10 @@ namespace IARTAutomationApp.Controllers
         public ActionResult Index()
         {
             var user = (UserMaster)Session["User"];
-
             if (Session.SessionID != "")
             {
                 var x = db.EmployeeGIs.ToList();
-                var employees = db.EmployeeGIs.Where(emp => emp.CustomerId == user.CustomerId).ToList();
+                var employees = db.EmployeeGIs.Where(emp => emp.CustomerId == user.CustomerId && emp.EmployeeCode != user.EmployeeCode).ToList();
                 ViewBag.NoOfStaff = employees.Count;
                 DateTime extDateRange = DateTime.Now.Date.AddMonths(6);
                 ViewBag.NeartoRetirement = employees.Where(emp => emp.DateOfRetirement <= extDateRange).Count();

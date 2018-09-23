@@ -22,39 +22,29 @@ namespace IARTAutomationApp.Controllers
         ////GET: EmployeeGIs
         public ActionResult Index()
         {
+            var user = (UserMaster)Session["User"];
             try
             {
-                int empcode = Convert.ToInt32(@Session["employeecode"]);
+                var employees = db.EmployeeGIs.Where(emp => emp.CustomerId == user.CustomerId && emp.EmployeeCode != user.EmployeeCode).ToList();
+
+                DateTime dttoday = DateTime.Now.Date;
+                var Role = (from a in db.UserMasters where a.EmployeeCode == user.EmployeeCode select a.RoleId).FirstOrDefault();
+                var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
+                if (RoleName == "Super Admin" || RoleName == "Admin" || RoleName == "Super Level Admin" || RoleName == "HR Admin")
                 {
-                    DateTime dttoday = DateTime.Now.Date;
-                    var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
-                    var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
-                    if (RoleName == "Super Admin" || RoleName == "Admin" || RoleName == "Super Level Admin" || RoleName == "HR Admin")
-                    {
-                        var NoofEmp = (from a in db.EmployeeGIs select a).ToList().Count();
-                        ViewBag.NoOfStaff = NoofEmp;
-                        DateTime newDateRange = DateTime.Now.Date.AddDays(-30);
-                        var NoofNewEmp = (from b in db.EmployeeGIs where b.FirstAppointmentDate >= newDateRange select b).Count();
-                        ViewBag.NoofNewEmp = NoofNewEmp;
-                        DateTime extDateRange = DateTime.Now.Date.AddMonths(6);
-                        var NearToRetirementCount = (from a in db.EmployeeGIs where a.DateOfRetirement <= extDateRange select a).ToList().Count();
-                        ViewBag.NeartoRetirement = NearToRetirementCount;
-
-                        ViewBag.onleave = (from a in db.LeaveApplications where a.AppDate == dttoday.Date select a.LeaveAccId).ToList().Count();
-
-
-
-
-                        var employeeGIs = db.EmployeeGIs.ToList().OrderByDescending(m => m.EmployeeGIId);
-                        return View(employeeGIs.ToList());
-                    }
-                    else
-                    {
-
-                        var employeeGIs = db.EmployeeGIs.Where(a => a.EmployeeCode == empcode).ToList();
-                        return View(employeeGIs.ToList());
-                    }
+                    ViewBag.NoOfStaff = employees.Count();
+                    ViewBag.NoofNewEmp = (from e in employees where e.FirstAppointmentDate >= DateTime.Now.Date.AddDays(-30) select e).Count();
+                    ViewBag.NeartoRetirement = (from e in employees where e.DateOfRetirement <= DateTime.Now.Date.AddMonths(6) select e).Count();
+                    ViewBag.onleave = (from a in db.LeaveApplications where a.AppDate == dttoday.Date select a.LeaveAccId).ToList().Count();
+                    return View(employees);
                 }
+                else
+                {
+
+                    var employeeGIs = db.EmployeeGIs.Where(a => a.EmployeeCode == user.EmployeeCode).ToList();
+                    return View(employeeGIs.ToList());
+                }
+
 
 
                 //if(     User.Identity.Name)
@@ -187,19 +177,12 @@ namespace IARTAutomationApp.Controllers
                 {
                     if (employeeGI.Marital_Status != "Married")
                         employeeGI.Spouse_Name = "N/A";
-
-                    var list = new List<int>();
-                    for (int i = 1; i <= 111; i++)
-                    {
-                        list.Add(i);
-                    }
                     List<SelectListItem> File_Nos = new List<SelectListItem>();
                     File_Nos.Add(new SelectListItem { Text = "Select", Value = "0" });
                     for (int i = 1; i <= 111; i++)
                     {
                         File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
                     }
-
                     ViewBag.File_No = new SelectList(File_Nos, "Value", "Text");
                     employeeGI.CreatedDate = DateTime.Now.Date;
                     employeeGI.IsDeleted = false;
@@ -212,10 +195,6 @@ namespace IARTAutomationApp.Controllers
                     ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters, "UnitServicesName", "UnitServicesName");
                     ViewBag.StationOfDeployments = new SelectList(db.StationMasters, "StationName", "StationName");
                     ViewBag.Sections = new SelectList(db.SectionMasters, "SectionName", "SectionName");
-
-                    //if (ModelState.IsValid)
-                    //{
-
                     if (employeeGI.EmployeePhotoImage.FileName != null && employeeGI.EmployeePhotoImage.ContentLength > 0)
                     {
                         var uploadDir = "~/uploads";
@@ -225,41 +204,19 @@ namespace IARTAutomationApp.Controllers
                         employeeGI.EmployeePhotoImage.SaveAs(imagePath);
 
                     }
-
-
-
+                    var user = (UserMaster)Session["User"];
                     employeeGI.File_No = employeeGI.File_No;
-
                     employeeGI.EmployeeGIId = employeeGI.EmployeeCode;
+                    employeeGI.CustomerId = user.CustomerId;
                     db.EmployeeGIs.Add(employeeGI);
                     db.SaveChanges();
                     TempData["successmsg"] = "Record is Successfully added";
                     TempData["msg"] = "";
                     int empcode = Convert.ToInt32(@Session["employeecode"]);
-
                     DateTime dttoday = DateTime.Now.Date;
                     var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
                     var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
                     return RedirectToAction("Index");
-
-                    //if (RoleName == "Admin" || RoleName == "Super Admin")
-                    //{
-                    //    return RedirectToAction("Index");
-                    //}
-                    //else if (RoleName == "Mid Level Admin")
-                    //{
-                    //    return RedirectToAction("MidLevelIndex");
-                    //}
-                    //else if (RoleName == "Low Level Admin")
-                    //{
-                    //    return RedirectToAction("MidLevelIndex");
-                    //}
-                    //else
-                    //{
-                    //    return RedirectToAction("UserIndex");
-                    //}
-
-
                 }
                 catch (Exception ext)
                 {
