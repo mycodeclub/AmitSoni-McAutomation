@@ -5,13 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Tenant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
 {
     @Html.AntiForgeryToken()
     <input type="hidden" value="@Model.EmployeeGIId" name="EmployeeGIId" />
     <input type="hidden" value="@Model.EmployeeCode" name="EmployeeCode" />
     <input type="hidden" value="@Model.DateOfRetirement" name="DateOfRetirement" />
     <input type="hidden" value="@Model.CustomerId.Value" name="CustomerId" />
+    <input type="hidden" value="@Model.CustomerMaster.CountryLogoIrl" name="CustomerMaster.CountryLogoIrl" />
+    <input type="hidden" value="@Model.CustomerMaster.OrgLogoUrl" name="CustomerMaster.OrgLogoUrl" />
 
 
     <!-- Main content -->
@@ -33,16 +36,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.Label("Country Logo", htmlAttributes: new { })
-                                    <input type="image" src="@Model.CustomerMaster.CountryLogoIrl" id="CountryLogoIrl" class="image" style="width:200px;" />
-                                    @*@Html.TextBoxFor(model => model.CustomerMaster.CountryLogo, new { type = "file", name = "CustomerMaster.CountryLogo", @class = "dropify" })*@
+                                    @Html.Label("Country Logo", htmlAttributes: new { })<br />
+                                    <input type="image" src="@Model.CustomerMaster.CountryLogoIrl" id="SelectedCountryLogo" alt="Student Image" class="image" height="200px" width="200px" />
+                                    @Html.TextBoxFor(model => model.CustomerMaster.CountryLogo, new { type = "file", @class = "form-control", @id = "CountryLogo" })
                                     @Html.ValidationMessageFor(model => model.CustomerMaster.CountryLogo, "", new { @class = "text-danger" })
                                 </div>
-                            </div> <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.Label("Organization Logo", htmlAttributes: new { })
-                                    <input type="image" src="@Model.CustomerMaster.OrgLogoUrl" id="CountryLogoIrl" class="image" style="width:200px;" />
-                                    @*@Html.TextBoxFor(model => model.CustomerMaster.OrgLogo, new { type = "file", name = "CustomerMaster.OrgLogo", @class = "dropify" })*@
+                                    @Html.Label("Organization Log", htmlAttributes: new { })<br />
+                                    <input type="image" src="@Model.CustomerMaster.OrgLogoUrl" id="SelectedOrgLogo" alt="Student Image" class="image" height="200px" width="200px" />
+                                    @Html.TextBoxFor(model => model.CustomerMaster.OrgLogo, new { type = "file", @class = "form-control", @id = "OrgLogo" })
                                     @Html.ValidationMessageFor(model => model.CustomerMaster.OrgLogo, "", new { @class = "text-danger" })
                                 </div>
                             </div> <div class="col-md-4">
@@ -223,20 +227,21 @@
     </div>
 }
 
-
-
-<script>
-    function LoadLga(stateName) {
-        $.ajax({
-            url: 'GetCitiesByState?stateName=' + stateName,
-            success: function (data) { $('#LGAs').html(data); }
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CountryLogo').change(function (event) {
+                $('#SelectedCountryLogo').attr('src', URL.createObjectURL(event.target.files[0]));
+            });
+            $('#OrgLogo').change(function (event) {
+                $('#SelectedOrgLogo').attr('src', URL.createObjectURL(event.target.files[0]));
+            });
         });
-    }
-    //$(document).ready(function () {
-    //    var dob = $('[name="DateOfBirth"]').val();
-    //    $('[name="DateOfBirth"]').attr('type', 'date');
-    //    $('[name="DateOfBirth"]').val(dob);
-
-    //});
-
-</script>
+        function LoadLga(stateName) {
+            $.ajax({
+                url: 'GetCitiesByState?stateName=' + stateName,
+                success: function (data) { $('#LGAs').html(data); }
+            });
+        }
+    </script>
+}

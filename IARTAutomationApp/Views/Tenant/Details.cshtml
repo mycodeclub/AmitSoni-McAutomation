@@ -16,13 +16,27 @@
     </ol>
     <div class="row">
         <div class="col-lg-3">
-
             <div class="card m-b-3">
                 <div class="card-body">
                     <div class="box-body">
-                        <strong>Tenant Name</strong>
-                        <p class="text-muted"> @empName</p>
+                        <strong>Contact Person </strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.CustomerMaster.ContactPerson)</p>
                         <hr>
+                        <strong>Organization Name </strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.CustomerMaster.OrgName)</p>
+                        <hr>
+                        <strong> Organization Address  </strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.CustomerMaster.Address)</p>
+                        <hr>
+                        <strong>Organization Phone Number</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.CustomerMaster.PhoneNumber)</p>
+                        <hr>
+                        <strong>Organization Email</strong>
+                        <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.CustomerMaster.Email)</p>
+                        <hr>
+                        @*<strong>Tenant Name</strong>
+                            <p class="text-muted"> @empName</p>
+                            <hr>*@
                         <strong>Gender</strong>
                         <p class="text-muted"> @Html.DisplayFor(model => EmployeGI.Sex) </p>
                         <hr>
@@ -50,6 +64,26 @@
                         <p>@Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId })</p>
                     </div>
                     <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card m-b-3">
+                <div class="card-body">
+                    <div class="box-body">
+                        @Html.Label("Country Logo", htmlAttributes: new { })<br />
+                        <input type="image" src="@Model.CountryLogoIrl" id="SelectedCountryLogo" alt="Student Image" class="image" height="200px" width="200px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card m-b-3">
+                <div class="card-body">
+                    <div class="box-body">
+                        @Html.Label("Organization Log", htmlAttributes: new { })<br />
+                        <input type="image" src="@Model.OrgLogoUrl" id="SelectedOrgLogo" alt="Student Image" class="image" height="200px" width="200px" />
+                    </div>
                 </div>
             </div>
         </div>

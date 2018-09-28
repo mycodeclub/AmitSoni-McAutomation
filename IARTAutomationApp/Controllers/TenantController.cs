@@ -92,7 +92,7 @@ namespace IARTAutomationApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank,EmployeeGIId")] EmployeeGI tenent)
+        public ActionResult Edit(EmployeeGI tenent)
         {
             if (ModelState.IsValid)
             {
@@ -126,6 +126,17 @@ namespace IARTAutomationApp.Controllers
                 tenentUpdate.LastPromotionDate = tenent.LastPromotionDate;
                 tenentUpdate.Rank = tenent.Rank;
                 db.Entry(tenentUpdate).State = EntityState.Modified;
+                var customerUpdate = db.CustomerMasters.Find(tenentUpdate.CustomerId);
+                customerUpdate.ContactPerson = tenent.CustomerMaster.ContactPerson = (tenent.First_Name + " " + tenent.Middle_Name + " " + tenent.Surname).Trim();
+                customerUpdate.OrgLogoUrl = tenent.CustomerMaster.OrgLogoUrl;
+                customerUpdate.CountryLogoIrl = tenent.CustomerMaster.CountryLogoIrl;
+                customerUpdate.OrgName = tenent.CustomerMaster.OrgName;
+                customerUpdate.Email = tenent.CustomerMaster.Email;
+                customerUpdate.Address = tenent.CustomerMaster.Address;
+                customerUpdate.PhoneNumber = tenent.CustomerMaster.PhoneNumber;
+
+                SaveImages(customerUpdate);
+                db.Entry(customerUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -175,6 +186,7 @@ namespace IARTAutomationApp.Controllers
             var isSaved = false;
             try
             {
+                tenent.CustomerMaster.ContactPerson = tenent.CustomerMaster.ContactPerson = (tenent.First_Name + " " + tenent.Middle_Name + " " + tenent.Surname).Trim();
                 tenent.DateOfRetirement = DateTime.Now.AddYears(20);
                 tenent.EmployeeCode = (db.EmployeeGIs.Any()) ? (db.EmployeeGIs.Max(e => e.EmployeeCode) + 1) : 1000;
                 var loginUser = new UserMaster()
@@ -393,12 +405,12 @@ namespace IARTAutomationApp.Controllers
         {
             var gotOrg = false;
             var gotCountry = false;
-            if (string.IsNullOrEmpty(customerMaster.OrgLogoUrl) && customerMaster.OrgLogo == null || customerMaster.OrgLogo.ContentLength == 0)
+            if (string.IsNullOrEmpty(customerMaster.OrgLogoUrl) && customerMaster.OrgLogo == null || customerMaster.OrgLogo?.ContentLength == 0)
             {
                 customerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/organizationLogo.jpg";
                 gotOrg = true;
             }
-            if (string.IsNullOrEmpty(customerMaster.CountryLogoIrl) && customerMaster.CountryLogo == null || customerMaster.CountryLogo.ContentLength == 0)
+            if (string.IsNullOrEmpty(customerMaster.CountryLogoIrl) && customerMaster.CountryLogo == null || customerMaster.CountryLogo?.ContentLength == 0)
             {
                 customerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/countryLogo.jpg";
                 gotCountry = true;
