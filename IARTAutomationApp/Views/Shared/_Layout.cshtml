@@ -138,7 +138,7 @@
                                     <li><a href='#'><i class="icon-gears"></i> My Profile</a></li>
                                     <li><a href='#'><i class="icon-gears"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href='#'><i class="fa fa-power-off"></i><span>Logout</span> </a></li>
+                                    <li><a href='/login/logout'><i class="fa fa-power-off"></i><span>Logout</span> </a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -170,10 +170,6 @@
                                 <li>@Html.ActionLink("Add New Tenant", "Create", "Tenant")</li>
                                 <li>@Html.ActionLink("View All Tenants", "Index", "Tenant")</li>
                             </ul>
-                        </li>
-                        <!--EOF-->
-                        <li class="treeview">
-                            <a href="@Url.Action("Logout", "Login")"><i class="fa fa-power-off"></i><span>Logout</span></a>
                         </li>
                         <li>@Html.ActionLink("Log Out", "Logout", "Login")</li>
                     </ul>
