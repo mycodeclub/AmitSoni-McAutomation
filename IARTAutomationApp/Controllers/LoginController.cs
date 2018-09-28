@@ -46,7 +46,7 @@ namespace IARTAutomationApp.Controllers
 
                         Session.Timeout = 60000;
                         string roletext = (from a in db.RoleMasters where a.RoleId == user.RoleId select a.RoleName).FirstOrDefault();
-                        var role = (from a in db.UserMasters where a.EmployeeCode == user.EmployeeCode select a.RoleId).SingleOrDefault();
+                        var role = (from a in db.UserMasters where a.EmployeeCode == user.EmployeeCode select a.RoleId).FirstOrDefault();
                         var userType = (from a in db.RoleMasters where a.RoleId == role select a.RoleName).FirstOrDefault();
                         Session["Role"] = userType;
                         try

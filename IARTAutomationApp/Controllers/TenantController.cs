@@ -16,6 +16,7 @@ namespace IARTAutomationApp.Controllers
 
     public class TenantController : Controller
     {
+        private string validImageFormets = @"bmp, jpg, jpeg, gif, png";
 
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
 
@@ -55,27 +56,15 @@ namespace IARTAutomationApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "First_Name,Surname,Sex,DateOfBirth,Maiden_Name,Middle_Name,Title,StateOfOrigin,LGA,Religion,DateOfRetirement,EmployeeCode,Unit_Research,Section,StationOfDeployment,File_No,Grade_Level,Step,Cadre,Marital_Status,PlaceOfBirth,Home_Town,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,LastPromotionDate,Rank," +
-            "CustomerMaster.CountryLogo," +
-            "CustomerMaster.CountryLogoIrl," +
-            "CustomerMaster.OrgLogo," +
-            "CustomerMaster.OrgLogoUrl," +
-            "CustomerMaster.OrgName," +
-            "CustomerMaster.PhoneNumber," +
-            "CustomerMaster.Email")] EmployeeGI tenent, FormCollection fc)
+        public ActionResult Create(EmployeeGI tenent)
         {
             if (ModelState.IsValid)
             {
-                var x = fc["CustomerMaster.OrgName"];
-                var y = fc["CustomerMaster.OrgLogo"];
-
-                tenent.CustomerMaster.CountryLogoIrl = @"/Uploads/Logos/Default/countryLogo.jpg";
-                tenent.CustomerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/organizationLogo.jpg";
-                //   var customer = new CustomerMaster() { EmployeeGIs = new List<EmployeeGI>() { tenent } };
-
                 if (AddNewTenant(tenent))
+                {
                     TempData["NewTenent"] = tenent.CustomerMaster;
-                return RedirectToAction("Index", "Tenant");
+                    return RedirectToAction("Index", "Tenant");
+                }
             }
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
@@ -89,6 +78,7 @@ namespace IARTAutomationApp.Controllers
             }
             var empCode = (from emp in db.EmployeeGIs where emp.EmployeeGIId == id.Value select emp.EmployeeCode).FirstOrDefault();
             EmployeeGI tenent = db.EmployeeGIs.Find(empCode);
+            tenent.CustomerMaster = db.CustomerMasters.Find(tenent.CustomerId);
             if (tenent == null)
             {
                 return HttpNotFound();
@@ -97,7 +87,6 @@ namespace IARTAutomationApp.Controllers
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
             return View(tenent);
         }
-
         // POST: CustomerMasters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -142,7 +131,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View(tenent);
         }
-
         // GET: CustomerMasters/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -184,36 +172,46 @@ namespace IARTAutomationApp.Controllers
         }
         private bool AddNewTenant(EmployeeGI tenent)
         {
-            //  var tenent = customer.EmployeeGIs.FirstOrDefault();
-            tenent.DateOfRetirement = DateTime.Now.AddYears(20);
-            tenent.EmployeeCode = (db.EmployeeGIs.Any()) ? (db.EmployeeGIs.Max(e => e.EmployeeCode) + 1) : 1000;
-            var loginUser = new UserMaster()
+            var isSaved = false;
+            try
             {
-                EmployeeCode = tenent.EmployeeCode,
-                EmailId = "Update Your Mail Id",
-                UserName = tenent.EmployeeCode.ToString(),
-                Password = "Pwd" + tenent.EmployeeCode.ToString(),
-                RoleId = 1,
-                RoleName = "Admin",
-            };
-            db.UserMasters.Add(loginUser);
-            db.SaveChanges();
-            tenent.CustomerMaster.LoginUserId = loginUser.UserId;
-            //   db.CustomerMasters.Add(customer);
-            db.SaveChanges();
-            tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
-            var isSaved = AddSystemConfig(tenent);
-            var rank = db.RankMasters.Where(r => r.CustomerId == tenent.CustomerMaster.CustomerId).FirstOrDefault()?.RankName;
-            tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
-            db.SaveChanges();
-            tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
-            tenent.CustomerId = tenent.CustomerMaster.CustomerId;
-            loginUser.CustomerId = tenent.CustomerMaster.CustomerId;
-            db.Entry(loginUser).State = EntityState.Modified;
-            db.Entry(tenent.CustomerMaster).State = EntityState.Modified;
-            db.Entry(tenent).State = EntityState.Modified;
-            tenent.CustomerMaster.UserMaster = loginUser;
-            db.SaveChanges();
+                tenent.DateOfRetirement = DateTime.Now.AddYears(20);
+                tenent.EmployeeCode = (db.EmployeeGIs.Any()) ? (db.EmployeeGIs.Max(e => e.EmployeeCode) + 1) : 1000;
+                var loginUser = new UserMaster()
+                {
+                    EmployeeCode = tenent.EmployeeCode,
+                    EmailId = "Update Your Mail Id",
+                    UserName = tenent.EmployeeCode.ToString(),
+                    Password = "Pwd" + tenent.EmployeeCode.ToString(),
+                    RoleId = 1,
+                    RoleName = "Admin",
+                };
+                db.UserMasters.Add(loginUser);
+                db.SaveChanges();
+                tenent.CustomerMaster.LoginUserId = loginUser.UserId;
+                tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
+                db.EmployeeGIs.Add(tenent);
+                db.SaveChanges();
+                var isImagesSaved = SaveImages(tenent.CustomerMaster);
+                var isConfigSaved = AddSystemConfig(tenent);
+                isSaved = isImagesSaved && isConfigSaved;
+                var rank = db.RankMasters.Where(r => r.CustomerId == tenent.CustomerMaster.CustomerId).FirstOrDefault()?.RankName;
+                tenent.Rank = !string.IsNullOrEmpty(rank) ? rank : string.Empty;
+                db.SaveChanges();
+                tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
+                tenent.CustomerId = tenent.CustomerMaster.CustomerId;
+                loginUser.CustomerId = tenent.CustomerMaster.CustomerId;
+                db.Entry(loginUser).State = EntityState.Modified;
+                db.Entry(tenent.CustomerMaster).State = EntityState.Modified;
+                db.Entry(tenent).State = EntityState.Modified;
+                tenent.CustomerMaster.UserMaster = loginUser;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+                isSaved = false;
+            }
             return isSaved;
         }
         private bool AddSystemConfig(EmployeeGI tenent)
@@ -387,6 +385,45 @@ namespace IARTAutomationApp.Controllers
                 });
             }
             return units;
+        }
+
+
+
+        private bool SaveImages(CustomerMaster customerMaster)
+        {
+            var gotOrg = false;
+            var gotCountry = false;
+            if (string.IsNullOrEmpty(customerMaster.OrgLogoUrl) && customerMaster.OrgLogo == null || customerMaster.OrgLogo.ContentLength == 0)
+            {
+                customerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/organizationLogo.jpg";
+                gotOrg = true;
+            }
+            if (string.IsNullOrEmpty(customerMaster.CountryLogoIrl) && customerMaster.CountryLogo == null || customerMaster.CountryLogo.ContentLength == 0)
+            {
+                customerMaster.OrgLogoUrl = @"/Uploads/Logos/Default/countryLogo.jpg";
+                gotCountry = true;
+            }
+            if (customerMaster.OrgLogo != null && customerMaster.OrgLogo.ContentLength > 0)
+            {
+                var orgFileName = "org_" + DateTime.UtcNow.ToString().Replace(" ", string.Empty).Replace(":", string.Empty).Replace("/", string.Empty) + customerMaster.OrgLogo.FileName.Replace(" ", string.Empty);
+                var path = @"/Uploads/Logos/" + customerMaster.CustomerId + "/";
+                if (!Directory.Exists(Server.MapPath("~" + path)))
+                    Directory.CreateDirectory(Server.MapPath("~" + path));
+                customerMaster.OrgLogoUrl = path + orgFileName;
+                customerMaster.OrgLogo.SaveAs(Server.MapPath("~" + customerMaster.OrgLogoUrl));
+                gotOrg = true;
+            }
+            if (customerMaster.CountryLogo != null && customerMaster.CountryLogo.ContentLength > 0)
+            {
+                var countryFileName = "cou_" + DateTime.UtcNow.ToString().Replace(" ", string.Empty).Replace(":", string.Empty).Replace("/", string.Empty) + customerMaster.OrgLogo.FileName.Replace(" ", string.Empty);
+                var path = @"/Uploads/Logos/" + customerMaster.CustomerId + "/";
+                if (!Directory.Exists(Server.MapPath("~" + path)))
+                    Directory.CreateDirectory(Server.MapPath("~" + path));
+                customerMaster.CountryLogoIrl = path + countryFileName;
+                customerMaster.CountryLogo.SaveAs(Server.MapPath("~" + customerMaster.CountryLogoIrl));
+                gotCountry = true;
+            }
+            return gotOrg && gotCountry;
         }
     }
 }
