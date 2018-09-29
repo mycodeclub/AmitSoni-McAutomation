@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class LeaveTypeMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: LeaveTypeMasters
         public ActionResult Index()
         {
-            return View(db.LeaveTypeMasters.ToList());
+            var user = (UserMaster)Session["User"];
+            var leavs = db.LeaveTypeMasters.Where(l => l.CustomerId == user.CustomerId).ToList();
+            ViewBag.leaveTypesCount = leavs.Count;
+            return View(leavs);
         }
 
         // GET: LeaveTypeMasters/Details/5
@@ -51,6 +54,8 @@ namespace IARTAutomationApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = (UserMaster)Session["User"];
+                leaveTypeMaster.CustomerId = user.CustomerId;
                 db.LeaveTypeMasters.Add(leaveTypeMaster);
                 db.SaveChanges();
                 return RedirectToAction("Index");

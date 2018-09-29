@@ -228,7 +228,8 @@ namespace IARTAutomationApp.Controllers
         }
         private bool AddSystemConfig(EmployeeGI tenent)
         {
-            string filepath = @"E:/MyProjects/AmitSoni-McAutomation/IARTAutomationApp/App_Data/SystemConfig.xlsx";
+            // var path = "E:/MyProjects/AmitSoni-McAutomation/IARTAutomationApp/App_Data/SystemConfig.xlsx"; 
+            string filepath = Server.MapPath("~/App_Data/SystemConfig.xlsx");
             FileStream fs = System.IO.File.Open(filepath, FileMode.Open, FileAccess.Read);
             IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fs);
             DataSet ds = excelReader.AsDataSet();
@@ -427,7 +428,7 @@ namespace IARTAutomationApp.Controllers
             }
             if (customerMaster.CountryLogo != null && customerMaster.CountryLogo.ContentLength > 0)
             {
-                var countryFileName = "cou_" + DateTime.UtcNow.ToString().Replace(" ", string.Empty).Replace(":", string.Empty).Replace("/", string.Empty) + customerMaster.OrgLogo.FileName.Replace(" ", string.Empty);
+                var countryFileName = "cou_" + DateTime.UtcNow.ToString().Replace(" ", string.Empty).Replace(":", string.Empty).Replace("/", string.Empty) + customerMaster.CountryLogo.FileName.Replace(" ", string.Empty);
                 var path = @"/Uploads/Logos/" + customerMaster.CustomerId + "/";
                 if (!Directory.Exists(Server.MapPath("~" + path)))
                     Directory.CreateDirectory(Server.MapPath("~" + path));

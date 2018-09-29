@@ -58,9 +58,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View();
         }
-
-
-
         public ActionResult UserIndex()
         {
 
@@ -85,7 +82,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View();
         }
-
         public ActionResult GetLGAList(string stateId)
         {
             List<SelectListItem> licity = new List<SelectListItem>();
@@ -129,7 +125,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View(employeeGI);
         }
-
         // GET: EmployeeGIs/Create
         public ActionResult Create()
         {
@@ -143,16 +138,17 @@ namespace IARTAutomationApp.Controllers
                 {
                     File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
                 }
+                var user = (UserMaster)Session["User"];
                 ViewBag.File_Nos = new SelectList(File_Nos, "Value", "Text");
-                ViewBag.Ranks = new SelectList(db.RankMasters, "RankName", "RankName");
+                ViewBag.Ranks = new SelectList(db.RankMasters.Where(item => item.CustomerId == user.CustomerId), "RankName", "RankName");
                 ViewBag.LGAs = new SelectList(db.CityMasters, "City", "City");
                 ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
-                ViewBag.cadres = new SelectList(db.CadreMasters, "CadreName", "CadreName");
-                ViewBag.Programmess = new SelectList(db.ProgrammeMasters, "ProgrammeName", "ProgrammeName");
-                ViewBag.Unit_Researchs = new SelectList(db.UnitResearchMasters, "UnitResearchName", "UnitResearchName");
-                ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters, "UnitServicesName", "UnitServicesName");
-                ViewBag.StationOfDeployments = new SelectList(db.StationMasters, "StationName", "StationName");
-                ViewBag.Sections = new SelectList(db.SectionMasters, "SectionName", "SectionName");
+                ViewBag.cadres = new SelectList(db.CadreMasters.Where(item => item.CustomerId == user.CustomerId), "CadreName", "CadreName");
+                ViewBag.Programmess = new SelectList(db.ProgrammeMasters.Where(item => item.CustomerId == user.CustomerId), "ProgrammeName", "ProgrammeName");
+                ViewBag.Unit_Researchs = new SelectList(db.UnitResearchMasters.Where(item => item.CustomerId == user.CustomerId), "UnitResearchName", "UnitResearchName");
+                ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters.Where(item => item.CustomerId == user.CustomerId), "UnitServicesName", "UnitServicesName");
+                ViewBag.StationOfDeployments = new SelectList(db.StationMasters.Where(item => item.CustomerId == user.CustomerId), "StationName", "StationName");
+                ViewBag.Sections = new SelectList(db.SectionMasters.Where(item => item.CustomerId == user.CustomerId), "SectionName", "SectionName");
                 return View(empgi);
             }
             catch (Exception ext)
@@ -160,9 +156,6 @@ namespace IARTAutomationApp.Controllers
                 return null;
             }
         }
-
-
-
         // POST: EmployeeGIs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
