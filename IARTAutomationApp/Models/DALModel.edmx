@@ -330,7 +330,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="LeaveDays" Type="int" />
           <Property Name="Leave_fromDate" Type="datetime" />
           <Property Name="Leave_ToDate" Type="datetime" />
-          <Property Name="EmployeePhoto" Type="nvarchar" MaxLength="30" />
+          <Property Name="EmployeePhoto" Type="nvarchar(max)" />
           <Property Name="StationOfDeployment" Type="nvarchar" MaxLength="50" />
           <Property Name="Programmes" Type="nvarchar" MaxLength="100" />
           <Property Name="Unit_Services" Type="nvarchar" MaxLength="100" />
@@ -2534,7 +2534,7 @@ warning 6002: The table/view 'IARTDBempty.dbo.EmployeeAttendance' does not have 
           <Property Name="LeaveDays" Type="Int32" />
           <Property Name="Leave_fromDate" Type="DateTime" Precision="3" />
           <Property Name="Leave_ToDate" Type="DateTime" Precision="3" />
-          <Property Name="EmployeePhoto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StationOfDeployment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Programmes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Unit_Services" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
