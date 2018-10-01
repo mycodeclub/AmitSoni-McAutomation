@@ -139,8 +139,8 @@ namespace IARTAutomationApp.Controllers
                     File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
                 }
                 var user = (UserMaster)Session["User"];
-                ViewBag.File_Nos = new SelectList(File_Nos, "Value", "Text");
                 ViewBag.Ranks = new SelectList(db.RankMasters.Where(item => item.CustomerId == user.CustomerId), "RankName", "RankName");
+                ViewBag.File_Nos = new SelectList(File_Nos, "Value", "Text");
                 ViewBag.LGAs = new SelectList(db.CityMasters, "City", "City");
                 ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
                 ViewBag.cadres = new SelectList(db.CadreMasters.Where(item => item.CustomerId == user.CustomerId), "CadreName", "CadreName");
@@ -163,6 +163,7 @@ namespace IARTAutomationApp.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeGIId,EmployeeCode,Rank,File_No,Grade_Level,Step,Cadre,Title,First_Name,Middle_Name,Surname,Sex,DateOfBirth,PlaceOfBirth,Marital_Status,Maiden_Name,Spouse_Name,StateOfOrigin,LGA,Home_Town,Religion,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,DateOfRetirement,LastPromotionDate,Programmes,Unit_Services,Unit_Research,Section,LeaveDays,Leave_fromDate,Leave_ToDate,,EmployeePhotoImage,StationOfDeployment,IsDeleted,CreatedDate")] EmployeeGI employeeGI)
         {
+            var user = (UserMaster)Session["User"];
             var isAlready = (from a in db.EmployeeGIs where a.EmployeeCode == employeeGI.EmployeeCode select a.EmployeeCode).Count();
             if (isAlready == 0)
             {
@@ -197,7 +198,6 @@ namespace IARTAutomationApp.Controllers
                         employeeGI.EmployeePhotoImage.SaveAs(imagePath);
 
                     }
-                    var user = (UserMaster)Session["User"];
                     employeeGI.File_No = employeeGI.File_No;
                     employeeGI.EmployeeGIId = employeeGI.EmployeeCode;
                     employeeGI.CustomerId = user.CustomerId;
@@ -222,6 +222,24 @@ namespace IARTAutomationApp.Controllers
             }
             else
             {
+                List<SelectListItem> File_Nos = new List<SelectListItem>();
+                File_Nos.Add(new SelectListItem { Text = "Select", Value = "0" });
+                for (int i = 1; i <= 111; i++)
+                {
+                    File_Nos.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                }
+                ViewBag.Ranks = new SelectList(db.RankMasters.Where(item => item.CustomerId == user.CustomerId), "RankName", "RankName");
+                ViewBag.File_Nos = new SelectList(File_Nos, "Value", "Text");
+                ViewBag.LGAs = new SelectList(db.CityMasters, "City", "City");
+                ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
+                ViewBag.cadres = new SelectList(db.CadreMasters.Where(item => item.CustomerId == user.CustomerId), "CadreName", "CadreName");
+                ViewBag.Programmess = new SelectList(db.ProgrammeMasters.Where(item => item.CustomerId == user.CustomerId), "ProgrammeName", "ProgrammeName");
+                ViewBag.Unit_Researchs = new SelectList(db.UnitResearchMasters.Where(item => item.CustomerId == user.CustomerId), "UnitResearchName", "UnitResearchName");
+                ViewBag.Unit_Servicess = new SelectList(db.UnitServicesMasters.Where(item => item.CustomerId == user.CustomerId), "UnitServicesName", "UnitServicesName");
+                ViewBag.StationOfDeployments = new SelectList(db.StationMasters.Where(item => item.CustomerId == user.CustomerId), "StationName", "StationName");
+                ViewBag.Sections = new SelectList(db.SectionMasters.Where(item => item.CustomerId == user.CustomerId), "SectionName", "SectionName");
+
+
                 TempData["successmsg"] = "";
                 TempData["msg"] = "This Employee Record is already exist";
                 return View(employeeGI);
