@@ -2,15 +2,16 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="form-horizontal">
         <h4>EmpAIAssociation</h4>
         <hr />
@@ -46,7 +47,7 @@
                 @Html.ValidationMessageFor(model => model.AttendedDate, "", new { @class = "text-danger" })
             </div>
         </div>
-         
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -66,7 +67,7 @@
 
     $(document).ready(function () {
         debugger;
-        $.noConflict();  $("#EmployeeCode").autocomplete({
+        $.noConflict(); $("#EmployeeCode").autocomplete({
             source: function (request, response) {
 
                 $.ajax({

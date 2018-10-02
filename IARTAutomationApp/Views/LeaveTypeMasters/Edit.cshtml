@@ -5,9 +5,12 @@
 
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
 
     <div class="content">
 
@@ -40,7 +43,7 @@
                                     @Html.ValidationMessageFor(model => model.LeaveTypeName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <!--EOF Employee Code-->                            
+                            <!--EOF Employee Code-->
 
                         </div>
                         <!--EOF Row Employee Code-->

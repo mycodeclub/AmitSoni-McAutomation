@@ -4,7 +4,7 @@
 
 @{
     ViewBag.Title = "Index";
-    
+
 
 
 }
@@ -12,9 +12,11 @@
 
 
 <!-- Content Header (Page header) -->
-@using (Html.BeginForm("Create", "EmployeeGIs", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+@using (Html.BeginForm("Create", "EmployeeGIs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
-
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 
@@ -24,7 +26,7 @@
         </ol>
 
         <div class="row">
-             <div class="col-lg-12">
+            <div class="col-lg-12">
                 <div class="card ">
                     <div class="card-header bg-blue">
                         <h5 class="text-white m-b-0">Add Employee General Information</h5>
@@ -45,7 +47,7 @@
 
 
 
-                                     @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Employee Code-->
@@ -120,7 +122,6 @@
                             </div>
                             <!--EOF Maiden Name-->
                             <!--Form Field Mothers Maiden Name-->
-                            
                             <!--EOF Mothers Maiden Name-->
 
                         </div>
@@ -135,7 +136,7 @@
                             <!--Form Field Rank-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Rank,  htmlAttributes: new { })
+                                    @Html.LabelFor(model => model.Rank, htmlAttributes: new { })
                                     @Html.DropDownList("Rank", (SelectList)ViewBag.Ranks, "Select Rank", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
                                 </div>
@@ -206,15 +207,15 @@
                             <!--Form Field Cadre-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Cadre,  htmlAttributes: new { })
+                                    @Html.LabelFor(model => model.Cadre, htmlAttributes: new { })
                                     @Html.DropDownList("Cadre", (SelectList)ViewBag.Cadres, "Select Cadre/Job Schedule", htmlAttributes: new { @class = "form-control" })
-                                        @*@Html.DropDownList("Cadre", new List<SelectListItem> {
-                                        new SelectListItem { Text = "Select Cadre", Value = "Select Cadre" , Selected=true},
-                                        new SelectListItem { Text = "Academic Staff", Value = "Academic"},
-                                        new SelectListItem { Text = "Non-Academic Staff", Value = "Non Academic"},
-                                        new SelectListItem { Text = "Senior Staff", Value = "Senior"},
-                                        new SelectListItem { Text = "Junior Staff", Value = "Junior"},
-                                    }, new { @class = "form-control", maxLength = "6" })*@
+                                    @*@Html.DropDownList("Cadre", new List<SelectListItem> {
+                                            new SelectListItem { Text = "Select Cadre", Value = "Select Cadre" , Selected=true},
+                                            new SelectListItem { Text = "Academic Staff", Value = "Academic"},
+                                            new SelectListItem { Text = "Non-Academic Staff", Value = "Non Academic"},
+                                            new SelectListItem { Text = "Senior Staff", Value = "Senior"},
+                                            new SelectListItem { Text = "Junior Staff", Value = "Junior"},
+                                        }, new { @class = "form-control", maxLength = "6" })*@
                                     @Html.ValidationMessageFor(model => model.Cadre, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -289,50 +290,50 @@
                             <!--Form Field State of Origin-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.StateOfOrigin,  htmlAttributes: new { })
-                                    @Html.DropDownList("StateOfOrigin", (SelectList)ViewBag.StateOfOrigins, "Select State Of Origin", htmlAttributes: new { @class = "form-control" , @id= "StateOfOrigin" })
+                                    @Html.LabelFor(model => model.StateOfOrigin, htmlAttributes: new { })
+                                    @Html.DropDownList("StateOfOrigin", (SelectList)ViewBag.StateOfOrigins, "Select State Of Origin", htmlAttributes: new { @class = "form-control", @id = "StateOfOrigin" })
 
 
                                     @*@Html.DropDownList("StateOfOrigin", new List<SelectListItem> {
-                                        new SelectListItem  { Text = "Select State Of Origin", Value = "Select State Of Origin", Selected=true},
-                                        new SelectListItem  { Text = "Abia", Value = "Abia"},
-                                        new SelectListItem  { Text = "Adamawa", Value = "Adamawa"},
-                                        new SelectListItem  { Text = "Akwa Ibom", Value = "Akwa Ibom"},
-                                        new SelectListItem  { Text = "Anambra", Value = "Anambra"},
-                                        new SelectListItem  { Text = "Bauchi", Value = "Bauchi"},
-                                        new SelectListItem  { Text = "Bayelsa", Value = "Bayelsa"},
-                                        new SelectListItem  { Text = "Benue", Value = "Benue"},
-                                        new SelectListItem  { Text = "Borno", Value = "Borno"},
-                                        new SelectListItem  { Text = "Cross River", Value = "Cross River"},
-                                        new SelectListItem  { Text = "Delta", Value = "Delta"},
-                                        new SelectListItem  { Text = "Edo", Value = "Edo"},
-                                        new SelectListItem  { Text = "Ekiti", Value = "Ekiti"},
-                                        new SelectListItem  { Text = "Enugu", Value = "Enugu"},
-                                        new SelectListItem  { Text = "Gombe", Value = "Gombe"},
-                                        new SelectListItem  { Text = "Imo", Value = "Imo"},
-                                        new SelectListItem  { Text = "Jigawa", Value = "Jigawa"},
-                                        new SelectListItem  { Text = "Gombe", Value = "Gombe"},
-                                        new SelectListItem  { Text = "Kaduna", Value = "Kaduna"},
-                                        new SelectListItem  { Text = "Kano", Value = "Kano"},
-                                        new SelectListItem  { Text = "Katsina", Value = "Katsina"},
-                                        new SelectListItem  { Text = "Kebbi", Value = "Kebbi"},
-                                        new SelectListItem  { Text = "Kogi", Value = "Kogi"},
-                                        new SelectListItem  { Text = "Kwara", Value = "Kwara"},
-                                        new SelectListItem  { Text = "Osun", Value = "Osun"},
-                                        new SelectListItem  { Text = "Oyo", Value = "Oyo"},
-                                        new SelectListItem  { Text = "Plateau", Value = "Plateau"},
-                                        new SelectListItem  { Text = "Rivers", Value = "Rivers"},
-                                        new SelectListItem  { Text = "Sokoto", Value = "Sokoto"},
-                                        new SelectListItem  { Text = "Lagos", Value = "Lagos"},
-                                        new SelectListItem  { Text = "Nasarawa", Value = "Nasarawa"},
-                                        new SelectListItem  { Text = "Niger", Value = "Niger"},
-                                        new SelectListItem  { Text = "Ogun", Value = "Ogun"},
-                                        new SelectListItem  { Text = "Ondo", Value = "Ondo"},
-                                        new SelectListItem  { Text = "Taraba", Value = "Taraba"},
-                                        new SelectListItem  { Text = "Yobe", Value = "Yobe"},
-                                        new SelectListItem  { Text = "Zamfara", Value = "Zamfara"},
-                                        new SelectListItem  { Text = "FCT", Value = "FCT"},
-                                    }, new { @class = "form-control" })*@
+                                            new SelectListItem  { Text = "Select State Of Origin", Value = "Select State Of Origin", Selected=true},
+                                            new SelectListItem  { Text = "Abia", Value = "Abia"},
+                                            new SelectListItem  { Text = "Adamawa", Value = "Adamawa"},
+                                            new SelectListItem  { Text = "Akwa Ibom", Value = "Akwa Ibom"},
+                                            new SelectListItem  { Text = "Anambra", Value = "Anambra"},
+                                            new SelectListItem  { Text = "Bauchi", Value = "Bauchi"},
+                                            new SelectListItem  { Text = "Bayelsa", Value = "Bayelsa"},
+                                            new SelectListItem  { Text = "Benue", Value = "Benue"},
+                                            new SelectListItem  { Text = "Borno", Value = "Borno"},
+                                            new SelectListItem  { Text = "Cross River", Value = "Cross River"},
+                                            new SelectListItem  { Text = "Delta", Value = "Delta"},
+                                            new SelectListItem  { Text = "Edo", Value = "Edo"},
+                                            new SelectListItem  { Text = "Ekiti", Value = "Ekiti"},
+                                            new SelectListItem  { Text = "Enugu", Value = "Enugu"},
+                                            new SelectListItem  { Text = "Gombe", Value = "Gombe"},
+                                            new SelectListItem  { Text = "Imo", Value = "Imo"},
+                                            new SelectListItem  { Text = "Jigawa", Value = "Jigawa"},
+                                            new SelectListItem  { Text = "Gombe", Value = "Gombe"},
+                                            new SelectListItem  { Text = "Kaduna", Value = "Kaduna"},
+                                            new SelectListItem  { Text = "Kano", Value = "Kano"},
+                                            new SelectListItem  { Text = "Katsina", Value = "Katsina"},
+                                            new SelectListItem  { Text = "Kebbi", Value = "Kebbi"},
+                                            new SelectListItem  { Text = "Kogi", Value = "Kogi"},
+                                            new SelectListItem  { Text = "Kwara", Value = "Kwara"},
+                                            new SelectListItem  { Text = "Osun", Value = "Osun"},
+                                            new SelectListItem  { Text = "Oyo", Value = "Oyo"},
+                                            new SelectListItem  { Text = "Plateau", Value = "Plateau"},
+                                            new SelectListItem  { Text = "Rivers", Value = "Rivers"},
+                                            new SelectListItem  { Text = "Sokoto", Value = "Sokoto"},
+                                            new SelectListItem  { Text = "Lagos", Value = "Lagos"},
+                                            new SelectListItem  { Text = "Nasarawa", Value = "Nasarawa"},
+                                            new SelectListItem  { Text = "Niger", Value = "Niger"},
+                                            new SelectListItem  { Text = "Ogun", Value = "Ogun"},
+                                            new SelectListItem  { Text = "Ondo", Value = "Ondo"},
+                                            new SelectListItem  { Text = "Taraba", Value = "Taraba"},
+                                            new SelectListItem  { Text = "Yobe", Value = "Yobe"},
+                                            new SelectListItem  { Text = "Zamfara", Value = "Zamfara"},
+                                            new SelectListItem  { Text = "FCT", Value = "FCT"},
+                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -340,15 +341,15 @@
                             <!--Form Field LGA-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.LGA,  htmlAttributes: new { })
+                                    @Html.LabelFor(model => model.LGA, htmlAttributes: new { })
                                     @Html.DropDownList("LGA", (SelectList)ViewBag.LGAs, "Select LGA", htmlAttributes: new { @class = "form-control" })
 
 
                                     @*@Html.DropDownList("LGA", new List<SelectListItem> {
-                                        new SelectListItem  { Text = "Select LGA", Value = "Select LGA", Selected=true},
-                                        new SelectListItem  { Text = "Local", Value = "Local"},
-                                        new SelectListItem  { Text = "Government", Value = "Government"},
-                                    }, new { @class = "form-control" })*@
+                                            new SelectListItem  { Text = "Select LGA", Value = "Select LGA", Selected=true},
+                                            new SelectListItem  { Text = "Local", Value = "Local"},
+                                            new SelectListItem  { Text = "Government", Value = "Government"},
+                                        }, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.LGA, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -432,9 +433,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DateOfRetirement, htmlAttributes: new { })
-                                   @* @Html.TextBoxFor(x => x.DateOfRetirement, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                                    @* @Html.TextBoxFor(x => x.DateOfRetirement, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
 
-                                      @Html.EditorFor(model => model.DateOfRetirement, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.DateOfRetirement, new { htmlAttributes = new { @class = "form-control" } })
 
                                     @Html.ValidationMessageFor(model => model.DateOfRetirement, "", new { @class = "text-danger" })
                                 </div>
@@ -452,44 +453,44 @@
                             <!--Form Field Department-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.Label("Programmes",  htmlAttributes: new { })
+                                    @Html.Label("Programmes", htmlAttributes: new { })
                                     @Html.DropDownList("Programmes", (SelectList)ViewBag.Programmess, "Select Program", htmlAttributes: new { @class = "form-control" })
 
 
                                     @*@Html.DropDownList("Programmes", new List<SelectListItem> {
-                                        new SelectListItem  { Text = "Select Programmes", Value = "Select Programmes", Selected=true},
-                                        new SelectListItem  { Text = "Land & water Resources management Program", Value = "Land & water Resources management Program"},
-                                        new SelectListItem  { Text = "South west Farming systems & extension program", Value = "South west Farming systems & extension program"},
-                                        new SelectListItem  { Text = "Kenaf & Jute Improvement Program", Value = "Kenaf & Jute Improvement Program"},
-                                          new SelectListItem  { Text = "Maize Improvement Program for southern Ecologies", Value = "Maize Improvement Program for southern Ecologies"},
-                                            new SelectListItem  { Text = "Trypanotolerant Livestock Improvement Program", Value = "Trypanotolerant Livestock Improvement Program"},
-                                              new SelectListItem  { Text = "Product Development Program", Value = "Product Development Program"},
-                                                new SelectListItem  { Text = "Grain Legumes Improvement Program", Value = "Grain Legumes Improvement Program"},
-                                    }, new { @class = "form-control" })*@        
-                                                                @Html.ValidationMessageFor(model => model.Programmes, "", new { @class = "text-danger" })
+                                            new SelectListItem  { Text = "Select Programmes", Value = "Select Programmes", Selected=true},
+                                            new SelectListItem  { Text = "Land & water Resources management Program", Value = "Land & water Resources management Program"},
+                                            new SelectListItem  { Text = "South west Farming systems & extension program", Value = "South west Farming systems & extension program"},
+                                            new SelectListItem  { Text = "Kenaf & Jute Improvement Program", Value = "Kenaf & Jute Improvement Program"},
+                                              new SelectListItem  { Text = "Maize Improvement Program for southern Ecologies", Value = "Maize Improvement Program for southern Ecologies"},
+                                                new SelectListItem  { Text = "Trypanotolerant Livestock Improvement Program", Value = "Trypanotolerant Livestock Improvement Program"},
+                                                  new SelectListItem  { Text = "Product Development Program", Value = "Product Development Program"},
+                                                    new SelectListItem  { Text = "Grain Legumes Improvement Program", Value = "Grain Legumes Improvement Program"},
+                                        }, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Programmes, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Department-->
                             <!--Form Field Unit-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.Label("Unit (Research)",  htmlAttributes: new { })
+                                    @Html.Label("Unit (Research)", htmlAttributes: new { })
                                     @Html.DropDownList("Unit_Research", (SelectList)ViewBag.Unit_Researchs, "Select Unit (Research)", htmlAttributes: new { @class = "form-control" })
 
 
                                     @*@Html.DropDownList("Unit_Research", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Unit of Research", Value = "Select Unit of Research" , Selected=true},
-          new SelectListItem  { Text = "Information Technology Unit", Value = "Information Technology Unit"},
-          new SelectListItem { Text = "Library & Documentation Unit", Value = "Library & Documentation Unit"},
-             new SelectListItem { Text = "Biotech Unit", Value = "Biotech Unit"},
-               new SelectListItem { Text = "Agricultural& Environmental Engineering Unit", Value = "Agricultural& Environmental Engineering Unit"},
-                              new SelectListItem { Text = "Crop Production Unit", Value = "Crop Production Unit"},
-               new SelectListItem { Text = "Publication Unit", Value = "Publication Unit"},
+                                        { new SelectListItem  { Text = "Select Unit of Research", Value = "Select Unit of Research" , Selected=true},
+                                          new SelectListItem  { Text = "Information Technology Unit", Value = "Information Technology Unit"},
+                                          new SelectListItem { Text = "Library & Documentation Unit", Value = "Library & Documentation Unit"},
+                                             new SelectListItem { Text = "Biotech Unit", Value = "Biotech Unit"},
+                                               new SelectListItem { Text = "Agricultural& Environmental Engineering Unit", Value = "Agricultural& Environmental Engineering Unit"},
+                                                              new SelectListItem { Text = "Crop Production Unit", Value = "Crop Production Unit"},
+                                               new SelectListItem { Text = "Publication Unit", Value = "Publication Unit"},
 
 
-          }, new { @class = "form-control" }
-                        )*@                                  
-                                        @Html.ValidationMessageFor(model => model.Unit_Research, "", new { @class = "text-danger" })
+                                          }, new { @class = "form-control" }
+                                                        )*@
+                                    @Html.ValidationMessageFor(model => model.Unit_Research, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Unit-->
@@ -501,61 +502,61 @@
 
 
                                     @*@Html.DropDownList("Unit_Services", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Unit of Services", Value = "Select Unit of Services" , Selected=true},
-          new SelectListItem  { Text = "Physical Plant & Services Unit", Value = "Physical Plant & Services Unit"},
-          new SelectListItem { Text = "Transport & Maintenance Unit", Value = "Transport & Maintenance Unit"},
-             new SelectListItem { Text = "Health Center ", Value = "Health Center "},
-               new SelectListItem { Text = "Public Relation Unit", Value = "Public Relation Unit"},
+                                        { new SelectListItem  { Text = "Select Unit of Services", Value = "Select Unit of Services" , Selected=true},
+                                          new SelectListItem  { Text = "Physical Plant & Services Unit", Value = "Physical Plant & Services Unit"},
+                                          new SelectListItem { Text = "Transport & Maintenance Unit", Value = "Transport & Maintenance Unit"},
+                                             new SelectListItem { Text = "Health Center ", Value = "Health Center "},
+                                               new SelectListItem { Text = "Public Relation Unit", Value = "Public Relation Unit"},
 
 
-          }, new { @class = "form-control" }
-                        )*@                              
-                                          @Html.ValidationMessageFor(model => model.Unit_Services, "", new { @class = "text-danger" })
+                                          }, new { @class = "form-control" }
+                                                        )*@
+                                    @Html.ValidationMessageFor(model => model.Unit_Services, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Ministry-->
                             <!--Form Field Station of Deployment-->
                             <div class="col-md-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StationOfDeployment,  htmlAttributes: new { })
-                                        @Html.DropDownList("StationOfDeployment", (SelectList)ViewBag.StationOfDeployments, "Select Station of Deployment", htmlAttributes: new { @class = "form-control" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StationOfDeployment, htmlAttributes: new { })
+                                    @Html.DropDownList("StationOfDeployment", (SelectList)ViewBag.StationOfDeployments, "Select Station of Deployment", htmlAttributes: new { @class = "form-control" })
 
 
-                                        @*@Html.DropDownList("StationOfDeployment", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Station Of Deployment", Value = "Select Station Of Deployment" , Selected=true},
-          new SelectListItem  { Text = "Ibadan", Value = "Ibadan"},
-          new SelectListItem { Text = "Ikenne", Value = "Ikenne"},
-             new SelectListItem { Text = "Amakama", Value = "Amakama"},
-                new SelectListItem { Text = "Ile-Ife", Value = "Ile-Ife"},
-                   new SelectListItem { Text = "Ballah", Value = "Ballah"},
-                      new SelectListItem { Text = "Kishi", Value = "Kishi"},
-                         new SelectListItem { Text = "Orin- Ekiti", Value = "Orin- Ekiti"},
+                                    @*@Html.DropDownList("StationOfDeployment", new List<SelectListItem>
+                                        { new SelectListItem  { Text = "Select Station Of Deployment", Value = "Select Station Of Deployment" , Selected=true},
+                                          new SelectListItem  { Text = "Ibadan", Value = "Ibadan"},
+                                          new SelectListItem { Text = "Ikenne", Value = "Ikenne"},
+                                             new SelectListItem { Text = "Amakama", Value = "Amakama"},
+                                                new SelectListItem { Text = "Ile-Ife", Value = "Ile-Ife"},
+                                                   new SelectListItem { Text = "Ballah", Value = "Ballah"},
+                                                      new SelectListItem { Text = "Kishi", Value = "Kishi"},
+                                                         new SelectListItem { Text = "Orin- Ekiti", Value = "Orin- Ekiti"},
 
-          }, new { @class = "form-control" }
-                        )*@
-                                        
-                                        @Html.ValidationMessageFor(model => model.StationOfDeployment, "", new { @class = "text-danger" })
-                                    </div>
+                                          }, new { @class = "form-control" }
+                                                        )*@
+
+                                    @Html.ValidationMessageFor(model => model.StationOfDeployment, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
                             <!--EOF Station of Deployment-->
                             <!--Form Field Section-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Section,  htmlAttributes: new { })
+                                    @Html.LabelFor(model => model.Section, htmlAttributes: new { })
                                     @Html.DropDownList("Section", (SelectList)ViewBag.Sections, "Select Section", htmlAttributes: new { @class = "form-control" })
 
 
                                     @*@Html.DropDownList("Section", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Section", Value = "Select Section" , Selected=true},
-          new SelectListItem  { Text = "Admin", Value = "Admin"},
-          new SelectListItem { Text = "Bursary", Value = "Bursary"},
-          
-                   new SelectListItem { Text = "Audit", Value = "Audit"},
-                         new SelectListItem { Text = "Procurement", Value = "Procurement"},
+                                        { new SelectListItem  { Text = "Select Section", Value = "Select Section" , Selected=true},
+                                          new SelectListItem  { Text = "Admin", Value = "Admin"},
+                                          new SelectListItem { Text = "Bursary", Value = "Bursary"},
 
-          }, new { @class = "form-control" }
-                        )*@                                   
-                                     @Html.ValidationMessageFor(model => model.Section, "", new { @class = "text-danger" })
+                                                   new SelectListItem { Text = "Audit", Value = "Audit"},
+                                                         new SelectListItem { Text = "Procurement", Value = "Procurement"},
+
+                                          }, new { @class = "form-control" }
+                                                        )*@
+                                    @Html.ValidationMessageFor(model => model.Section, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Section-->
@@ -572,17 +573,16 @@
                             </div>
                         </div>
                         <!--Row Leave Details-->
-                     
                         <!--EOF Row Leave Details-->
 
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
@@ -615,18 +615,18 @@
         $("#StateOfOrigin").change(function () {
 
             var stateId = $("#StateOfOrigin").val();
-             $("#LGA").empty();
+            $("#LGA").empty();
             $.ajax({
                 type: 'POST',
                 url: '/EmployeeGIs/GetLGAList/?stateId=' + stateId,
                 datatype: 'application/json',
                 contentType: 'application/json',
                 success: function (zCity) {
- 
+
                     $.each(zCity, function (i, zCity) {
                         $("#LGA").append('<option value="'
-                                                   + zCity.Value + '">'
-                                             + zCity.Text + '</option>');
+                            + zCity.Value + '">'
+                            + zCity.Text + '</option>');
                     });
                 },
                 error: function (ex) {
@@ -660,5 +660,4 @@
 
         }
     });
-</script>  
- 
+</script>

@@ -2,10 +2,12 @@
 
 @{
     ViewBag.Title = "Edit";
-    
+
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
 
@@ -16,6 +18,7 @@
             <li class="breadcrumb-item active">Edit Bank</li>
         </ol>
 
+        <input type="hidden" name="CustomerId" value="@user.CustomerId" />
         <div class="row">
             <div class="col-lg-12">
                 <div class="card ">
@@ -35,7 +38,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.Label("Bank Type", htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.BankTypeId, new { htmlAttributes = new { @class = "form-control", @readonly=true } })
+                                    @Html.EditorFor(model => model.BankTypeId, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
                                     @Html.ValidationMessageFor(model => model.BankTypeId, "", new { @class = "text-danger" })
                                 </div>
                             </div>

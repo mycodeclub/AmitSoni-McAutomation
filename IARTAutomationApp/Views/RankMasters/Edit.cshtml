@@ -1,16 +1,18 @@
-﻿ @model IARTAutomationApp.Models.RankMaster
+﻿@model IARTAutomationApp.Models.RankMaster
 
 
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -28,7 +30,7 @@
 
                     <div class="card-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            
+
                         @Html.HiddenFor(model => model.RankId)
                         <!--Row Employee Code-->
                         <h4 class="form-heading-1">Update Rank</h4>

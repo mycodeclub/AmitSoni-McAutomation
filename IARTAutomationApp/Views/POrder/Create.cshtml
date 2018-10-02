@@ -2,7 +2,7 @@
 @model IARTAutomationApp.Models.PurchaseOrder
 @{
     ViewBag.Title = "Add Purchase Order";
-    
+
 }
 @{ IARTDBNEWEntities db = new IARTDBNEWEntities();
     int empcode = 0;
@@ -10,7 +10,7 @@
     try
     {
         empcode = Convert.ToInt32(@Session["employeecode"]);
-       ;
+        ;
 
     }
     catch (Exception ext)
@@ -23,6 +23,8 @@
 
 {
     @Html.AntiForgeryToken()
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
         <ol class="breadcrumb bc-colored bg-success m-b-3">
             <li class="breadcrumb-item"><a href="#">Store</a></li>
@@ -138,7 +140,7 @@
     </div>
 
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 

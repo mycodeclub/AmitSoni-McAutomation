@@ -10,7 +10,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="form-horizontal">
         <h4>LeaveLedger</h4>
         <hr />

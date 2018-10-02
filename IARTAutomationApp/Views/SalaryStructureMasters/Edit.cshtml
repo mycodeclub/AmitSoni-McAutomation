@@ -2,12 +2,15 @@
 
 @{
     ViewBag.Title = "Edit";
-    
+
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 
@@ -101,11 +104,11 @@ new SelectListItem { Text = "10", Value = "10"},
           new SelectListItem { Text = "14", Value = "14"},
             new SelectListItem { Text = "15", Value = "15"},
           }, new { @class = "form-control" }
-                        ) 
-                                    @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })  
+                        )
+                                    @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                           
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.SalaryAmount, htmlAttributes: new { @class = "control-label" })

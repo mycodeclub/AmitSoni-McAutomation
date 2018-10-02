@@ -5,9 +5,12 @@
 
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -39,7 +42,6 @@
                                 </div>
                             </div>
                             <!--EOF Employee Code-->
-
                             <!--Form Field Employee Code-->
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -49,7 +51,6 @@
                                 </div>
                             </div>
                             <!--EOF Employee Code-->
-
                             <!--Form Field Employee Code-->
                             <div class="col-md-12">
                                 <div class="form-group">

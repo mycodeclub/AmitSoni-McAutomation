@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "Edit";
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
     <!-- Main content -->
@@ -17,6 +19,7 @@
             <li class="breadcrumb-item active">Edit Salary Allowance</li>
         </ol>
 
+        <input type="hidden" name="CustomerId" value="@user.CustomerId" />
         <div class="row">
             <div class="col-lg-12">
                 <div class="card ">
@@ -63,7 +66,7 @@
                                 </div>
                             </div>
 
-                         
+
 
                         </div>
                         <!--EOF Row Employee Code-->

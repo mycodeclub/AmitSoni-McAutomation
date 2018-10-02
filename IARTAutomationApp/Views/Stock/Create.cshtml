@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Stock";
-    
+
 }
 @{ IARTDBNEWEntities db = new IARTDBNEWEntities();
     int empcode = 0;
@@ -11,7 +11,7 @@
     try
     {
         empcode = Convert.ToInt32(@Session["employeecode"]);
-       ;
+        ;
 
     }
     catch (Exception ext)
@@ -25,6 +25,8 @@
 
 {
     @Html.AntiForgeryToken()
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
         <ol class="breadcrumb bc-colored bg-success m-b-3">
             <li class="breadcrumb-item"><a href="#">Store</a></li>
@@ -171,37 +173,37 @@
         </div>
     </div>
 
-      <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
-                        <h4 class="modal-title">Confirmation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you want to Save this Stock</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
-
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                    </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
                 </div>
+                <div class="modal-body">
+                    <p>Do you want to Save this Stock</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
 
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
+
         </div>
+    </div>
 }
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
         debugger;
-       
+
         $('#Quantity').blur(function () {
             debugger;
-            
+
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("TotalPrice", "Stock")',

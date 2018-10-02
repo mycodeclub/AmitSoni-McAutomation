@@ -1,16 +1,18 @@
 ﻿@model IARTAutomationApp.Models.RoleMaster
 
- 
+
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -34,7 +36,6 @@
                         <div class="row">
 
                             <!--Form Field Employee Code-->
-                           
                             <!--EOF Employee Code-->
                             <!--Form Field Employee Code-->
                             <div class="col-md-6">

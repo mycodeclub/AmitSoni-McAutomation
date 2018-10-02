@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "Edit";
 
- }
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -32,7 +33,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.Label("Employee Code", "Employee Code", htmlAttributes: new { })
-                                    @Html.TextBoxFor(model=>model.EmployeeCode, "", new { @class = "form-control", @id = "EmployeeCode", @readonly = true })
+                                    @Html.TextBoxFor(model => model.EmployeeCode, "", new { @class = "form-control", @id = "EmployeeCode", @readonly = true })
                                     @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -139,7 +140,7 @@
                                     @Html.DropDownList("StateNextOfKin", (SelectList)ViewBag.StateNextOfKins, htmlAttributes: new { @class = "form-control" })
 
 
-                                   @Html.ValidationMessageFor(model => model.StateNextOfKin, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.StateNextOfKin, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF State of Kin-->
@@ -226,32 +227,32 @@
         </div>
     </div>
 
-  
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        @*<button type="button" class="close" data-ng-show="modal">&times;</button>*@
-                        <h4 class="modal-title">Confirmation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you want to Update this record</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                    </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    <h4 class="modal-title">Confirmation</h4>
                 </div>
+                <div class="modal-body">
+                    <p>Do you want to Update this record</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Proceed" class="btn btn-success" data-show="modal" />
 
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-        </div>
 
-        }
+        </div>
+    </div>
+
+}
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
@@ -274,8 +275,8 @@
 
                     $.each(zCity, function (i, zCity) {
                         $("#LGAextOfKin").append('<option value="'
-                                                   + zCity.Value + '">'
-                                             + zCity.Text + '</option>');
+                            + zCity.Value + '">'
+                            + zCity.Text + '</option>');
                     });
                 },
                 error: function (ex) {

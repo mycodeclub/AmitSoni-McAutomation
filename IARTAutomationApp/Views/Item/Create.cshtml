@@ -2,7 +2,7 @@
 @model IARTAutomationApp.Models.ItemMaster
 @{
     ViewBag.Title = "Add Item";
-    
+
 }
 @{ IARTDBNEWEntities db = new IARTDBNEWEntities();
     int empcode = 0;
@@ -10,7 +10,7 @@
     try
     {
         empcode = Convert.ToInt32(@Session["employeecode"]);
-       ;
+        ;
 
     }
     catch (Exception ext)
@@ -23,6 +23,8 @@
 
 {
     @Html.AntiForgeryToken()
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
         <ol class="breadcrumb bc-colored bg-success m-b-3">
             <li class="breadcrumb-item"><a href="#">Store</a></li>
@@ -146,12 +148,12 @@
 
                                 </div>
                             </div>
-                           
+
                             <div class="col-lg-12">
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ItemImage, htmlAttributes: new { })
-                                    @Html.TextBoxFor(model => model.ItemImage, new { @class = "dropify", type = "file"})
+                                    @Html.TextBoxFor(model => model.ItemImage, new { @class = "dropify", type = "file" })
                                     @Html.ValidationMessageFor(model => model.ItemImage, "", new { @class = "text-danger" })
                                 </div>
 
@@ -174,7 +176,7 @@
     </div>
 
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 

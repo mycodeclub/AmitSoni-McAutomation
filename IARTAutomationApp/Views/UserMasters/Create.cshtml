@@ -1,6 +1,6 @@
 ﻿@model IARTAutomationApp.Models.UserMaster
 
- 
+
 
 
 @{
@@ -12,6 +12,8 @@
 {
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -34,7 +36,7 @@
                         <h4 class="form-heading-1">Add User</h4>
                         <div class="row">
 
-                            
+
                             <!--Form Field Employee Code-->
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -55,7 +57,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.Label("User Name", htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control"  } })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -73,7 +75,7 @@
                                 <div class="form-group">
                                     @Html.Label("Confirm Password", htmlAttributes: new { @class = "control-label" })
                                     @Html.Password("ConfirmPwd", "", new { @class = "form-control", @id = "ConfirmPwd" })
-                                   
+
                                 </div>
                             </div>
 
@@ -96,7 +98,7 @@
                                 </div>
                             </div>
 
-                         
+
                             <!--EOF Employee Code-->
 
                         </div>
@@ -126,7 +128,7 @@
 
     $(document).ready(function () {
         debugger;
-        $.noConflict();  $("#EmployeeCode").autocomplete({
+        $.noConflict(); $("#EmployeeCode").autocomplete({
             source: function (request, response) {
 
                 $.ajax({
@@ -151,41 +153,40 @@
 
 <script>
 
-        $('#EmployeeCode').change(function () {
-            debugger;
-            var EmployeeCode = $(this).val();
+    $('#EmployeeCode').change(function () {
+        debugger;
+        var EmployeeCode = $(this).val();
 
         // Send Ajax call and get Task name
 
-    //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
+        //var Url = 'http://example.com/Controller/Action/?jobid=' + JobId;
 
-            $.ajax({
+        $.ajax({
 
-                url: '/UserMasters/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
-                success: function (response) {
-                    debugger;
+            url: '/UserMasters/getEmployeedetail/?EmployeeCode=' + EmployeeCode,
+            success: function (response) {
+                debugger;
 
 
-                    $('#UserName').val(response[0].Name);
-                    $('#EmailId').val(response[0].EmailId);
-                    $('#OrganizationName').val(response[0].OrgName);
-            //$('#txtUnit').val(response.Unit);
-           
-        },
-        error: function (error) {
-            alert(errorss);
-        }
+                $('#UserName').val(response[0].Name);
+                $('#EmailId').val(response[0].EmailId);
+                $('#OrganizationName').val(response[0].OrgName);
+                //$('#txtUnit').val(response.Unit);
 
-    });
-
-});
-
-        $('#ConfirmPwd').focusout(function () {
-            if(  $('#ConfirmPwd').val()!=$('#Password').val())
-            {
-                $('#ConfirmPwd').val("");
-                alert("Confirm Password must be same as Password")
+            },
+            error: function (error) {
+                alert(errorss);
             }
 
         });
+
+    });
+
+    $('#ConfirmPwd').focusout(function () {
+        if ($('#ConfirmPwd').val() != $('#Password').val()) {
+            $('#ConfirmPwd').val("");
+            alert("Confirm Password must be same as Password")
+        }
+
+    });
 </script>

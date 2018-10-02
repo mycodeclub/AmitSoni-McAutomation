@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Edit";
-    
+
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
 }
 
 <h2>Edit</h2>
@@ -10,7 +11,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="form-horizontal">
         <h4>CasualLeave</h4>
         <hr />

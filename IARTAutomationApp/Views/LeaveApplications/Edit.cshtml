@@ -5,10 +5,13 @@
 
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -106,26 +109,27 @@
                                                 @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    <!--EOF Row Employee Code-->
+                                        <!--EOF Row Employee Code-->
+                                        <!--EOF Row Employee Code-->
 
- 
-                        <!--EOF Row Employee Code-->
+                                        <hr class="m-t-3 m-b-3">
 
-                        <hr class="m-t-3 m-b-3">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Update" class="btn btn-success" />
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Update" class="btn btn-success" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-                    </div></div></div></div>
 }
 

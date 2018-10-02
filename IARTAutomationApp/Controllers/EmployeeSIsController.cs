@@ -23,12 +23,12 @@ namespace IARTAutomationApp.Controllers
 
 
             var employeeSIs = db.EmployeeSIs.Where(a => a.EmployeeCode == empcode).ToList();
-                return View(employeeSIs.ToList());
+            return View(employeeSIs.ToList());
 
-                //if(     User.Identity.Name)
+            //if(     User.Identity.Name)
 
 
-          
+
             return View();
         }
         public ActionResult GetBankList(string banktypeId)
@@ -64,8 +64,10 @@ namespace IARTAutomationApp.Controllers
         [HttpPost]
         public JsonResult AutoEmployeeCode(string Prefix)
         {
+            var user = (UserMaster)Session["User"];
+
             //Note : you can bind same list from database  
-            ViewBag.emp = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode").ToList();
+            ViewBag.emp = new SelectList(db.EmployeeGIs.Where(e => e.CustomerId == user.CustomerId), "EmployeeCode", "EmployeeCode").ToList();
             List<SelectListItem> objlist = ViewBag.emp;
             //Searching records from list using LINQ query  
             var emplist = (from N in objlist
@@ -94,7 +96,7 @@ namespace IARTAutomationApp.Controllers
         // GET: EmployeeSIs
         public ActionResult Index()
         {
-            var NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale== "CONHESS" select a).ToList().Count();
+            var NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale == "CONHESS" select a).ToList().Count();
             ViewBag.NoofEmpConh = NoofEmpConh;
             var NoofEmpCont = (from a in db.EmployeeSIs where a.SalaryScale == "CONTTISS" select a).ToList().Count();
             ViewBag.NoofEmpCont = NoofEmpCont;
@@ -107,7 +109,7 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-    
+
         // GET: EmployeeSIs/Details/5
         public ActionResult Details(int? id)
         {
@@ -124,13 +126,13 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-        
+
         // GET: EmployeeSIs/Create
         public ActionResult Create()
         {
             List<BankTypeMaster> BankTypelist = new List<BankTypeMaster>();
             BankTypelist = (from a in db.BankTypeMasters select a).ToList();
-             ViewBag.BankTypes = new SelectList(BankTypelist, " BankTypeName", "BankTypeName");
+            ViewBag.BankTypes = new SelectList(BankTypelist, " BankTypeName", "BankTypeName");
 
             ///////////////////Bank list
             List<BankMaster> Banklist = new List<BankMaster>();
@@ -258,17 +260,17 @@ namespace IARTAutomationApp.Controllers
             try
             {
                 if (ModelState.IsValid)
-                { 
+                {
                     employeeSI.EmployeeSIId = (from a in db.EmployeeSIs where a.EmployeeCode == employeeSI.EmployeeCode select a.EmployeeSIId).FirstOrDefault();
-                employeeSI.CreatedDate = DateTime.Now;
-                employeeSI.IsDeleted = false;
-                
+                    employeeSI.CreatedDate = DateTime.Now;
+                    employeeSI.IsDeleted = false;
+
                     db.Entry(employeeSI).State = EntityState.Modified;
                     db.SaveChanges();
                     TempData["successmsg"] = "Record is Successfully Updated";
                     TempData["msg"] = "";
 
-                   int empcode = Convert.ToInt32(@Session["employeecode"]);
+                    int empcode = Convert.ToInt32(@Session["employeecode"]);
 
                     DateTime dttoday = DateTime.Now.Date;
                     var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
@@ -291,10 +293,10 @@ namespace IARTAutomationApp.Controllers
                     }
                 }
             }
-            catch(Exception ext)
+            catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-                  TempData["msg"] = "Record is not Updated";
+                TempData["msg"] = "Record is not Updated";
 
             }
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
@@ -513,7 +515,7 @@ namespace IARTAutomationApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            catch(Exception ext)
+            catch (Exception ext)
             {
                 TempData["successmsg"] = "Record is not Deleted,try again";
                 return RedirectToAction("Index");

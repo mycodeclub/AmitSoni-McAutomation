@@ -23,25 +23,20 @@ namespace IARTAutomationApp.Controllers
             int empcode = Convert.ToInt32(@Session["employeecode"]);
 
             var employeePIs = db.EmployeePIs.Where(a => a.EmployeeCode == empcode).ToList();
-                return View(employeePIs.ToList());
-
-                //if(     User.Identity.Name)
-
-
-      
-            return View();
+            return View(employeePIs.ToList());
         }
 
         [HttpPost]
         public JsonResult AutoEmployeeCode(string Prefix)
-       {
+        {
+            var user = (UserMaster)Session["User"];
             //Note : you can bind same list from database  
-            ViewBag.emp = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode").ToList();
-             List<SelectListItem> objlist = ViewBag.emp;
+            ViewBag.emp = new SelectList(db.EmployeeGIs.Where(e => e.CustomerId == user.CustomerId), "EmployeeCode", "EmployeeCode").ToList();
+            List<SelectListItem> objlist = ViewBag.emp;
             //Searching records from list using LINQ query  
             var emplist = (from N in objlist
-                            where N.Value.ToString().StartsWith(Prefix)
-                            select new { N.Value });
+                           where N.Value.ToString().StartsWith(Prefix)
+                           select new { N.Value });
             return Json(emplist, JsonRequestBehavior.AllowGet);
         }
         public ActionResult FullDetails(int? id)
@@ -96,10 +91,9 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult Index()
         {
-            var NoofEmp = (from a in db.EmployeePIs select a).ToList().Count();
-            ViewBag.NoOfStaff = NoofEmp;
-            var employeePIs = db.EmployeePIs.Include(e => e.EmployeeGI);
-            
+            var user = (UserMaster)Session["User"];
+            var employeePIs = db.EmployeePIs.Include(e => e.EmployeeGI).Where(e => e.CustomerId == user.CustomerId);
+            var NoofEmp = employeePIs.Count();
             return View(db.EmployeePIs.ToList());
         }
 
@@ -118,9 +112,9 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-       
+
         // GET: EmployeePIs/Details/5
-     
+
 
         // GET: EmployeePIs/Create
         public ActionResult Create()
@@ -146,21 +140,17 @@ namespace IARTAutomationApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
         {
+            var user = (UserMaster)Session["User"];
             List<CityMaster> CityList = new List<CityMaster>();
             CityList = (from CityName in db.CityMasters select CityName).ToList();
-            //ViewBag.CountryList = CountryList;
             ViewBag.LGAextOfKins = new SelectList(CityList, "City", "City");
-
             List<StateMaster> StateList = new List<StateMaster>();
             StateList = (from State in db.StateMasters select State).ToList();
-            //ViewBag.CountryList = CountryList;
             ViewBag.StateNextOfKins = new SelectList(StateList, "State", "State");
-
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode");
             var isAlready = (from a in db.EmployeePIs where a.EmployeeCode == employeePI.EmployeeCode select a.EmployeeCode).Count();
             if (isAlready == 0)
             {
-
                 try
                 {
                     if (ModelState.IsValid)
@@ -171,14 +161,12 @@ namespace IARTAutomationApp.Controllers
                             int DuplicateEmailMobile = (from a in db.EmployeePIs where a.EmpEmailId == employeePI.EmpEmailId && a.MobileNo == employeePI.MobileNo select a).ToList().Count();
                             if (DuplicateEmailMobile == 0)
                             {
-
                                 employeePI.CreatedDate = DateTime.Now.Date;
                                 db.EmployeePIs.Add(employeePI);
                                 db.SaveChanges();
                                 TempData["successmsg"] = "Record is Successfully Added";
                                 TempData["msg"] = "";
                                 int empcode = Convert.ToInt32(@Session["employeecode"]);
-
                                 DateTime dttoday = DateTime.Now.Date;
                                 var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
                                 var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
@@ -273,7 +261,7 @@ namespace IARTAutomationApp.Controllers
                     db.SaveChanges();
                     TempData["successmsg"] = "Record is Successfully Updated";
                     TempData["msg"] = "";
-                   int empcode = Convert.ToInt32(@Session["employeecode"]);
+                    int empcode = Convert.ToInt32(@Session["employeecode"]);
 
                     DateTime dttoday = DateTime.Now.Date;
                     var Role = (from a in db.UserMasters where a.EmployeeCode == empcode select a.RoleId).FirstOrDefault();
@@ -518,11 +506,11 @@ namespace IARTAutomationApp.Controllers
             catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-                  TempData["msg"] = "Record is not Deleted,Try again";
+                TempData["msg"] = "Record is not Deleted,Try again";
                 return RedirectToAction("Index");
             }
-        
-}
+
+        }
 
         protected override void Dispose(bool disposing)
         {

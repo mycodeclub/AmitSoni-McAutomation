@@ -1,13 +1,15 @@
 ﻿@model IARTAutomationApp.Models.UomMaster
 @{
     ViewBag.Title = "EditUOM";
-    
+
 }
 
 @using (Html.BeginForm("Edit", "UOM", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
 {
     @Html.AntiForgeryToken()
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
         <ol class="breadcrumb bc-colored bg-success m-b-3">
 
@@ -92,7 +94,7 @@
     </div>
 
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 

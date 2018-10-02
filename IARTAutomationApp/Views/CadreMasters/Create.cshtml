@@ -2,13 +2,15 @@
 
 @{
     ViewBag.Title = "Create";
-    
-}
 
-@using (Html.BeginForm()) {
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"]; }
+
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
 
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -38,12 +40,12 @@
                                     @Html.ValidationMessageFor(model => model.CadreName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <!--EOF Employee Code-->                            
+                            <!--EOF Employee Code-->
 
                         </div>
                         <!--EOF Row Employee Code-->
 
-                        <hr class="m-t-3 m-b-3">                        
+                        <hr class="m-t-3 m-b-3">
 
                         <div class="row">
                             <div class="form-group">

@@ -2,7 +2,7 @@
 @*@model  IARTAutomationApp.Models.EmployeeAI*@
 @{
     ViewBag.Title = "Edit";
-   
+
     int countprof = 0;
     int countconf = 0;
 }
@@ -11,7 +11,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -60,7 +61,7 @@
                                         @Html.Label("InstitutionAttended", htmlAttributes: new { @class = "col-sm-3" })
                                         <div class="col-sm-9 row">
                                             <div class="input-group col-sm-4">
-                                                @Html.EditorFor(model => item.InstitutionAttended1, new { htmlAttributes = new { @class = "form-control", @id= "InstitutionAttended1" } })
+                                                @Html.EditorFor(model => item.InstitutionAttended1, new { htmlAttributes = new { @class = "form-control", @id = "InstitutionAttended1" } })
                                                 @*   @Html.ValidationMessageFor(model => model.item, "", new { @class = "text-danger" })*@
                                             </div>
                                             <div class="input-group col-sm-4">
@@ -68,7 +69,7 @@
                                                 @*@Html.ValidationMessageFor(model => model.InstitutionAttended2, "", new { @class = "text-danger" })*@
                                             </div>
                                             <div class="input-group col-sm-4">
-                                                @Html.EditorFor(model => item.InstitutionAttended3, new { htmlAttributes = new { @class = "form-control",@id = "InstitutionAttended3" } })
+                                                @Html.EditorFor(model => item.InstitutionAttended3, new { htmlAttributes = new { @class = "form-control", @id = "InstitutionAttended3" } })
                                                 @*  @Html.ValidationMessageFor(model => model.InstitutionAttended3, "", new { @class = "text-danger" })*@
                                             </div>
                                         </div>
@@ -110,7 +111,7 @@
 
                                             </div>
                                             <div class="input-group col-sm-4">
-                                                @Html.DropDownList( item.YearOfGraduation2, ViewBag.YearOfGraduation2s as IEnumerable<SelectListItem>, item.YearOfGraduation2, htmlAttributes: new { @class = "form-control", @id = "YearOfGraduation2" })
+                                                @Html.DropDownList(item.YearOfGraduation2, ViewBag.YearOfGraduation2s as IEnumerable<SelectListItem>, item.YearOfGraduation2, htmlAttributes: new { @class = "form-control", @id = "YearOfGraduation2" })
 
 
 
@@ -153,25 +154,25 @@
                                             <tr>
 
                                                 <td class="invisible">
-                                                    <input class="form-control text-box single-line" data-val="true"   name="ProfessionalAssociationsId" type="text" readonly="readonly" value=@item2.AssociationsId />
+                                                    <input class="form-control text-box single-line" data-val="true" name="ProfessionalAssociationsId" type="text" readonly="readonly" value=@item2.AssociationsId />
                                                 </td>
 
                                                 <td>
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Title"    name="ProfessionalAssociationsTitle" type="text" value=@item2.Title />
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Title" name="ProfessionalAssociationsTitle" type="text" value=@item2.Title />
                                                 </td>
 
                                                 <td>
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Id"   name="ProfessionalAssociationsIdNo" type="text" value=@item2.IDnumber />
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Professional Associations Id" name="ProfessionalAssociationsIdNo" type="text" value=@item2.IDnumber />
                                                 </td>
 
                                                 <td>
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field Professional Associations Date must be a date." data-val-required="Please Input Professional Associations Date"   name="ProfessionalAssociationsDate" value=@item2.AttendedDate />
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field Professional Associations Date must be a date." data-val-required="Please Input Professional Associations Date" name="ProfessionalAssociationsDate" value=@item2.AttendedDate />
                                                 </td>
                                             </tr>
                                         }
 
                                     </tbody>
-                            </table>
+                                </table>
                             </div>
 
                             @*<div class="row">
@@ -245,17 +246,17 @@
                                             { countprof = countprof + 1; }
                                             <tr>
 
-                                                <td class="invisible">    <input class="form-control text-box single-line" data-val="true"  name="ConferenceAttendedId" type="text" readonly="readonly" value=@item3.ConferenceId /></td>
+                                                <td class="invisible">    <input class="form-control text-box single-line" data-val="true" name="ConferenceAttendedId" type="text" readonly="readonly" value=@item3.ConferenceId /></td>
 
-                                                <td>    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name"  name="ConferenceAttendedName" type="text" value=@item3.Name /></td>
+                                                <td>    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" name="ConferenceAttendedName" type="text" value=@item3.Name /></td>
 
 
                                                 <td>
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title"    name="ConferenceAttendedTitle" type="text" value=@item3.Title />
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" name="ConferenceAttendedTitle" type="text" value=@item3.Title />
                                                 </td>
 
                                                 <td>
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate"  name="ConferenceAttendedDate" value=@item3.AttendedDate />
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" value=@item3.AttendedDate />
                                                 </td>
                                             </tr>
                                         }
@@ -331,7 +332,7 @@
     </div>
 
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
@@ -361,7 +362,7 @@
 
     $(document).ready(function () {
         debugger;
-        $.noConflict();  $("#EmployeeCode").autocomplete({
+        $.noConflict(); $("#EmployeeCode").autocomplete({
             source: function (request, response) {
 
                 $.ajax({
@@ -478,7 +479,7 @@
         //Loop through the Table rows and build a JSON array.
         var ObjAssociation = new Array();
         var ObjConferenece = new Array();
-        
+
         $("#tblAsso TBODY TR").each(function () {
             var row = $(this);
             var association = {};
@@ -562,7 +563,7 @@
                     alert("Please Enter Correct Data");
                     window.location = '/EmployeeAIs/Edit/'+r;
                 }
-               
+
             }
         });
     });
@@ -586,89 +587,89 @@
 
 
 <script>
-    var max_fields          = 10;
-    var wrapper_aso         = $("#aso");
-    var add_button_aso      = $("#btn-aso");
-    var remove_button_aso   = $("#btn-aso-rm");
+    var max_fields = 10;
+    var wrapper_aso = $("#aso");
+    var add_button_aso = $("#btn-aso");
+    var remove_button_aso = $("#btn-aso-rm");
 
-    var wrapper_cnf         = $("#cnf");
-    var add_button_cnf      = $("#btn-cnf");
-    var remove_button_cnf   = $("#btn-cnf-rm");
+    var wrapper_cnf = $("#cnf");
+    var add_button_cnf = $("#btn-cnf");
+    var remove_button_cnf = $("#btn-cnf-rm");
 
-    $(add_button_aso).click(function(e){
+    $(add_button_aso).click(function (e) {
         e.preventDefault();
         var total_fields = wrapper_aso[0].childNodes.length;
-        if(total_fields < max_fields){
+        if (total_fields < max_fields) {
             $(wrapper_aso).append(
-            '<div class="row">' +
+                '<div class="row">' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Name_of_Conference">Name of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" id="ConferenceAttendedName" name="ConferenceAttendedName" type="text" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedName" data-valmsg-replace="true"></span>' +
-                    '</div>' +
+                '<div class="form-group">' +
+                '<label for="Name_of_Conference">Name of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" id="ConferenceAttendedName" name="ConferenceAttendedName" type="text" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedName" data-valmsg-replace="true"></span>' +
+                '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Title_of_Conference">Title of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" id="ConferenceAttendedTitle" name="ConferenceAttendedTitle" type="text" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedTitle" data-valmsg-replace="true"></span>' +
-                    '</div>' +
+                '<div class="form-group">' +
+                '<label for="Title_of_Conference">Title of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" id="ConferenceAttendedTitle" name="ConferenceAttendedTitle" type="text" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedTitle" data-valmsg-replace="true"></span>' +
+                '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Date_of_Conference">Date of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" type="date" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedDate" data-valmsg-replace="true"></span>' +
-                    '</div>'+
+                '<div class="form-group">' +
+                '<label for="Date_of_Conference">Date of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" type="date" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedDate" data-valmsg-replace="true"></span>' +
                 '</div>' +
-            '</div>');
+                '</div>' +
+                '</div>');
         }
     });
-    $(remove_button_aso).click(function(e){
+    $(remove_button_aso).click(function (e) {
         e.preventDefault();
         var total_fields = wrapper_aso[0].childNodes.length;
-        if(total_fields>2){
-            wrapper_aso[0].childNodes[total_fields-1].remove();
+        if (total_fields > 2) {
+            wrapper_aso[0].childNodes[total_fields - 1].remove();
         }
     });
 
 
-    $(add_button_cnf).click(function(e){
+    $(add_button_cnf).click(function (e) {
         e.preventDefault();
         var total_fields = wrapper_cnf[0].childNodes.length;
-        if(total_fields < max_fields){
+        if (total_fields < max_fields) {
             $(wrapper_cnf).append(
-            '<div class="row">' +
+                '<div class="row">' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Name_of_Conference">Name of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" id="ConferenceAttendedName" name="ConferenceAttendedName" type="text" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedName" data-valmsg-replace="true"></span>' +
-                    '</div>' +
+                '<div class="form-group">' +
+                '<label for="Name_of_Conference">Name of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Name" id="ConferenceAttendedName" name="ConferenceAttendedName" type="text" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedName" data-valmsg-replace="true"></span>' +
+                '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Title_of_Conference">Title of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" id="ConferenceAttendedTitle" name="ConferenceAttendedTitle" type="text" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedTitle" data-valmsg-replace="true"></span>' +
-                    '</div>' +
+                '<div class="form-group">' +
+                '<label for="Title_of_Conference">Title of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-required="Please Input Conference Attended Title" id="ConferenceAttendedTitle" name="ConferenceAttendedTitle" type="text" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedTitle" data-valmsg-replace="true"></span>' +
+                '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                    '<div class="form-group">' +
-                        '<label for="Date_of_Conference">Date of Conference</label>' +
-                        '<input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" type="date" value="" />' +
-                        '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedDate" data-valmsg-replace="true"></span>' +
-                    '</div>'+
+                '<div class="form-group">' +
+                '<label for="Date_of_Conference">Date of Conference</label>' +
+                '<input class="form-control text-box single-line" data-val="true" data-val-date="The field Conference Attended Date must be a date." data-val-required="Please Input Conference Attended Date" id="ConferenceAttendedDate" name="ConferenceAttendedDate" type="date" value="" />' +
+                '<span class="field-validation-valid text-danger" data-valmsg-for="ConferenceAttendedDate" data-valmsg-replace="true"></span>' +
                 '</div>' +
-            '</div>');
+                '</div>' +
+                '</div>');
         }
     });
-    $(remove_button_cnf).click(function(e){
+    $(remove_button_cnf).click(function (e) {
         e.preventDefault();
         var total_fields = wrapper_cnf[0].childNodes.length;
-        if(total_fields>2){
-            wrapper_cnf[0].childNodes[total_fields-1].remove();
+        if (total_fields > 2) {
+            wrapper_cnf[0].childNodes[total_fields - 1].remove();
         }
     });
 </script>
@@ -738,4 +739,3 @@
         else { alert("Fields cannot be empty.") }
     }
 </script>
-  

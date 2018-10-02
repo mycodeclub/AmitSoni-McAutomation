@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Stock";
-    
+
 }
 
 <link rel="stylesheet" href="/Content/dist/plugins/dropify/dropify.min.css">
@@ -10,6 +10,8 @@
 
 {
     @Html.AntiForgeryToken()
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
         <ol class="breadcrumb bc-colored bg-success m-b-3">
             <li class="breadcrumb-item"><a href="#">Store</a></li>
@@ -158,7 +160,7 @@
         </div>
     </div>
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 

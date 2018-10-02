@@ -10,7 +10,8 @@
 @using (Html.BeginForm("Edit", "EmployeeGIs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 

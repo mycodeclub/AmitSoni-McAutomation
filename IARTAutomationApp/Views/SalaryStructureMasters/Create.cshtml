@@ -2,12 +2,15 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 
@@ -32,7 +35,7 @@
 
                             <!--Form Field Employee Code-->
                             <div class="col-md-6">
-                                <div class="form-group">                                    
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.SalaryScale, htmlAttributes: new { @class = "control-label" })
 
                                     @Html.DropDownList("SalaryScale", new List<SelectListItem>
@@ -50,7 +53,7 @@
                             <!--EOF Employee Code-->
                             <!--Form Field Upload Photo-->
                             <div class="col-md-6">
-                                <div class="form-group">                                    
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.GradeLevel, htmlAttributes: new { @class = "control-label" })
                                     @Html.DropDownList("GradeLevel", new List<SelectListItem>
         { new SelectListItem  { Text = "Select Grade Level", Value = "Select Grade Level1", Selected=true},
@@ -75,36 +78,33 @@
                                 </div>
                             </div>
                             <!--EOF Upload Photo-->
-
                             <!--Form Field Upload Photo-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                   @Html.LabelFor(model => model.Step, htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownList("Step", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Step", Value = "Select Step", Selected=true},
-          new SelectListItem  { Text = "01", Value = "01"},
-          new SelectListItem { Text = "02", Value = "02"},
-          new SelectListItem { Text = "03", Value = "03"},
-          new SelectListItem { Text = "04", Value = "04"},
-          new SelectListItem { Text = "05", Value = "05"},
-          new SelectListItem { Text = "06", Value = "06"},
-          new SelectListItem { Text = "07", Value = "07"},
-          new SelectListItem { Text = "08", Value = "08"},
-          new SelectListItem { Text = "09", Value = "09"},
-new SelectListItem { Text = "10", Value = "10"},
-          new SelectListItem { Text = "11", Value = "11"},
-          new SelectListItem { Text = "12", Value = "12"},
-          new SelectListItem { Text = "13", Value = "13"},
-          new SelectListItem { Text = "14", Value = "14"},
-            new SelectListItem { Text = "15", Value = "15"},
-          }, new { @class = "form-control" }
-                        )
+                                    @Html.LabelFor(model => model.Step, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownList("Step", new List<SelectListItem>
+            { new SelectListItem  { Text = "Select Step", Value = "Select Step", Selected=true},
+              new SelectListItem  { Text = "01", Value = "01"},
+              new SelectListItem { Text = "02", Value = "02"},
+              new SelectListItem { Text = "03", Value = "03"},
+              new SelectListItem { Text = "04", Value = "04"},
+              new SelectListItem { Text = "05", Value = "05"},
+              new SelectListItem { Text = "06", Value = "06"},
+              new SelectListItem { Text = "07", Value = "07"},
+              new SelectListItem { Text = "08", Value = "08"},
+              new SelectListItem { Text = "09", Value = "09"},
+    new SelectListItem { Text = "10", Value = "10"},
+              new SelectListItem { Text = "11", Value = "11"},
+              new SelectListItem { Text = "12", Value = "12"},
+              new SelectListItem { Text = "13", Value = "13"},
+              new SelectListItem { Text = "14", Value = "14"},
+                new SelectListItem { Text = "15", Value = "15"},
+              }, new { @class = "form-control" }
+                            )
                                     @Html.ValidationMessageFor(model => model.Step, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <!--EOF Upload Photo-->
-
-
                             <!--Form Field Upload Photo-->
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -114,8 +114,6 @@ new SelectListItem { Text = "10", Value = "10"},
                                 </div>
                             </div>
                             <!--EOF Upload Photo-->
-
-
                             <!--Form Field Upload Photo-->
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -134,13 +132,13 @@ new SelectListItem { Text = "10", Value = "10"},
                         <div class="row">
 
                             <div class="col-md-6">
-                                <div class="form-group">   
+                                <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-success" />
                                 </div>
                             </div>
 
                         </div>
-                    
+
                     </div>
                 </div>
             </div>

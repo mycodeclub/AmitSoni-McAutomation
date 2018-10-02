@@ -2,13 +2,16 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 
@@ -150,7 +153,7 @@
                                         new SelectListItem { Text = "2028", Value = "2028"},
                                         new SelectListItem { Text = "2029", Value = "2029"},
                                         new SelectListItem { Text = "2030", Value = "2030"}
-                                    }, new { @class = "form-control" })                                    
+                                    }, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.YearofProject, "", new { @class = "text-danger" })
                                 </div>
                             </div>

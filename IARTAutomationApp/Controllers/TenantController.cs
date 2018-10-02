@@ -333,7 +333,7 @@ namespace IARTAutomationApp.Controllers
                 {
                     StationName = rows[i][1].ToString(),
                     CreatedDate = System.DateTime.Now,
-                    //   CustomerId = customerId,
+                    CustomerId = customerId,
                     IsDeleted = false
                 });
             }

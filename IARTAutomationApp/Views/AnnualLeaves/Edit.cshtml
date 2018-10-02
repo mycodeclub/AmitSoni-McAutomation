@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Edit";
-    
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+
 }
 
 <h2>Edit</h2>
@@ -10,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AnnualLeave</h4>
         <hr />
@@ -25,6 +26,7 @@
             </div>
         </div>
 
+        <input type="hidden" name="CustomerId" value="@user.CustomerId" />
         <div class="form-group">
             @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

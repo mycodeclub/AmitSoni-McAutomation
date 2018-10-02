@@ -2,12 +2,15 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <!-- Main content -->
     <div class="content">
 
@@ -76,14 +79,14 @@
                                     @Html.ValidationMessageFor(model => model.DeductionHead, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.Label("DeductionValue", "Deduction Value", htmlAttributes: new { })
                                     @Html.EditorFor(model => model.DeductionAmount, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DeductionAmount, "", new { @class = "text-danger" })
                                 </div>
-                            </div>                                                 
+                            </div>
 
                         </div>
                         <!--EOF Row Employee Code-->

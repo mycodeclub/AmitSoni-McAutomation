@@ -11,11 +11,11 @@ using IARTAutomationApp.ViewModels;
 using System.Data.SqlClient;
 
 namespace IARTAutomationApp.Controllers
-{   
+{
     public class EmployeeAIsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
-        
+
         [HttpPost]
 
         public JsonResult Edit(EmployeeAI obj, List<EmpAIAssociation> ObjAssociation, List<EmpAIConference> ObjConferenece)
@@ -27,7 +27,7 @@ namespace IARTAutomationApp.Controllers
                 var idgI = (from a in db.EmployeeGIs where a.EmployeeCode == obj.EmployeeCode select a.EmployeeGIId).FirstOrDefault();
                 EmployeeGI objempGi = db.EmployeeGIs.Find(idgI);
                 EmployeeAI objdest = db.EmployeeAIs.Find(id);
-               
+
                 objdest.EmployeeCode = obj.EmployeeCode;
                 objdest.InstitutionAttended1 = obj.InstitutionAttended1;
                 objdest.InstitutionAttended2 = obj.InstitutionAttended2;
@@ -85,7 +85,7 @@ namespace IARTAutomationApp.Controllers
                     Existed_Emp.IsDeleted = false;
                 }
                 db.SaveChanges();
-              
+
                 insertedRecords = id;
             }
 
@@ -147,8 +147,10 @@ namespace IARTAutomationApp.Controllers
         [HttpPost]
         public JsonResult AutoEmployeeCode(string Prefix)
         {
+            var user = (UserMaster)Session["User"];
+
             //Note : you can bind same list from database  
-            ViewBag.emp = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode").ToList();
+            ViewBag.emp = new SelectList(db.EmployeeGIs.Where(e => e.CustomerId == user.CustomerId), "EmployeeCode", "EmployeeCode").ToList();
             List<SelectListItem> objlist = ViewBag.emp;
             //Searching records from list using LINQ query  
             var emplist = (from N in objlist
@@ -233,6 +235,8 @@ namespace IARTAutomationApp.Controllers
         // GET: EmployeeAIs/Create
         public ActionResult Create()
         {
+            var user = (UserMaster)Session["User"];
+
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode");
             ///////
 

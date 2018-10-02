@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-    
+
 }
 
 @using (Html.BeginForm())
@@ -10,6 +10,8 @@
     @Html.AntiForgeryToken()
 
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -100,7 +102,6 @@
                                         <!--EOF Employee Code-->
                                         <!--Form Field Employee Code-->
                                         <!--EOF Employee Code-->
-                                    
                                         <!--EOF Row Employee Code-->
                                         <!--EOF Row Employee Code-->
 
@@ -133,7 +134,7 @@
 
     $(document).ready(function () {
         debugger;
-        $.noConflict();  $("#EmployeeCode").autocomplete({
+        $.noConflict(); $("#EmployeeCode").autocomplete({
             source: function (request, response) {
 
                 $.ajax({
@@ -160,15 +161,15 @@
             var date1 = new Date(dat1)//converts string to date object
             var dat2 = document.getElementById('LeaveToDate').value;
             var date2 = new Date(dat2)//converts string to date object
-           
-            var from =$("#LeaveFromDate").val();
+
+            var from = $("#LeaveFromDate").val();
             var to = $("#LeaveToDate").val();
 
-          
+
             var timeDiff = Math.abs(date2.getTime() - date1.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-           
-            $("#NoOfDays").val(diffDays+1);
+
+            $("#NoOfDays").val(diffDays + 1);
 
             if (Date.parse(from) > Date.parse(to)) {
                 $("#LeaveToDate").val(from);
@@ -176,11 +177,11 @@
                 alert("Invalid Date Range");
             }
             else {
-              
+
                 //alert("Valid date Range");
             }
 
-            
+
         });
     })
 </script>

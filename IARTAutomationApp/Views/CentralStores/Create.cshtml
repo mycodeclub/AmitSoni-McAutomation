@@ -2,16 +2,18 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="form-horizontal">
         <h4>CentralStore</h4>
         <hr />

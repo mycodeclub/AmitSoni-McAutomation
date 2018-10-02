@@ -2,10 +2,12 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
 
@@ -16,6 +18,7 @@
             <li class="breadcrumb-item active">Add New Bank Type</li>
         </ol>
 
+        <input type="hidden" name="CustomerId" value="@user.CustomerId" />
         <div class="row">
             <div class="col-lg-12">
                 <div class="card ">
