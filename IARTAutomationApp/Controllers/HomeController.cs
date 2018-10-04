@@ -36,6 +36,7 @@ namespace IARTAutomationApp.Controllers
         public ActionResult Index()
         {
             var user = (UserMaster)Session["User"];
+            if (user == null) return RedirectToAction("AdminLogin", "Login");
             if (Session.SessionID != "")
             {
                 var x = db.EmployeeGIs.ToList();

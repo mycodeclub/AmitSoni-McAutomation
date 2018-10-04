@@ -23,13 +23,13 @@ namespace IARTAutomationApp.Controllers
 
 
 
-            var employeeMIs = db.EmployeeMIs.Where(a => a.EmployeeCode  == empcode).ToList();
-                return View(employeeMIs.ToList());
+            var employeeMIs = db.EmployeeMIs.Where(a => a.EmployeeCode == empcode).ToList();
+            return View(employeeMIs.ToList());
 
-                //if(     User.Identity.Name)
+            //if(     User.Identity.Name)
 
 
-            
+
             return View();
         }
 
@@ -89,7 +89,8 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult Index()
         {
-            var NoofEmp = (from a in db.EmployeeMIs select a).ToList().Count();
+            var user = (UserMaster)Session["User"];
+            var NoofEmp = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList().Count();
             ViewBag.NoOfStaff = NoofEmp;
             var employeeMIs = db.EmployeeMIs.Include(e => e.EmployeeGI);
             return View(employeeMIs.ToList());
@@ -263,7 +264,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         // GET: EmployeeMIs/Delete/5
-        
+
 
         #endregion
         public ActionResult Create()
@@ -277,7 +278,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeMIId,EmployeeCode,NhisNo,NhisProvider,BloodGroup,BloodGenotype,CreatedDate,IsDeleted")] EmployeeMI employeeMI)
+        public ActionResult Create([Bind(Include = "EmployeeMIId,EmployeeCode,NhisNo,NhisProvider,BloodGroup,BloodGenotype,CreatedDate,IsDeleted,CustomerId")] EmployeeMI employeeMI)
         {
             var isAlready = (from a in db.EmployeeMIs where a.EmployeeCode == employeeMI.EmployeeCode select a.EmployeeCode).Count();
             if (isAlready == 0)
@@ -337,7 +338,6 @@ namespace IARTAutomationApp.Controllers
             else
             {
                 TempData["successmsg"] = "";
-
                 TempData["msg"] = "This Record is Already exist";
                 return View(employeeMI);
             }
@@ -364,7 +364,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeMIId,EmployeeCode,NhisNo,NhisProvider,BloodGroup,BloodGenotype,CreatedDate,IsDeleted")] EmployeeMI employeeMI)
+        public ActionResult Edit([Bind(Include = "EmployeeMIId,EmployeeCode,NhisNo,NhisProvider,BloodGroup,BloodGenotype,CreatedDate,IsDeleted,CustomerId")] EmployeeMI employeeMI)
         {
             try
             {
@@ -377,7 +377,7 @@ namespace IARTAutomationApp.Controllers
 
                     db.Entry(employeeMI).State = EntityState.Modified;
                     db.SaveChanges();
-                   
+
 
                     ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeMI.EmployeeCode);
 
@@ -405,7 +405,7 @@ namespace IARTAutomationApp.Controllers
                         return RedirectToAction("UserIndex");
                     }
                 }
-              
+
             }
             catch (Exception ext)
             {
@@ -413,7 +413,7 @@ namespace IARTAutomationApp.Controllers
                 TempData["msg"] = "Record is not Updated,Try again";
 
             }
-                return View(employeeMI);
+            return View(employeeMI);
         }
 
         // GET: EmployeeMIs/Delete/5
@@ -448,7 +448,7 @@ namespace IARTAutomationApp.Controllers
             catch (Exception ext)
             {
                 TempData["successmsg"] = "";
-                  TempData["msg"] = "Record is not Deleted,Please try again";
+                TempData["msg"] = "Record is not Deleted,Please try again";
             }
             return RedirectToAction("Index");
         }
