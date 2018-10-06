@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class ItemController : Controller
     {
         // GET: Item
@@ -26,7 +26,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "StoreId, ClassId, ItemName,ItemCat,UomId,VendorId,ItemRate,ItemTax,StatusId,ItemDesc")] ItemMaster item, HttpPostedFileBase ItemImage)
+        public ActionResult Create([Bind(Include = "CustomerId,StoreId, ClassId, ItemName,ItemCat,UomId,VendorId,ItemRate,ItemTax,StatusId,ItemDesc")] ItemMaster item, HttpPostedFileBase ItemImage)
         {
 
             ItemMaster i = new ItemMaster();
@@ -93,10 +93,11 @@ namespace IARTAutomationApp.Controllers
 
         }
 
-        private static List<SelectListItem> GetStore()
+        private List<SelectListItem> GetStore()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.StoreMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.StoreMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.StoreName,
@@ -106,7 +107,7 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetStatus()
+        private List<SelectListItem> GetStatus()
         {
             IARTDBNEWEntities db = new IARTDBNEWEntities();
             List<SelectListItem> storeStatus = (from p in db.StatusMasters.AsEnumerable()
@@ -119,10 +120,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetClass()
+        private List<SelectListItem> GetClass()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.ClassMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.ClassMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.ClassName,
@@ -132,10 +134,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetUom()
+        private List<SelectListItem> GetUom()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.UomMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.UomMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.UOMName,
@@ -145,10 +148,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetVendor()
+        private List<SelectListItem> GetVendor()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.VendorMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.VendorMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.VendorName,
@@ -160,10 +164,12 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult ViewAll()
         {
-            ViewBag.ItemActiveCount = (from a in db.ItemMasters where a.StatusId == 1 select a).ToList().Count();
-            ViewBag.ItemClosedCount = (from a in db.ItemMasters where a.StatusId == 2 select a).ToList().Count();
-            ViewBag.TotalItemCount = (from a in db.ItemMasters select a).ToList().Count();
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            ViewBag.ItemActiveCount = (from a in db.ItemMasters where a.StatusId == 1 && user.CustomerId == a.CustomerId select a).ToList().Count();
+            ViewBag.ItemClosedCount = (from a in db.ItemMasters where a.StatusId == 2 && user.CustomerId == a.CustomerId select a).ToList().Count();
+            ViewBag.TotalItemCount = (from a in db.ItemMasters where user.CustomerId == a.CustomerId select a).ToList().Count();
             var item = from a in db.ItemMasters
+                       where user.CustomerId == a.CustomerId
                        join b in db.StoreMasters on a.StoreId equals b.RecordId
                        join c in db.StatusMasters on a.StatusId equals c.RecordId
                        join d in db.ClassMasters on a.ClassId equals d.RecordId
@@ -195,7 +201,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId,StoreId, ClassId, ItemName,ItemCat,UomId,VendorId,ItemRate,ItemTax,StatusId,ItemDesc")] ItemMaster item)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId,StoreId, ClassId, ItemName,ItemCat,UomId,VendorId,ItemRate,ItemTax,StatusId,ItemDesc")] ItemMaster item)
         {
             ItemMaster i = (from c in db.ItemMasters
                             where c.RecordId == item.RecordId

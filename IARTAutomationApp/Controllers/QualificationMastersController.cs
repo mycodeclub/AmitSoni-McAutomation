@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class QualificationMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: QualificationMasters
         public ActionResult Index()
         {
-            return View(db.QualificationMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.QualificationMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: QualificationMasters/Details/5
@@ -47,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QualificationId,QualificationName,Duration,CreatedDate,IsDeleted")] QualificationMaster qualificationMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,QualificationId,QualificationName,Duration,CreatedDate,IsDeleted")] QualificationMaster qualificationMaster)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QualificationId,QualificationName,Duration,CreatedDate,IsDeleted")] QualificationMaster qualificationMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,QualificationId,QualificationName,Duration,CreatedDate,IsDeleted")] QualificationMaster qualificationMaster)
         {
             if (ModelState.IsValid)
             {

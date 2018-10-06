@@ -10,6 +10,8 @@ namespace IARTAutomationApp.Controllers
 {
     public class DeliveryNoteController : Controller
     {
+        public UserMaster user;
+
         // GET: DeliveryNote
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
         public ActionResult Create()
@@ -21,10 +23,11 @@ namespace IARTAutomationApp.Controllers
             return View();
         }
 
-        private static List<SelectListItem> GetStore()
+        private List<SelectListItem> GetStore()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.StoreMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.StoreMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.StoreName,
@@ -34,10 +37,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetItem()
+        private List<SelectListItem> GetItem()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.ItemMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.ItemMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.ItemName,
@@ -47,10 +51,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetUom()
+        private List<SelectListItem> GetUom()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.UomMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.UomMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.UOMName,
@@ -60,10 +65,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetVendor()
+        private List<SelectListItem> GetVendor()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.VendorMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.VendorMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.VendorName,

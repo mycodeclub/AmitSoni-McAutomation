@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: GraduateAttachmentForms
         public ActionResult Index()
         {
-            var graduateAttachmentForms = db.GraduateAttachmentForms.Include(g => g.EmployeeGI).Include(g => g.EmployeeGI1);
+            var user = (UserMaster)Session["User"];
+            var graduateAttachmentForms = db.GraduateAttachmentForms.Where(e => e.CustomerId == user.CustomerId).Include(g => g.EmployeeGI).Include(g => g.EmployeeGI1);
             return View(graduateAttachmentForms.ToList());
         }
 
@@ -49,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,LetterDated,FromDate,ToDate,OfficerInCharge,PrincipalAccountant,ReinstatePayment,PaymentToDate,PaymentFromDate,CreatedDate,IsDeleted")] GraduateAttachmentForm graduateAttachmentForm)
+        public ActionResult Create([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,LetterDated,FromDate,ToDate,OfficerInCharge,PrincipalAccountant,ReinstatePayment,PaymentToDate,PaymentFromDate,CreatedDate,IsDeleted")] GraduateAttachmentForm graduateAttachmentForm)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +86,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,LetterDated,FromDate,ToDate,OfficerInCharge,PrincipalAccountant,ReinstatePayment,PaymentToDate,PaymentFromDate,CreatedDate,IsDeleted")] GraduateAttachmentForm graduateAttachmentForm)
+        public ActionResult Edit([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,LetterDated,FromDate,ToDate,OfficerInCharge,PrincipalAccountant,ReinstatePayment,PaymentToDate,PaymentFromDate,CreatedDate,IsDeleted")] GraduateAttachmentForm graduateAttachmentForm)
         {
             if (ModelState.IsValid)
             {

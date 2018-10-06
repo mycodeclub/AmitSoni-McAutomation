@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class RankMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,9 @@ namespace IARTAutomationApp.Controllers
         // GET: RankMasters
         public ActionResult Index()
         {
-            ViewBag.TotalRanks = db.RankMasters.Count();
-            return View(db.RankMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            ViewBag.TotalRanks = db.RankMasters.Where(e => e.CustomerId == user.CustomerId).Count();
+            return View(db.RankMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: RankMasters/Details/5
@@ -48,7 +49,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RankId,RankName,RankDescription,CreatedDate,IsDeleted")] RankMaster rankMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,RankId,RankName,RankDescription,CreatedDate,IsDeleted")] RankMaster rankMaster)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RankId,RankName,RankDescription,CreatedDate,IsDeleted")] RankMaster rankMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,RankId,RankName,RankDescription,CreatedDate,IsDeleted")] RankMaster rankMaster)
         {
             if (ModelState.IsValid)
             {

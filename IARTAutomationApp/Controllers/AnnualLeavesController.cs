@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: AnnualLeaves
         public ActionResult Index()
         {
-            var annualLeaves = db.AnnualLeaves.Include(a => a.EmployeeGI).Include(a => a.EmployeeGI1);
+            var user = (UserMaster)Session["User"];
+            var annualLeaves = db.AnnualLeaves.Where(e => e.CustomerId == user.CustomerId).Include(a => a.EmployeeGI).Include(a => a.EmployeeGI1);
             return View(annualLeaves.ToList());
         }
 
@@ -49,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,Surname,OtherNames,Faculty,Department,Maritalstatus,Nationality,PhoneNo,Fileno,PresentStatus,Salaryperannum,Proposedannualleave,LeavefromDate,LeavetoDate,Totalworkingday,IsLeave,IsLeavefromDate,IsLeavetoDate,OutstandingLeaveDays,IsPublicService,IsHOD,ActOfficer,IApprove,IsDeleted,CreatedDate")] AnnualLeave annualLeave)
+        public ActionResult Create([Bind(Include = "Id,EmployeeCode,Surname,OtherNames,Faculty,Department,Maritalstatus,Nationality,PhoneNo,Fileno,PresentStatus,Salaryperannum,Proposedannualleave,LeavefromDate,LeavetoDate,Totalworkingday,IsLeave,IsLeavefromDate,IsLeavetoDate,OutstandingLeaveDays,IsPublicService,IsHOD,ActOfficer,IApprove,IsDeleted,CreatedDate,CustomerId")] AnnualLeave annualLeave)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +86,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,Surname,OtherNames,Faculty,Department,Maritalstatus,Nationality,PhoneNo,Fileno,PresentStatus,Salaryperannum,Proposedannualleave,LeavefromDate,LeavetoDate,Totalworkingday,IsLeave,IsLeavefromDate,IsLeavetoDate,OutstandingLeaveDays,IsPublicService,IsHOD,ActOfficer,IApprove,IsDeleted,CreatedDate")] AnnualLeave annualLeave)
+        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,Surname,OtherNames,Faculty,Department,Maritalstatus,Nationality,PhoneNo,Fileno,PresentStatus,Salaryperannum,Proposedannualleave,LeavefromDate,LeavetoDate,Totalworkingday,IsLeave,IsLeavefromDate,IsLeavetoDate,OutstandingLeaveDays,IsPublicService,IsHOD,ActOfficer,IApprove,IsDeleted,CreatedDate,CustomerId")] AnnualLeave annualLeave)
         {
             if (ModelState.IsValid)
             {

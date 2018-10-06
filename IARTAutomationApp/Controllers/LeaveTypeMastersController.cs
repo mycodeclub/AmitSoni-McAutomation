@@ -50,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeaveTypeId,LeaveTypeName,IsActive,IsDeleted,CreatedDate")] LeaveTypeMaster leaveTypeMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,LeaveTypeId,LeaveTypeName,IsActive,IsDeleted,CreatedDate")] LeaveTypeMaster leaveTypeMaster)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeaveTypeId,LeaveTypeName,IsActive,IsDeleted,CreatedDate")] LeaveTypeMaster leaveTypeMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,LeaveTypeId,LeaveTypeName,IsActive,IsDeleted,CreatedDate")] LeaveTypeMaster leaveTypeMaster)
         {
             if (ModelState.IsValid)
             {

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class LeaveApplicationsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -22,26 +22,17 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult UserIndex()
         {
-
             int empcode = Convert.ToInt32(@Session["employeecode"]);
-
-
-
-            var employeeLIs = db.LeaveApplications.Where(a => a.EmployeeCode == empcode).ToList().OrderByDescending(k=>k.AppDate);
-                return View(employeeLIs.ToList());
-
-                //if(     User.Identity.Name)
-
-
-          
-            return View();
+            var employeeLIs = db.LeaveApplications.Where(a => a.EmployeeCode == empcode).ToList().OrderByDescending(k => k.AppDate);
+            return View(employeeLIs.ToList());
         }
 
 
         public ActionResult Index()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             DateTime dt = DateTime.Now.Date;
-            var EmpOnLeave = (from a in db.LeaveApplications where a.AppDate == dt.Date && a.Status=="Approved" orderby a.LeaveAccId descending select a).Count();
+            var EmpOnLeave = (from a in db.LeaveApplications where user.CustomerId == a.CustomerId && a.AppDate == dt.Date && a.Status == "Approved" orderby a.LeaveAccId descending select a).Count();
             ViewBag.EmpOnLeave = EmpOnLeave;
             return View(db.LeaveApplications.ToList());
         }
@@ -66,7 +57,7 @@ namespace IARTAutomationApp.Controllers
         {
             ///////
             LeaveApplication empleave = new LeaveApplication();
-            
+
             empleave.LeaveFromDate = DateTime.Now.Date;
             empleave.NoOfDays = 1;
             empleave.LeaveToDate = DateTime.Now.Date;
@@ -100,7 +91,7 @@ namespace IARTAutomationApp.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult UserCreate([Bind(Include = "LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
+        public ActionResult UserCreate([Bind(Include = "CustomerId,LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
         {
             List<LeaveTypeMaster> LeaveTypeklist = new List<LeaveTypeMaster>();
             LeaveTypeklist = (from a in db.LeaveTypeMasters select a).ToList();
@@ -149,7 +140,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
+        public ActionResult Create([Bind(Include = "CustomerId,LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
         {
             List<LeaveTypeMaster> LeaveTypeklist = new List<LeaveTypeMaster>();
             LeaveTypeklist = (from a in db.LeaveTypeMasters select a).ToList();
@@ -157,7 +148,8 @@ namespace IARTAutomationApp.Controllers
             //ViewBag.CountryList = CountryList;
             ViewBag.LeaveTypeName = new SelectList(LeaveTypeklist, "LeaveTypeId", "LeaveTypeName");
             if (ModelState.IsValid)
-            { int lt =Convert.ToInt32( leaveApplication.LeaveTypeName);
+            {
+                int lt = Convert.ToInt32(leaveApplication.LeaveTypeName);
                 var leavetype = (from a in db.LeaveTypeMasters where a.LeaveTypeId == lt select a.LeaveTypeName).FirstOrDefault();
                 leaveApplication.LeaveTypeName = leavetype;
                 var inprocess = (from a in db.LeaveApplications where a.Status == "Pending" && a.EmployeeCode == leaveApplication.EmployeeCode select a).Count();
@@ -166,7 +158,7 @@ namespace IARTAutomationApp.Controllers
                     leaveApplication.Status = "Pending";
                     int count = (from a in db.LeaveLedgers where a.EmployeeCode == leaveApplication.EmployeeCode && a.LeaveType == leaveApplication.LeaveTypeName select a.BalanceLeaves).Count();
                     var balanceLeave = (from a in db.LeaveLedgers where a.EmployeeCode == leaveApplication.EmployeeCode && a.LeaveType == leaveApplication.LeaveTypeName && a.BalanceLeaves >= leaveApplication.NoOfDays select a.BalanceLeaves).FirstOrDefault();
-                    if (( balanceLeave > 0) || (count == 0))
+                    if ((balanceLeave > 0) || (count == 0))
                     {
 
                         db.LeaveApplications.Add(leaveApplication);
@@ -188,7 +180,7 @@ namespace IARTAutomationApp.Controllers
                 }
             }
 
-               return View(leaveApplication);
+            return View(leaveApplication);
         }
 
         // GET: LeaveApplications/Edit/5
@@ -215,14 +207,14 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
+        public ActionResult Edit([Bind(Include = "CustomerId,LeaveAccId,EmployeeCode,LeaveTypeName,LeaveFromDate,LeaveToDate,NoOfDays,AppDate,IsApproved,IsDeleted,CreatedDate")] LeaveApplication leaveApplication)
         {
             try
             {
                 decimal balanceLeaveM = 0;
                 int count = (from a in db.LeaveLedgers where a.EmployeeCode == leaveApplication.EmployeeCode && a.LeaveType == leaveApplication.LeaveTypeName select a.BalanceLeaves).Count();
-                var  balanceLeave = (from a in db.LeaveLedgers where a.EmployeeCode == leaveApplication.EmployeeCode && a.LeaveType == leaveApplication.LeaveTypeName && a.BalanceLeaves >= leaveApplication.NoOfDays select a.BalanceLeaves).FirstOrDefault();
-               
+                var balanceLeave = (from a in db.LeaveLedgers where a.EmployeeCode == leaveApplication.EmployeeCode && a.LeaveType == leaveApplication.LeaveTypeName && a.BalanceLeaves >= leaveApplication.NoOfDays select a.BalanceLeaves).FirstOrDefault();
+
 
                 var email = (from a in db.EmployeePIs where a.EmployeeCode == leaveApplication.EmployeeCode select a.EmpEmailId).FirstOrDefault();
                 if (ModelState.IsValid)
@@ -232,7 +224,7 @@ namespace IARTAutomationApp.Controllers
                     leaveApplication.LeaveTypeName = leavetype;
 
                     if (count == 0)
-                    { 
+                    {
                         balanceLeaveM = (from a in db.LeaveMasters where a.LeaveTypeId == lt select a.LeaveCount).FirstOrDefault();
                         balanceLeave = balanceLeaveM;
                     }
@@ -246,88 +238,46 @@ namespace IARTAutomationApp.Controllers
                     LeaveLedger leaveledger = new Models.LeaveLedger();
                     leaveledger.EmployeeCode = leaveApplication.EmployeeCode;
                     leaveledger.ConsumedLeaves = leaveApplication.NoOfDays;
-                    leaveledger.BalanceLeaves = balanceLeave- leaveApplication.NoOfDays;
+                    leaveledger.BalanceLeaves = balanceLeave - leaveApplication.NoOfDays;
                     leaveledger.LeaveType = leaveApplication.LeaveTypeName;
                     DateTime appdt = Convert.ToDateTime(leaveApplication.AppDate);
-                    leaveledger.FiscalYear = appdt.Year.ToString()+"-"+ (appdt.Year+1).ToString().Substring(2,2);
+                    leaveledger.FiscalYear = appdt.Year.ToString() + "-" + (appdt.Year + 1).ToString().Substring(2, 2);
                     db.LeaveLedgers.Add(leaveledger);
                     db.SaveChanges();
-                    //////////////////
-                    //MailMessage Msg = new MailMessage();
-                    //// Sender e-mail address.
-                    //Msg.From = new MailAddress(email);
-                    //// Recipient e-mail address.
-                    //Msg.To.Add(email);
-                    //Msg.Subject = "Leave Application Status";
-                    //Msg.Body = "Your Leave Application is " + leaveApplication.Status;//"some body message";
-                    //SmtpClient smtp = new SmtpClient();
-                    //smtp.Host = "relay-hosting.secureserver.net";// "smptout.secureserver.net";// "relay-hosting.secureserver.net";
-                    //smtp.Send(Msg);
 
-                    /////////////////New Code for Email/
                     EmailModel model = new EmailModel();
                     model.Email = "toshuklagovind.2020@gmail.com";
                     model.Password = "jamesbond@123";
                     model.Subject = "Leave Application Status";
                     model.Body = "Your Leave Application is " + leaveApplication.Status;
-                    
+
                     model.To = email;
 
                     using (MailMessage mm = new MailMessage(model.Email, model.To))
-        {
-            mm.Subject = model.Subject;
-            mm.Body = model.Body;
-            //if (model.Attachment.ContentLength > 0)
-            //{
-            //    string fileName = Path.GetFileName(model.Attachment.FileName);
-            //    mm.Attachments.Add(new Attachment(model.Attachment.InputStream, fileName));
-            //}
-            mm.IsBodyHtml = false;
-            using (SmtpClient smtp = new SmtpClient())
-            {
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = true;
-                           
-                NetworkCredential NetworkCred = new NetworkCredential(model.Email, model.Password);
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = NetworkCred;
-                smtp.Port = 587;
-                smtp.Send(mm);
-                ViewBag.Message = "Email sent.";
-            }
-        }
-                     
+                    {
+                        mm.Subject = model.Subject;
+                        mm.Body = model.Body;
 
-                    //////////////////
-                    //SmtpClient smtpClient = new SmtpClient();
-                    //var emailmessage = new System.Web.Mail.MailMessage()
-                    //               {
-                    //                   Subject = "Leave Application Status",
-                    //                   Body ="Your Leave Application is "+ leaveApplication.Status,
-                    //                   From = email,
-                    //                   To = email,
-                    //                   BodyFormat = System.Web.Mail.MailFormat.Text,
-                    //                   Priority = System.Web.Mail.MailPriority.High
-                    //               };
+                        mm.IsBodyHtml = false;
+                        using (SmtpClient smtp = new SmtpClient())
+                        {
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.EnableSsl = true;
 
-                    //smtpClient.Host = "smptout.secureserver.net";
-                    //System.Web.Mail.SmtpMail.Send(emailmessage);
-                    /////////////////
+                            NetworkCredential NetworkCred = new NetworkCredential(model.Email, model.Password);
+                            smtp.UseDefaultCredentials = true;
+                            smtp.Credentials = NetworkCred;
+                            smtp.Port = 587;
+                            smtp.Send(mm);
+                            ViewBag.Message = "Email sent.";
+                        }
+                    }
                     TempData["msg"] = "<script>alert('Mail is Successfully Send');</script>";
-
-
-
-
-
                     return RedirectToAction("Index");
                 }
-
-
-                /////////////////
-
                 return View(leaveApplication);
             }
-            catch(Exception ext)
+            catch (Exception ext)
             {
                 TempData["msg"] = "<script>alert('Mail is failed due to Server error');</script>";
                 return RedirectToAction("Index");

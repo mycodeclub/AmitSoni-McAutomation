@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: AllowanceMasters
         public ActionResult Index()
         {
-            return View(db.AllowanceMasters.ToList());
+            var user = (UserMaster)Session["User"];
+            return View(db.AllowanceMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: AllowanceMasters/Details/5
@@ -46,7 +47,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AllowanceId,AllowanceType,ValueMethod,AllowanceHead,AllowanceAmount,IsActive,IsCreated,CreatedDate")] AllowanceMaster allowanceMaster)
+        public ActionResult Create([Bind(Include = "AllowanceId,AllowanceType,ValueMethod,AllowanceHead,AllowanceAmount,IsActive,IsCreated,CreatedDate,CustomerId")] AllowanceMaster allowanceMaster)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AllowanceId,AllowanceType,ValueMethod,AllowanceHead,AllowanceAmount,IsActive,IsCreated,CreatedDate")] AllowanceMaster allowanceMaster)
+        public ActionResult Edit([Bind(Include = "AllowanceId,AllowanceType,ValueMethod,AllowanceHead,AllowanceAmount,IsActive,IsCreated,CreatedDate,CustomerId")] AllowanceMaster allowanceMaster)
         {
             if (ModelState.IsValid)
             {

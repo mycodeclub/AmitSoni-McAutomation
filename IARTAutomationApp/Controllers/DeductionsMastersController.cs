@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: DeductionsMasters
         public ActionResult Index()
         {
-            return View(db.DeductionsMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.DeductionsMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: DeductionsMasters/Details/5
@@ -46,7 +47,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DeductionId,DeductionType,ValueMethod,DeductionHead,DeductionAmount,IsActive,IsCreated,CreatedDate")] DeductionsMaster deductionsMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,DeductionId,DeductionType,ValueMethod,DeductionHead,DeductionAmount,IsActive,IsCreated,CreatedDate")] DeductionsMaster deductionsMaster)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DeductionId,DeductionType,ValueMethod,DeductionHead,DeductionAmount,IsActive,IsCreated,CreatedDate")] DeductionsMaster deductionsMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,DeductionId,DeductionType,ValueMethod,DeductionHead,DeductionAmount,IsActive,IsCreated,CreatedDate")] DeductionsMaster deductionsMaster)
         {
             if (ModelState.IsValid)
             {

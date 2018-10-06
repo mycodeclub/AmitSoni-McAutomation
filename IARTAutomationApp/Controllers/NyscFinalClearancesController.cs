@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class NyscFinalClearancesController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: NyscFinalClearances
         public ActionResult Index()
         {
-            var nyscFinalClearances = db.NyscFinalClearances.Include(n => n.EmployeeGI).Include(n => n.EmployeeGI1);
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var nyscFinalClearances = db.NyscFinalClearances.Where(e => e.CustomerId == user.CustomerId).Include(n => n.EmployeeGI).Include(n => n.EmployeeGI1);
             return View(nyscFinalClearances.ToList());
         }
 
@@ -50,7 +51,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,EffectDate,BankAccountNo,CreatedDate,IsDeleted")] NyscFinalClearance nyscFinalClearance)
+        public ActionResult Create([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,EffectDate,BankAccountNo,CreatedDate,IsDeleted")] NyscFinalClearance nyscFinalClearance)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,EffectDate,BankAccountNo,CreatedDate,IsDeleted")] NyscFinalClearance nyscFinalClearance)
+        public ActionResult Edit([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,EffectDate,BankAccountNo,CreatedDate,IsDeleted")] NyscFinalClearance nyscFinalClearance)
         {
             if (ModelState.IsValid)
             {

@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: EmpAIAssociations
         public ActionResult Index()
         {
-            return View(db.EmpAIAssociations.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.EmpAIAssociations.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: EmpAIAssociations/Details/5
@@ -46,13 +47,13 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AssociationsId,EmployeeCode,Title,IDnumber,AttendedDate,CreatedDate,IsDeleted")] EmpAIAssociation empAIAssociation)
+        public ActionResult Create([Bind(Include = "CustomerId,AssociationsId,EmployeeCode,Title,IDnumber,AttendedDate,CreatedDate,IsDeleted")] EmpAIAssociation empAIAssociation)
         {
             if (ModelState.IsValid)
             {
                 db.EmpAIAssociations.Add(empAIAssociation);
                 db.SaveChanges();
- 
+
             }
             return RedirectToAction("../EmployeeAIs/Create");
 
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AssociationsId,EmployeeCode,Title,IDnumber,AttendedDate,CreatedDate,IsDeleted")] EmpAIAssociation empAIAssociation)
+        public ActionResult Edit([Bind(Include = "CustomerId,AssociationsId,EmployeeCode,Title,IDnumber,AttendedDate,CreatedDate,IsDeleted")] EmpAIAssociation empAIAssociation)
         {
             if (ModelState.IsValid)
             {

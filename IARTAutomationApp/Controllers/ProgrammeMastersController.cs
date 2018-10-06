@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class ProgrammeMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: ProgrammeMasters
         public ActionResult Index()
         {
-            ViewBag.ProgrammeMasters = db.ProgrammeMasters.Count();
-            return View(db.ProgrammeMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var data = db.ProgrammeMasters.Where(e => e.CustomerId == user.CustomerId).ToList();
+            ViewBag.ProgrammeMasters = data.Count();
+            return View(data);
         }
 
         // GET: ProgrammeMasters/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProgrammeId,ProgrammeName,CreatedDate,IsDeleted")] ProgrammeMaster programmeMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,ProgrammeId,ProgrammeName,CreatedDate,IsDeleted")] ProgrammeMaster programmeMaster)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +82,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProgrammeId,ProgrammeName,CreatedDate,IsDeleted")] ProgrammeMaster programmeMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,ProgrammeId,ProgrammeName,CreatedDate,IsDeleted")] ProgrammeMaster programmeMaster)
         {
             if (ModelState.IsValid)
             {

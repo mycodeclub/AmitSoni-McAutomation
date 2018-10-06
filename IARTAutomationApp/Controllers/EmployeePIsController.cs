@@ -19,10 +19,9 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult UserIndex()
         {
-
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             int empcode = Convert.ToInt32(@Session["employeecode"]);
-
-            var employeePIs = db.EmployeePIs.Where(a => a.EmployeeCode == empcode).ToList();
+            var employeePIs = db.EmployeePIs.Where(a => a.EmployeeCode == empcode && user.CustomerId == a.CustomerId).ToList();
             return View(employeePIs.ToList());
         }
 
@@ -138,7 +137,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
+        public ActionResult Create([Bind(Include = "CustomerId,EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
         {
             var user = (UserMaster)Session["User"];
             List<CityMaster> CityList = new List<CityMaster>();
@@ -248,7 +247,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
+        public ActionResult Edit([Bind(Include = "CustomerId,EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
         {
             try
             {
@@ -328,7 +327,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MidLevelCreate([Bind(Include = "EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
+        public ActionResult MidLevelCreate([Bind(Include = "CustomerId,EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
         {
             try
             {
@@ -424,7 +423,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MidLevelEdit([Bind(Include = "EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
+        public ActionResult MidLevelEdit([Bind(Include = "CustomerId,EmployeePIId,EmployeeCode,EmpEmailId,PermanentAddress,MobileNo,EmailIdKin,KinName,AddressNextOfKin,StateNextOfKin,LGAextOfKin,Relation,PhoneNoNextOfKin,NameOfStaffBenificiary,PhoneOfStaffBenificiary,AddressOfStaffBenificiary,EmployeeStatus,CreatedDate,IsDeleted")] EmployeePI employeePI)
         {
             try
             {

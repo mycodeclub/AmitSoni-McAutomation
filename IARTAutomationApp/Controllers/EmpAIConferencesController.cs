@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: EmpAIConferences
         public ActionResult Index()
         {
-            return View(db.EmpAIConferences.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.EmpAIConferences.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: EmpAIConferences/Details/5
@@ -46,7 +47,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConferenceId,EmployeeCode,Name,Title,AttendedDate,CreatedDate,IsDeleted")] EmpAIConference empAIConference)
+        public ActionResult Create([Bind(Include = "CustomerId,ConferenceId,EmployeeCode,Name,Title,AttendedDate,CreatedDate,IsDeleted")] EmpAIConference empAIConference)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConferenceId,EmployeeCode,Name,Title,AttendedDate,CreatedDate,IsDeleted")] EmpAIConference empAIConference)
+        public ActionResult Edit([Bind(Include = "CustomerId,ConferenceId,EmployeeCode,Name,Title,AttendedDate,CreatedDate,IsDeleted")] EmpAIConference empAIConference)
         {
             if (ModelState.IsValid)
             {

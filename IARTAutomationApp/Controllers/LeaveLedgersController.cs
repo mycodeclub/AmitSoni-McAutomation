@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class LeaveLedgersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: LeaveLedgers
         public ActionResult Index()
         {
-            return View(db.LeaveLedgers.ToList().OrderByDescending(k=>k.LeaveLogId));
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.LeaveLedgers.Where(e => e.CustomerId == user.CustomerId).ToList().OrderByDescending(k => k.LeaveLogId));
         }
 
         // GET: LeaveLedgers/Details/5
@@ -47,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeaveLogId,EmployeeCode,LeaveType,ConsumedLeaves,BalanceLeaves,FiscalYear")] LeaveLedger leaveLedger)
+        public ActionResult Create([Bind(Include = "CustomerId,LeaveLogId,EmployeeCode,LeaveType,ConsumedLeaves,BalanceLeaves,FiscalYear")] LeaveLedger leaveLedger)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeaveLogId,EmployeeCode,LeaveType,ConsumedLeaves,BalanceLeaves,FiscalYear")] LeaveLedger leaveLedger)
+        public ActionResult Edit([Bind(Include = "CustomerId,LeaveLogId,EmployeeCode,LeaveType,ConsumedLeaves,BalanceLeaves,FiscalYear")] LeaveLedger leaveLedger)
         {
             if (ModelState.IsValid)
             {

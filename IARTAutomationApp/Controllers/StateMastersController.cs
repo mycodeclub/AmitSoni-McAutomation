@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StateMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: StateMasters
         public ActionResult Index()
         {
-            ViewBag.StateMasters = db.StateMasters.Count();
-            return View(db.StateMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var data = db.StateMasters.Where(e => e.CustomerId == user.CustomerId).ToList();
+            ViewBag.StateMasters = data.Count();
+            return View(data);
         }
 
         // GET: StateMasters/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,State,IsDeleted")] StateMaster stateMaster)
+        public ActionResult Create([Bind(Include = "Id,State,IsDeleted,CustomerId")] StateMaster stateMaster)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +82,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,State,IsDeleted")] StateMaster stateMaster)
+        public ActionResult Edit([Bind(Include = "Id,State,IsDeleted,CustomerId")] StateMaster stateMaster)
         {
             if (ModelState.IsValid)
             {

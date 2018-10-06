@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class SalaryPaymentsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: SalaryPayments
         public ActionResult Index()
         {
-            return View(db.SalaryPayments.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.SalaryPayments.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: SalaryPayments/Details/5
@@ -47,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SalaryPaymId,EmployeeCode,SalaryAmount,Month,Year,DeductionAmount,AllowanceAmount,OtherDeduction,OtherAllowance,PaymentDate,IsPaid,IsSalarySlipPrint,IsDeleted,CreatedDate")] SalaryPayment salaryPayment)
+        public ActionResult Create([Bind(Include = "CustomerId,SalaryPaymId,EmployeeCode,SalaryAmount,Month,Year,DeductionAmount,AllowanceAmount,OtherDeduction,OtherAllowance,PaymentDate,IsPaid,IsSalarySlipPrint,IsDeleted,CreatedDate")] SalaryPayment salaryPayment)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SalaryPaymId,EmployeeCode,SalaryAmount,Month,Year,DeductionAmount,AllowanceAmount,OtherDeduction,OtherAllowance,PaymentDate,IsPaid,IsSalarySlipPrint,IsDeleted,CreatedDate")] SalaryPayment salaryPayment)
+        public ActionResult Edit([Bind(Include = "CustomerId,SalaryPaymId,EmployeeCode,SalaryAmount,Month,Year,DeductionAmount,AllowanceAmount,OtherDeduction,OtherAllowance,PaymentDate,IsPaid,IsSalarySlipPrint,IsDeleted,CreatedDate")] SalaryPayment salaryPayment)
         {
             if (ModelState.IsValid)
             {

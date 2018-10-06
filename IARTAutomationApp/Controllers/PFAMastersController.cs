@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class PFAMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: PFAMasters
         public ActionResult Index()
         {
-            ViewBag.PFAMasters = db.PFAMasters.Count();
-            return View(db.PFAMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+
+            ViewBag.PFAMasters = db.PFAMasters.Where(e => e.CustomerId == user.CustomerId).Count();
+            return View(db.PFAMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: PFAMasters/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PFAId,PFAName,CreatedDate,IsDeleted")] PFAMaster pFAMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,PFAId,PFAName,CreatedDate,IsDeleted")] PFAMaster pFAMaster)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +82,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PFAId,PFAName,CreatedDate,IsDeleted")] PFAMaster pFAMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,PFAId,PFAName,CreatedDate,IsDeleted")] PFAMaster pFAMaster)
         {
             if (ModelState.IsValid)
             {

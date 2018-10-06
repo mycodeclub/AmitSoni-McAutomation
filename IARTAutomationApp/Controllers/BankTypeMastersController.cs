@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: BankTypeMasters
         public ActionResult Index()
         {
-            ViewBag.BankType = db.BankTypeMasters.Count();
+            var user = (UserMaster)Session["User"];
+            ViewBag.BankType = db.BankTypeMasters.Where(e => e.CustomerId == user.CustomerId).Count();
             return View(db.BankTypeMasters.ToList());
         }
 
@@ -49,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BankTypeId,BankTypeName,CreatedDate,IsDeleted")] BankTypeMaster bankTypeMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,BankTypeId,BankTypeName,CreatedDate,IsDeleted")] BankTypeMaster bankTypeMaster)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +82,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BankTypeId,BankTypeName,CreatedDate,IsDeleted")] BankTypeMaster bankTypeMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,BankTypeId,BankTypeName,CreatedDate,IsDeleted")] BankTypeMaster bankTypeMaster)
         {
             if (ModelState.IsValid)
             {

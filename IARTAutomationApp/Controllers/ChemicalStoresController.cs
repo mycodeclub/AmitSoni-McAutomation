@@ -17,7 +17,9 @@ namespace IARTAutomationApp.Controllers
         // GET: ChemicalStores
         public ActionResult Index()
         {
-            return View(db.ChemicalStores.ToList());
+            var user = (UserMaster)Session["User"];
+            return View(db.ChemicalStores.Where(e => e.CustomerId == user.CustomerId).ToList());
+
         }
 
         // GET: ChemicalStores/Details/5
@@ -46,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted")] ChemicalStore chemicalStore)
+        public ActionResult Create([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted,CustomerId")] ChemicalStore chemicalStore)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted")] ChemicalStore chemicalStore)
+        public ActionResult Edit([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted,CustomerId")] ChemicalStore chemicalStore)
         {
             if (ModelState.IsValid)
             {

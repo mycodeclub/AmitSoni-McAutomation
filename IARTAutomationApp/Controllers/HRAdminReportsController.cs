@@ -11,40 +11,16 @@ using System.IO;
 using IARTAutomationApp.ViewModels;
 using ClosedXML.Excel;
 using Newtonsoft.Json;
- namespace IARTAutomationApp.Controllers
+namespace IARTAutomationApp.Controllers
 {
-    
+
     public class HRAdminReportsController : Controller
     {
         IARTDBNEWEntities db = new IARTDBNEWEntities();
 
         public ActionResult Chart()
         {
-            ////Get data from DB, items is list of objects:
-            ////1. DisplayText - (string) - chart columns names (equals "labels")
-            ////2. Value - (int) - chart values (equals "data")   
-            //var items = _Layer.GetData().ToList();
-
-            ////check if data exists
-            //if (items.Any())
-            //{
-            //    string color = "#3c8dbc";
-            //    Dataset ds = new Dataset
-            //    {
-            //        label = string.Empty,
-            //        fillColor = color,
-            //        pointColor = color,
-            //        strokeColor = color
-            //    };
-
-            //    var data = items.Select(x => x.Value).ToList();
-            //    ds.data.AddRange(data);
-            //    model.datasets.Add(ds);
-
-            //    var labels = items.Select(x => x.DisplayText).ToList();
-            //    model.labels = labels;
-            //}
-            var model="null";
+            var model = "null";
             var json = JsonConvert.SerializeObject(model, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
             return PartialView("_Chart", json);
@@ -54,24 +30,18 @@ using Newtonsoft.Json;
         {
             DateTime today = DateTime.Now.Date;
 
-            var emponleave = (from a in db.LeaveApplications where a.LeaveFromDate>=today && a.LeaveToDate >= today && a.IsApproved==true select a).Count();
-            var empdueforleave = (from a in db.LeaveApplications where a.LeaveFromDate > today && a.IsApproved == true select a).Count();
-
-            var emponduty = (from a in db.EmployeeGIs select a).Count();
-            ViewBag.emponleave =  emponleave;
-            ViewBag.empdueforleave =  empdueforleave;
+            var user = (UserMaster)Session["User"];
+            var emponleave = (from a in db.LeaveApplications where a.CustomerId == user.CustomerId && a.LeaveFromDate >= today && a.LeaveToDate >= today && a.IsApproved == true select a).Count();
+            var empdueforleave = (from a in db.LeaveApplications where a.CustomerId == user.CustomerId && a.LeaveFromDate > today && a.IsApproved == true select a).Count();
+            var emponduty = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).Count();
+            ViewBag.emponleave = emponleave;
+            ViewBag.empdueforleave = empdueforleave;
             emponduty = emponduty - (emponleave + empdueforleave);
-
             ViewBag.emponduty = emponduty;
-
-
-
-            ViewBag.JrStaff = (from a in db.EmployeeGIs where a.Cadre == "Junior" select a).Count();
-            ViewBag.SrStaff = (from a in db.EmployeeGIs where a.Cadre == "Senior" select a).Count();
-            ViewBag.NyscStaff = (from a in db.EmployeeGIs where a.Cadre == "NYSC Members" select a).Count();
-            ViewBag.OthersStaff = (from a in db.EmployeeGIs where a.Cadre == "Others" select a).Count();
-
-
+            ViewBag.JrStaff = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId && a.Cadre == "Junior" select a).Count();
+            ViewBag.SrStaff = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId && a.Cadre == "Senior" select a).Count();
+            ViewBag.NyscStaff = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId && a.Cadre == "NYSC Members" select a).Count();
+            ViewBag.OthersStaff = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId && a.Cadre == "Others" select a).Count();
             List<DataPoint> dataPoints = new List<DataPoint>{
                 new DataPoint(10, 22),
                 new DataPoint(20, 36),
@@ -79,32 +49,20 @@ using Newtonsoft.Json;
                 new DataPoint(40, 51),
                 new DataPoint(50, 46),
             };
-
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
-
-            //////////////
-
-            //////////////
-
             return View();
         }
         public ActionResult GetData()
         {
             DateTime dtRetirement = DateTime.Now.Date;
             List<GraphData> GraphDataList = new List<GraphData>();
-
-            //var user = db.Users.Where(p => p.Email == User.Identity.Name).Single();
             var Requests = db.EmployeeGIs;
             DateTime day = new DateTime();
             int CountPerDay = 0;
-            // count of request per day
             foreach (var request in Requests)
             {
-                dtRetirement =Convert.ToDateTime( request.DateOfRetirement);
-                if (day.Year == dtRetirement.Year && day.Day == dtRetirement.Day)
-                {
-                    CountPerDay++;
-                }
+                dtRetirement = Convert.ToDateTime(request.DateOfRetirement);
+                if (day.Year == dtRetirement.Year && day.Day == dtRetirement.Day) CountPerDay++;
                 else
                 {
                     // To 2016-12-03 format of date
@@ -122,49 +80,52 @@ using Newtonsoft.Json;
 
         public ActionResult EmployeePersonalReport()
         {
+            var user = (UserMaster)Session["User"];
             EmployeeAll empall = new EmployeeAll();
-
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
         public ActionResult EmployeeCPSsReport()
         {
             EmployeeAll empall = new EmployeeAll();
 
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            var user = (UserMaster)Session["User"];
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
         public ActionResult EmployeeAcademicReport()
         {
             EmployeeAll empall = new EmployeeAll();
 
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            var user = (UserMaster)Session["User"];
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
 
-      
+
 
         public ActionResult EmployeeStafNominalReport()
         {
             EmployeeAll empall = new EmployeeAll();
 
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            var user = (UserMaster)Session["User"];
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
 
@@ -172,11 +133,12 @@ using Newtonsoft.Json;
         {
             EmployeeAll empall = new EmployeeAll();
 
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            var user = (UserMaster)Session["User"];
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
 
@@ -184,14 +146,15 @@ using Newtonsoft.Json;
         {
             EmployeeAll empall = new EmployeeAll();
 
-            empall.employeegi = (from a in db.EmployeeGIs select a).ToList();
-            empall.employeeai = (from a in db.EmployeeAIs select a).ToList();
-            empall.employeemi = (from a in db.EmployeeMIs select a).ToList();
-            empall.employeesi = (from a in db.EmployeeSIs select a).ToList();
-            empall.employeepi = (from a in db.EmployeePIs select a).ToList();
+            var user = (UserMaster)Session["User"];
+            empall.employeegi = (from a in db.EmployeeGIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeeai = (from a in db.EmployeeAIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeemi = (from a in db.EmployeeMIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeesi = (from a in db.EmployeeSIs where a.CustomerId == user.CustomerId select a).ToList();
+            empall.employeepi = (from a in db.EmployeePIs where a.CustomerId == user.CustomerId select a).ToList();
             return View(empall);
         }
-        
+
 
         public ActionResult chartchartjs()
         {
@@ -357,7 +320,7 @@ using Newtonsoft.Json;
                             from e in db.EmployeeMIs
                             where (a.EmployeeCode == b.EmployeeCode) && (c.EmployeeCode == d.EmployeeCode) && (d.EmployeeCode == e.EmployeeCode) && (a.EmployeeCode == e.EmployeeCode)
 
-                            select new { empgi = a, emppi = b, empsi = c, empai = d,empmi=e };
+                            select new { empgi = a, emppi = b, empsi = c, empai = d, empmi = e };
 
             //		S/N	FILE NO	Employee CODE	Title (Mr, Mrs, Miss, DR. etc.)	Surname	First Name	Middle Name	SEX	QUALIFICATION	Date of Birth	Place of Birth	
             //Marital Status	Maiden Name	Mother's Maiden Name	Spouse Name	State of Origin	LGA of Origin	Home town	Religion
@@ -368,12 +331,12 @@ using Newtonsoft.Json;
             //NHIS NO	NHIS PROVIDER	STATION OF DEPLOYMENT	PFA	DATE OF RETIREMENT
             foreach (var emp in employees)
             {
-                dt.Rows.Add(emp.empgi.File_No, emp.empgi.EmployeeCode, emp.empgi.Title,emp.empgi.Surname, emp.empgi.First_Name,emp.empgi.Middle_Name,emp.empgi.Sex,emp.empai.Qualification3,
-                    emp.empgi.DateOfBirth,emp.empgi.PlaceOfBirth,emp.empgi.Marital_Status,emp.empgi.Maiden_Name,emp.empgi.Spouse_Name,emp.empgi.StateOfOrigin,emp.empgi.LGA,emp.empgi.Home_Town,emp.empgi.Religion, 
-                    emp.empmi.BloodGroup,emp.empmi.BloodGenotype,emp.empgi.ContactHomeAddress,emp.empgi.LastPromotionDate,emp.emppi.PermanentAddress,emp.empgi.StateOfOrigin,
-                    emp.empsi.BankType,emp.empsi.NameOfBanks,emp.empsi.BankBranch,emp.empsi.AccountNumber,emp.empsi.AccountName,emp.empsi.PFA,emp.empsi.RSAPinNo,emp.empgi.Cadre,
-                    emp.empgi.Rank,emp.empgi.Unit_Research+","+emp.empgi.Unit_Services,emp.empgi.Section,emp.empsi.SalaryScale, emp.empgi.Grade_Level, emp.empgi.Step, "N/A", 
-                    emp.empmi.NhisNo,emp.empmi.NhisProvider,emp.empgi.StationOfDeployment,emp.empsi.PFA,emp.empgi.DateOfRetirement
+                dt.Rows.Add(emp.empgi.File_No, emp.empgi.EmployeeCode, emp.empgi.Title, emp.empgi.Surname, emp.empgi.First_Name, emp.empgi.Middle_Name, emp.empgi.Sex, emp.empai.Qualification3,
+                    emp.empgi.DateOfBirth, emp.empgi.PlaceOfBirth, emp.empgi.Marital_Status, emp.empgi.Maiden_Name, emp.empgi.Spouse_Name, emp.empgi.StateOfOrigin, emp.empgi.LGA, emp.empgi.Home_Town, emp.empgi.Religion,
+                    emp.empmi.BloodGroup, emp.empmi.BloodGenotype, emp.empgi.ContactHomeAddress, emp.empgi.LastPromotionDate, emp.emppi.PermanentAddress, emp.empgi.StateOfOrigin,
+                    emp.empsi.BankType, emp.empsi.NameOfBanks, emp.empsi.BankBranch, emp.empsi.AccountNumber, emp.empsi.AccountName, emp.empsi.PFA, emp.empsi.RSAPinNo, emp.empgi.Cadre,
+                    emp.empgi.Rank, emp.empgi.Unit_Research + "," + emp.empgi.Unit_Services, emp.empgi.Section, emp.empsi.SalaryScale, emp.empgi.Grade_Level, emp.empgi.Step, "N/A",
+                    emp.empmi.NhisNo, emp.empmi.NhisProvider, emp.empgi.StationOfDeployment, emp.empsi.PFA, emp.empgi.DateOfRetirement
                   );
             }
 
@@ -421,7 +384,7 @@ using Newtonsoft.Json;
                             from b in db.EmployeePIs
                             from c in db.EmployeeSIs
                             from d in db.EmployeeMIs
-                            where (a.EmployeeCode==b.EmployeeCode) && (c.EmployeeCode==d.EmployeeCode)  && (a.EmployeeCode== d.EmployeeCode)
+                            where (a.EmployeeCode == b.EmployeeCode) && (c.EmployeeCode == d.EmployeeCode) && (a.EmployeeCode == d.EmployeeCode)
                             select new { empgi = a, emppi = b, empsi = c, empmi = d };
 
             foreach (var emp in employees)
@@ -469,7 +432,7 @@ using Newtonsoft.Json;
 
             var employees = from a in db.EmployeeGIs
                             from b in db.EmployeeAIs
-                            where a.EmployeeCode==b.EmployeeCode
+                            where a.EmployeeCode == b.EmployeeCode
 
                             select new { empgi = a, empai = b };
 
@@ -527,7 +490,7 @@ using Newtonsoft.Json;
             var employees = from a in db.EmployeeGIs
                             from b in db.EmployeePIs
                             from c in db.EmployeeSIs
-                            where (a.EmployeeCode==b.EmployeeCode) && (b.EmployeeCode==c.EmployeeCode)
+                            where (a.EmployeeCode == b.EmployeeCode) && (b.EmployeeCode == c.EmployeeCode)
                             select new { empgi = a, emppi = b.MobileNo, empsi = c };
 
             foreach (var emp in employees)

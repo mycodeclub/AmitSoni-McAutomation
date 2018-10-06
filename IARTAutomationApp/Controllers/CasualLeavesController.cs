@@ -17,7 +17,9 @@ namespace IARTAutomationApp.Controllers
         // GET: CasualLeaves
         public ActionResult Index()
         {
-            var casualLeaves = db.CasualLeaves.Include(c => c.EmployeeGI).Include(c => c.EmployeeGI1);
+            var user = (UserMaster)Session["User"];
+
+            var casualLeaves = db.CasualLeaves.Where(e => e.CustomerId == user.CustomerId).Include(c => c.EmployeeGI).Include(c => c.EmployeeGI1);
             return View(casualLeaves.ToList());
         }
 
@@ -49,7 +51,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,Name,Department,Post,FromDate,ToDate,Reason,ResponsiblePerson,HodComment,AnyLeaveDays,OfficeInChargeName,ApprovedDays,CreatedDate,IsDeleted")] CasualLeave casualLeave)
+        public ActionResult Create([Bind(Include = "Id,EmployeeCode,Name,Department,Post,FromDate,ToDate,Reason,ResponsiblePerson,HodComment,AnyLeaveDays,OfficeInChargeName,ApprovedDays,CreatedDate,IsDeleted,CustomerId")] CasualLeave casualLeave)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +87,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,Name,Department,Post,FromDate,ToDate,Reason,ResponsiblePerson,HodComment,AnyLeaveDays,OfficeInChargeName,ApprovedDays,CreatedDate,IsDeleted")] CasualLeave casualLeave)
+        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,Name,Department,Post,FromDate,ToDate,Reason,ResponsiblePerson,HodComment,AnyLeaveDays,OfficeInChargeName,ApprovedDays,CreatedDate,IsDeleted,CustomerId")] CasualLeave casualLeave)
         {
             if (ModelState.IsValid)
             {

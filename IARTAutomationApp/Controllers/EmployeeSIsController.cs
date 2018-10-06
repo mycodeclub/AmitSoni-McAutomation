@@ -14,22 +14,12 @@ namespace IARTAutomationApp.Controllers
     public class EmployeeSIsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
-
-
         public ActionResult UserIndex()
         {
-
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             int empcode = Convert.ToInt32(@Session["employeecode"]);
-
-
-            var employeeSIs = db.EmployeeSIs.Where(a => a.EmployeeCode == empcode).ToList();
+            var employeeSIs = db.EmployeeSIs.Where(a => a.EmployeeCode == empcode && a.CustomerId == user.CustomerId).ToList();
             return View(employeeSIs.ToList());
-
-            //if(     User.Identity.Name)
-
-
-
-            return View();
         }
         public ActionResult GetBankList(string banktypeId)
         {
@@ -59,8 +49,6 @@ namespace IARTAutomationApp.Controllers
 
             }
         }
-
-
         [HttpPost]
         public JsonResult AutoEmployeeCode(string Prefix)
         {
@@ -75,7 +63,6 @@ namespace IARTAutomationApp.Controllers
                            select new { N.Value });
             return Json(emplist, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult FullDetails(int? id)
         {
             EmployeeAll empall = new EmployeeAll();
@@ -96,20 +83,13 @@ namespace IARTAutomationApp.Controllers
         // GET: EmployeeSIs
         public ActionResult Index()
         {
-            var NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale == "CONHESS" select a).ToList().Count();
-            ViewBag.NoofEmpConh = NoofEmpConh;
-            var NoofEmpCont = (from a in db.EmployeeSIs where a.SalaryScale == "CONTTISS" select a).ToList().Count();
-            ViewBag.NoofEmpCont = NoofEmpCont;
-            var NoofEmpConu = (from a in db.EmployeeSIs where a.SalaryScale == "CONUASS" select a).ToList().Count();
-            ViewBag.NoofEmpConu = NoofEmpConu;
-            var NoofEmpConm = (from a in db.EmployeeSIs where a.SalaryScale == "CONMESS" select a).ToList().Count();
-            ViewBag.NoofEmpConm = NoofEmpConm;
-            var employeeSIs = db.EmployeeSIs.Include(e => e.EmployeeGI);
-            return View(employeeSIs.ToList());
+            var user = (UserMaster)Session["User"];
+            ViewBag.NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale == "CONHESS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpCont = (from a in db.EmployeeSIs where a.SalaryScale == "CONTTISS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpConu = (from a in db.EmployeeSIs where a.SalaryScale == "CONUASS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpConm = (from a in db.EmployeeSIs where a.SalaryScale == "CONMESS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            return View(db.EmployeeSIs.Include(e => e.EmployeeGI).Where(a => a.CustomerId == user.CustomerId).ToList());
         }
-
-
-
         // GET: EmployeeSIs/Details/5
         public ActionResult Details(int? id)
         {
@@ -124,9 +104,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View(employeeSI);
         }
-
-
-
         // GET: EmployeeSIs/Create
         public ActionResult Create()
         {
@@ -151,13 +128,12 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode");
             return View();
         }
-
         // POST: EmployeeSIs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
+        public ActionResult Create([Bind(Include = "CustomerId,EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
         {
             var isAlready = (from a in db.EmployeeSIs where a.EmployeeCode == employeeSI.EmployeeCode select a.EmployeeCode).Count();
             if (isAlready == 0)
@@ -216,7 +192,6 @@ namespace IARTAutomationApp.Controllers
                 return View(employeeSI);
             }
         }
-
         // GET: EmployeeSIs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -249,13 +224,12 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
             return View(employeeSI);
         }
-
         // POST: EmployeeSIs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
+        public ActionResult Edit([Bind(Include = "CustomerId,EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
         {
             try
             {
@@ -302,20 +276,15 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
             return View(employeeSI);
         }
-
-
         #region MidLevelAdmin
         public ActionResult MidLevelIndex()
         {
-            var NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale == "CONHESS" select a).ToList().Count();
-            ViewBag.NoofEmpConh = NoofEmpConh;
-            var NoofEmpCont = (from a in db.EmployeeSIs where a.SalaryScale == "CONTTISS" select a).ToList().Count();
-            ViewBag.NoofEmpCont = NoofEmpCont;
-            var NoofEmpConu = (from a in db.EmployeeSIs where a.SalaryScale == "CONUASS" select a).ToList().Count();
-            ViewBag.NoofEmpConu = NoofEmpConu;
-            var NoofEmpConm = (from a in db.EmployeeSIs where a.SalaryScale == "CONMESS" select a).ToList().Count();
-            ViewBag.NoofEmpConm = NoofEmpConm;
-            var employeeSIs = db.EmployeeSIs.Include(e => e.EmployeeGI);
+            var user = (UserMaster)Session["User"];
+            ViewBag.NoofEmpConh = (from a in db.EmployeeSIs where a.SalaryScale == "CONHESS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpCont = (from a in db.EmployeeSIs where a.SalaryScale == "CONTTISS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpConu = (from a in db.EmployeeSIs where a.SalaryScale == "CONUASS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.NoofEmpConm = (from a in db.EmployeeSIs where a.SalaryScale == "CONMESS" && a.CustomerId == user.CustomerId select a).ToList().Count();
+            var employeeSIs = db.EmployeeSIs.Where(a => a.CustomerId == user.CustomerId).Include(e => e.EmployeeGI);
             return View(employeeSIs.ToList());
         }
         // GET: EmployeeSIs/Create
@@ -342,13 +311,12 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode");
             return View();
         }
-
         // POST: EmployeeSIs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MidLevelCreate([Bind(Include = "EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
+        public ActionResult MidLevelCreate([Bind(Include = "CustomerId,EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
         {
             try
             {
@@ -398,7 +366,6 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
             return View(employeeSI);
         }
-
         // GET: EmployeeSIs/Edit/5
         public ActionResult MidLevelEdit(int? id)
         {
@@ -430,13 +397,12 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
             return View(employeeSI);
         }
-
         // POST: EmployeeSIs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MidLevelEdit([Bind(Include = "EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
+        public ActionResult MidLevelEdit([Bind(Include = "CustomerId,EmployeeSIId,EmployeeCode,CurrentPosting,BankType,NameOfBanks,BankBranch,AccountType,AccountNumber,AccountName,PFA,RSAPinNo,SalaryScale,CreatedDate,IsDeleted")] EmployeeSI employeeSI)
         {
             try
             {
@@ -484,7 +450,6 @@ namespace IARTAutomationApp.Controllers
             ViewBag.EmployeeCode = new SelectList(db.EmployeeGIs, "EmployeeCode", "EmployeeCode", employeeSI.EmployeeCode);
             return View(employeeSI);
         }
-
         #endregion
         // GET: EmployeeSIs/Delete/5
         public ActionResult Delete(int? id)
@@ -500,7 +465,6 @@ namespace IARTAutomationApp.Controllers
             }
             return View(employeeSI);
         }
-
         // POST: EmployeeSIs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -523,7 +487,6 @@ namespace IARTAutomationApp.Controllers
 
 
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -9,6 +9,8 @@
 {
     @Html.AntiForgeryToken()
 
+    var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+    <input type="hidden" name="CustomerId" value="@user.CustomerId" />
     <div class="content">
 
         <ol class="breadcrumb bc-colored bg-success m-b-3">
@@ -22,10 +24,10 @@
                     <div class="card-header bg-blue">
                         <h5 class="text-white m-b-0">Add Employee Salary Information</h5>
                     </div>
-                    
+
                     <div class="card-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        
+
                         <!--Row Employee Code-->
                         <h4 class="form-heading-1">Employee Code</h4>
                         <div class="row">
@@ -65,16 +67,16 @@
 
 
                                     @*@Html.DropDownList("BankType", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Bank Type", Value = "Select Bank Type", Selected=true},
-        new SelectListItem  { Text = "Central Bank of Nigeria (CBN)", Value = "Central Bank of Nigeria (CBN)"},
-        new SelectListItem  { Text = "Commercial Banks", Value = "Commercial Banks"},
-        new SelectListItem  { Text = "Retail Banks", Value = "Retail Banks"},
-        new SelectListItem  { Text = "Microfinance Banks", Value = "Microfinance Banks"},
-        new SelectListItem  { Text = "Mortgage Banks", Value = "Mortgage Banks"},
-        new SelectListItem  { Text = "Non-Interest Banks", Value = "Non-Interest Banks"},
+                                        { new SelectListItem  { Text = "Select Bank Type", Value = "Select Bank Type", Selected=true},
+                                        new SelectListItem  { Text = "Central Bank of Nigeria (CBN)", Value = "Central Bank of Nigeria (CBN)"},
+                                        new SelectListItem  { Text = "Commercial Banks", Value = "Commercial Banks"},
+                                        new SelectListItem  { Text = "Retail Banks", Value = "Retail Banks"},
+                                        new SelectListItem  { Text = "Microfinance Banks", Value = "Microfinance Banks"},
+                                        new SelectListItem  { Text = "Mortgage Banks", Value = "Mortgage Banks"},
+                                        new SelectListItem  { Text = "Non-Interest Banks", Value = "Non-Interest Banks"},
 
-          }, new { @class = "form-control" }
-                        )*@
+                                          }, new { @class = "form-control" }
+                                                        )*@
                                     @Html.ValidationMessageFor(model => model.BankType, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -83,38 +85,38 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.NameOfBanks, htmlAttributes: new { })
-                                @*    @Html.DropDownList("NameOfBanks", (SelectList)ViewBag.NameOfBanks, htmlAttributes: new { @class = "form-control" })*@
+                                    @*    @Html.DropDownList("NameOfBanks", (SelectList)ViewBag.NameOfBanks, htmlAttributes: new { @class = "form-control" })*@
                                     @Html.DropDownList("NameOfBanks", (SelectList)ViewBag.NameOfBanks, htmlAttributes: new { @class = "form-control" })
 
 
 
 
                                     @*@Html.DropDownList("NameOfBanks", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select Bank Name", Value = "Select Bank Name", Selected=true},
-        new SelectListItem  { Text = "Access Bank", Value = "Access Bank"},
-        new SelectListItem  { Text = "Citibank", Value = "Citibank"},
-        new SelectListItem  { Text = "Diamond Bank", Value = "Diamond Bank"},
-        new SelectListItem  { Text = "Ecobank Nigeria", Value = "Ecobank Nigeria"},
-        new SelectListItem  { Text = "Fidelity Bank Nigeria", Value = "Fidelity Bank Nigeria"},
-        new SelectListItem  { Text = "First Bank of Nigeria", Value = "First Bank of Nigeria"},
-         new SelectListItem  { Text = "First City Monument Bank", Value = "First City Monument Bank"},
-        new SelectListItem  { Text = "Guaranty Trust Bank", Value = "Guaranty Trust Bank"},
-        new SelectListItem  { Text = "Heritage Bank plc", Value = "Heritage Bank plc"},
-        new SelectListItem  { Text = "Keystone Bank Limited", Value = "Keystone Bank Limited"},
-        new SelectListItem  { Text = "Providus Bank plc", Value = "Providus Bank plc"},
-        new SelectListItem  { Text = "Skye Bank", Value = "Skye Bank"},
-         new SelectListItem  { Text = "Stanbic IBTC Bank Nigeria Limited", Value = "Stanbic IBTC Bank Nigeria Limited"},
-        new SelectListItem  { Text = "Standard Chartered Bank", Value = "Standard Chartered Bank"},
-        new SelectListItem  { Text = "Sterling Bank", Value = "Sterling Bank"},
-        new SelectListItem  { Text = "Suntrust Bank Nigeria Limited", Value = "Suntrust Bank Nigeria Limited"},
-        new SelectListItem  { Text = "Union Bank of Nigeria", Value = "Union Bank of Nigeria"},
-        new SelectListItem  { Text = "United Bank for Africa", Value = "United Bank for Africa"},
-         new SelectListItem  { Text = "Unity Bank plc", Value = "Unity Bank plc"},
-        new SelectListItem  { Text = "Wema Bank", Value = "Wema Bank"},
+                                        { new SelectListItem  { Text = "Select Bank Name", Value = "Select Bank Name", Selected=true},
+                                        new SelectListItem  { Text = "Access Bank", Value = "Access Bank"},
+                                        new SelectListItem  { Text = "Citibank", Value = "Citibank"},
+                                        new SelectListItem  { Text = "Diamond Bank", Value = "Diamond Bank"},
+                                        new SelectListItem  { Text = "Ecobank Nigeria", Value = "Ecobank Nigeria"},
+                                        new SelectListItem  { Text = "Fidelity Bank Nigeria", Value = "Fidelity Bank Nigeria"},
+                                        new SelectListItem  { Text = "First Bank of Nigeria", Value = "First Bank of Nigeria"},
+                                         new SelectListItem  { Text = "First City Monument Bank", Value = "First City Monument Bank"},
+                                        new SelectListItem  { Text = "Guaranty Trust Bank", Value = "Guaranty Trust Bank"},
+                                        new SelectListItem  { Text = "Heritage Bank plc", Value = "Heritage Bank plc"},
+                                        new SelectListItem  { Text = "Keystone Bank Limited", Value = "Keystone Bank Limited"},
+                                        new SelectListItem  { Text = "Providus Bank plc", Value = "Providus Bank plc"},
+                                        new SelectListItem  { Text = "Skye Bank", Value = "Skye Bank"},
+                                         new SelectListItem  { Text = "Stanbic IBTC Bank Nigeria Limited", Value = "Stanbic IBTC Bank Nigeria Limited"},
+                                        new SelectListItem  { Text = "Standard Chartered Bank", Value = "Standard Chartered Bank"},
+                                        new SelectListItem  { Text = "Sterling Bank", Value = "Sterling Bank"},
+                                        new SelectListItem  { Text = "Suntrust Bank Nigeria Limited", Value = "Suntrust Bank Nigeria Limited"},
+                                        new SelectListItem  { Text = "Union Bank of Nigeria", Value = "Union Bank of Nigeria"},
+                                        new SelectListItem  { Text = "United Bank for Africa", Value = "United Bank for Africa"},
+                                         new SelectListItem  { Text = "Unity Bank plc", Value = "Unity Bank plc"},
+                                        new SelectListItem  { Text = "Wema Bank", Value = "Wema Bank"},
 
 
-          }, new { @class = "form-control" }
-                        )*@
+                                          }, new { @class = "form-control" }
+                                                        )*@
                                     @Html.ValidationMessageFor(model => model.NameOfBanks, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -171,29 +173,29 @@
 
 
                                     @*@Html.DropDownList("PFA", new List<SelectListItem>
-        { new SelectListItem  { Text = "Select PFA", Value = "Select PFA", Selected=true},
-              new SelectListItem  { Text = "AIICO Pension Managers Limited", Value = "AIICO Pension Managers Limited"},
-        new SelectListItem  { Text = "APT Pension Fund Managers Limited", Value = "APT Pension Fund Managers Limited"},
-         new SelectListItem  { Text = "ARM Pension Managers Limited", Value = "ARM Pension Managers Limited"},
-        new SelectListItem  { Text = "AXA Mansard Pension Limited", Value = "AXA Mansard Pension Limited"},
-          new SelectListItem  { Text = "Crusader Sterling Pensions Limited", Value = "Crusader Sterling Pensions Limited"},
-            new SelectListItem  { Text = "Fidelity Pension Managers", Value = "Fidelity Pension Managers"},
-              new SelectListItem  { Text = "First Guarantee Pension Limited", Value = "First Guarantee Pension Limited"},
-                new SelectListItem  { Text = "Future Unity Glanvils Pensions Limited", Value = "Future Unity Glanvils Pensions Limited"},
-                  new SelectListItem  { Text = "Investment One Pension Managers Limited", Value = "Investment One Pension Managers Limited"},
-                    new SelectListItem  { Text = "IEI-Anchor Pension Managers Limited", Value = "IEI-Anchor Pension Managers Limited"},
-                      new SelectListItem  { Text = "IGI Pension Fund Managers Limited", Value = "IGI Pension Fund Managers Limited"},
-                        new SelectListItem  { Text = "Leadway Pensure PFA Limited", Value = "Leadway Pensure PFA Limited"},
-                          new SelectListItem  { Text = "NLPC Pension Fund Administrators Limited", Value = "NLPC Pension Fund Administrators Limited"},
-                            new SelectListItem  { Text = "NPF Pensions Limited", Value = "NPF Pensions Limited"},
-                              new SelectListItem  { Text = "OAK Pensions Limited", Value = "OAK Pensions Limited"},
-                                new SelectListItem  { Text = "Pensions Alliance Limited", Value = "Pensions Alliance Limited"},
-                                  new SelectListItem  { Text = "Premium Pension Limited", Value = "Premium Pension Limited"},
-                                    new SelectListItem  { Text = "Sigma Pensions Limited", Value = "Sigma Pensions Limited"},
-                                      new SelectListItem  { Text = "Stanbic IBTC Pension Managers Limited", Value = "Stanbic IBTC Pension Managers Limited"},
-                                        new SelectListItem  { Text = "Trustfund Pensions Plc", Value = "Trustfund Pensions Plc"},
-           }, new { @class = "form-control" }
-                        )*@
+                                        { new SelectListItem  { Text = "Select PFA", Value = "Select PFA", Selected=true},
+                                              new SelectListItem  { Text = "AIICO Pension Managers Limited", Value = "AIICO Pension Managers Limited"},
+                                        new SelectListItem  { Text = "APT Pension Fund Managers Limited", Value = "APT Pension Fund Managers Limited"},
+                                         new SelectListItem  { Text = "ARM Pension Managers Limited", Value = "ARM Pension Managers Limited"},
+                                        new SelectListItem  { Text = "AXA Mansard Pension Limited", Value = "AXA Mansard Pension Limited"},
+                                          new SelectListItem  { Text = "Crusader Sterling Pensions Limited", Value = "Crusader Sterling Pensions Limited"},
+                                            new SelectListItem  { Text = "Fidelity Pension Managers", Value = "Fidelity Pension Managers"},
+                                              new SelectListItem  { Text = "First Guarantee Pension Limited", Value = "First Guarantee Pension Limited"},
+                                                new SelectListItem  { Text = "Future Unity Glanvils Pensions Limited", Value = "Future Unity Glanvils Pensions Limited"},
+                                                  new SelectListItem  { Text = "Investment One Pension Managers Limited", Value = "Investment One Pension Managers Limited"},
+                                                    new SelectListItem  { Text = "IEI-Anchor Pension Managers Limited", Value = "IEI-Anchor Pension Managers Limited"},
+                                                      new SelectListItem  { Text = "IGI Pension Fund Managers Limited", Value = "IGI Pension Fund Managers Limited"},
+                                                        new SelectListItem  { Text = "Leadway Pensure PFA Limited", Value = "Leadway Pensure PFA Limited"},
+                                                          new SelectListItem  { Text = "NLPC Pension Fund Administrators Limited", Value = "NLPC Pension Fund Administrators Limited"},
+                                                            new SelectListItem  { Text = "NPF Pensions Limited", Value = "NPF Pensions Limited"},
+                                                              new SelectListItem  { Text = "OAK Pensions Limited", Value = "OAK Pensions Limited"},
+                                                                new SelectListItem  { Text = "Pensions Alliance Limited", Value = "Pensions Alliance Limited"},
+                                                                  new SelectListItem  { Text = "Premium Pension Limited", Value = "Premium Pension Limited"},
+                                                                    new SelectListItem  { Text = "Sigma Pensions Limited", Value = "Sigma Pensions Limited"},
+                                                                      new SelectListItem  { Text = "Stanbic IBTC Pension Managers Limited", Value = "Stanbic IBTC Pension Managers Limited"},
+                                                                        new SelectListItem  { Text = "Trustfund Pensions Plc", Value = "Trustfund Pensions Plc"},
+                                           }, new { @class = "form-control" }
+                                                        )*@
                                     @Html.ValidationMessageFor(model => model.PFA, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -233,21 +235,21 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-      <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                   @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
+                    @* <button type="button" class="close" data-ng-show="modal">&times;</button>*@
                     <h4 class="modal-title">Confirmation</h4>
                 </div>
                 <div class="modal-body">
@@ -270,7 +272,7 @@
 
     $(document).ready(function () {
         debugger;
-        $.noConflict();  $("#EmployeeCode").autocomplete({
+        $.noConflict(); $("#EmployeeCode").autocomplete({
             source: function (request, response) {
 
                 $.ajax({

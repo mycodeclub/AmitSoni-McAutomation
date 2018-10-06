@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class POrderController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -48,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "OrderNo, VendorId, ItemId,ItemQunt,ItemDesc,ItemTax,DeliLoc,Terms")] PurchaseOrder porder)
+        public ActionResult Create([Bind(Include = "CustomerId,OrderNo, VendorId, ItemId,ItemQunt,ItemDesc,ItemTax,DeliLoc,Terms")] PurchaseOrder porder)
         {
             PurchaseOrder po = new PurchaseOrder();
             ModelState.Remove("EmployeeID");
@@ -100,7 +100,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId,OrderNo, VendorId, ItemId,ItemQunt,ItemDesc,ItemTax,DeliLoc,Terms")] PurchaseOrder porder)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId,OrderNo, VendorId, ItemId,ItemQunt,ItemDesc,ItemTax,DeliLoc,Terms")] PurchaseOrder porder)
         {
             PurchaseOrder po = (from c in db.PurchaseOrders
                                 where c.RecordId == porder.RecordId

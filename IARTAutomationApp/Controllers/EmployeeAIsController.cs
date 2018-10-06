@@ -203,9 +203,9 @@ namespace IARTAutomationApp.Controllers
         //[HttpPost, ActionName("MidLevelIndex")]
         public ActionResult Index()
         {
-            var NoofEmp = (from a in db.EmployeeAIs select a).ToList().Count();
-            ViewBag.NoOfStaff = NoofEmp;
-            var employeeAIs = db.EmployeeAIs.Include(e => e.EmployeeGI);
+            var user = (UserMaster)Session["User"];
+            var employeeAIs = db.EmployeeAIs.Where(e => e.CustomerId == user.CustomerId).Include(e => e.EmployeeGI);
+            ViewBag.NoOfStaff = employeeAIs.Count();
             return View(employeeAIs.ToList());
         }
 
@@ -279,7 +279,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeAIId,EmployeeCode,InstitutionAttended1,InstitutionAttended2,InstitutionAttended3,Qualification1,Qualification2,Qualification3,YearOfGraduation1,YearOfGraduation2,YearOfGraduation3,ProfessionalAssociationsTitle,ProfessionalAssociationsIdNo,ProfessionalAssociationsDate,ConferenceAttendedName,ConferenceAttendedTitle,ConferenceAttendedDate,CreatedDate,IsDeleted")] EmployeeAI employeeAI)
+        public ActionResult Create([Bind(Include = "CustomerId,EmployeeAIId,EmployeeCode,InstitutionAttended1,InstitutionAttended2,InstitutionAttended3,Qualification1,Qualification2,Qualification3,YearOfGraduation1,YearOfGraduation2,YearOfGraduation3,ProfessionalAssociationsTitle,ProfessionalAssociationsIdNo,ProfessionalAssociationsDate,ConferenceAttendedName,ConferenceAttendedTitle,ConferenceAttendedDate,CreatedDate,IsDeleted")] EmployeeAI employeeAI)
         {
             try
             {

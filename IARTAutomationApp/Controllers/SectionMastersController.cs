@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class SectionMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: SectionMasters
         public ActionResult Index()
         {
-            ViewBag.SectionMasters = db.SectionMasters.Count();
-            return View(db.SectionMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var data = db.SectionMasters.Where(e => e.CustomerId == user.CustomerId).ToList();
+            ViewBag.SectionMasters = data.Count();
+            return View(data);
         }
 
         // GET: SectionMasters/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SectionId,SectionName,CreatedDate,IsDeleted")] SectionMaster sectionMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,SectionId,SectionName,CreatedDate,IsDeleted")] SectionMaster sectionMaster)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +82,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SectionId,SectionName,CreatedDate,IsDeleted")] SectionMaster sectionMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,SectionId,SectionName,CreatedDate,IsDeleted")] SectionMaster sectionMaster)
         {
             if (ModelState.IsValid)
             {

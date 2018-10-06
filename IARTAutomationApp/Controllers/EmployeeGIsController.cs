@@ -26,7 +26,6 @@ namespace IARTAutomationApp.Controllers
             try
             {
                 var employees = db.EmployeeGIs.Where(emp => emp.CustomerId == user.CustomerId && emp.EmployeeCode != user.EmployeeCode).ToList();
-
                 DateTime dttoday = DateTime.Now.Date;
                 var Role = (from a in db.UserMasters where a.EmployeeCode == user.EmployeeCode select a.RoleId).FirstOrDefault();
                 var RoleName = (from b in db.RoleMasters where b.RoleId == Role select b.RoleName).FirstOrDefault();
@@ -40,23 +39,15 @@ namespace IARTAutomationApp.Controllers
                 }
                 else
                 {
-
                     var employeeGIs = db.EmployeeGIs.Where(a => a.EmployeeCode == user.EmployeeCode).ToList();
                     return View(employeeGIs.ToList());
                 }
-
-
-
-                //if(     User.Identity.Name)
-
-
             }
-            catch (Exception ext)
+            catch
             {
                 return RedirectToAction("AdminLogin", "Login");
 
             }
-            return View();
         }
         public ActionResult UserIndex()
         {
@@ -161,7 +152,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeGIId,EmployeeCode,Rank,File_No,Grade_Level,Step,Cadre,Title,First_Name,Middle_Name,Surname,Sex,DateOfBirth,PlaceOfBirth,Marital_Status,Maiden_Name,Spouse_Name,StateOfOrigin,LGA,Home_Town,Religion,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,DateOfRetirement,LastPromotionDate,Programmes,Unit_Services,Unit_Research,Section,LeaveDays,Leave_fromDate,Leave_ToDate,,EmployeePhotoImage,StationOfDeployment,IsDeleted,CreatedDate")] EmployeeGI employeeGI)
+        public ActionResult Create([Bind(Include = "CustomerId,EmployeeGIId,EmployeeCode,Rank,File_No,Grade_Level,Step,Cadre,Title,First_Name,Middle_Name,Surname,Sex,DateOfBirth,PlaceOfBirth,Marital_Status,Maiden_Name,Spouse_Name,StateOfOrigin,LGA,Home_Town,Religion,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,DateOfRetirement,LastPromotionDate,Programmes,Unit_Services,Unit_Research,Section,LeaveDays,Leave_fromDate,Leave_ToDate,,EmployeePhotoImage,StationOfDeployment,IsDeleted,CreatedDate")] EmployeeGI employeeGI)
         {
             var user = (UserMaster)Session["User"];
             var isAlready = (from a in db.EmployeeGIs where a.EmployeeCode == employeeGI.EmployeeCode select a.EmployeeCode).Count();
@@ -292,7 +283,7 @@ namespace IARTAutomationApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeGIId,EmployeeCode,Rank,File_No,Grade_Level,Step,Cadre,Title,First_Name,Middle_Name,Surname,Sex,DateOfBirth,PlaceOfBirth,Marital_Status,Maiden_Name,Spouse_Name,StateOfOrigin,LGA,Home_Town,Religion,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,DateOfRetirement,LastPromotionDate,Programmes,Unit_Services,Unit_Research,Section,LeaveDays,Leave_fromDate,Leave_ToDate,EmployeePhoto,EmployeePhotoImage,StationOfDeployment,IsDeleted,CreatedDate")] EmployeeGI employeeGI)
+        public ActionResult Edit([Bind(Include = "CustomerId,EmployeeGIId,EmployeeCode,Rank,File_No,Grade_Level,Step,Cadre,Title,First_Name,Middle_Name,Surname,Sex,DateOfBirth,PlaceOfBirth,Marital_Status,Maiden_Name,Spouse_Name,StateOfOrigin,LGA,Home_Town,Religion,ContactHomeAddress,FirstAppointmentDate,FirstAppointmentLocation,ConfirmationDate,DateOfRetirement,LastPromotionDate,Programmes,Unit_Services,Unit_Research,Section,LeaveDays,Leave_fromDate,Leave_ToDate,EmployeePhoto,EmployeePhotoImage,StationOfDeployment,IsDeleted,CreatedDate")] EmployeeGI employeeGI)
         {
             try
             {

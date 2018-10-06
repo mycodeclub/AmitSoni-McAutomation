@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class SalaryStructureMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: SalaryStructureMasters
         public ActionResult Index()
         {
-            return View(db.SalaryStructureMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.SalaryStructureMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: SalaryStructureMasters/Details/5
@@ -47,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SalaryScaleId,SalaryScale,GradeLevel,Step,SalaryAmount,IsActive,IsDeleted,ScaleYear,CreatedDate")] SalaryStructureMaster salaryStructureMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,SalaryScaleId,SalaryScale,GradeLevel,Step,SalaryAmount,IsActive,IsDeleted,ScaleYear,CreatedDate")] SalaryStructureMaster salaryStructureMaster)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SalaryScaleId,SalaryScale,GradeLevel,Step,SalaryAmount,IsActive,IsDeleted,ScaleYear,CreatedDate")] SalaryStructureMaster salaryStructureMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,SalaryScaleId,SalaryScale,GradeLevel,Step,SalaryAmount,IsActive,IsDeleted,ScaleYear,CreatedDate")] SalaryStructureMaster salaryStructureMaster)
         {
             if (ModelState.IsValid)
             {

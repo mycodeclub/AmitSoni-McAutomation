@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: CentralStores
         public ActionResult Index()
         {
-            return View(db.CentralStores.ToList());
+            var user = (UserMaster)Session["User"];
+            return View(db.CentralStores.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: CentralStores/Details/5
@@ -46,7 +47,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted")] CentralStore centralStore)
+        public ActionResult Create([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted,CustomerId")] CentralStore centralStore)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted")] CentralStore centralStore)
+        public ActionResult Edit([Bind(Include = "Id,Item,Class,Price,CreatedDate,IsDeleted,CustomerId")] CentralStore centralStore)
         {
             if (ModelState.IsValid)
             {

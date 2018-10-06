@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class PrequalificationScoringsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: PrequalificationScorings
         public ActionResult Index()
         {
-            return View(db.PrequalificationScorings.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.PrequalificationScorings.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: PrequalificationScorings/Details/5
@@ -70,7 +71,7 @@ namespace IARTAutomationApp.Controllers
             }
             //15%
             ViewBag.StaffStrength = new SelectList(numlist15, "Value", "Text");
-             
+
             ViewBag.EvidPreSimJob = new SelectList(numlist15, "Value", "Text");
             ViewBag.ExpCompt = new SelectList(numlist15, "Value", "Text");
 
@@ -83,7 +84,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CompanyName,ProjectTitle,LotNo,ContractorName,EvidofReg_Cac,TaxClearanceCertificate,EvidofReg_Bureau,AudittedAccount,ClearanceCert_Itf,ClearanceCert_Pencom,ClearanceCert_Nsitf,StaffStrength,CurrentFinStatus,EquipmentList,EvidPreSimJob,ExpCompt,FinalScore,CreatedDate,IsDeleted")] PrequalificationScoring prequalificationScoring)
+        public ActionResult Create([Bind(Include = "CustomerId,Id,CompanyName,ProjectTitle,LotNo,ContractorName,EvidofReg_Cac,TaxClearanceCertificate,EvidofReg_Bureau,AudittedAccount,ClearanceCert_Itf,ClearanceCert_Pencom,ClearanceCert_Nsitf,StaffStrength,CurrentFinStatus,EquipmentList,EvidPreSimJob,ExpCompt,FinalScore,CreatedDate,IsDeleted")] PrequalificationScoring prequalificationScoring)
         {
             if (ModelState.IsValid)
             {
@@ -150,7 +151,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CompanyName,ProjectTitle,LotNo,ContractorName,EvidofReg_Cac,TaxClearanceCertificate,EvidofReg_Bureau,AudittedAccount,ClearanceCert_Itf,ClearanceCert_Pencom,ClearanceCert_Nsitf,StaffStrength,CurrentFinStatus,EquipmentList,EvidPreSimJob,ExpCompt,FinalScore,CreatedDate,IsDeleted")] PrequalificationScoring prequalificationScoring)
+        public ActionResult Edit([Bind(Include = "CustomerId,Id,CompanyName,ProjectTitle,LotNo,ContractorName,EvidofReg_Cac,TaxClearanceCertificate,EvidofReg_Bureau,AudittedAccount,ClearanceCert_Itf,ClearanceCert_Pencom,ClearanceCert_Nsitf,StaffStrength,CurrentFinStatus,EquipmentList,EvidPreSimJob,ExpCompt,FinalScore,CreatedDate,IsDeleted")] PrequalificationScoring prequalificationScoring)
         {
             if (ModelState.IsValid)
             {

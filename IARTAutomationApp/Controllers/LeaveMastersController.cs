@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class LeaveMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: LeaveMasters
         public ActionResult Index()
         {
-            return View(db.LeaveMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.LeaveMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: LeaveMasters/Details/5
@@ -52,7 +53,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeaveId,LeaveTypeId,LeaveCount,CalenderYear,IsActive,IsDelete,IsCreated")] LeaveMaster leaveMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,LeaveId,LeaveTypeId,LeaveCount,CalenderYear,IsActive,IsDelete,IsCreated")] LeaveMaster leaveMaster)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +85,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LeaveId,LeaveTypeId,LeaveCount,CalenderYear,IsActive,IsDelete,IsCreated")] LeaveMaster leaveMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,LeaveId,LeaveTypeId,LeaveCount,CalenderYear,IsActive,IsDelete,IsCreated")] LeaveMaster leaveMaster)
         {
             if (ModelState.IsValid)
             {

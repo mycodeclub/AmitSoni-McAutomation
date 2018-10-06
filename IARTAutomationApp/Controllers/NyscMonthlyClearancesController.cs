@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class NyscMonthlyClearancesController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,7 +18,8 @@ namespace IARTAutomationApp.Controllers
         // GET: NyscMonthlyClearances
         public ActionResult Index()
         {
-            var nyscMonthlyClearances = db.NyscMonthlyClearances.Include(n => n.EmployeeGI).Include(n => n.EmployeeGI1);
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var nyscMonthlyClearances = db.NyscMonthlyClearances.Where(e => e.CustomerId == user.CustomerId).Include(n => n.EmployeeGI).Include(n => n.EmployeeGI1);
             return View(nyscMonthlyClearances.ToList());
         }
 
@@ -50,7 +51,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,SatisfactoryMonth,AllowanceMonth,CreatedDate,IsDeleted")] NyscMonthlyClearance nyscMonthlyClearance)
+        public ActionResult Create([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,SatisfactoryMonth,AllowanceMonth,CreatedDate,IsDeleted")] NyscMonthlyClearance nyscMonthlyClearance)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,SatisfactoryMonth,AllowanceMonth,CreatedDate,IsDeleted")] NyscMonthlyClearance nyscMonthlyClearance)
+        public ActionResult Edit([Bind(Include = "CustomerId,Id,EmployeeCode,OurRef,YourRef,Date,Name,NYSC_Code,SatisfactoryMonth,AllowanceMonth,CreatedDate,IsDeleted")] NyscMonthlyClearance nyscMonthlyClearance)
         {
             if (ModelState.IsValid)
             {

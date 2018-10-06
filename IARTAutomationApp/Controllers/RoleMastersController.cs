@@ -10,18 +10,19 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class RoleMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
 
 
-  
+
 
         // GET: RoleMasters
         public ActionResult Index()
         {
-            return View(db.RoleMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            return View(db.RoleMasters.Where(e => e.CustomerId == user.CustomerId).ToList());
         }
 
         // GET: RoleMasters/Details/5
@@ -50,7 +51,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleId,RoleName,Description,IsActive,IsDeleted,CreatedDate")] RoleMaster roleMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,RoleId,RoleName,Description,IsActive,IsDeleted,CreatedDate")] RoleMaster roleMaster)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleId,RoleName,Description,IsActive,IsDeleted,CreatedDate")] RoleMaster roleMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,RoleId,RoleName,Description,IsActive,IsDeleted,CreatedDate")] RoleMaster roleMaster)
         {
             if (ModelState.IsValid)
             {

@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: CadreMasters
         public ActionResult Index()
         {
-            ViewBag.CadreMasters = db.CadreMasters.Count();
+            var user = (UserMaster)Session["User"];
+            ViewBag.CadreMasters = db.CadreMasters.Where(e => e.CustomerId == user.CustomerId).Count();
             return View(db.CadreMasters.ToList());
         }
 
@@ -47,7 +48,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CadreId,CadreName,CreatedDate,IsDeleted")] CadreMaster cadreMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,CadreId,CadreName,CreatedDate,IsDeleted")] CadreMaster cadreMaster)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CadreId,CadreName,CreatedDate,IsDeleted")] CadreMaster cadreMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,CadreId,CadreName,CreatedDate,IsDeleted")] CadreMaster cadreMaster)
         {
             if (ModelState.IsValid)
             {

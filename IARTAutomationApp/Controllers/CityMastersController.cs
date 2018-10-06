@@ -17,7 +17,8 @@ namespace IARTAutomationApp.Controllers
         // GET: CityMasters
         public ActionResult Index()
         {
-            ViewBag.CityMasters = db.CityMasters.Count();
+            var user = (UserMaster)Session["User"];
+            ViewBag.CityMasters = db.CityMasters.Where(e => e.CustomerId == user.CustomerId).Count();
             return View(db.CityMasters.ToList());
         }
 
@@ -51,7 +52,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,City,StateId,IsDeleted")] CityMaster cityMaster)
+        public ActionResult Create([Bind(Include = "Id,City,StateId,IsDeleted,CustomerId")] CityMaster cityMaster)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +84,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,City,StateId,IsDeleted")] CityMaster cityMaster)
+        public ActionResult Edit([Bind(Include = "Id,City,StateId,IsDeleted,CustomerId")] CityMaster cityMaster)
         {
             if (ModelState.IsValid)
             {
