@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class TenderOpeningsController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: TenderOpenings
         public ActionResult Index()
         {
-            ViewBag.TenderOpenings = db.TenderOpenings.Count();
-            return View(db.TenderOpenings.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var data = db.TenderOpenings.Where(e => e.CustomerId == user.CustomerId).ToList();
+            ViewBag.TenderOpenings = data.Count();
+            return View(data);
         }
 
         // GET: TenderOpenings/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RepresentativeName,CompanyName,AmountQuoted,CompletionPeriodFrom,CompletionPeriodTo,Remarks,LotNo,ProjectTitle,YearofProject,CreatedDate,IsDeleted")] TenderOpening tenderOpening)
+        public ActionResult Create([Bind(Include = "CustomerId,Id,RepresentativeName,CompanyName,AmountQuoted,CompletionPeriodFrom,CompletionPeriodTo,Remarks,LotNo,ProjectTitle,YearofProject,CreatedDate,IsDeleted")] TenderOpening tenderOpening)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +83,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RepresentativeName,CompanyName,AmountQuoted,CompletionPeriodFrom,CompletionPeriodTo,Remarks,LotNo,ProjectTitle,YearofProject,CreatedDate,IsDeleted")] TenderOpening tenderOpening)
+        public ActionResult Edit([Bind(Include = "CustomerId,Id,RepresentativeName,CompanyName,AmountQuoted,CompletionPeriodFrom,CompletionPeriodTo,Remarks,LotNo,ProjectTitle,YearofProject,CreatedDate,IsDeleted")] TenderOpening tenderOpening)
         {
             if (ModelState.IsValid)
             {

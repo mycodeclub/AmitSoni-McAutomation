@@ -8,14 +8,17 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StockReportController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
         // GET: StockReport
         public ActionResult Index()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+
             var vendorList = from a in db.StockMasters
+                             where a.CustomerId == user.CustomerId
                              join b in db.StoreMasters on a.StoreId equals b.RecordId
                              join c in db.ClassMasters on a.ClassId equals c.RecordId
                              join d in db.ItemMasters on a.ItemId equals d.RecordId

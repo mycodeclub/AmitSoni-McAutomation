@@ -10,7 +10,7 @@ using IARTAutomationApp.Models;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class UnitServicesMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -18,8 +18,10 @@ namespace IARTAutomationApp.Controllers
         // GET: UnitServicesMasters
         public ActionResult Index()
         {
-            ViewBag.UnitServicesMasters = db.UnitServicesMasters.Count();
-            return View(db.UnitServicesMasters.ToList());
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var data = db.UnitServicesMasters.Where(e => e.CustomerId == user.CustomerId).ToList();
+            ViewBag.UnitServicesMasters = data.Count();
+            return View(data);
         }
 
         // GET: UnitServicesMasters/Details/5
@@ -48,7 +50,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UnitServicesId,UnitServicesName,CreatedDate,IsDeleted")] UnitServicesMaster unitServicesMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,UnitServicesId,UnitServicesName,CreatedDate,IsDeleted")] UnitServicesMaster unitServicesMaster)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +83,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UnitServicesId,UnitServicesName,CreatedDate,IsDeleted")] UnitServicesMaster unitServicesMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,UnitServicesId,UnitServicesName,CreatedDate,IsDeleted")] UnitServicesMaster unitServicesMaster)
         {
             if (ModelState.IsValid)
             {

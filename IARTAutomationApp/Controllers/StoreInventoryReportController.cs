@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StoreInventoryReportController : Controller
     {
         // GET: StoreInventoryReport
@@ -17,7 +17,9 @@ namespace IARTAutomationApp.Controllers
         public ActionResult Index()
         {
 
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             var storeCode = from a in db.StoreMasters
+                            where a.CustomerId == user.CustomerId
                             join b in db.UserMasters on a.EmployeeID equals b.EmployeeCode
                             join c in db.StatusMasters on a.StoreStatus equals c.RecordId
                             let cc = (

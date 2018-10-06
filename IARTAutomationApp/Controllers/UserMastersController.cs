@@ -12,7 +12,7 @@ using IARTAutomationApp.ViewModels;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class UserMastersController : Controller
     {
         private IARTDBNEWEntities db = new IARTDBNEWEntities();
@@ -56,7 +56,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         public ActionResult UserChangePassword(int? id)
-        { 
+        {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -113,8 +113,8 @@ namespace IARTAutomationApp.Controllers
             var response = (from a in db.EmployeeGIs
                             from b in db.EmployeePIs
                             from c in db.UserMasters
-                           
-                            where a.EmployeeCode == EmployeeCode && b.EmployeeCode==a.EmployeeCode || c.EmployeeCode== EmployeeCode
+
+                            where a.EmployeeCode == EmployeeCode && b.EmployeeCode == a.EmployeeCode || c.EmployeeCode == EmployeeCode
                             select new
                             {
                                 empcode = a.EmployeeCode,
@@ -124,7 +124,7 @@ namespace IARTAutomationApp.Controllers
                                 EmailId = b.EmpEmailId,
                                 OrgName = "INSTITUTE OF AGRICULTURAL RESEARCH AND TRAINING",
 
-                                Password=c.Password
+                                Password = c.Password
 
 
 
@@ -137,9 +137,11 @@ namespace IARTAutomationApp.Controllers
         // GET: UserMasters
         public ActionResult Index()
         {
-            var NoofUser = (from a in db.UserMasters select a).ToList().Count();
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+
+            var NoofUser = (from a in db.UserMasters where a.CustomerId == user.CustomerId select a).ToList().Count();
             ViewBag.NoofUser = NoofUser;
-            var employeeRoles = db.UserMasters;
+            var employeeRoles = db.UserMasters.Where(e => e.CustomerId == user.CustomerId);
 
             return View(employeeRoles);
         }
@@ -174,7 +176,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeCode,UserId,EmailId,UserName,Password,RoleId,UserKeyId,OrganizationName,IsActive,LastLoginDate,IsDeleted,CreatedDate")] UserMaster userMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,EmployeeCode,UserId,EmailId,UserName,Password,RoleId,UserKeyId,OrganizationName,IsActive,LastLoginDate,IsDeleted,CreatedDate")] UserMaster userMaster)
         {
             if (ModelState.IsValid)
             {
@@ -211,7 +213,7 @@ namespace IARTAutomationApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeCode,EmailId,UserId,UserName,Password,RoleId,UserKeyId,OrganizationName")] UserMaster userMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,EmployeeCode,EmailId,UserId,UserName,Password,RoleId,UserKeyId,OrganizationName")] UserMaster userMaster)
         //,IsActive,LastLoginDate,IsDeleted,CreatedDate
         {
             if (ModelState.IsValid)

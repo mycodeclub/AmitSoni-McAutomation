@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StoreController : Controller
     {
         // GET: Store
@@ -23,7 +23,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "StoreNumber,StoreName,StoreStatus,StoreDesc,StoreImgName")] StoreMaster storeMaster, HttpPostedFileBase StoreImgName)
+        public ActionResult Create([Bind(Include = "CustomerId,StoreNumber,StoreName,StoreStatus,StoreDesc,StoreImgName")] StoreMaster storeMaster, HttpPostedFileBase StoreImgName)
         {
             StoreMaster s = new StoreMaster();
             ViewBag.Status = new SelectList(db.StatusMasters, "RecordId", "StatusName");
@@ -69,7 +69,10 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult ViewAll()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+
             var storeCode = from a in db.StoreMasters
+                            where a.CustomerId == user.CustomerId
                             let cc = (
                 from s in db.ItemMasters
                 where a.RecordId == s.StoreId
@@ -87,15 +90,17 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult StoreList()
         {
-            var StoreActiveCount = (from a in db.StoreMasters where a.StoreStatus == 1 select a).ToList().Count();
-            var StoreClosedCount = (from a in db.StoreMasters where a.StoreStatus == 2 select a).ToList().Count();
-            var TotalStoreCount = (from a in db.StoreMasters select a).ToList().Count();
-            var TotalStoreItemCount = (from a in db.ItemMasters select a).ToList().Count();
+            var u = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            var StoreActiveCount = (from a in db.StoreMasters where a.StoreStatus == 1 && a.CustomerId == u.CustomerId select a).ToList().Count();
+            var StoreClosedCount = (from a in db.StoreMasters where a.StoreStatus == 2 && a.CustomerId == u.CustomerId select a).ToList().Count();
+            var TotalStoreCount = (from a in db.StoreMasters where a.CustomerId == u.CustomerId select a).ToList().Count();
+            var TotalStoreItemCount = (from a in db.ItemMasters where a.CustomerId == u.CustomerId select a).ToList().Count();
             ViewBag.StoreActiveCount = StoreActiveCount;
             ViewBag.StoreClosedCount = StoreClosedCount;
             ViewBag.TotalStoreCount = TotalStoreCount;
             ViewBag.TotalStoreItemCount = TotalStoreItemCount;
             var storeList = from a in db.StoreMasters
+                            where a.CustomerId == u.CustomerId
                             join user in db.UserMasters on a.EmployeeID equals user.EmployeeCode
                             join status in db.StatusMasters on a.StoreStatus equals status.RecordId
 
@@ -116,7 +121,7 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult Edit(int? id)
         {
-            ViewBag.Status = new SelectList(db.StatusMasters, "RecordId", "StatusName");
+            ViewBag.Status = new SelectList(db.StatusMasters, "CustomerId,RecordId", "StatusName");
 
             if (id == null)
             {
@@ -131,7 +136,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId,StoreNumber,StoreName,StoreStatus,StoreDesc")] StoreMaster store)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId,StoreNumber,StoreName,StoreStatus,StoreDesc")] StoreMaster store)
         {
             StoreMaster s = (from c in db.StoreMasters
                              where c.RecordId == store.RecordId

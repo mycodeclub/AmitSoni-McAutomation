@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class VendorController : Controller
     {
         // GET: Vendor
@@ -21,7 +21,7 @@ namespace IARTAutomationApp.Controllers
             ViewBag.Country = new SelectList(GetCountry(), "Value", "Text");
             List<SelectListItem> emptyList = new List<SelectListItem>();
             emptyList.Insert(0, new SelectListItem { Text = "Select City", Value = "" });
-            ViewBag.Empty = new SelectList(emptyList, "Value","Text");
+            ViewBag.Empty = new SelectList(emptyList, "Value", "Text");
             return View();
         }
 
@@ -72,7 +72,7 @@ namespace IARTAutomationApp.Controllers
 
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "VendorName,VendorOrg,VendorMob,VendorAMob,VendorEmail,VendorRepDesc,VendorAdd1,VendorAdd2,VendorCity,VendorState,VendorCountry,VendorZipCode,VendorTaxDet,VendorStatus,VendorDesc")] VendorMaster vendor)
+        public ActionResult Create([Bind(Include = "CustomerId,VendorName,VendorOrg,VendorMob,VendorAMob,VendorEmail,VendorRepDesc,VendorAdd1,VendorAdd2,VendorCity,VendorState,VendorCountry,VendorZipCode,VendorTaxDet,VendorStatus,VendorDesc")] VendorMaster vendor)
         {
             VendorMaster v = new VendorMaster();
             if (ModelState.IsValid)
@@ -102,17 +102,20 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult ViewAll()
         {
-            ViewBag.VendorActiveCount = (from a in db.VendorMasters where a.VendorStatus == 1 select a).ToList().Count();
-            ViewBag.VendorClosedCount = (from a in db.VendorMasters where a.VendorStatus == 2 select a).ToList().Count();
-            ViewBag.TotalVendorCount = (from a in db.VendorMasters select a).ToList().Count();
-            
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            ViewBag.VendorActiveCount = (from a in db.VendorMasters where a.CustomerId == user.CustomerId && a.VendorStatus == 1 select a).ToList().Count();
+            ViewBag.VendorClosedCount = (from a in db.VendorMasters where a.CustomerId == user.CustomerId && a.VendorStatus == 2 select a).ToList().Count();
+            ViewBag.TotalVendorCount = (from a in db.VendorMasters where a.CustomerId == user.CustomerId select a).ToList().Count();
+
             var vendorList = from a in db.VendorMasters
+                             where a.CustomerId == user.CustomerId
                              join b in db.COUNTRYLISTs on a.VendorCountry equals b.ID
                              join c in db.StatusMasters on a.VendorStatus equals c.RecordId
                              join d in db.UserMasters on a.EmployeeID equals d.EmployeeCode
                              join e in db.StateMasters on a.VendorState equals e.Id
-                             join f in db.CityMasters on a.VendorState equals f.StateId where a.VendorCity == f.Id
-                             select new VendorDetails() { vendor = a, country = b, status = c, empName = d.UserName, city = f.City, state=e.State };
+                             join f in db.CityMasters on a.VendorState equals f.StateId
+                             where a.VendorCity == f.Id
+                             select new VendorDetails() { vendor = a, country = b, status = c, empName = d.UserName, city = f.City, state = e.State };
             return View(vendorList);
         }
 
@@ -139,7 +142,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId,VendorName,VendorOrg,VendorMob,VendorAMob,VendorEmail,VendorRepDesc,VendorAdd1,VendorAdd2,VendorCity,VendorState,VendorCountry,VendorZipCode,VendorTaxDet,VendorStatus,VendorDesc")] VendorMaster vendor)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId,VendorName,VendorOrg,VendorMob,VendorAMob,VendorEmail,VendorRepDesc,VendorAdd1,VendorAdd2,VendorCity,VendorState,VendorCountry,VendorZipCode,VendorTaxDet,VendorStatus,VendorDesc")] VendorMaster vendor)
         {
 
             VendorMaster v = (from c in db.VendorMasters
@@ -177,13 +180,13 @@ namespace IARTAutomationApp.Controllers
             }
             VendorMaster ven = db.VendorMasters.Find(id);
             var vendorList = (from a in db.VendorMasters
-                             join b in db.COUNTRYLISTs on a.VendorCountry equals b.ID
-                             join c in db.StatusMasters on a.VendorStatus equals c.RecordId
-                             join d in db.UserMasters on a.EmployeeID equals d.EmployeeCode
-                             join e in db.StateMasters on a.VendorState equals e.Id
-                             join f in db.CityMasters on a.VendorState equals f.StateId
-                             where a.VendorCity == f.Id
-                             select new VendorDetails() { vendor = a, country = b, status = c, empName = d.UserName, city = f.City, state = e.State }).Single();
+                              join b in db.COUNTRYLISTs on a.VendorCountry equals b.ID
+                              join c in db.StatusMasters on a.VendorStatus equals c.RecordId
+                              join d in db.UserMasters on a.EmployeeID equals d.EmployeeCode
+                              join e in db.StateMasters on a.VendorState equals e.Id
+                              join f in db.CityMasters on a.VendorState equals f.StateId
+                              where a.VendorCity == f.Id
+                              select new VendorDetails() { vendor = a, country = b, status = c, empName = d.UserName, city = f.City, state = e.State }).Single();
 
             if (ven == null)
             {

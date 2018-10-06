@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StockController : Controller
     {
         // GET: Stock
@@ -25,10 +25,11 @@ namespace IARTAutomationApp.Controllers
             return View();
         }
 
-        private static List<SelectListItem> GetStore()
+        private List<SelectListItem> GetStore()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.StoreMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.StoreMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.StoreName,
@@ -38,10 +39,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetClass()
+        private List<SelectListItem> GetClass()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.ClassMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.ClassMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.ClassName,
@@ -51,10 +53,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetItem()
+        private List<SelectListItem> GetItem()
         {
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.ItemMasters.AsEnumerable()
+            var user = (UserMaster)Session["User"];
+            List<SelectListItem> storeStatus = (from p in db.ItemMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.ItemName,
@@ -64,10 +67,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetUom()
+        private List<SelectListItem> GetUom()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.UomMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.UomMasters.Where(u => u.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.UOMName,
@@ -78,10 +82,11 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-        private static List<SelectListItem> GetVendor()
+        private List<SelectListItem> GetVendor()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.VendorMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.VendorMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.VendorName,
@@ -91,10 +96,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetInvoice()
+        private List<SelectListItem> GetInvoice()
         {
+            var user = (UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.PurchaseOrders.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.PurchaseOrders.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.OrderNo,
@@ -114,10 +120,10 @@ namespace IARTAutomationApp.Controllers
         }
 
 
-        
+
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "StoreId, ClassId, ItemId,BatchNo,Quantity,UomId,VendorId,PInvoiceNo,ReciveDate,TotalPrice")] StockMaster item)
+        public ActionResult Create([Bind(Include = "CustomerId,StoreId, ClassId, ItemId,BatchNo,Quantity,UomId,VendorId,PInvoiceNo,ReciveDate,TotalPrice")] StockMaster item)
         {
 
             StockMaster i = new StockMaster();
@@ -183,7 +189,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId,StoreId, ClassId, ItemId,BatchNo,Quantity,UomId,VendorId,PInvoiceNo,ReciveDate,TotalPrice")] StockMaster item)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId,StoreId, ClassId, ItemId,BatchNo,Quantity,UomId,VendorId,PInvoiceNo,ReciveDate,TotalPrice")] StockMaster item)
         {
 
             StockMaster i = (from c in db.StockMasters

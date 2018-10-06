@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StoreCreditController : Controller
     {
         // GET: StoreCredit
@@ -22,10 +22,11 @@ namespace IARTAutomationApp.Controllers
             return View();
         }
 
-        private static List<SelectListItem> GetStore()
+        private List<SelectListItem> GetStore()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.StoreMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.StoreMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.StoreName,
@@ -35,10 +36,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetItem()
+        private List<SelectListItem> GetItem()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.ItemMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.ItemMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.ItemName,
@@ -48,10 +50,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetUom()
+        private List<SelectListItem> GetUom()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.UomMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.UomMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.UOMName,
@@ -61,10 +64,11 @@ namespace IARTAutomationApp.Controllers
             return storeStatus;
         }
 
-        private static List<SelectListItem> GetVendor()
+        private List<SelectListItem> GetVendor()
         {
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
             IARTDBNEWEntities db = new IARTDBNEWEntities();
-            List<SelectListItem> storeStatus = (from p in db.VendorMasters.AsEnumerable()
+            List<SelectListItem> storeStatus = (from p in db.VendorMasters.Where(e => e.CustomerId == user.CustomerId).AsEnumerable()
                                                 select new SelectListItem
                                                 {
                                                     Text = p.VendorName,
@@ -76,12 +80,9 @@ namespace IARTAutomationApp.Controllers
 
         public ActionResult ViewAll()
         {
-            ViewBag.CrivCount = (from a in db.CrivVouchers where a.RecordId == 0 group a by a.CRIVVoucherId into a select a).ToList().Count();
-
-           
-
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            ViewBag.CrivCount = (from a in db.CrivVouchers where a.CustomerId == user.CustomerId && a.RecordId == 0 group a by a.CRIVVoucherId into a select a).ToList().Count();
             var crivList = (from a in db.StoreCreditVouchers
-
                             join d in db.UserMasters on a.EmployeeID equals d.EmployeeCode
                             select new StoreCreditDetails() { credit = a, Emp = d.UserName }).ToList();
 

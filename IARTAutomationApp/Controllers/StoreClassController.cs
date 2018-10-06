@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace IARTAutomationApp.Controllers
 {
-    
+
     public class StoreClassController : Controller
     {
         // GET: StoreClass
@@ -20,7 +20,7 @@ namespace IARTAutomationApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ClassNumber, ClassName, ClassStatus")] ClassMaster classMaster)
+        public ActionResult Create([Bind(Include = "CustomerId,ClassNumber, ClassName, ClassStatus")] ClassMaster classMaster)
         {
             ClassMaster cls = new ClassMaster();
             if (ModelState.IsValid)
@@ -39,10 +39,12 @@ namespace IARTAutomationApp.Controllers
         }
         public ActionResult ViewAll()
         {
-            ViewBag.TotalClassCount = (from a in db.ClassMasters select a).ToList().Count();
-            ViewBag.ClassActiveCount = (from a in db.ClassMasters where a.ClassStatus == 1 select a).ToList().Count();
-            ViewBag.ClassClosedCount = (from a in db.ClassMasters where a.ClassStatus == 2 select a).ToList().Count();
+            var user = (IARTAutomationApp.Models.UserMaster)Session["User"];
+            ViewBag.TotalClassCount = (from a in db.ClassMasters where a.CustomerId == user.CustomerId select a).ToList().Count();
+            ViewBag.ClassActiveCount = (from a in db.ClassMasters where a.CustomerId == user.CustomerId && a.ClassStatus == 1 select a).ToList().Count();
+            ViewBag.ClassClosedCount = (from a in db.ClassMasters where a.CustomerId == user.CustomerId && a.ClassStatus == 2 select a).ToList().Count();
             var classList = from c in db.ClassMasters
+                            where c.CustomerId == user.CustomerId
                             join u in db.UserMasters on c.EmployeeID equals u.EmployeeCode
                             join s in db.StatusMasters on c.ClassStatus equals s.RecordId
                             select new ClassDetails()
@@ -74,7 +76,7 @@ namespace IARTAutomationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RecordId, ClassNumber, ClassName, ClassStatus")] ClassMaster classMaster)
+        public ActionResult Edit([Bind(Include = "CustomerId,RecordId, ClassNumber, ClassName, ClassStatus")] ClassMaster classMaster)
         {
             ClassMaster cls = (from c in db.ClassMasters
                                where c.RecordId == classMaster.RecordId
