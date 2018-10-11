@@ -134,6 +134,11 @@ namespace IARTAutomationApp.Controllers
                 customerUpdate.Email = tenent.CustomerMaster.Email;
                 customerUpdate.Address = tenent.CustomerMaster.Address;
                 customerUpdate.PhoneNumber = tenent.CustomerMaster.PhoneNumber;
+                customerUpdate.CountryLogo = tenent.CustomerMaster.CountryLogo;
+                customerUpdate.CountryLogoIrl = tenent.CustomerMaster.CountryLogoIrl;
+                customerUpdate.OrgLogo = tenent.CustomerMaster.OrgLogo;
+                customerUpdate.OrgLogoUrl = tenent.CustomerMaster.OrgLogoUrl;
+
 
                 SaveImages(customerUpdate);
                 db.Entry(customerUpdate).State = EntityState.Modified;
