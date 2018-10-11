@@ -209,6 +209,7 @@ namespace IARTAutomationApp.Controllers
                 tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
                 db.EmployeeGIs.Add(tenent);
                 db.SaveChanges();
+                loginUser.CustomerId = tenent.CustomerId;
                 var isImagesSaved = SaveImages(tenent.CustomerMaster);
                 var isConfigSaved = AddSystemConfig(tenent);
                 isSaved = isImagesSaved && isConfigSaved;
