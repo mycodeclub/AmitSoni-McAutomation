@@ -69,7 +69,6 @@ namespace IARTAutomationApp.Models
         public virtual DbSet<TenderOpening> TenderOpenings { get; set; }
         public virtual DbSet<UnitResearchMaster> UnitResearchMasters { get; set; }
         public virtual DbSet<UnitServicesMaster> UnitServicesMasters { get; set; }
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<StoreMaster> StoreMasters { get; set; }
         public virtual DbSet<StatusMaster> StatusMasters { get; set; }
         public virtual DbSet<ItemMaster> ItemMasters { get; set; }
@@ -87,5 +86,6 @@ namespace IARTAutomationApp.Models
         public virtual DbSet<SuperAdmin> SuperAdmins { get; set; }
         public virtual DbSet<CustomerMaster> CustomerMasters { get; set; }
         public virtual DbSet<EmployeeGI> EmployeeGIs { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
     }
 }

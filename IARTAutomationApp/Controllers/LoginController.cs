@@ -22,6 +22,7 @@ namespace IARTAutomationApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         public ActionResult AdminLogin(string returnUrl, FormCollection fc)
+
         {
             if (!string.IsNullOrEmpty(fc["EmployeeCode"]) && !string.IsNullOrEmpty(fc["Password"]))
             {
