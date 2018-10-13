@@ -71,18 +71,10 @@ namespace IARTAutomationApp.Controllers
             return View(tenent);
         }
         public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var empCode = (from emp in db.EmployeeGIs where emp.EmployeeGIId == id.Value select emp.EmployeeCode).FirstOrDefault();
-            EmployeeGI tenent = db.EmployeeGIs.Find(empCode);
-            tenent.CustomerMaster = db.CustomerMasters.Find(tenent.CustomerId);
-            if (tenent == null)
-            {
-                return HttpNotFound();
-            }
+        { // id = EmployeeGIId
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var tenent = db.EmployeeGIs.Where(emp => emp.EmployeeGIId == id.Value).FirstOrDefault();
+            if (tenent == null) return HttpNotFound();
             ViewBag.LGAs = new SelectList(db.CityMasters.Where(c => c.StateId == 1), "City", "City");
             ViewBag.StateOfOrigins = new SelectList(db.StateMasters, "State", "State");
             return View(tenent);
@@ -142,6 +134,9 @@ namespace IARTAutomationApp.Controllers
 
                 SaveImages(customerUpdate);
                 db.Entry(customerUpdate).State = EntityState.Modified;
+                var user = db.UserMasters.Where(um => um.CustomerId == tenent.CustomerId).FirstOrDefault();
+                user.Password = tenent.CustomerMaster.UserMaster.Password;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -209,6 +204,7 @@ namespace IARTAutomationApp.Controllers
                 tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
                 db.EmployeeGIs.Add(tenent);
                 db.SaveChanges();
+                tenent.CustomerMaster.EmployeeGIId = tenent.EmployeeGIId;
                 loginUser.CustomerId = tenent.CustomerId;
                 var isImagesSaved = SaveImages(tenent.CustomerMaster);
                 var isConfigSaved = AddSystemConfig(tenent);

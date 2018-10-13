@@ -1,4 +1,5 @@
 DELETE FROM BankMaster
+DELETE FROM BankTypeMaster
 DELETE FROM CadreMaster
 DELETE FROM PFAMaster
 DELETE FROM ProgrammeMaster
