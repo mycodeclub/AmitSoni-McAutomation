@@ -11,9 +11,9 @@ namespace IARTAutomationApp.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
     public partial class EmployeeGI
     {
@@ -75,13 +75,13 @@ namespace IARTAutomationApp.Models
         public string Unit_Services { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CustomerId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [NotMapped]
         [DisplayName("Upload Passport Photo Of Employee")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase EmployeePhotoImage { get; set; }
-        public Nullable<int> CustomerId { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnnualLeave> AnnualLeaves { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnnualLeave> AnnualLeaves1 { get; set; }
@@ -89,7 +89,7 @@ namespace IARTAutomationApp.Models
         public virtual ICollection<CasualLeave> CasualLeaves { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CasualLeave> CasualLeaves1 { get; set; }
-        public CustomerMaster CustomerMaster { get; set; }
+        public virtual CustomerMaster CustomerMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeAI> EmployeeAIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
